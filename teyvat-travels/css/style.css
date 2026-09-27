@@ -1,0 +1,884 @@
+/* =========================================================
+   Teyvat Travels — Shared Stylesheet
+   Design System v1.0.0
+   Reused across all 8 pages (7 nations + About/Company page)
+   ========================================================= */
+
+/* -----------------------------
+   1. Design Tokens
+------------------------------ */
+:root {
+  /* Core colors */
+  --color-primary: #D4A843;
+  --color-primary-hover: #B8901F;
+  --color-primary-pressed: #8F6F17;
+  --color-secondary: #2C2C2C;
+  --color-background: #FAF7F2;
+  --color-white: #FFFFFF;
+  --color-text-muted: #6B6B6B;
+  --color-border: #E4DFD4;
+
+  /* Region accents */
+  --color-mondstadt: #5B9A3C;
+  --color-liyue: #C17829;
+  --color-inazuma: #6B3FA0;
+  --color-sumeru: #3A7D44;
+  --color-fontaine: #1B6B9A;
+  --color-natlan: #D4542B;
+  --color-snezhnaya: #8CB8D4;
+
+  /* Placeholder image spec */
+  --color-placeholder-bg: #E0E0E0;
+  --color-placeholder-border: #B3B3B3;
+  --color-placeholder-text: #8A8A8A;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing grid (8px base) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-max: 64px;
+
+  /* Elevation */
+  --shadow-1: 0 2px 8px rgba(0, 0, 0, 0.03);
+  --shadow-2: 0 8px 20px rgba(0, 0, 0, 0.06);
+  --shadow-3: 0 16px 40px rgba(0, 0, 0, 0.11);
+
+  --radius: 6px;
+}
+
+/* -----------------------------
+   2. Reset & Base
+------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-secondary);
+  background-color: var(--color-background);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-secondary);
+}
+
+h1 { font-size: 48px; line-height: 1.2; letter-spacing: -0.01em; }
+h2 { font-size: 36px; line-height: 1.25; letter-spacing: -0.005em; }
+h3 { font-size: 28px; font-weight: 600; line-height: 1.3; }
+h4 { font-size: 22px; font-weight: 600; line-height: 1.4; }
+
+p {
+  margin: 0;
+}
+
+.body-large { font-size: 18px; line-height: 1.5; }
+.body-default { font-size: 16px; line-height: 1.5; }
+.body-small { font-size: 14px; line-height: 1.4; }
+.caption {
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Visible keyboard focus (accessibility) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -----------------------------
+   3. Layout helpers
+------------------------------ */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.section {
+  padding: var(--space-max) 0;
+}
+
+/* -----------------------------
+   4. Navigation Bar
+------------------------------ */
+.navbar {
+  background-color: var(--color-secondary);
+  padding: var(--space-md) 0;
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.navbar__logo {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.navbar__links {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.navbar__links a {
+  color: var(--color-white);
+  font-size: 15px;
+}
+
+.navbar__links a:hover,
+.navbar__links a.active {
+  color: var(--color-primary);
+}
+
+.navbar__toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* -----------------------------
+   5. Buttons
+------------------------------ */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+  background-color: var(--color-primary-pressed);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+  font-size: 14px;
+  padding: var(--space-xs) var(--space-md);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+/* Region-colored primary button (used on nation hero sections) */
+.btn-region {
+  background-color: var(--region-color, var(--color-primary));
+  color: var(--color-white);
+}
+
+.btn-region:hover {
+  filter: brightness(0.9);
+}
+
+.text-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+}
+
+.text-link:hover {
+  border-bottom-color: var(--color-primary);
+}
+
+/* -----------------------------
+   6. Image Placeholder
+------------------------------ */
+.img-placeholder {
+  background-color: var(--color-placeholder-bg);
+  border: 1px dashed var(--color-placeholder-border);
+  color: var(--color-placeholder-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+.img-placeholder--hero {
+  aspect-ratio: unset;
+  height: 100%;
+}
+
+.img-placeholder--circle {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+
+.img-placeholder--small {
+  aspect-ratio: 1 / 1;
+  width: 90px;
+  flex-shrink: 0;
+}
+
+/* -----------------------------
+   7. Badges
+------------------------------ */
+.badge {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badge-price {
+  background-color: var(--region-color, var(--color-primary));
+  color: var(--color-white);
+}
+
+.badge-duration {
+  background-color: transparent;
+  border: 1px solid var(--region-color, var(--color-primary));
+  color: var(--region-color, var(--color-secondary));
+}
+
+.badge-region {
+  background-color: var(--region-color, var(--color-primary));
+  color: var(--color-white);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+/* -----------------------------
+   8. Hero Section
+------------------------------ */
+.hero {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: var(--radius);
+  margin-top: var(--space-xl);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #C9C9C9, #4A4A4A);
+  z-index: 0;
+}
+
+.hero__bg-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-2xl) var(--space-max);
+  max-width: 600px;
+}
+
+.hero__content h1 {
+  margin-bottom: var(--space-sm);
+}
+
+.hero__content .body-large {
+  margin-bottom: var(--space-lg);
+  color: var(--color-secondary);
+}
+
+/* -----------------------------
+   9. About / Content Panel
+------------------------------ */
+.about-panel {
+  background-color: var(--color-white);
+  border-left: 4px solid var(--region-color, var(--color-primary));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-xl) var(--space-2xl);
+}
+
+.about-panel h2 {
+  margin-bottom: var(--space-md);
+}
+
+.about-panel__rule {
+  width: 48px;
+  height: 3px;
+  background-color: var(--region-color, var(--color-primary));
+  margin-top: var(--space-lg);
+}
+
+/* -----------------------------
+   10. Cards Grid (Featured Stops / Tour Packages)
+------------------------------ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.card {
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  display: flex;
+  flex-direction: column;
+}
+
+.card__body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+}
+
+.card__region {
+  align-self: flex-start;
+}
+
+.card__description {
+  color: var(--color-text-muted);
+  flex: 1;
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-sm);
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.card__footer-badges {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* -----------------------------
+   11. Exclusive Package Panel
+------------------------------ */
+.package-panel {
+  border: 1px solid var(--region-color, var(--color-primary));
+  border-radius: var(--radius);
+  padding: var(--space-2xl);
+  text-align: center;
+}
+
+.package-panel__eyebrow {
+  color: var(--region-color, var(--color-primary));
+  margin-bottom: var(--space-sm);
+}
+
+.package-panel h3 {
+  margin-bottom: var(--space-xl);
+}
+
+.package-panel__stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.package-panel__stat {
+  text-align: center;
+}
+
+.package-panel__stat-label {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+  display: block;
+}
+
+.package-panel__stat-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--region-color, var(--color-primary));
+}
+
+/* -----------------------------
+   12. Related / Explore Strip
+------------------------------ */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+.related-card {
+  display: flex;
+  gap: var(--space-md);
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-md);
+  align-items: center;
+}
+
+.related-card__text h4 {
+  margin-bottom: var(--space-xs);
+}
+
+.related-card__text p {
+  color: var(--color-text-muted);
+}
+
+/* -----------------------------
+   13. Footer
+------------------------------ */
+.site-footer {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  padding-top: var(--space-max);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.footer-grid h3 {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+}
+
+.footer-grid p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-col__title {
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.footer-col ul li {
+  margin-bottom: var(--space-sm);
+}
+
+.footer-col ul li a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer-col ul li a:hover {
+  color: var(--color-primary);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: var(--space-lg) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.footer-bottom p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.footer-socials .btn {
+  padding: var(--space-xs) var(--space-md);
+  font-size: 13px;
+}
+
+/* -----------------------------
+   14. Page Header (About page)
+------------------------------ */
+.page-header {
+  text-align: center;
+  padding: var(--space-max) 0 var(--space-xl);
+}
+
+.page-header__subtitle {
+  color: var(--color-text-muted);
+  margin-top: var(--space-sm);
+}
+
+.page-header__rule {
+  width: 64px;
+  height: 3px;
+  background-color: var(--color-primary);
+  margin: var(--space-md) auto 0;
+}
+
+/* -----------------------------
+   15. Split Section (Mission/Vision/Story + Image)
+------------------------------ */
+.split-section {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.split-section__text h3 {
+  margin-bottom: var(--space-sm);
+}
+
+.split-section__text h3:not(:first-child) {
+  margin-top: var(--space-xl);
+}
+
+.split-section__text p {
+  color: var(--color-secondary);
+}
+
+.split-section__image {
+  aspect-ratio: 4 / 3;
+  height: 100%;
+}
+
+/* -----------------------------
+   16. Nations We Serve Grid
+------------------------------ */
+.nations-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+  text-align: center;
+}
+
+.nation-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.nation-item .img-placeholder--circle {
+  width: 90px;
+  font-size: 20px;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.nation-item span.nation-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* -----------------------------
+   17. Director Profile Card
+------------------------------ */
+.director-card {
+  display: flex;
+  gap: var(--space-2xl);
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-2xl);
+  align-items: flex-start;
+}
+
+.director-card__photo {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.director-card__title {
+  color: var(--color-primary);
+  display: block;
+  margin: var(--space-xs) 0 var(--space-md);
+}
+
+.director-card__bio {
+  color: var(--color-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.director-card__quote {
+  border-left: 3px solid var(--color-primary);
+  padding-left: var(--space-md);
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--color-secondary);
+}
+
+.director-card__quote footer {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: var(--space-sm);
+}
+
+/* -----------------------------
+   18. Contact + FAQ Section
+------------------------------ */
+.contact-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+}
+
+.eyebrow {
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.contact-faq-grid h2 {
+  margin-bottom: var(--space-md);
+}
+
+.contact-faq-grid > div > .body-default {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+/* -----------------------------
+   19. Form
+------------------------------ */
+.form-group {
+  margin-bottom: var(--space-lg);
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: var(--space-sm);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-white);
+  color: var(--color-secondary);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #A8A8A8;
+}
+
+/* -----------------------------
+   20. FAQ Accordion (native <details>, no JS)
+------------------------------ */
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-md) 0;
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  font-size: 20px;
+  color: var(--color-primary);
+  margin-left: var(--space-md);
+  flex-shrink: 0;
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+}
+
+.faq-item p {
+  color: var(--color-text-muted);
+  margin-top: var(--space-md);
+}
+
+/* -----------------------------
+   21. Responsive
+------------------------------ */
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__toggle {
+    display: block;
+  }
+
+  h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .package-panel__stats {
+    gap: var(--space-lg);
+  }
+
+  .hero__content {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .split-section {
+    grid-template-columns: 1fr;
+  }
+
+  .split-section__image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .director-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .director-card__quote {
+    text-align: left;
+  }
+
+  .contact-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
