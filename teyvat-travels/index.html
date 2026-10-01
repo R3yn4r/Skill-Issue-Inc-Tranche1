@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore the seven nations of Teyvat and discover a world of landscapes, cultures, and stories with Teyvat Travels.">
+  <meta name="theme-color" content="#101b1c">
+  <title>Teyvat Travels | A Journey Across Seven Nations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="home-page" id="top">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <input class="menu-toggle" type="checkbox" id="menu-toggle" aria-label="Open navigation menu">
+      <label class="menu-button" for="menu-toggle" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+      <a class="site-brand" href="index.html" aria-label="Teyvat Travels home">
+        <span class="site-brand__mark" aria-hidden="true">T</span>
+        <span class="site-brand__name">Teyvat <span>Travels</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="site-nav__link is-active" href="index.html" aria-current="page">Home</a>
+        <a class="site-nav__link" href="mondstadt.html">Mondstadt</a>
+        <a class="site-nav__link" href="liyue.html">Liyue</a>
+        <a class="site-nav__link" href="inazuma.html">Inazuma</a>
+        <a class="site-nav__link" href="sumeru.html">Sumeru</a>
+        <a class="site-nav__link" href="fontaine.html">Fontaine</a>
+        <a class="site-nav__link" href="natlan.html">Natlan</a>
+        <a class="site-nav__link" href="snezhnaya.html">Snezhnaya</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <video class="hero__video" autoplay muted loop playsinline poster="assets/img/mondstadt.webp" aria-hidden="true">
+        <source src="images/Video%20Project.mp4" type="video/mp4">
+      </video>
+      <div class="hero__veil" aria-hidden="true"></div>
+      <div class="hero__sparkles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="hero__content">
+        <p class="hero__eyebrow entrance entrance--one">Your gateway to the seven nations</p>
+        <h1 class="hero__title entrance entrance--two" id="hero-title">A world beyond<br>the horizon</h1>
+        <p class="hero__tagline entrance entrance--three">Follow the wind. Find your way through Teyvat.</p>
+        <a class="journey-button entrance entrance--four" href="#nations">
+          <span>Begin Your Journey</span>
+          <span class="journey-button__arrow" aria-hidden="true">&#8594;</span>
+        </a>
+      </div>
+      <a class="scroll-cue" href="#nations" aria-label="Scroll to choose a nation">
+        <span class="scroll-cue__line" aria-hidden="true"></span>
+        <span>Discover Teyvat</span>
+      </a>
+      <span class="hero__edition" aria-hidden="true">An expedition across seven lands</span>
+    </section>
+
+    <section class="nations-section" id="nations" aria-labelledby="nations-title">
+      <div class="nations-section__heading reveal">
+        <p class="section-kicker">Seven lands. Seven stories.</p>
+        <h2 id="nations-title">Choose Your Nation</h2>
+        <p class="nations-section__intro">From windswept highlands to distant ice, every horizon opens onto a different world.</p>
+      </div>
+
+      <div class="nation-list" aria-label="The seven nations of Teyvat">
+        <a class="nation-card" style="--accent: #82d7bd;" href="mondstadt.html">
+          <img src="assets/img/mondstadt.webp" alt="The green highlands and clear blue skies of Mondstadt" loading="lazy" width="1600" height="900">
+          <span class="nation-card__shade" aria-hidden="true"></span>
+          <span class="nation-card__copy">
+            <span class="nation-card__element">Anemo</span>
+            <span class="nation-card__name">Mondstadt</span>
+            <span class="nation-card__description">Where the breeze carries every song.</span>
+          </span>
+          <span class="nation-card__index" aria-hidden="true">01</span>
+        </a>
+        <a class="nation-card" style="--accent: #e7bd69;" href="liyue.html">
+          <img src="assets/img/liyue.jpeg" alt="Warm sunset over the rocky peaks and valleys of Liyue" loading="lazy" width="1600" height="900">
+          <span class="nation-card__shade" aria-hidden="true"></span>
+          <span class="nation-card__copy">
+            <span class="nation-card__element">Geo</span>
+            <span class="nation-card__name">Liyue</span>
+            <span class="nation-card__description">A harbor shaped by mountain and sea.</span>
+          </span>
+          <span class="nation-card__index" aria-hidden="true">02</span>
+        </a>
+        <a class="nation-card" style="--accent: #c59bed;" href="inazuma.html">
+          <img src="assets/img/inazuma.webp" alt="Inazuma's island architecture framed by glowing cherry blossoms" loading="lazy" width="1600" height="900">
+          <span class="nation-card__shade" aria-hidden="true"></span>
+          <span class="nation-card__copy">
+            <span class="nation-card__element">Electro</span>
+            <span class="nation-card__name">Inazuma</span>
+            <span class="nation-card__description">Islands held beneath an eternal storm.</span>
+          </span>
+          <span class="nation-card__index" aria-hidden="true">03</span>
+        </a>
+        <a class="nation-card" style="--accent: #a6d46c;" href="sumeru.html">
+          <img src="assets/img/sumeru.webp" alt="A great tree rises above Sumeru's green hills and waterfalls" loading="lazy" width="1600" height="900">
+          <span class="nation-card__shade" aria-hidden="true"></span>
+          <span class="nation-card__copy">
+            <span class="nation-card__element">Dendro</span>
+            <span class="nation-card__name">Sumeru</span>
+            <span class="nation-card__description">Where ancient roots meet new ideas.</span>
+          </span>
+          <span class="nation-card__index" aria-hidden="true">04</span>
+        </a>
+        <a class="nation-card" style="--accent: #7ed9e7;" href="fontaine.html">
+          <img src="assets/img/fontaine.webp" alt="The luminous towers and blue waters of Fontaine" loading="lazy" width="1600" height="900">
+          <span class="nation-card__shade" aria-hidden="true"></span>
+          <span class="nation-card__copy">
+            <span class="nation-card__element">Hydro</span>
+            <span class="nation-card__name">Fontaine</span>
+            <span class="nation-card__description">A city of spectacle beside the water.</span>
+          </span>
+          <span class="nation-card__index" aria-hidden="true">05</span>
+        </a>
+        <a class="nation-card" style="--accent: #ff936d;" href="natlan.html">
+          <img src="assets/img/natlan.webp" alt="Natlan's sunlit volcanic plains and distant mesas" loading="lazy" width="1600" height="900">
+          <span class="nation-card__shade" aria-hidden="true"></span>
+          <span class="nation-card__copy">
+            <span class="nation-card__element">Pyro</span>
+            <span class="nation-card__name">Natlan</span>
+            <span class="nation-card__description">A bold land alive with flame and motion.</span>
+          </span>
+          <span class="nation-card__index" aria-hidden="true">06</span>
+        </a>
+        <a class="nation-card" style="--accent: #a6ddf3;" href="snezhnaya.html">
+          <img src="assets/img/snezhnaya.webp" alt="A frozen Snezhnaya skyline beneath a deep blue, starry sky" loading="lazy" width="1600" height="900">
+          <span class="nation-card__shade" aria-hidden="true"></span>
+          <span class="nation-card__copy">
+            <span class="nation-card__element">Cryo</span>
+            <span class="nation-card__name">Snezhnaya</span>
+            <span class="nation-card__description">The far north waits beneath the snow.</span>
+          </span>
+          <span class="nation-card__index" aria-hidden="true">07</span>
+        </a>
+      </div>
+      <p class="nations-section__hint" aria-hidden="true">Select a nation to explore</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="site-brand site-brand--footer" href="index.html">
+      <span class="site-brand__mark" aria-hidden="true">T</span>
+      <span class="site-brand__name">Teyvat <span>Travels</span></span>
+    </a>
+    <p class="site-footer__disclaimer">Unofficial fan project. Genshin Impact is a trademark of HoYoverse.</p>
+    <a class="site-footer__top" href="#top">Back to top <span aria-hidden="true">&#8593;</span></a>
+  </footer>
+</body>
+</html>
