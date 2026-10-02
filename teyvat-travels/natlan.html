@@ -11,21 +11,54 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="placeholder-page">
+<body class="placeholder-page" id="top">
   <header class="site-header">
     <div class="site-header__inner">
-      <input class="menu-toggle" type="checkbox" id="menu-toggle" aria-label="Toggle navigation">
-      <label class="menu-button" for="menu-toggle" aria-hidden="true"><span></span><span></span><span></span></label>
-      <a class="site-brand" href="index.html" aria-label="Teyvat Travels home"><span class="site-brand__mark" aria-hidden="true">T</span><span class="site-brand__name">Teyvat <span>Travels</span></span></a>
+      <input class="menu-toggle" type="checkbox" id="menu-toggle" aria-label="Open navigation menu">
+      <label class="menu-button" for="menu-toggle" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+      <a class="site-brand" href="index.html" aria-label="Teyvat Travels home">
+        <span class="site-brand__mark" aria-hidden="true">T</span>
+        <span class="site-brand__name">Teyvat <span>Travels</span></span>
+      </a>
       <nav class="site-nav" aria-label="Main navigation">
         <a class="site-nav__link" href="index.html">Home</a>
-        <a class="site-nav__link" href="mondstadt.html">Mondstadt</a>
-        <a class="site-nav__link" href="liyue.html">Liyue</a>
-        <a class="site-nav__link" href="inazuma.html">Inazuma</a>
-        <a class="site-nav__link" href="sumeru.html">Sumeru</a>
-        <a class="site-nav__link" href="fontaine.html">Fontaine</a>
-        <a class="site-nav__link is-active" href="natlan.html" aria-current="page">Natlan</a>
-        <a class="site-nav__link" href="snezhnaya.html">Snezhnaya</a>
+        <div class="site-nav__dropdown">
+          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations" aria-haspopup="true" aria-current="page">
+            Destinations
+            <svg class="site-nav__chevron" aria-hidden="true" width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <ul class="site-nav__panel" role="list">
+            <li><a href="mondstadt.html"><span class="site-nav__dot" style="background:#82d7bd" aria-hidden="true"></span>Mondstadt</a></li>
+            <li><a href="liyue.html"><span class="site-nav__dot" style="background:#e7bd69" aria-hidden="true"></span>Liyue</a></li>
+            <li><a href="inazuma.html"><span class="site-nav__dot" style="background:#c59bed" aria-hidden="true"></span>Inazuma</a></li>
+            <li><a href="sumeru.html"><span class="site-nav__dot" style="background:#a6d46c" aria-hidden="true"></span>Sumeru</a></li>
+            <li><a href="fontaine.html"><span class="site-nav__dot" style="background:#7ed9e7" aria-hidden="true"></span>Fontaine</a></li>
+            <li><a href="natlan.html" aria-current="page"><span class="site-nav__dot" style="background:#ff936d" aria-hidden="true"></span>Natlan</a></li>
+            <li><a href="snezhnaya.html"><span class="site-nav__dot" style="background:#a6ddf3" aria-hidden="true"></span>Snezhnaya</a></li>
+          </ul>
+          <details class="site-nav__details">
+            <summary class="site-nav__link site-nav__link--summary">
+              Destinations
+              <svg class="site-nav__chevron" aria-hidden="true" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <ul class="site-nav__sub" role="list">
+              <li><a href="mondstadt.html"><span class="site-nav__dot" style="background:#82d7bd" aria-hidden="true"></span>Mondstadt</a></li>
+              <li><a href="liyue.html"><span class="site-nav__dot" style="background:#e7bd69" aria-hidden="true"></span>Liyue</a></li>
+              <li><a href="inazuma.html"><span class="site-nav__dot" style="background:#c59bed" aria-hidden="true"></span>Inazuma</a></li>
+              <li><a href="sumeru.html"><span class="site-nav__dot" style="background:#a6d46c" aria-hidden="true"></span>Sumeru</a></li>
+              <li><a href="fontaine.html"><span class="site-nav__dot" style="background:#7ed9e7" aria-hidden="true"></span>Fontaine</a></li>
+              <li><a href="natlan.html" aria-current="page"><span class="site-nav__dot" style="background:#ff936d" aria-hidden="true"></span>Natlan</a></li>
+              <li><a href="snezhnaya.html"><span class="site-nav__dot" style="background:#a6ddf3" aria-hidden="true"></span>Snezhnaya</a></li>
+            </ul>
+          </details>
+        </div>
+        <a class="site-nav__link" href="about.html">About</a>
       </nav>
     </div>
   </header>
@@ -37,9 +70,43 @@
     </div>
   </main>
   <footer class="site-footer">
-    <a class="site-brand site-brand--footer" href="index.html"><span class="site-brand__mark" aria-hidden="true">T</span><span class="site-brand__name">Teyvat <span>Travels</span></span></a>
-    <p class="site-footer__disclaimer">Unofficial fan project. Genshin Impact is a trademark of HoYoverse.</p>
-    <a class="site-footer__top" href="index.html">Back to home <span aria-hidden="true">&#8594;</span></a>
+    <div class="footer-grid">
+      <div class="footer-col footer-col--brand">
+        <a class="site-brand site-brand--footer" href="index.html" aria-label="Teyvat Travels home">
+          <span class="site-brand__mark" aria-hidden="true">T</span>
+          <span class="site-brand__name">Teyvat <span>Travels</span></span>
+        </a>
+        <p class="site-footer__blurb">Unofficial fan travel guides for the seven nations of Teyvat.</p>
+        <p class="footer-col__copy">&copy; 2026 Skill Issue Inc.</p>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col__title" id="footer-dest-label-natlan">Destinations</span>
+        <nav aria-labelledby="footer-dest-label-natlan">
+          <ul class="footer-col__links footer-col__links--two-col">
+            <li><a href="mondstadt.html">Mondstadt</a></li>
+            <li><a href="liyue.html">Liyue</a></li>
+            <li><a href="inazuma.html">Inazuma</a></li>
+            <li><a href="sumeru.html">Sumeru</a></li>
+            <li><a href="fontaine.html">Fontaine</a></li>
+            <li><a href="natlan.html" aria-current="page">Natlan</a></li>
+            <li><a href="snezhnaya.html">Snezhnaya</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col__title" id="footer-quick-label-natlan">Quick Links</span>
+        <nav aria-labelledby="footer-quick-label-natlan">
+          <ul class="footer-col__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-bottom__copy">Unofficial fan project. Genshin Impact is a trademark of HoYoverse.</p>
+      <a class="footer-back-top" href="#top">Back to top &#8593;</a>
+    </div>
   </footer>
 </body>
 </html>
