@@ -8,6 +8,17 @@
   color: #f5f7f6;
 }
 
+.home-page .site-brand {
+  gap: 0;
+}
+
+.home-page .site-brand__logo {
+  display: block;
+  width: 174px;
+  max-height: 48px;
+  object-fit: contain;
+}
+
 /* Hero actions sit alongside the existing animated hero treatment. */
 .hx-hero-actions {
   display: flex;
@@ -424,6 +435,11 @@
 
   .hx-container {
     width: min(calc(100% - 40px), 1160px);
+  }
+
+  .home-page .site-brand__logo {
+    width: 138px;
+    max-height: 40px;
   }
 
   .hx-section-heading {

@@ -1153,7 +1153,7 @@ html {
 
 .hero__veil {
   z-index: 1;
-  background: linear-gradient(90deg, rgba(6, 14, 15, 0.7) 0%, rgba(6, 14, 15, 0.36) 55%, rgba(6, 14, 15, 0.08) 100%), linear-gradient(0deg, rgba(6, 14, 15, 0.44) 0%, transparent 55%);
+  background: linear-gradient(90deg, rgba(6, 14, 15, 0.28) 0%, rgba(6, 14, 15, 0.12) 55%, rgba(6, 14, 15, 0.02) 100%), linear-gradient(0deg, rgba(6, 14, 15, 0.14) 0%, transparent 55%);
 }
 
 .hero__sparkles {
@@ -2797,8 +2797,39 @@ body.nation-page .site-footer .footer-bottom {
 }
 
 .nation-tip-card__icon {
-  font-size: 1.8rem;
-  line-height: 1;
+  position: relative;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent) 52%, transparent);
+  border-radius: 9px 4px 9px 4px;
+  color: var(--accent);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 12%, transparent), rgba(12, 22, 22, 0.42));
+  box-shadow: inset 0 0 14px color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.nation-tip-card__icon::after {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 5px;
+  height: 5px;
+  border: 1px solid currentColor;
+  content: '';
+  opacity: 0.7;
+  transform: rotate(45deg);
+}
+
+.nation-tip-card__icon svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+  filter: drop-shadow(0 0 4px color-mix(in srgb, currentColor 38%, transparent));
 }
 
 .nation-tip-card__title {
@@ -3728,12 +3759,29 @@ body:has(.mondstadt-viewer-radio:checked:not(#mv-closed)) {
   bottom: 14px;
   right: 14px;
   z-index: 3;
-  font-size: 1.1rem;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent) 62%, transparent);
+  border-radius: 50%;
+  color: var(--accent);
+  background: rgba(12, 22, 22, 0.82);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 24%, transparent), inset 0 0 8px color-mix(in srgb, var(--accent) 12%, transparent);
   opacity: 0;
   transform: scale(0.8);
   transition: opacity 220ms ease, transform 220ms ease;
   pointer-events: none;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
+}
+
+.liyue-slide__hint-icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
 }
 
 .liyue-slide:hover .liyue-slide__hint,
