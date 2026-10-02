@@ -466,30 +466,28 @@ textarea:focus-visible {
   color: var(--color-text-muted);
 }
 
-/* -----------------------------
-   13. Footer
------------------------------- */
 /* =============================================
-   Footer
+   20. Footer
    ============================================= */
 
-/* ---- Wrapper ---- */
+/* ---- Outer wrapper ---- */
 .site-footer {
   background-color: var(--color-secondary);
   color: var(--color-white);
-  padding-top: var(--space-max);
+  /* Reduced from space-max (64px) top; 1rem bottom absorbed by footer-grid */
+  padding: 2rem 0 1rem;
 }
 
 /* ---- 3-column grid: brand · destinations · quick links ---- */
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1.4fr 0.8fr;
-  gap: 40px;
-  padding-bottom: var(--space-xl);
+  grid-template-columns: 1.2fr 1.6fr 1.2fr;
+  gap: 2rem;
+  padding-bottom: 1.25rem;   /* space between grid and bottom bar */
   align-items: start;
 }
 
-/* ---- Column heading (Cinzel, gold, uppercase) ---- */
+/* ---- Column heading: Cinzel, accent-gold, uppercase ---- */
 .footer-col__title {
   color: var(--color-primary);
   display: block;
@@ -498,8 +496,8 @@ textarea:focus-visible {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin-bottom: var(--space-md);
-  /* Anchor all headings to the same baseline row */
+  /* Reduced from space-md (16px) */
+  margin-bottom: 0.75rem;
   min-height: 1.2em;
 }
 
@@ -510,14 +508,18 @@ textarea:focus-visible {
   margin: 0;
 }
 
+/* Tighter row gap; use padding on <a> for tap targets instead of margin */
 .footer-col__links li {
-  margin-bottom: var(--space-sm);
-  line-height: 1.6;
+  margin-bottom: 0;
+  line-height: 1.4;
 }
 
 .footer-col__links a {
   color: rgba(255, 255, 255, 0.82);
   font-size: 14px;
+  /* Vertical padding gives ≥ 44px tap height across the link text */
+  display: block;
+  padding: 0.2rem 0;
   transition: color 160ms ease;
 }
 
@@ -525,10 +527,10 @@ textarea:focus-visible {
   color: var(--color-primary);
 }
 
-/* Destinations: split into 2 sub-columns so the list height matches neighbours */
+/* ---- Two-column sub-layout for Destinations (4+3) and Quick Links (3+3) ---- */
 .footer-col__links--two-col {
   columns: 2;
-  column-gap: var(--space-lg);
+  column-gap: 1.25rem;
 }
 
 .footer-col__links--two-col li {
@@ -539,19 +541,21 @@ textarea:focus-visible {
 .site-footer__blurb {
   color: rgba(255, 255, 255, 0.62);
   font-size: 13px;
-  line-height: 1.7;
-  margin-top: var(--space-md);
-  max-width: 32ch;
+  line-height: 1.6;
+  /* Reduced from space-md */
+  margin-top: 0.6rem;
+  max-width: 34ch;
+  text-align: left;   /* not justified */
 }
 
 .footer-col__copy {
   color: rgba(255, 255, 255, 0.46);
   font-size: 12px;
   line-height: 1.6;
-  margin-top: var(--space-sm);
+  margin-top: 0.5rem;
 }
 
-/* ---- Newsletter column ---- */
+/* ---- Newsletter column (retained, unused on home but kept for other pages) ---- */
 .footer-newsletter__desc {
   color: rgba(255, 255, 255, 0.65);
   font-size: 13px;
@@ -565,7 +569,6 @@ textarea:focus-visible {
   gap: var(--space-sm);
 }
 
-/* Label: readable contrast, slightly larger than before */
 .footer-newsletter__label {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.78);
@@ -573,7 +576,6 @@ textarea:focus-visible {
   margin-bottom: 4px;
 }
 
-/* Input + button in a flex row, equal height */
 .footer-newsletter__row {
   display: flex;
   gap: 8px;
@@ -626,27 +628,37 @@ textarea:focus-visible {
   outline-offset: 3px;
 }
 
-/* ---- Bottom bar: thin divider · disclaimer left · back-to-top right ---- */
+/* ---- Bottom bar: divider · disclaimer left · credits center · back-to-top right ---- */
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding: var(--space-md) 0 var(--space-lg);
+  /* Reduced from space-md / space-lg */
+  padding: 0.75rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: var(--space-sm);
+  gap: 0.5rem;
 }
 
-.footer-bottom__copy {
+/* Disclaimer (left) and image credits (center) */
+.footer-bottom__copy,
+.hx-image-credits {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Push image credits to the center slot */
+.hx-image-credits {
+  flex: 1 1 auto;
+  text-align: center;
 }
 
 /* ---- Back to top link ---- */
 .footer-back-top {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   white-space: nowrap;
   transition: color 160ms ease;
@@ -664,18 +676,40 @@ textarea:focus-visible {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Tablet: 2 columns */
+  /* Tablet: brand full-width on top row, two link columns side by side */
   .footer-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    gap: 1.5rem;
+  }
+
+  /* Brand spans both columns */
+  .footer-col--brand {
+    grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 600px) {
-  /* Mobile: 1 column */
+  /* Mobile: single column, link sub-columns still use 2-col layout where text fits */
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 1.25rem;
+  }
+
+  /* Stack bottom bar centered */
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.35rem;
+  }
+
+  .hx-image-credits {
+    text-align: center;
+  }
+
+  /* Ensure links stay at least 44px tall for mobile tap targets */
+  .footer-col__links a {
+    padding: 0.45rem 0;
   }
 }
 
@@ -1455,7 +1489,8 @@ html {
 .placeholder-page .site-footer,
 body.nation-page .site-footer {
   background: var(--home-deep);
-  padding-top: var(--space-max);
+  /* Match compact padding from base rule */
+  padding: 2rem 0 1rem;
 }
 
 .home-page .footer-col__title,
