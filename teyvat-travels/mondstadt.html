@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="packages.css">
 </head>
 <body class="nation-page" id="top">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -29,6 +30,7 @@
       </a>
       <nav class="site-nav" aria-label="Main navigation">
         <a class="site-nav__link" href="index.html">Home</a>
+        <a class="site-nav__link" href="index.html#who-we-are">About Us</a>
         <div class="site-nav__dropdown">
           <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations"
              aria-haspopup="true" aria-current="page">
@@ -64,7 +66,9 @@
             </ul>
           </details>
         </div>
-        <a class="site-nav__link" href="about.html">About</a>
+        <a class="site-nav__link" href="index.html#packages">Packages</a>
+        <a class="site-nav__link" href="index.html#faq">FAQ</a>
+        <a class="site-nav__link" href="index.html#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -562,6 +566,29 @@
     </section>
     <!-- / NEXT NATION -->
 
+    <!-- Nation tour package details. -->
+    <section class="pk-section" id="mondstadt-package" aria-labelledby="mondstadt-package-title">
+      <div class="pk-inner">
+        <header class="pk-heading">
+          <p class="pk-kicker">Featured tour package / Mondstadt</p>
+          <h2 class="pk-section-title" id="mondstadt-package-title">The City of Freedom Expedition</h2>
+          <p class="pk-section-copy">Experience the romantic charm of windmills, rolling green hills, and historic stone architecture. Perfect for travelers looking for a relaxing nature getaway.</p>
+        </header>
+        <div class="pk-detail-grid">
+          <div class="pk-detail-panel">
+            <h3 class="pk-detail-title">Featured stops</h3>
+            <ul class="pk-stops"><li>Cider Lake</li><li>Windrise</li><li>the grand Cathedral of Mondstadt</li></ul>
+          </div>
+          <aside class="pk-detail-panel" aria-label="Package price and duration">
+            <div class="pk-meta">
+              <div class="pk-stat"><p class="pk-stat-label">Price per person</p><p class="pk-stat-value">₱12,500</p></div>
+              <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">3 Days / 2 Nights</p></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- =============================================
@@ -596,7 +623,11 @@
         <nav aria-labelledby="footer-quick-label-mondstadt">
           <ul class="footer-col__links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#who-we-are">About Us</a></li>
+            <li><a href="index.html#nations">Destinations</a></li>
+            <li><a href="index.html#packages">Packages</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
           </ul>
         </nav>
       </div>

@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="packages.css">
 </head>
 <body class="placeholder-page" id="top">
   <header class="site-header">
@@ -24,6 +25,7 @@
       </a>
       <nav class="site-nav" aria-label="Main navigation">
         <a class="site-nav__link" href="index.html">Home</a>
+        <a class="site-nav__link" href="index.html#who-we-are">About Us</a>
         <div class="site-nav__dropdown">
           <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations" aria-haspopup="true" aria-current="page">
             Destinations
@@ -58,7 +60,9 @@
             </ul>
           </details>
         </div>
-        <a class="site-nav__link" href="about.html">About</a>
+        <a class="site-nav__link" href="index.html#packages">Packages</a>
+        <a class="site-nav__link" href="index.html#faq">FAQ</a>
+        <a class="site-nav__link" href="index.html#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -68,6 +72,28 @@
       <h1>Snezhnaya</h1>
       <p>This destination is being prepared for your journey.</p>
     </div>
+    <!-- Nation tour package details. -->
+    <section class="pk-section" id="snezhnaya-package" aria-labelledby="snezhnaya-package-title">
+      <div class="pk-inner">
+        <header class="pk-heading">
+          <p class="pk-kicker">Featured tour package / Snezhnaya</p>
+          <h2 class="pk-section-title" id="snezhnaya-package-title">The Eternal White Tundra</h2>
+          <p class="pk-section-copy">A majestic winter expedition exploring frosted architectural marvels, grand palaces, and cozy alpine chalets under the aurora.</p>
+        </header>
+        <div class="pk-detail-grid">
+          <div class="pk-detail-panel">
+            <h3 class="pk-detail-title">Featured stops</h3>
+            <ul class="pk-stops"><li>Zapolyarny Palace outskirts</li><li>Frost-bound Valleys</li><li>Glacial Outposts</li></ul>
+          </div>
+          <aside class="pk-detail-panel" aria-label="Package price and duration">
+            <div class="pk-meta">
+              <div class="pk-stat"><p class="pk-stat-label">Price per person</p><p class="pk-stat-value">₱22,000</p></div>
+              <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">5 Days / 4 Nights</p></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="site-footer">
     <div class="footer-grid">
@@ -98,7 +124,11 @@
         <nav aria-labelledby="footer-quick-label-snezhnaya">
           <ul class="footer-col__links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#who-we-are">About Us</a></li>
+            <li><a href="index.html#nations">Destinations</a></li>
+            <li><a href="index.html#packages">Packages</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
           </ul>
         </nav>
       </div>

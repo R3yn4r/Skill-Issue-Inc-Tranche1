@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/home-extra.css">
+  <link rel="stylesheet" href="packages.css">
+  <link rel="stylesheet" href="contact.css">
 </head>
 <body class="home-page" id="top">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -330,24 +332,98 @@
           <h2 class="hx-section-title" id="hx-packages-title">Choose your kind of expedition</h2>
           <p class="hx-section-intro">Explore our guide collections and build a route that fits the way you travel.</p>
         </header>
-        <div class="hx-packages-grid">
-          <article class="hx-panel hx-package-card">
-            <p class="hx-package-label">Regional Guide</p>
-            <h3 class="hx-card-title">A First Visit</h3>
-            <p class="hx-body-copy">Start with one nation: its landmarks, local stories, and practical routes for a well-paced visit.</p>
-            <a class="hx-text-link" href="#nations">Choose a nation <span aria-hidden="true">&#8594;</span></a>
+        <!-- Compact nation packages link to their full itineraries. -->
+        <div class="pk-grid" aria-label="Seven nation tour packages">
+          <article class="pk-card">
+            <p class="pk-region">Mondstadt</p>
+            <h3 class="pk-title">The City of Freedom Expedition</h3>
+            <p class="pk-description">Experience the romantic charm of windmills, rolling green hills, and historic stone architecture. Perfect for travelers looking for a relaxing nature getaway.</p>
+            <ul class="pk-stops" aria-label="Featured stops">
+              <li>Cider Lake</li><li>Windrise</li><li>the grand Cathedral of Mondstadt</li>
+            </ul>
+            <div class="pk-meta">
+              <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">3 Days / 2 Nights</p></div>
+              <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱12,500 per person</p></div>
+            </div>
+            <a class="pk-link" href="mondstadt.html#mondstadt-package">View Package <span aria-hidden="true">&#8594;</span></a>
           </article>
-          <article class="hx-panel hx-package-card">
-            <p class="hx-package-label">Route Collection</p>
-            <h3 class="hx-card-title">The Scenic Route</h3>
-            <p class="hx-body-copy">Connect memorable viewpoints and cultural stops with an itinerary made for unhurried exploring.</p>
-            <a class="hx-text-link" href="#nations">Browse destinations <span aria-hidden="true">&#8594;</span></a>
+          <article class="pk-card">
+            <p class="pk-region">Liyue</p>
+            <h3 class="pk-title">The Harbor of Stone and Commerce</h3>
+            <p class="pk-description">A bustling port city tour blending breathtaking mountain ranges, ancient folklore, and world-class culinary adventures.</p>
+            <ul class="pk-stops" aria-label="Featured stops">
+              <li>Liyue Harbor</li><li>Mt. Aocang</li><li>Wangshu Inn</li>
+            </ul>
+            <div class="pk-meta">
+              <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">4 Days / 3 Nights</p></div>
+              <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱15,000 per person</p></div>
+            </div>
+            <a class="pk-link" href="liyue.html#liyue-package">View Package <span aria-hidden="true">&#8594;</span></a>
           </article>
-          <article class="hx-panel hx-package-card">
-            <p class="hx-package-label">Multi-Nation Guide</p>
-            <h3 class="hx-card-title">Across Teyvat</h3>
-            <p class="hx-body-copy">Plan a longer journey with an overview of all seven nations and the details that make each distinct.</p>
-            <a class="hx-text-link" href="#nations">Explore all seven <span aria-hidden="true">&#8594;</span></a>
+          <article class="pk-card">
+            <p class="pk-region">Inazuma</p>
+            <h3 class="pk-title">The Realm of Eternal Thunder</h3>
+            <p class="pk-description">Discover a culturally rich archipelago featuring striking purple foliage, traditional shrines, and serene coastal views.</p>
+            <ul class="pk-stops" aria-label="Featured stops">
+              <li>Narukami Island Grand Shrine</li><li>Ritou Trading Port</li><li>Tenshukaku</li>
+            </ul>
+            <div class="pk-meta">
+              <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">4 Days / 3 Nights</p></div>
+              <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱18,000 per person</p></div>
+            </div>
+            <a class="pk-link" href="inazuma.html#inazuma-package">View Package <span aria-hidden="true">&#8594;</span></a>
+          </article>
+          <article class="pk-card">
+            <p class="pk-region">Sumeru</p>
+            <h3 class="pk-title">The City of Wisdom &amp; Rainforest Retreat</h3>
+            <p class="pk-description">A dual-environment journey taking you from the majestic halls of learning to the dense, mystical canopies of the rainforest.</p>
+            <ul class="pk-stops" aria-label="Featured stops">
+              <li>Sumeru City Academy</li><li>Gandharva Ville</li><li>Caravan Ribat</li>
+            </ul>
+            <div class="pk-meta">
+              <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">3 Days / 3 Nights</p></div>
+              <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱14,000 per person</p></div>
+            </div>
+            <a class="pk-link" href="sumeru.html#sumeru-package">View Package <span aria-hidden="true">&#8594;</span></a>
+          </article>
+          <article class="pk-card">
+            <p class="pk-region">Fontaine</p>
+            <h3 class="pk-title">The Capital of Justice, Steam, and Aquanics</h3>
+            <p class="pk-description">Step into a picturesque hub of art, fashion, and advanced clockwork engineering surrounded by pristine waters.</p>
+            <ul class="pk-stops" aria-label="Featured stops">
+              <li>Court of Fontaine</li><li>Opera Epiclese</li><li>Lucine Fountain</li>
+            </ul>
+            <div class="pk-meta">
+              <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">5 Days / 4 Nights</p></div>
+              <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱20,000 per person</p></div>
+            </div>
+            <a class="pk-link" href="fontaine.html#fontaine-package">View Package <span aria-hidden="true">&#8594;</span></a>
+          </article>
+          <article class="pk-card">
+            <p class="pk-region">Natlan</p>
+            <h3 class="pk-title">The Land of Ash, Hot Springs, and Valor</h3>
+            <p class="pk-description">An energetic adventure featuring dramatic volcanic landscapes, therapeutic thermal springs, and vibrant tribal festivals.</p>
+            <ul class="pk-stops" aria-label="Featured stops">
+              <li>Tepecac Stadium</li><li>Children of the Echoes Canyon</li><li>People of the Springs basin</li>
+            </ul>
+            <div class="pk-meta">
+              <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">4 Days / 3 Nights</p></div>
+              <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱16,500 per person</p></div>
+            </div>
+            <a class="pk-link" href="natlan.html#natlan-package">View Package <span aria-hidden="true">&#8594;</span></a>
+          </article>
+          <article class="pk-card">
+            <p class="pk-region">Snezhnaya</p>
+            <h3 class="pk-title">The Eternal White Tundra</h3>
+            <p class="pk-description">A majestic winter expedition exploring frosted architectural marvels, grand palaces, and cozy alpine chalets under the aurora.</p>
+            <ul class="pk-stops" aria-label="Featured stops">
+              <li>Zapolyarny Palace outskirts</li><li>Frost-bound Valleys</li><li>Glacial Outposts</li>
+            </ul>
+            <div class="pk-meta">
+              <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">5 Days / 4 Nights</p></div>
+              <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱22,000 per person</p></div>
+            </div>
+            <a class="pk-link" href="snezhnaya.html#snezhnaya-package">View Package <span aria-hidden="true">&#8594;</span></a>
           </article>
         </div>
       </div>
@@ -383,13 +459,34 @@
 
     <!-- Contact details -->
     <section class="hx-section hx-contact" id="contact" aria-labelledby="hx-contact-title">
-      <div class="hx-container hx-contact-layout">
-        <div>
+      <div class="hx-container ct-layout">
+        <div class="ct-copy">
           <p class="hx-eyebrow">Contact</p>
           <h2 class="hx-section-title" id="hx-contact-title">Plan the next chapter</h2>
           <p class="hx-body-copy">Questions or ideas for the guide? Reach the team at:</p>
         </div>
-        <a class="hx-contact-link" href="mailto:skillissueinc@gmail.com">skillissueinc@gmail.com</a>
+        <!-- Bracketed values are placeholders to replace with office details. -->
+        <aside class="hx-panel ct-card" aria-label="Contact details">
+          <h3 class="ct-card-title">Contact details</h3>
+          <dl class="ct-details">
+            <div class="ct-item">
+              <dt class="ct-label">Email</dt>
+              <dd class="ct-value"><a class="hx-contact-link ct-email" href="mailto:skillissueinc@gmail.com">skillissueinc@gmail.com</a></dd>
+            </div>
+            <div class="ct-item">
+              <dt class="ct-label">Phone</dt>
+              <dd class="ct-value">[PHONE NUMBER]</dd>
+            </div>
+            <div class="ct-item">
+              <dt class="ct-label">Location</dt>
+              <dd class="ct-value">[OFFICE ADDRESS]</dd>
+            </div>
+            <div class="ct-item">
+              <dt class="ct-label">Office Hours</dt>
+              <dd class="ct-value">[e.g. Mon-Fri, 9:00 AM - 5:00 PM]</dd>
+            </div>
+          </dl>
+        </aside>
       </div>
     </section>
   </main>

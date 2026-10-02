@@ -1,0 +1,67 @@
+/* Keep contact copy and details balanced inside the shared section container. */
+.ct-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.ct-copy {
+  max-width: 580px;
+}
+
+.ct-card {
+  padding: 30px;
+}
+
+.ct-card-title {
+  margin: 0 0 22px;
+  color: #f5f7f6;
+  font-family: var(--home-font-display, 'Cinzel', Georgia, serif);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.ct-details {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+}
+
+.ct-item {
+  display: grid;
+  gap: 5px;
+}
+
+.ct-label {
+  color: var(--hx-gold, #d6b574);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ct-value {
+  margin: 0;
+  color: var(--hx-copy, #c9d2cf);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.ct-email {
+  width: fit-content;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .ct-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .ct-card {
+    padding: 24px;
+  }
+}
