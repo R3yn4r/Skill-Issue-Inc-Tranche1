@@ -824,7 +824,8 @@ html {
   border-radius: 50%;
   color: var(--home-gold);
   font-family: var(--home-font-display);
-  font-size: 19px;
+  font-size: 13px;       /* reduced from 19px so "SI" fits inside the circle */
+  letter-spacing: 0.5px; /* slight spacing keeps the two letters from merging */
 }
 
 .site-brand__name {
@@ -1672,7 +1673,7 @@ html {
   }
 
   .site-brand__name {
-    font-size: 14px;
+    font-size: 13px; /* shrunk slightly so "Skill Issue Inc." fits on one line at 600px */
   }
 
   .hero {
