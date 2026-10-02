@@ -460,33 +460,67 @@
     <!-- Contact details -->
     <section class="hx-section hx-contact" id="contact" aria-labelledby="hx-contact-title">
       <div class="hx-container ct-layout">
+
+        <!-- Left: copy + CTA -->
         <div class="ct-copy">
-          <p class="hx-eyebrow">Contact</p>
-          <h2 class="hx-section-title" id="hx-contact-title">Plan the next chapter</h2>
-          <p class="hx-body-copy">Questions or ideas for the guide? Reach the team at:</p>
+          <p class="hx-eyebrow ct-eyebrow">Contact</p>
+          <h2 class="hx-section-title ct-heading" id="hx-contact-title">Plan the next chapter</h2>
+          <div class="ct-heading-bar" aria-hidden="true"></div>
+          <p class="hx-body-copy ct-intro">Questions or ideas for the guide? Reach the team at:</p>
+          <a class="ct-cta-btn" href="mailto:skillissueinc@gmail.com">Email us</a>
+          <p class="ct-cta-note">We usually reply within a few days.</p>
         </div>
-        <!-- Bracketed values are placeholders to replace with office details. -->
+
+        <!-- Right: contact details card -->
+        <!-- Bracketed values are placeholders — replace with your real office details. -->
         <aside class="hx-panel ct-card" aria-label="Contact details">
+          <div class="ct-card-accent" aria-hidden="true"></div>
           <h3 class="ct-card-title">Contact details</h3>
           <dl class="ct-details">
+
             <div class="ct-item">
-              <dt class="ct-label">Email</dt>
-              <dd class="ct-value"><a class="hx-contact-link ct-email" href="mailto:skillissueinc@gmail.com">skillissueinc@gmail.com</a></dd>
+              <div class="ct-icon" aria-hidden="true">✉️</div>
+              <div class="ct-item-body">
+                <dt class="ct-label">Email</dt>
+                <dd class="ct-value">
+                  <a class="ct-email" href="mailto:skillissueinc@gmail.com">skillissueinc@gmail.com</a>
+                </dd>
+              </div>
             </div>
+
+            <div class="ct-divider" aria-hidden="true"></div>
+
             <div class="ct-item">
-              <dt class="ct-label">Phone</dt>
-              <dd class="ct-value">[PHONE NUMBER]</dd>
+              <div class="ct-icon" aria-hidden="true">📞</div>
+              <div class="ct-item-body">
+                <dt class="ct-label">Phone</dt>
+                <dd class="ct-value ct-placeholder">[PHONE NUMBER]</dd>
+              </div>
             </div>
+
+            <div class="ct-divider" aria-hidden="true"></div>
+
             <div class="ct-item">
-              <dt class="ct-label">Location</dt>
-              <dd class="ct-value">[OFFICE ADDRESS]</dd>
+              <div class="ct-icon" aria-hidden="true">📍</div>
+              <div class="ct-item-body">
+                <dt class="ct-label">Location</dt>
+                <dd class="ct-value ct-placeholder">[OFFICE ADDRESS]</dd>
+              </div>
             </div>
+
+            <div class="ct-divider" aria-hidden="true"></div>
+
             <div class="ct-item">
-              <dt class="ct-label">Office Hours</dt>
-              <dd class="ct-value">[e.g. Mon-Fri, 9:00 AM - 5:00 PM]</dd>
+              <div class="ct-icon" aria-hidden="true">🕘</div>
+              <div class="ct-item-body">
+                <dt class="ct-label">Office Hours</dt>
+                <dd class="ct-value ct-placeholder">[e.g. Mon-Fri, 9:00 AM – 5:00 PM]</dd>
+              </div>
             </div>
+
           </dl>
         </aside>
+
       </div>
     </section>
   </main>
@@ -504,7 +538,7 @@
         <p class="footer-col__copy">&copy; 2026 Skill Issue Inc.</p>
       </div>
 
-      <!-- Destinations column -->
+      <!-- Destinations column: 4 left + 3 right via two-col layout -->
       <div class="footer-col">
         <span class="footer-col__title" id="footer-dest-label">Destinations</span>
         <nav aria-labelledby="footer-dest-label">
@@ -520,11 +554,11 @@
         </nav>
       </div>
 
-      <!-- Quick Links column -->
+      <!-- Quick Links column: 3 left + 3 right via two-col layout -->
       <div class="footer-col">
         <span class="footer-col__title" id="footer-quick-label">Quick Links</span>
         <nav aria-labelledby="footer-quick-label">
-          <ul class="footer-col__links">
+          <ul class="footer-col__links footer-col__links--two-col">
             <li><a href="#top" aria-current="page">Home</a></li>
             <li><a href="#who-we-are">About Us</a></li>
             <li><a href="#nations">Destinations</a></li>
