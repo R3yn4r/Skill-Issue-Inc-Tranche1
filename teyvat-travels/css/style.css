@@ -102,6 +102,7 @@ h4 { font-size: 22px; font-weight: 600; line-height: 1.4; }
 
 p {
   margin: 0;
+  text-align: justify;
 }
 
 .body-large { font-size: 18px; line-height: 1.5; }
@@ -906,39 +907,76 @@ html {
    Dropdown — CSS :hover + :focus-within
    ============================================= */
 
-/* Wrapper that positions the panel */
+/* Wrapper: must be position:relative so the panel + bridge are anchored to it */
 .site-nav__dropdown {
   position: relative;
+}
+
+/* ── Invisible hover bridge ────────────────────────────────────────────────
+   Fills the gap between the trigger button and the panel top so the mouse
+   never leaves the hover area when moving from button down into the list.
+   Height matches the translateY entrance distance (8px) + a few px margin. */
+.site-nav__panel::before {
+  content: '';
+  position: absolute;
+  top: -12px;       /* reaches up 12px above the panel edge */
+  right: 0;
+  left: 0;
+  height: 12px;     /* bridge height */
+  /* transparent — purely a hover hit-area, no visual output */
 }
 
 /* The floating panel */
 .site-nav__panel {
   position: absolute;
-  top: calc(100% + 10px);
+  top: 100%;        /* flush against the button — no gap */
   left: 50%;
-  transform: translateX(-50%) translateY(-6px);
+  transform: translateX(-50%) translateY(-8px);
   z-index: 10;
-  min-width: 180px;
+  min-width: 220px; /* wide enough for all nation names */
   list-style: none;
-  padding: 8px 0;
+  padding: 6px 0;
   margin: 0;
-  background: rgba(10, 22, 23, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  background: rgba(10, 22, 23, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  /* Hidden by default */
+  /* ── Visibility trick: switch visibility instantly so it can never
+     receive pointer events or focus while "hidden", eliminating flicker.
+     opacity + translateY still animate smoothly in/out (0.15 s). ── */
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition: opacity 150ms ease, transform 150ms ease, visibility 0s linear 150ms;
 }
 
-/* Open on hover or when focus is anywhere inside the wrapper */
+/* Keep the panel from clipping off the right viewport edge */
+@media (max-width: 760px) {
+  .site-nav__panel {
+    left: auto;
+    right: 0;
+    transform: translateX(0) translateY(-8px);
+  }
+}
+
+/* Open: hover on the wrapper OR keyboard focus anywhere inside it */
 .site-nav__dropdown:hover .site-nav__panel,
 .site-nav__dropdown:focus-within .site-nav__panel {
+  visibility: visible;
   opacity: 1;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
+  /* visibility becomes visible immediately (delay 0s) on open */
+  transition: opacity 150ms ease, transform 150ms ease, visibility 0s linear 0s;
+}
+
+/* Right-edge fix when panel is right-anchored */
+@media (max-width: 760px) {
+  .site-nav__dropdown:hover .site-nav__panel,
+  .site-nav__dropdown:focus-within .site-nav__panel {
+    transform: translateX(0) translateY(0);
+  }
 }
 
 /* Rotate chevron when panel is open */
@@ -947,24 +985,55 @@ html {
   transform: rotate(180deg);
 }
 
-/* Panel items */
+/* ── Panel items ──────────────────────────────────────────────────────────── */
 .site-nav__panel li a {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 9px 18px;
+  padding: 0.7rem 1rem;       /* ~11px 16px — generous tap target */
   color: rgba(255, 255, 255, 0.82);
-  font-size: 0.875rem;
+  font-size: 0.95rem;         /* matches the trigger link size */
   font-weight: 500;
   white-space: nowrap;
-  transition: color 160ms ease, background 160ms ease;
+  transition: color 150ms ease, background 150ms ease;
+  /* Full-width clickable row */
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.site-nav__panel li a:hover,
+.site-nav__panel li a:hover {
+  color: #fff;
+  /* Tinted hover bg — color comes from the inline --dot-color set below */
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Per-nation tinted hover: each <li> carries the nation color via the dot's
+   inline style; we replicate the same color at low opacity on the row.
+   Since we can't read inline styles in CSS, we use a small opacity overlay
+   and keep the dot visible for color identification. */
 .site-nav__panel li a:focus-visible {
   color: #fff;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
+  /* High-contrast focus ring */
+  outline: 2px solid var(--home-gold, #d6b574);
+  outline-offset: -2px;
+  border-radius: 4px;
 }
+
+/* Mondstadt  — teal tint */
+.site-nav__panel li:nth-child(1) a:hover { background: rgba(130, 215, 189, 0.12); }
+/* Liyue      — gold tint */
+.site-nav__panel li:nth-child(2) a:hover { background: rgba(231, 189, 105, 0.12); }
+/* Inazuma    — purple tint */
+.site-nav__panel li:nth-child(3) a:hover { background: rgba(197, 155, 237, 0.12); }
+/* Sumeru     — green tint */
+.site-nav__panel li:nth-child(4) a:hover { background: rgba(166, 212, 108, 0.12); }
+/* Fontaine   — cyan tint */
+.site-nav__panel li:nth-child(5) a:hover { background: rgba(126, 217, 231, 0.12); }
+/* Natlan     — orange tint */
+.site-nav__panel li:nth-child(6) a:hover { background: rgba(255, 147, 109, 0.12); }
+/* Snezhnaya  — ice-blue tint */
+.site-nav__panel li:nth-child(7) a:hover { background: rgba(166, 221, 243, 0.12); }
 
 /* Element colour dot */
 .site-nav__dot {
@@ -1364,19 +1433,22 @@ html {
 
 /* Home-page footer overrides */
 .home-page .site-footer,
-.placeholder-page .site-footer {
+.placeholder-page .site-footer,
+body.nation-page .site-footer {
   background: var(--home-deep);
   padding-top: var(--space-max);
 }
 
 .home-page .site-footer .footer-grid,
-.placeholder-page .site-footer .footer-grid {
+.placeholder-page .site-footer .footer-grid,
+body.nation-page .site-footer .footer-grid {
   width: min(100% - 72px, 1480px);
   margin: 0 auto;
 }
 
 .home-page .site-footer .footer-bottom,
-.placeholder-page .site-footer .footer-bottom {
+.placeholder-page .site-footer .footer-bottom,
+body.nation-page .site-footer .footer-bottom {
   width: min(100% - 72px, 1480px);
   margin: 0 auto;
 }
@@ -1638,17 +1710,28 @@ html {
     display: flex;
     align-items: center;
     gap: 12px;
-    min-height: 44px;
+    min-height: 44px;         /* touch target ≥ 44px */
     padding: 10px 12px;
     color: rgba(255, 255, 255, 0.76);
-    font-size: 0.875rem;
+    font-size: 0.9375rem;     /* match other mobile nav links */
     font-weight: 500;
-    transition: color 160ms ease;
+    transition: color 150ms ease, background 150ms ease;
+    border-radius: 6px;
   }
 
-  .site-nav__sub li a:hover,
+  /* Per-nation tinted hover rows (same colors as desktop panel) */
+  .site-nav__sub li:nth-child(1) a:hover { background: rgba(130, 215, 189, 0.12); color: #fff; }
+  .site-nav__sub li:nth-child(2) a:hover { background: rgba(231, 189, 105, 0.12); color: #fff; }
+  .site-nav__sub li:nth-child(3) a:hover { background: rgba(197, 155, 237, 0.12); color: #fff; }
+  .site-nav__sub li:nth-child(4) a:hover { background: rgba(166, 212, 108, 0.12); color: #fff; }
+  .site-nav__sub li:nth-child(5) a:hover { background: rgba(126, 217, 231, 0.12); color: #fff; }
+  .site-nav__sub li:nth-child(6) a:hover { background: rgba(255, 147, 109, 0.12); color: #fff; }
+  .site-nav__sub li:nth-child(7) a:hover { background: rgba(166, 221, 243, 0.12); color: #fff; }
+
   .site-nav__sub li a:focus-visible {
     color: var(--home-gold);
+    outline: 2px solid var(--home-gold, #d6b574);
+    outline-offset: -2px;
   }
 
   /* Remove underline pseudo-element from summary (no ::after bar needed) */
@@ -1780,8 +1863,10 @@ html {
 
   .home-page .site-footer .footer-grid,
   .placeholder-page .site-footer .footer-grid,
+  body.nation-page .site-footer .footer-grid,
   .home-page .site-footer .footer-bottom,
-  .placeholder-page .site-footer .footer-bottom {
+  .placeholder-page .site-footer .footer-bottom,
+  body.nation-page .site-footer .footer-bottom {
     width: calc(100% - 48px);
   }
 
@@ -2273,3 +2358,1164 @@ html {
     font-size: 56px;
   }
 }
+
+
+/* ===== Nation page template ===== */
+/*
+   All styles below are scoped to .nation-page (the <main> element on every
+   nation page).  Nothing here touches any existing class defined above.
+   Add your per-nation feature styles inside your own HTML file or at the
+   very bottom of this block, using your nation prefix (e.g. .liyue-*).
+*/
+
+/* ------------------------------------------------------------------
+   Spacing & sizing tokens (nation pages only)
+   ------------------------------------------------------------------ */
+.nation-page {
+  /* Spacing scale */
+  --space-section:    5rem;      /* vertical padding between sections        */
+  --space-section-sm: 3.5rem;   /* narrower version used on some sections    */
+  --space-wrap-x:     clamp(1.25rem, 5vw, 3rem); /* horizontal content padding */
+  --content-max:      1100px;   /* maximum content width                     */
+
+  /* Accent — override per nation via style="--accent: #xxxx" on <main>      */
+  --accent: var(--accent, #d4a843);
+
+  /* Card shared values */
+  --card-radius:      10px;
+  --card-border:      1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  --card-shadow:      0 4px 18px rgba(0, 0, 0, 0.22);
+  --card-hover-lift:  translateY(-5px);
+  --card-hover-glow:  0 8px 30px color-mix(in srgb, var(--accent) 28%, transparent);
+
+  /* Typography */
+  font-family: var(--home-font-body);
+  color: rgba(255, 255, 255, 0.88);
+  background: var(--home-deep);
+}
+
+/* Focus outline uses accent colour on nation pages */
+.nation-page a:focus-visible,
+.nation-page button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* ------------------------------------------------------------------
+   Shared layout wrapper (centred, max-width, side padding)
+   ------------------------------------------------------------------ */
+.nation-wrap {
+  width: min(100% - (var(--space-wrap-x) * 2), var(--content-max));
+  margin: 0 auto;
+}
+
+/* ------------------------------------------------------------------
+   Section 1 — Hero
+   ------------------------------------------------------------------ */
+.nation-hero {
+  position: relative;
+  display: flex;
+  min-height: 70vh;
+  align-items: flex-end;
+  padding-bottom: 5rem;
+  overflow: hidden;
+}
+
+/* Background image layer */
+.nation-hero__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.03); /* slight oversize so the entrance scale doesn't clip */
+  animation: nation-hero-zoom 18s ease-in-out infinite alternate;
+}
+
+@keyframes nation-hero-zoom {
+  from { transform: scale(1.03); }
+  to   { transform: scale(1.08); }
+}
+
+/* Dark gradient overlay — guarantees WCAG-AA contrast for white text */
+.nation-hero__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 22, 23, 0.30)  0%,
+    rgba(10, 22, 23, 0.55) 55%,
+    rgba(10, 22, 23, 0.82) 100%
+  );
+}
+
+/* Content sits above both layers */
+.nation-hero__content {
+  position: relative;
+  z-index: 2;
+  width: min(100% - (var(--space-wrap-x) * 2), var(--content-max));
+  margin: 0 auto;
+  padding-top: 7rem; /* clear fixed header */
+}
+
+/* Element label — reuses .section-kicker colour but uses accent */
+.nation-hero__element {
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Kicker line above the h1 */
+.nation-hero__kicker {
+  margin: 0 0 0.6rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+/* Nation name — Cinzel, large, single h1 */
+.nation-hero__title {
+  margin: 0 0 1.1rem;
+  color: #fff;
+  font-family: var(--home-font-display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.32);
+}
+
+/* One-line tagline */
+.nation-hero__tagline {
+  max-width: 52ch;
+  margin: 0 0 2.2rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+/* Scroll-down cue */
+.nation-hero__scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.nation-hero__scroll-cue:hover {
+  color: var(--accent);
+}
+
+.nation-hero__scroll-line {
+  display: block;
+  width: 1px;
+  height: 30px;
+  background: var(--accent);
+  transform-origin: top;
+  animation: scroll-pulse 1.8s ease-in-out infinite; /* reuses existing keyframe */
+}
+
+/* ------------------------------------------------------------------
+   Section 2 — About
+   ------------------------------------------------------------------ */
+.nation-about {
+  padding: var(--space-section) var(--space-wrap-x);
+  background: #0f1e1f; /* slightly lighter than home-deep to layer depth */
+}
+
+.nation-about__grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 3rem 4rem;
+  align-items: start;
+}
+
+.nation-about__text h2 {
+  margin: 0.6rem 0 1.5rem;
+  color: #fff;
+  font-family: var(--home-font-display);
+}
+
+.nation-about__text .section-kicker {
+  color: var(--accent);
+}
+
+.nation-about__body {
+  margin-bottom: 1.1rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.nation-about__body:last-child {
+  margin-bottom: 0;
+}
+
+/* Quick Facts card */
+.nation-facts-card {
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+.nation-facts-card__heading {
+  padding: 1rem 1.4rem 0.9rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--accent);
+  font-family: var(--home-font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nation-facts-card__list {
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.nation-facts-card__row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 0.25rem 1rem;
+  padding: 0.65rem 1.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nation-facts-card__row:last-child {
+  border-bottom: none;
+}
+
+.nation-facts-card__row dt {
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nation-facts-card__row dd {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.9rem;
+}
+
+/* ------------------------------------------------------------------
+   Section 3 — Key Locations
+   ------------------------------------------------------------------ */
+.nation-locations {
+  padding: var(--space-section) var(--space-wrap-x);
+  background: var(--home-deep);
+}
+
+.nation-locations .section-kicker {
+  color: var(--accent);
+}
+
+.nation-locations__heading {
+  margin: 0.5rem 0 2.5rem;
+  color: #fff;
+  font-family: var(--home-font-display);
+}
+
+.nation-locations__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Shared card shell — applies to location cards, tip cards, etc. */
+.nation-loc-card {
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+.nation-loc-card:hover {
+  transform: var(--card-hover-lift);
+  box-shadow: var(--card-hover-glow);
+}
+
+.nation-loc-card__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  /* When using the gradient placeholder, aspect-ratio still reserves the space */
+  background-size: cover;
+  background-position: center;
+}
+
+.nation-loc-card__body {
+  padding: 1.1rem 1.3rem 1.3rem;
+}
+
+.nation-loc-card__title {
+  margin: 0 0 0.5rem;
+  color: #fff;
+  font-family: var(--home-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.nation-loc-card__desc {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+/* ------------------------------------------------------------------
+   Section 4 — Unique Feature (empty shell — members fill this in)
+   ------------------------------------------------------------------ */
+.nation-feature {
+  padding: var(--space-section) var(--space-wrap-x);
+  background: #0f1e1f;
+}
+
+.nation-feature h2 {
+  margin-bottom: 2rem;
+  color: #fff;
+  font-family: var(--home-font-display);
+}
+
+/* ------------------------------------------------------------------
+   Section 5 — Travel Tips
+   ------------------------------------------------------------------ */
+.nation-tips {
+  padding: var(--space-section) var(--space-wrap-x);
+  background: var(--home-deep);
+}
+
+.nation-tips .section-kicker {
+  color: var(--accent);
+}
+
+.nation-tips__heading {
+  margin: 0.5rem 0 2.5rem;
+  color: #fff;
+  font-family: var(--home-font-display);
+}
+
+.nation-tips__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.nation-tip-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.6rem 1.4rem;
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: var(--card-shadow);
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+.nation-tip-card:hover {
+  transform: var(--card-hover-lift);
+  box-shadow: var(--card-hover-glow);
+}
+
+.nation-tip-card__icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.nation-tip-card__title {
+  margin: 0;
+  color: var(--accent);
+  font-family: var(--home-font-display);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.nation-tip-card__text {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ------------------------------------------------------------------
+   Section 6 — Next Nation banner
+   ------------------------------------------------------------------ */
+.nation-next {
+  position: relative;
+  display: flex;
+  min-height: 380px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.nation-next__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.nation-next__veil {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 22, 23, 0.66);
+}
+
+.nation-next__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 3rem var(--space-wrap-x);
+}
+
+.nation-next__label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.nation-next__name {
+  margin: 0;
+  color: #fff;
+  font-family: var(--home-font-display);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 500;
+}
+
+.nation-next__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.nation-next__link:hover {
+  background: var(--accent);
+  color: var(--home-deep);
+}
+
+.nation-next__back {
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.nation-next__back:hover {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+/* ------------------------------------------------------------------
+   Body shell for nation pages
+   (matches .placeholder-page so the header/footer render correctly)
+   ------------------------------------------------------------------ */
+.nation-page-body,
+body.nation-page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  color: #fff;
+  background: var(--home-deep);
+  font-family: var(--home-font-body);
+}
+
+/* Nation page shares footer styles already defined for .placeholder-page */
+.nation-page ~ .site-footer,
+body.nation-page .site-footer {
+  /* footer already styled by .home-page .site-footer / .placeholder-page .site-footer rules */
+}
+
+/* ------------------------------------------------------------------
+   Responsive — 2 columns at 900 px
+   ------------------------------------------------------------------ */
+@media (max-width: 900px) {
+  .nation-about__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .nation-locations__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nation-tips__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Responsive — 1 column at 600 px
+   ------------------------------------------------------------------ */
+@media (max-width: 600px) {
+  .nation-page {
+    --space-section: 3.5rem;
+  }
+
+  .nation-hero__title {
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+  }
+
+  .nation-locations__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nation-tips__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nation-next {
+    min-height: 280px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reduced-motion overrides for nation pages
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .nation-page *,
+  body.nation-page * {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* ===== / Nation page template ===== */
+
+/* ===== Mondstadt page ===== */
+/*
+   All classes here use the "mondstadt-" prefix so they never conflict with
+   the shared "nation-" template above or with any other nation page.
+*/
+
+/* ------------------------------------------------------------------
+   Gradient placeholders — one per location.
+   Replace with a real background-image when photos are available.
+   ------------------------------------------------------------------ */
+
+/* Cider Lake — aqua-teal */
+.mondstadt-grad--lake {
+  background: linear-gradient(135deg, #0d2e2e 0%, #174f47 55%, #82d7bd26 100%);
+}
+
+/* Falcon Coast — pale coastal blue */
+.mondstadt-grad--coast {
+  background: linear-gradient(135deg, #102535 0%, #1a4560 55%, #82d7bd1a 100%);
+}
+
+/* Cape Oath — deep amber sunrise */
+.mondstadt-grad--cape {
+  background: linear-gradient(135deg, #2a1c0e 0%, #5a3a18 55%, #d4956226 100%);
+}
+
+/* Dawn Winery — warm terracotta */
+.mondstadt-grad--winery {
+  background: linear-gradient(135deg, #2e1010 0%, #5c2c1a 55%, #c8784226 100%);
+}
+
+/* Springvale — earthy green */
+.mondstadt-grad--springvale {
+  background: linear-gradient(135deg, #182e14 0%, #2e5228 55%, #82c45626 100%);
+}
+
+/* Thousand Winds Temple — dusty stone */
+.mondstadt-grad--temple {
+  background: linear-gradient(135deg, #1e1e28 0%, #3a3850 55%, #9c9ccc26 100%);
+}
+
+/* ------------------------------------------------------------------
+   "Best for" tag — shared by location grid cards
+   ------------------------------------------------------------------ */
+.mondstadt-tag {
+  display: inline-block;
+  margin-top: 0.65rem;
+  padding: 0.22rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  border-radius: 4px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------------
+   Section 4 — Landmark gallery (nation-card overlay style)
+   ------------------------------------------------------------------ */
+
+/* Section header area uses .nation-wrap so it stays centred */
+.mondstadt-gallery .section-kicker {
+  color: var(--accent);
+}
+
+.mondstadt-gallery h2 {
+  color: #fff;
+  font-family: var(--home-font-display);
+  margin: 0.4rem 0 0.5rem;
+}
+
+.mondstadt-gallery__intro {
+  margin: 0 0 2rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+/* ------------------------------------------------------------------
+   Scroll track
+   - Full viewport width so it bleeds to both edges
+   - Left padding aligns card 1 with the section heading's left edge
+   - scroll-padding-inline-start mirrors that padding for snap: start
+   - Default scrollbar hidden; replaced with right-edge fade mask
+   ------------------------------------------------------------------ */
+.mondstadt-gallery__track {
+  display: flex;
+  gap: 1.25rem;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  /*
+    Use only the section's side padding — no extra centering offset.
+    This pushes the first card as far left as possible while still
+    leaving the minimal gutter that matches the rest of the page.
+  */
+  --_left: var(--space-wrap-x, clamp(1.25rem, 5vw, 3rem));
+
+  padding-block: 0.5rem 2rem;
+  padding-inline-start: var(--_left);
+  padding-inline-end: var(--_left);
+
+  scroll-padding-inline-start: var(--_left);
+
+  /* Hide the default scrollbar — replaced by the right-edge fade below */
+  scrollbar-width: none;
+
+  /* Right-edge fade — signals more cards without a hard clip */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black calc(100% - 5rem),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black calc(100% - 5rem),
+    transparent 100%
+  );
+
+  outline-offset: 4px;
+}
+
+/* Hide webkit scrollbar track entirely */
+.mondstadt-gallery__track::-webkit-scrollbar { display: none; }
+
+.mondstadt-gallery__track:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+/* ------------------------------------------------------------------
+   Individual slide card — portrait overlay layout matching .nation-card
+   width clamp(240px, 22vw, 290px) → ~4 visible on a 1200px viewport
+   ------------------------------------------------------------------ */
+.mondstadt-slide {
+  position: relative;          /* stacking context for absolute children */
+  flex: 0 0 auto;
+  width: clamp(240px, 22vw, 290px);
+  aspect-ratio: 2 / 3;        /* tall portrait, matches nation-card ratio */
+  scroll-snap-align: start;
+
+  overflow: hidden;
+  border: 1px solid rgba(23, 34, 34, 0.14);
+  border-radius: var(--card-radius);
+  background: #25312f;         /* fallback while image loads */
+  isolation: isolate;
+  transition: transform 260ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+
+/* Hover / focus — lift + accent glow, matching .nation-card:hover */
+.mondstadt-slide:hover,
+.mondstadt-slide:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 1px var(--accent),
+    0 10px 28px rgba(15, 26, 25, 0.2),
+    0 0 25px color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+/* ------------------------------------------------------------------
+   Image — fills the whole card, zooms gently on hover
+   ------------------------------------------------------------------ */
+.mondstadt-slide__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+  transition: transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 350ms ease;
+}
+
+.mondstadt-slide:hover .mondstadt-slide__img,
+.mondstadt-slide:focus-visible .mondstadt-slide__img {
+  filter: saturate(1.1) brightness(1.04);
+  transform: scale(1.09);
+}
+
+/* ------------------------------------------------------------------
+   Dark gradient shade — bottom-heavy, same as .nation-card__shade
+   ------------------------------------------------------------------ */
+.mondstadt-slide__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(0deg, rgba(7, 14, 14, 0.88), rgba(7, 14, 14, 0.08) 72%),
+    linear-gradient(180deg, rgba(7, 14, 14, 0.13), transparent 38%);
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------
+   Copy overlay — title + one-liner over the bottom-left of the image
+   ------------------------------------------------------------------ */
+.mondstadt-slide__copy {
+  position: absolute;
+  right: 14px;
+  bottom: 18px;
+  left: 14px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #fff;
+}
+
+/* Index number — top-left corner of the card, above the shade */
+.mondstadt-slide__index {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  z-index: 3;
+  color: var(--accent);
+  font-family: var(--home-font-body, 'Inter', sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* "View" hint — magnifier emoji, bottom-right corner, fades in on hover */
+.mondstadt-slide__hint {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  z-index: 3;
+  font-size: 1.1rem;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 220ms ease, transform 220ms ease;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
+}
+
+.mondstadt-slide:hover .mondstadt-slide__hint,
+.mondstadt-slide:focus-visible .mondstadt-slide__hint {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Name — Cinzel, white */
+.mondstadt-slide__name {
+  margin: 0 0 0.3rem;
+  color: #fff;
+  font-family: var(--home-font-display);
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* One-line description — muted white, small */
+.mondstadt-slide__fact {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* ------------------------------------------------------------------
+   Responsive — ~2.2 cards visible at 900 px
+   ------------------------------------------------------------------ */
+@media (max-width: 900px) {
+  .mondstadt-slide {
+    width: clamp(200px, 42vw, 260px);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Responsive — ~1.3 cards visible at 600 px
+   ------------------------------------------------------------------ */
+@media (max-width: 600px) {
+  .mondstadt-gallery__track {
+    --_left: 1.25rem;
+    gap: 0.875rem;
+  }
+
+  .mondstadt-slide {
+    width: 72vw;   /* 1 full card + ~30% of next card peeks in → ~1.3 visible */
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reduced-motion: disable zoom and lift on gallery cards
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .mondstadt-slide,
+  .mondstadt-slide__img {
+    transition: none !important;
+  }
+  .mondstadt-slide:hover .mondstadt-slide__img,
+  .mondstadt-slide:focus-visible .mondstadt-slide__img {
+    transform: none;
+  }
+}
+
+/* ==================================================================
+   MONDSTADT LIGHTBOX — radio-input technique
+   All radio inputs are visually hidden; CSS :checked ~ sibling rules
+   open the matching overlay and scroll-lock the body.
+   ================================================================== */
+
+/* ------------------------------------------------------------------
+   Hide all radio inputs — visually hidden but still in the a11y tree
+   ------------------------------------------------------------------ */
+.mondstadt-viewer-radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+  appearance: none;
+}
+
+/* ------------------------------------------------------------------
+   Scroll-lock body while any landmark radio (not #mv-closed) is open.
+   Uses :has() — supported in all modern browsers.
+   ------------------------------------------------------------------ */
+body:has(.mondstadt-viewer-radio:checked:not(#mv-closed)) {
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------
+   Base state — all overlays invisible and inert
+   ------------------------------------------------------------------ */
+.mondstadt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;           /* above the sticky header (z-index ~100) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+
+  /* Hidden until its radio is :checked */
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity 250ms ease,
+    transform 250ms ease,
+    visibility 0ms linear 250ms;  /* delay keeps it invisible during close */
+}
+
+/* ------------------------------------------------------------------
+   Open state — each overlay is revealed by its sibling radio being
+   :checked.  The selectors follow the HTML source order:
+     #mv-1:checked ~ #mondstadt-overlay-1,  etc.
+   ------------------------------------------------------------------ */
+#mv-1:checked ~ #mondstadt-overlay-1,
+#mv-2:checked ~ #mondstadt-overlay-2,
+#mv-3:checked ~ #mondstadt-overlay-3,
+#mv-4:checked ~ #mondstadt-overlay-4,
+#mv-5:checked ~ #mondstadt-overlay-5,
+#mv-6:checked ~ #mondstadt-overlay-6 {
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 250ms ease,
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0ms linear 0ms;
+}
+
+/* ------------------------------------------------------------------
+   Backdrop — full-screen dark blur, acts as a close label
+   ------------------------------------------------------------------ */
+.mondstadt-overlay__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 14, 14, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------
+   Inner box — side-by-side photo + text on desktop
+   ------------------------------------------------------------------ */
+.mondstadt-overlay__box {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  width: min(900px, 100%);
+  max-height: 90vh;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111d1e;
+  border: 1px solid rgba(130, 215, 189, 0.18);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.55);
+}
+
+/* ------------------------------------------------------------------
+   Photo — left column, object-fit: contain so nothing is cropped
+   ------------------------------------------------------------------ */
+.mondstadt-overlay__photo {
+  flex: 1 1 55%;
+  min-width: 0;
+  max-width: 55%;
+  max-height: 70vh;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  background: #0a1414;
+  display: block;
+}
+
+/* ------------------------------------------------------------------
+   Text panel — right column, dark card with accent border-left
+   ------------------------------------------------------------------ */
+.mondstadt-overlay__panel {
+  flex: 1 1 45%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.75rem 1.5rem;
+  overflow-y: auto;
+  border-left: 2px solid var(--accent);
+  background: #14211f;
+}
+
+.mondstadt-overlay__kicker {
+  margin: 0 0 0.2rem;
+  color: var(--accent);
+  font-family: var(--home-font-body, 'Inter', sans-serif);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mondstadt-overlay__index {
+  margin: 0 0 0.15rem;
+  color: rgba(255,255,255,0.35);
+  font-family: var(--home-font-body, 'Inter', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.mondstadt-overlay__name {
+  margin: 0 0 0.85rem;
+  color: #fff;
+  font-family: var(--home-font-display, 'Cinzel', serif);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.mondstadt-overlay__desc {
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--home-font-body, 'Inter', sans-serif);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.mondstadt-overlay__tag {
+  /* inherits .mondstadt-tag — just reset the top margin inside the panel */
+  margin-top: auto;
+  margin-bottom: 1.25rem;
+  align-self: flex-start;
+}
+
+/* ------------------------------------------------------------------
+   Close button — top-right corner of the box
+   ------------------------------------------------------------------ */
+.mondstadt-overlay__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(20, 33, 31, 0.85);
+  border: 1px solid rgba(130, 215, 189, 0.2);
+  color: rgba(255,255,255,0.75);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.mondstadt-overlay__close:hover,
+.mondstadt-overlay__close:focus-visible {
+  background: var(--accent);
+  color: #0a1414;
+  border-color: var(--accent);
+}
+
+.mondstadt-overlay__close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------------
+   Navigation row — Prev / Next buttons
+   ------------------------------------------------------------------ */
+.mondstadt-overlay__nav {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.mondstadt-overlay__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(130, 215, 189, 0.3);
+  background: rgba(130, 215, 189, 0.07);
+  color: rgba(255,255,255,0.8);
+  font-family: var(--home-font-body, 'Inter', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.mondstadt-overlay__btn:hover,
+.mondstadt-overlay__btn:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0a1414;
+}
+
+.mondstadt-overlay__btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------------
+   Mobile — stack photo on top, text below; overlay scrolls
+   ------------------------------------------------------------------ */
+@media (max-width: 700px) {
+  .mondstadt-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .mondstadt-overlay__box {
+    flex-direction: column;
+    width: 100%;
+    max-height: 95dvh;
+    border-radius: 16px 16px 0 0;
+    overflow-y: auto;
+  }
+
+  .mondstadt-overlay__photo {
+    flex: none;
+    max-width: 100%;
+    max-height: 42vh;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .mondstadt-overlay__panel {
+    border-left: none;
+    border-top: 2px solid var(--accent);
+    overflow-y: visible;
+  }
+
+  .mondstadt-overlay__close {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reduced-motion: no fade/scale animation on the overlay
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .mondstadt-overlay {
+    transition: visibility 0ms, opacity 0ms;
+    transform: none !important;
+  }
+
+  #mv-1:checked ~ #mondstadt-overlay-1,
+  #mv-2:checked ~ #mondstadt-overlay-2,
+  #mv-3:checked ~ #mondstadt-overlay-3,
+  #mv-4:checked ~ #mondstadt-overlay-4,
+  #mv-5:checked ~ #mondstadt-overlay-5,
+  #mv-6:checked ~ #mondstadt-overlay-6 {
+    transition: visibility 0ms;
+  }
+
+  .mondstadt-slide__hint {
+    transition: none !important;
+  }
+}
+/* ===== / Mondstadt page ===== */

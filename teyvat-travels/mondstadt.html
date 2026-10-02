@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The Mondstadt destination page for Teyvat Travels.">
+  <meta name="description" content="Explore Mondstadt, the city of freedom in northeast Teyvat — Cider Lake, the Falcon Coast, Cape Oath, and six must-see destinations.">
   <meta name="theme-color" content="#101b1c">
   <title>Mondstadt | Teyvat Travels</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="placeholder-page" id="top">
+<body class="nation-page" id="top">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- =============================================
+       HEADER — do not modify this block
+       ============================================= -->
   <header class="site-header">
     <div class="site-header__inner">
       <input class="menu-toggle" type="checkbox" id="menu-toggle" aria-label="Open navigation menu">
@@ -25,7 +30,8 @@
       <nav class="site-nav" aria-label="Main navigation">
         <a class="site-nav__link" href="index.html">Home</a>
         <div class="site-nav__dropdown">
-          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations" aria-haspopup="true" aria-current="page">
+          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations"
+             aria-haspopup="true" aria-current="page">
             Destinations
             <svg class="site-nav__chevron" aria-hidden="true" width="10" height="6" viewBox="0 0 10 6" fill="none">
               <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -62,13 +68,505 @@
       </nav>
     </div>
   </header>
-  <main class="placeholder-main">
-    <div class="placeholder-main__content">
-      <p class="section-kicker">The city of freedom</p>
-      <h1>Mondstadt</h1>
-      <p>This destination is being prepared for your journey.</p>
-    </div>
+  <!-- / HEADER -->
+
+  <main class="nation-page" id="main-content" style="--accent: #82d7bd;">
+
+    <!-- =============================================
+         SECTION 1 — HERO
+         ============================================= -->
+    <section class="nation-hero" aria-labelledby="hero-title">
+      <div class="nation-hero__bg"
+           style="background-image: url('assets/img/mondstadt.webp');"
+           role="img"
+           aria-label="Mondstadt's island city surrounded by Cider Lake and mountain plains under a bright sky"></div>
+      <div class="nation-hero__veil" aria-hidden="true"></div>
+      <div class="nation-hero__content">
+        <p class="nation-hero__element section-kicker entrance entrance--one">Anemo</p>
+        <p class="nation-hero__kicker entrance entrance--two">The city of freedom</p>
+        <h1 class="nation-hero__title entrance entrance--three" id="hero-title">Mondstadt</h1>
+        <p class="nation-hero__tagline entrance entrance--four">A city of freedom in the northeast of Teyvat.</p>
+        <a class="nation-hero__scroll-cue" href="#about" aria-label="Scroll down to learn about Mondstadt">
+          <span class="nation-hero__scroll-line" aria-hidden="true"></span>
+          <span>Scroll down</span>
+        </a>
+      </div>
+    </section>
+    <!-- / HERO -->
+
+    <!-- =============================================
+         SECTION 2 — ABOUT
+         ============================================= -->
+    <section class="nation-about" id="about" aria-labelledby="about-title">
+      <div class="nation-wrap">
+        <div class="nation-about__grid">
+
+          <!-- Left: editorial copy -->
+          <div class="nation-about__text reveal">
+            <p class="section-kicker">The city of freedom</p>
+            <h2 id="about-title">An island city on Cider Lake</h2>
+            <p class="nation-about__body">Mondstadt sits on an island in the middle of Cider Lake, surrounded by mountains and wide open plains. The city is known across Teyvat for its wines, its music, and the quiet pride its people take in living as they choose.</p>
+            <p class="nation-about__body">Gentle breezes carry the scent of dandelions across the lake — a gift, they say, from Barbatos, the Anemo God who watches over the city without ever demanding anything in return.</p>
+          </div>
+
+          <!-- Right: Quick Facts -->
+          <aside class="nation-about__facts reveal">
+            <div class="nation-facts-card">
+              <h3 class="nation-facts-card__heading">Quick Facts</h3>
+              <dl class="nation-facts-card__list">
+                <div class="nation-facts-card__row">
+                  <dt>Element</dt>
+                  <dd>Anemo (Wind)</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Archon</dt>
+                  <dd>Barbatos, God of Freedom</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Region type</dt>
+                  <dd>Lakeside island city</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Best time to visit</dt>
+                  <!-- TODO: confirm season — spring or autumn? -->
+                  <dd>Spring or autumn</dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+    <!-- / ABOUT -->
+
+    <!-- =============================================
+         SECTION 3 — KEY LOCATIONS
+         ============================================= -->
+    <section class="nation-locations" aria-labelledby="locations-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Points of interest</p>
+        <h2 class="nation-locations__heading reveal" id="locations-title">Key Locations</h2>
+
+        <div class="nation-locations__grid">
+
+          <!-- Card 1: Cider Lake -->
+          <article class="nation-loc-card reveal">
+            <img src="images/mondstadt/cider lake.jpg"
+                 alt="Crystal-clear Cider Lake encircling Mondstadt"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Cider Lake</h3>
+              <p class="nation-loc-card__desc">A natural freshwater lake featuring a wide, crystalline appearance that has remained unchanged for eons — so clear you can see the bottom, and cool and refreshing to drink. It is none other than these headwaters that brought Mondstadt's ciders and wines to fame and made the lake the symbol of Mondstadt that it is today.</p>
+              <span class="mondstadt-tag">Best for: Scenery</span>
+            </div>
+          </article>
+
+          <!-- Card 2: Falcon Coast -->
+          <article class="nation-loc-card reveal">
+            <img src="images/mondstadt/falcon coast.jpg"
+                 alt="White sandy shores of Falcon Coast with falcons soaring above the waves"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Falcon Coast</h3>
+              <p class="nation-loc-card__desc">Stretching eastward from Windrise to the sea, Falcon Coast — together with Cape Oath — shelters the sea from three sides, creating a bay that sits east of Mondstadt. Given the long coastline and shallow waters, citizens of Mondstadt often come here to enjoy a nice stroll. On occasion, you can see falcons soaring high above the blue waves that brush upon the white sand.</p>
+              <span class="mondstadt-tag">Best for: Relaxing walks</span>
+            </div>
+          </article>
+
+          <!-- Card 3: Cape Oath -->
+          <article class="nation-loc-card reveal">
+            <img src="images/mondstadt/cape oath.jpg"
+                 alt="Cape Oath at sunrise with sweeping views toward Windrise"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Cape Oath</h3>
+              <p class="nation-loc-card__desc">In the southeast corner of Mondstadt's surrounds lies a cape that borders with Galesong Hill. Legend has it two lovers made an oath to each other here and left behind a deeply touching story. To this day the area is still known to be popular amongst young lovebirds. Other than being a great vantage point for watching sunrises and sunsets, the drop in terrain makes it easy to see Windrise, which sits facing the sea.</p>
+              <span class="mondstadt-tag">Best for: Sunsets</span>
+            </div>
+          </article>
+
+          <!-- Card 4: Dawn Winery -->
+          <article class="nation-loc-card reveal">
+            <img src="images/mondstadt/dawn winery.png"
+                 alt="The vine-covered estate of Dawn Winery southwest of Mondstadt"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Dawn Winery</h3>
+              <p class="nation-loc-card__desc">Nestled in the land southwest of Mondstadt sits the winery that has passed down the legacy of Mondstadt's traditional wines and ciders for generations. The grapes grown here are used to produce a range of wines that are popular right across Teyvat. Every year's products are split, with a portion being sold locally within Mondstadt, the rest is sold off via the trade route that sits south of the city.</p>
+              <span class="mondstadt-tag">Best for: Wine &amp; cider</span>
+            </div>
+          </article>
+
+          <!-- Card 5: Springvale -->
+          <article class="nation-loc-card reveal">
+            <img src="images/mondstadt/springvale.jpg"
+                 alt="The rustic hunters' village of Springvale surrounded by green hills"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Springvale</h3>
+              <p class="nation-loc-card__desc">A sleepy little village to the south of Mondstadt, that sits facing the lake that surrounds the city. Most of the village's residents are hunters that provide fresh meat for all the big restaurants of Mondstadt. Springvale's rustic appeal attracts many tourists. If you are lucky in your travels, you may come across a restaurant that truly knows how to bring out the best qualities of Springvale's meat.</p>
+              <span class="mondstadt-tag">Best for: Local food</span>
+            </div>
+          </article>
+
+          <!-- Card 6: Thousand Winds Temple -->
+          <article class="nation-loc-card reveal">
+            <img src="images/mondstadt/thousand winds temple.jpg"
+                 alt="Stone pillars of the ancient Thousand Winds Temple at dusk"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Thousand Winds Temple</h3>
+              <p class="nation-loc-card__desc">A collection of temple ruins that sits northeast of Mondstadt. According to local legend, millennia ago this area was a temple for worshipping the Anemo God. Though it has been left to waste for centuries, leaving the ruins you see today. If you look closely at some of the stone pillars, you can still faintly make out some elegant carvings. This long-forgotten symbol of commemoration is engraved with the maxim: "Wind brings the seeds of tales, time allows them to take root."</p>
+              <span class="mondstadt-tag">Best for: History</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+    <!-- / KEY LOCATIONS -->
+
+    <!-- =============================================
+         SECTION 4 — UNIQUE FEATURE: LANDMARK GALLERY
+         CSS-only horizontal scroll-snap gallery + radio lightbox.
+         All new classes use the "mondstadt-" prefix.
+         ============================================= -->
+    <section class="nation-feature mondstadt-gallery" aria-labelledby="gallery-title">
+
+      <!--
+        RADIO INPUTS — must live before the track so CSS sibling selectors
+        (:checked ~ ...) can reach both the track cards and the overlays.
+
+        #mv-closed is checked by default — keeps all overlays hidden at load.
+        One input per landmark plus the "closed" sentinel.
+      -->
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-closed" checked>
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-1">
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-2">
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-3">
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-4">
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-5">
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-6">
+
+      <!-- ── Overlays (one per landmark) ────────────────────────────── -->
+
+      <!-- Overlay 1 — Cider Lake -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-1" aria-label="Cider Lake photo viewer" role="dialog" aria-modal="true">
+        <!-- Dark backdrop — clicking it closes the viewer -->
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <!-- Photo -->
+          <img src="images/mondstadt/cider lake.jpg"
+               alt="Crystal-clear Cider Lake encircling Mondstadt at golden hour"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <!-- Text panel -->
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Mondstadt</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">01</p>
+            <h3 class="mondstadt-overlay__name">Cider Lake</h3>
+            <p class="mondstadt-overlay__desc">Cider Lake is a freshwater lake that wraps all the way around the island city of Mondstadt. The water is so clear you can see straight to the bottom, and cool enough to drink straight from the source. For centuries, it has been these same headwaters that gave Mondstadt's ciders and wines their distinctive taste, turning the lake into the city's most recognisable landmark. Standing on the shore at golden hour, with the city's towers reflected in the still water, is one of those moments you simply don't forget.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Scenery</span>
+            <!-- Navigation -->
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-6" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-2" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <!-- Close button -->
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- Overlay 2 — Falcon Coast -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-2" aria-label="Falcon Coast photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/mondstadt/falcon coast.jpg"
+               alt="White sandy shores of Falcon Coast with falcons soaring above the waves"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Mondstadt</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">02</p>
+            <h3 class="mondstadt-overlay__name">Falcon Coast</h3>
+            <p class="mondstadt-overlay__desc">Falcon Coast is a shallow bay that stretches east of Mondstadt, sheltered on three sides by Cape Oath and the gentle curve of Windrise. The water stays calm enough that locals often walk the length of the white sand shore in bare feet, watching the tide come in. On most days you'll spot falcons riding the thermals above the waves — the coast takes its name from them. It's the kind of place that's easy to spend an entire afternoon without noticing the time pass.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Relaxing walks</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-1" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-3" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- Overlay 3 — Cape Oath -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-3" aria-label="Cape Oath photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/mondstadt/cape oath.jpg"
+               alt="Cape Oath at sunrise with sweeping views toward Windrise"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Mondstadt</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">03</p>
+            <h3 class="mondstadt-overlay__name">Cape Oath</h3>
+            <p class="mondstadt-overlay__desc">Cape Oath juts out from Mondstadt's southeastern corner, where Galesong Hill meets the sea. Local legend says two lovers once stood here and swore an oath to each other, and the story still draws couples who come to watch the sun rise and set over the water. The drop in elevation makes it easy to pick out Windrise in the distance, standing tall against the horizon. Visit at dawn if you can — the light comes in low and warm, and the whole cape turns gold for about twenty minutes.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Sunsets</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-2" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-4" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- Overlay 4 — Dawn Winery -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-4" aria-label="Dawn Winery photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/mondstadt/dawn winery.png"
+               alt="The vine-covered estate of Dawn Winery southwest of Mondstadt"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Mondstadt</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">04</p>
+            <h3 class="mondstadt-overlay__name">Dawn Winery</h3>
+            <p class="mondstadt-overlay__desc">Dawn Winery sits in the quiet countryside southwest of Mondstadt, and has been making the city's traditional wines and ciders for generations. The estate's rows of vines stretch across gently sloping hills, and during harvest season the whole area smells of ripe fruit. A portion of each year's crop stays in Mondstadt, sold from the winery's own cellar, while the rest heads south along the trade route that connects to the rest of Teyvat. If you visit, ask about the barrel-aged dandelion wine — it's the one locals actually drink.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Wine &amp; cider</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-3" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-5" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- Overlay 5 — Springvale -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-5" aria-label="Springvale photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/mondstadt/springvale.jpg"
+               alt="The rustic hunters' village of Springvale surrounded by green hills"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Mondstadt</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">05</p>
+            <h3 class="mondstadt-overlay__name">Springvale</h3>
+            <p class="mondstadt-overlay__desc">Springvale is a small hunters' village south of Mondstadt, sitting on the lakeshore with an unobstructed view of the city across the water. Most of its residents are hunters who supply fresh game to Mondstadt's restaurants, and the village has built a quiet reputation for meat that city kitchens can't easily replicate. The wooden houses and worn stone paths give it a rustic, unhurried character that draws visitors looking for a break from the city. If you're lucky, you might find a local cook who knows exactly what to do with a slow fire and a good cut.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Local food</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-4" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-6" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- Overlay 6 — Thousand Winds Temple -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-6" aria-label="Thousand Winds Temple photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/mondstadt/thousand winds temple.jpg"
+               alt="Stone pillars of the ancient Thousand Winds Temple at dusk"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Mondstadt</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">06</p>
+            <h3 class="mondstadt-overlay__name">Thousand Winds Temple</h3>
+            <p class="mondstadt-overlay__desc">The Thousand Winds Temple is a scattered collection of ruins northeast of Mondstadt, all that remains of what was once a place of worship for the Anemo God. The temple has been abandoned for centuries, and the stones have slowly given way to moss and wind-worn carvings, but if you look closely at the pillars you can still make out faint inscriptions. The most complete reads: "Wind brings the seeds of tales, time allows them to take root." Standing among the ruins at dusk, with the wind moving through the broken archways, it's easy to believe that saying is still true.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: History</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-5" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-1" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- ── Section heading (inside .nation-wrap for alignment) ──────── -->
+      <div class="nation-wrap">
+        <p class="section-kicker">Explore the landmarks</p>
+        <h2 id="gallery-title">Mondstadt in Focus</h2>
+        <p class="mondstadt-gallery__intro">Click a card to open the full photo and description.</p>
+      </div>
+
+      <!--
+        The scroll track is intentionally full-width (outside .nation-wrap) so
+        cards bleed to the edges and the next card peeks in on both sides.
+        tabindex="0" makes it keyboard-focusable; arrow keys scroll horizontally.
+        Each article is wrapped in a <label> that triggers the matching radio.
+      -->
+      <div class="mondstadt-gallery__track" tabindex="0" role="region" aria-label="Mondstadt landmark gallery — click a card to view details">
+
+        <!-- Slide 1 — Cider Lake -->
+        <label class="mondstadt-slide" for="mv-1" tabindex="0" role="button" aria-label="View Cider Lake">
+          <img src="images/mondstadt/cider lake.jpg"
+               alt="Crystal-clear Cider Lake encircling Mondstadt at golden hour"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">01</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Cider Lake</h3>
+            <p class="mondstadt-slide__fact">Crystal-clear headwaters unchanged for eons — the source of Mondstadt's famous ciders and wines.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <!-- Slide 2 — Falcon Coast -->
+        <label class="mondstadt-slide" for="mv-2" tabindex="0" role="button" aria-label="View Falcon Coast">
+          <img src="images/mondstadt/falcon coast.jpg"
+               alt="White sandy shores of Falcon Coast with falcons soaring above the waves"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">02</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Falcon Coast</h3>
+            <p class="mondstadt-slide__fact">A sheltered bay east of Mondstadt — long coastline, shallow waters, and falcons overhead.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <!-- Slide 3 — Cape Oath -->
+        <label class="mondstadt-slide" for="mv-3" tabindex="0" role="button" aria-label="View Cape Oath">
+          <img src="images/mondstadt/cape oath.jpg"
+               alt="Cape Oath at sunrise with sweeping views toward Windrise"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">03</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Cape Oath</h3>
+            <p class="mondstadt-slide__fact">A romantic cape where two lovers made their oath — sweeping views of Windrise across the sea.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <!-- Slide 4 — Dawn Winery -->
+        <label class="mondstadt-slide" for="mv-4" tabindex="0" role="button" aria-label="View Dawn Winery">
+          <img src="images/mondstadt/dawn winery.png"
+               alt="The vine-covered estate of Dawn Winery southwest of Mondstadt"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">04</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Dawn Winery</h3>
+            <p class="mondstadt-slide__fact">Generations-old winery southwest of the city — wines split between local cellars and Teyvat trade routes.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <!-- Slide 5 — Springvale -->
+        <label class="mondstadt-slide" for="mv-5" tabindex="0" role="button" aria-label="View Springvale">
+          <img src="images/mondstadt/springvale.jpg"
+               alt="The rustic hunters' village of Springvale surrounded by green hills"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">05</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Springvale</h3>
+            <p class="mondstadt-slide__fact">A hunters' village facing the lake — rustic charm and fresh game served in Mondstadt's finest restaurants.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <!-- Slide 6 — Thousand Winds Temple -->
+        <label class="mondstadt-slide" for="mv-6" tabindex="0" role="button" aria-label="View Thousand Winds Temple">
+          <img src="images/mondstadt/thousand winds temple.jpg"
+               alt="Stone pillars of the ancient Thousand Winds Temple at dusk"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">06</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Thousand Winds Temple</h3>
+            <p class="mondstadt-slide__fact">Ancient ruins engraved with the maxim: "Wind brings the seeds of tales, time allows them to take root."</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+      </div>
+    </section>
+    <!-- / UNIQUE FEATURE -->
+
+    <!-- =============================================
+         SECTION 5 — TRAVEL TIPS
+         ============================================= -->
+    <section class="nation-tips" aria-labelledby="tips-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Before you go</p>
+        <h2 class="nation-tips__heading reveal" id="tips-title">Travel Tips</h2>
+
+        <div class="nation-tips__grid">
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true">🏨</span>
+            <h3 class="nation-tip-card__title">Where to stay</h3>
+            <p class="nation-tip-card__text">The Inn of the Last Good Night sits right on the main square — rooms are modest but clean, and you can hear the wind chimes all night.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true">🍷</span>
+            <h3 class="nation-tip-card__title">What to eat &amp; drink</h3>
+            <p class="nation-tip-card__text">Try the local cider and Dandelion Wine from Dawn Winery. For food, head to Springvale for fresh-caught and slow-smoked meats you won't find in the city.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true">🚶</span>
+            <h3 class="nation-tip-card__title">Getting around</h3>
+            <p class="nation-tip-card__text">The city itself is easy to walk. Cider Lake, Falcon Coast, and the city gates form a natural loop — give yourself a half-day and you can cover all three on foot.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- / TRAVEL TIPS -->
+
+    <!-- =============================================
+         SECTION 6 — NEXT NATION BANNER
+         ============================================= -->
+    <section class="nation-next" aria-labelledby="next-title">
+      <div class="nation-next__bg"
+           style="background-image: url('assets/img/liyue.jpeg');"
+           role="img"
+           aria-label="The golden harbour and stone peaks of Liyue at dusk"></div>
+      <div class="nation-next__veil" aria-hidden="true"></div>
+      <div class="nation-next__content">
+        <p class="nation-next__label">Next destination</p>
+        <h2 class="nation-next__name" id="next-title">Liyue</h2>
+        <a class="nation-next__link" href="liyue.html">
+          Explore Liyue <span aria-hidden="true">&#8594;</span>
+        </a>
+        <a class="nation-next__back" href="index.html#nations">&#8592; Back to all nations</a>
+      </div>
+    </section>
+    <!-- / NEXT NATION -->
+
   </main>
+
+  <!-- =============================================
+       FOOTER — do not modify this block
+       ============================================= -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-col footer-col--brand">
@@ -108,5 +606,7 @@
       <a class="footer-back-top" href="#top">Back to top &#8593;</a>
     </div>
   </footer>
+  <!-- / FOOTER -->
+
 </body>
 </html>
