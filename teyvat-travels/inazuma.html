@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The Inazuma destination page for Teyvat Travels.">
-  <meta name="theme-color" content="#101b1c">
+  <meta name="description" content="Explore Inazuma, the island realm of thunder, shrines, and the eternal will of the Raiden Shogun.">
+  <meta name="theme-color" content="#160d1d">
   <title>Inazuma | Teyvat Travels</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,12 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="packages.css">
 </head>
-<body class="placeholder-page" id="top">
+<body class="nation-page" id="top">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- =============================================
+       HEADER — do not modify this block
+       ============================================= -->
   <header class="site-header">
     <div class="site-header__inner">
       <input class="menu-toggle" type="checkbox" id="menu-toggle" aria-label="Open navigation menu">
@@ -27,7 +32,8 @@
         <a class="site-nav__link" href="index.html">Home</a>
         <a class="site-nav__link" href="index.html#who-we-are">About Us</a>
         <div class="site-nav__dropdown">
-          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations" aria-haspopup="true" aria-current="page">
+          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations"
+             aria-haspopup="true" aria-current="page">
             Destinations
             <svg class="site-nav__chevron" aria-hidden="true" width="10" height="6" viewBox="0 0 10 6" fill="none">
               <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -66,24 +72,613 @@
       </nav>
     </div>
   </header>
-  <main class="placeholder-main">
-    <div class="placeholder-main__content">
-      <p class="section-kicker">The islands of eternity</p>
-      <h1>Inazuma</h1>
-      <p>This destination is being prepared for your journey.</p>
-    </div>
+  <!-- / HEADER -->
+
+  <main class="nation-page" id="main-content" style="--accent: #c59bed;">
+
+    <!-- =============================================
+         SECTION 1 — HERO
+         ============================================= -->
+    <section class="nation-hero" aria-labelledby="hero-title">
+      <div class="nation-hero__bg"
+           style="background-image: url('assets/img/inazuma.webp');"
+           role="img"
+           aria-label="Narukami Island and the high cliffs of Inazuma under a purple storm-light sky"></div>
+      <div class="nation-hero__veil" aria-hidden="true"></div>
+      <div class="nation-hero__content">
+        <p class="nation-hero__element section-kicker entrance entrance--one">Electro</p>
+        <p class="nation-hero__kicker entrance entrance--two">The nation of eternity</p>
+        <h1 class="nation-hero__title entrance entrance--three" id="hero-title">Inazuma</h1>
+        <p class="nation-hero__tagline entrance entrance--four">A realm of thunder, shrine rituals, and sea-swept islands.</p>
+        <a class="nation-hero__scroll-cue" href="#about" aria-label="Scroll down to learn about Inazuma">
+          <span class="nation-hero__scroll-line" aria-hidden="true"></span>
+          <span>Scroll down</span>
+        </a>
+      </div>
+    </section>
+    <!-- / HERO -->
+
+    <!-- =============================================
+         SECTION 2 — ABOUT
+         ============================================= -->
+    <section class="nation-about" id="about" aria-labelledby="about-title">
+      <div class="nation-wrap">
+        <div class="nation-about__grid">
+
+          <div class="nation-about__text reveal">
+            <p class="section-kicker">The nation of eternity</p>
+            <h2 id="about-title">An island realm shaped by thunder and memory</h2>
+            <p class="nation-about__body">Inazuma is an island nation set apart by the force of its storms and the discipline of its traditions. The landscape shifts between sky-etched mountain ridges, shrine-filled forests, and coastal settlements where the tension between rule and rebellion still hangs in the air.</p>
+            <p class="nation-about__body">At the heart of the realm stands the Raiden Shogun, whose long rule has shaped life across Inazuma. Every path through the islands carries a sense of history — of old gods, military conflict, and a pursuit of eternity that continues to divide and define the people.</p>
+          </div>
+
+          <aside class="nation-about__facts reveal">
+            <div class="nation-facts-card">
+              <h3 class="nation-facts-card__heading">Quick Facts</h3>
+              <dl class="nation-facts-card__list">
+                <div class="nation-facts-card__row">
+                  <dt>Element</dt>
+                  <dd>Electro (Lightning)</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Archon</dt>
+                  <dd>Baal / Raiden Shogun, God of Eternity</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Region type</dt>
+                  <dd>Island archipelago and shrine region</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Best time to visit</dt>
+                  <dd>Late spring to early autumn</dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+    <!-- / ABOUT -->
+
+    <!-- =============================================
+         SECTION 3 — KEY LOCATIONS
+         ============================================= -->
+    <section class="nation-locations" aria-labelledby="locations-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Points of interest</p>
+        <h2 class="nation-locations__heading reveal" id="locations-title">Key Locations</h2>
+
+        <div class="nation-locations__grid">
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Inazuma.webp"
+                 alt="Ritou checkpoint at the edge of Inazuma with red maples and quiet harbor water"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Ritou</h3>
+              <p class="nation-loc-card__desc">To properly explore the realm of the Shogun during this time of the Sakoku Decree, you must first pass the checkpoint in Ritou. Ritou is under the jurisdiction of the Kanjou Commission and people need various documents to be granted passage. However, to get the necessary Travel Permit, you have to go through a very complicated procedure and have the right connections. Without the Travel Permit, you can only stop briefly in Ritou. You will see other outlanders who are also stuck there, together looking out upon the desolate landscape of the fishing village with red maples and green roof tiles.</p>
+              <span class="inazuma-tag">Best for: First stop</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Inazuma.webp"
+                 alt="Inazuma City with lantern-lined streets and Tenshukaku overlooking the harbor"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Inazuma City</h3>
+              <p class="nation-loc-card__desc">Inazuma's most lively and prosperous area, where most of Inazuma's population lives. From Hanamizaka to the streets of the city, you can follow the trail to visit local traditional shops and sample Inazuma specialties. The Tenryou Commission is also located in the city, governing matters concerning public order and security, as well as the Shogunate's military affairs. At the top of Inazuma City is Tenshukaku, where the Raiden Shogun resides and rules over Inazuma.</p>
+              <span class="inazuma-tag">Best for: Shopping &amp; food</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Inazuma.webp"
+                 alt="Chinju Forest with torii gates, scattered shrines, and a misty woodland trail"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Chinju Forest</h3>
+              <p class="nation-loc-card__desc">A tranquil and mysterious forest located at the foot of Mt. Yougou. Here one can find Tanuki statues everywhere, torii gates scattered throughout the forest, and abandoned shrines hidden in the depths... Like a flowing river, they tell of legends meandering into a forgotten past. Rumor has it that when walking in Chinju Forest, you may encounter mysterious beings who like to play pranks...</p>
+              <span class="inazuma-tag">Best for: Folklore</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Inazuma.webp"
+                 alt="Grand Narukami Shrine rising above the Sacred Sakura tree and mountain steps"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Grand Narukami Shrine</h3>
+              <p class="nation-loc-card__desc">The largest shrine in Inazuma, located at the peak of Mt. Yougou. It is dedicated to Her Excellency, the Almighty Narukami Ogosho. For those who have wishes, they can climb to the top of the mountain one step at a time. For those who have gained the favor of Electro, they can use the Thunder Spheres to fly up and reach the shrine surrounded by the huge Sacred Sakura Tree. The Sacred Sakura is in constant bloom, symbolizing the eternity of Narukami. After passing through the many torii gates, find the shrine maiden to draw a fortune slip and ask for Narukami's blessing.</p>
+              <span class="inazuma-tag">Best for: Blessings</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Inazuma.webp"
+                 alt="Tatarasuna and Kannazuka's rocky cliffs and smelting facilities under a stormy sky"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Tatarasuna, Kannazuka</h3>
+              <p class="nation-loc-card__desc">Legend has it that Kannazuka means "the hill where no gods reside." Until now, Kannazuka is disputed territory between the Shogunate and Sangonomiya. Kannazuka has a mountainous terrain with high steep cliffs. In the midst of the rocky outcrops lies Mikage Furnace, the largest smelting facility in Inazuma. This is where Jade Steel is made, a rare material that is used in Inazuma to forge swords.</p>
+              <span class="inazuma-tag">Best for: Industry</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Inazuma.webp"
+                 alt="Kujou Encampment military camp spread across the rocky highlands of Kannazuka"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Kujou Encampment</h3>
+              <p class="nation-loc-card__desc">The Shogunate's military camp in Kannazuka. There will always be an irreconcilable conflict between the people of Narukami who believe in the Raiden Shogun and the people of Sangonomiya who believe in Watatsumi Omikami. The strife between both parties has only worsened since the Vision Hunt Decree was enforced. To put down the Sangonomiya rebellion, the Tenryou Commission has stationed the Shogun's Army here. Compared to the Sangonomiya forces, the Shogun's Army has more troops, is better trained, and is well-equipped. Victory seems assured for the latter.</p>
+              <span class="inazuma-tag">Best for: Military history</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Inazuma.webp"
+                 alt="Musoujin Gorge with a narrow valley cut through rock and thunder-worn cliffs"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Musoujin Gorge</h3>
+              <p class="nation-loc-card__desc">This narrow and majestic rift valley runs through the eastern part of Yashiori Island. This extraordinary sight is no natural formation, but rather is the result of the fight in which the Electro Archon slayed the giant serpent. The rift valley is named after the Musou no Hitotachi, a testament to the Electro Archon's skilled swordsmanship. To this day, the remains of the giant serpent are still scattered throughout Yashiori Island. The Tatarigami that emerged from this god's remains seem to be awakening...</p>
+              <span class="inazuma-tag">Best for: Dramatic scenery</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Inazuma.webp"
+                 alt="Serpent's Head weathered remains atop a storm-lashed island"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Serpent's Head</h3>
+              <p class="nation-loc-card__desc">Of the giant serpent that was defeated by the Electro Archon with the Musou no Hitotachi, only its weather-bleached remains are left today. Although its skull still looks up at the sky defiantly, the god is already dead, and so the name of "Watatsumi Omikami" is gradually being forgotten. Even if the giant serpent is long dead, you can still clearly feel the traces of its power left behind. Under the influence of the Tatarigami, Yashiori Island has been deserted by its inhabitants. What can be seen on the island are just endless rain and thunderstorms trying to wash away the remnants of the past.</p>
+              <span class="inazuma-tag">Best for: Legends</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Inazuma.webp"
+                 alt="Nazuchi Beach with broken mast wreckage and storm-torn coastal remains"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Nazuchi Beach</h3>
+              <p class="nation-loc-card__desc">Located between Yashiori Island and Kannazuka, Nazuchi Beach is a place ravaged by war. On the shallow coast, apart from Violet Ibis looking for a place to rest, there are torn flags and broken arrows of prior battles, as well as broken masts and shattered decks of shipwrecks. As a result of the war, pirates and ronin infest the place searching for loot. Even the rare Dendrobium blooms in this place...</p>
+              <span class="inazuma-tag">Best for: Battlefield history</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+    <!-- / KEY LOCATIONS -->
+
+    <!-- =============================================
+         SECTION 4 — UNIQUE FEATURE: LANDMARK GALLERY
+         CSS-only horizontal scroll-snap gallery + radio lightbox.
+         ============================================= -->
+    <section class="nation-feature inazuma-gallery" aria-labelledby="gallery-title">
+      <input class="inazuma-viewer-radio" type="radio" name="inazuma-viewer" id="mv-closed" checked>
+      <input class="inazuma-viewer-radio" type="radio" name="inazuma-viewer" id="mv-1">
+      <input class="inazuma-viewer-radio" type="radio" name="inazuma-viewer" id="mv-2">
+      <input class="inazuma-viewer-radio" type="radio" name="inazuma-viewer" id="mv-3">
+      <input class="inazuma-viewer-radio" type="radio" name="inazuma-viewer" id="mv-4">
+      <input class="inazuma-viewer-radio" type="radio" name="inazuma-viewer" id="mv-5">
+      <input class="inazuma-viewer-radio" type="radio" name="inazuma-viewer" id="mv-6">
+      <input class="inazuma-viewer-radio" type="radio" name="inazuma-viewer" id="mv-7">
+      <input class="inazuma-viewer-radio" type="radio" name="inazuma-viewer" id="mv-8">
+      <input class="inazuma-viewer-radio" type="radio" name="inazuma-viewer" id="mv-9">
+
+      <div class="inazuma-overlay" id="inazuma-overlay-1" aria-label="Ritou photo viewer" role="dialog" aria-modal="true">
+        <label class="inazuma-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="inazuma-overlay__box">
+          <img src="images/Inazuma.webp"
+               alt="Ritou checkpoint under red maples and a storm-ridden coast"
+               class="inazuma-overlay__photo"
+               loading="lazy">
+          <div class="inazuma-overlay__panel">
+            <p class="inazuma-overlay__kicker">Inazuma</p>
+            <p class="inazuma-overlay__index" aria-hidden="true">01</p>
+            <h3 class="inazuma-overlay__name">Ritou</h3>
+            <p class="inazuma-overlay__desc">Ritou is the gateway into Inazuma under the Sakoku Decree, where travelers are watched as closely as the weather. Every arrival begins at the checkpoint, where papers, permits, and the right connections matter nearly as much as the road ahead. The fishing village beyond feels quiet and slightly emptied out, framed by red maples and green roofs. It is a place of waiting, reflection, and the first sense that Inazuma is not simply a destination, but a borderland with its own rules.</p>
+            <span class="inazuma-tag inazuma-overlay__tag">Best for: First stop</span>
+            <div class="inazuma-overlay__nav" aria-label="Navigate landmarks">
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--prev" for="mv-9" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--next" for="mv-2" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="inazuma-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="inazuma-overlay" id="inazuma-overlay-2" aria-label="Inazuma City photo viewer" role="dialog" aria-modal="true">
+        <label class="inazuma-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="inazuma-overlay__box">
+          <img src="images/Inazuma.webp"
+               alt="Inazuma City with lively streets and the silhouette of Tenshukaku above it"
+               class="inazuma-overlay__photo"
+               loading="lazy">
+          <div class="inazuma-overlay__panel">
+            <p class="inazuma-overlay__kicker">Inazuma</p>
+            <p class="inazuma-overlay__index" aria-hidden="true">02</p>
+            <h3 class="inazuma-overlay__name">Inazuma City</h3>
+            <p class="inazuma-overlay__desc">Inazuma City is the beating heart of the nation, packed with shops, markets, and the kind of local energy that makes a place feel fully alive. Streets wind from Hanamizaka into markets and restaurants where Inazuma specialties are served as a matter of pride, while the Tenryou Commission keeps order in the shadows of the government. At its highest point sits Tenshukaku, the seat of the Raiden Shogun, where the realm's power and its ideals seem to meet.</p>
+            <span class="inazuma-tag inazuma-overlay__tag">Best for: Shopping &amp; food</span>
+            <div class="inazuma-overlay__nav" aria-label="Navigate landmarks">
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--prev" for="mv-1" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--next" for="mv-3" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="inazuma-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="inazuma-overlay" id="inazuma-overlay-3" aria-label="Chinju Forest photo viewer" role="dialog" aria-modal="true">
+        <label class="inazuma-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="inazuma-overlay__box">
+          <img src="images/Inazuma.webp"
+               alt="Chinju Forest with torii gates, stone statues, and misty woodland paths"
+               class="inazuma-overlay__photo"
+               loading="lazy">
+          <div class="inazuma-overlay__panel">
+            <p class="inazuma-overlay__kicker">Inazuma</p>
+            <p class="inazuma-overlay__index" aria-hidden="true">03</p>
+            <h3 class="inazuma-overlay__name">Chinju Forest</h3>
+            <p class="inazuma-overlay__desc">Chinju Forest is a place of quiet folklore and hidden stories, where tanuki statues, torii gates, and worn shrines appear unexpectedly along narrow paths. It feels less like a single forest and more like a memory that has been quietly preserved in the woods. The deeper you go, the more the silence seems to hold whispers and the possibility that mysterious beings might still watch from behind the trees with playful intent.</p>
+            <span class="inazuma-tag inazuma-overlay__tag">Best for: Folklore</span>
+            <div class="inazuma-overlay__nav" aria-label="Navigate landmarks">
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--prev" for="mv-2" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--next" for="mv-4" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="inazuma-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="inazuma-overlay" id="inazuma-overlay-4" aria-label="Grand Narukami Shrine photo viewer" role="dialog" aria-modal="true">
+        <label class="inazuma-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="inazuma-overlay__box">
+          <img src="images/Inazuma.webp"
+               alt="Grand Narukami Shrine crowned by the Sacred Sakura and the long steps up Mt. Yougou"
+               class="inazuma-overlay__photo"
+               loading="lazy">
+          <div class="inazuma-overlay__panel">
+            <p class="inazuma-overlay__kicker">Inazuma</p>
+            <p class="inazuma-overlay__index" aria-hidden="true">04</p>
+            <h3 class="inazuma-overlay__name">Grand Narukami Shrine</h3>
+            <p class="inazuma-overlay__desc">The Grand Narukami Shrine stands as the spiritual center of Inazuma, located high above the island at the peak of Mt. Yougou. Pilgrims climb toward it with prayer and patience, while those favored by Electro may use Thunder Spheres to rise above the steps and reach the sacred grounds more quickly. The towering Sacred Sakura is in constant bloom, a symbol of Narukami's enduring eternity, and each torii gate marks the approach to a place where blessings are still sought.</p>
+            <span class="inazuma-tag inazuma-overlay__tag">Best for: Blessings</span>
+            <div class="inazuma-overlay__nav" aria-label="Navigate landmarks">
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--prev" for="mv-3" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--next" for="mv-5" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="inazuma-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="inazuma-overlay" id="inazuma-overlay-5" aria-label="Tatarasuna, Kannazuka photo viewer" role="dialog" aria-modal="true">
+        <label class="inazuma-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="inazuma-overlay__box">
+          <img src="images/Inazuma.webp"
+               alt="Tatarasuna and Kannazuka cliffs with the Mikage Furnace smelting under storm skies"
+               class="inazuma-overlay__photo"
+               loading="lazy">
+          <div class="inazuma-overlay__panel">
+            <p class="inazuma-overlay__kicker">Inazuma</p>
+            <p class="inazuma-overlay__index" aria-hidden="true">05</p>
+            <h3 class="inazuma-overlay__name">Tatarasuna, Kannazuka</h3>
+            <p class="inazuma-overlay__desc">Kannazuka is a contested, rugged landscape where steep cliffs and military presence dominate the view. It is here that the Mikage Furnace produces Jade Steel, one of the rare materials essential to inazuman craftsmanship, especially in sword-making. The island's history is marked by conflict and disputed spiritual loyalties, making it a place that feels both industrial and intensely political. Even the terrain seems built for struggle, with every ridge holding a story of power and resistance.</p>
+            <span class="inazuma-tag inazuma-overlay__tag">Best for: Industry</span>
+            <div class="inazuma-overlay__nav" aria-label="Navigate landmarks">
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--prev" for="mv-4" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--next" for="mv-6" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="inazuma-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="inazuma-overlay" id="inazuma-overlay-6" aria-label="Kujou Encampment photo viewer" role="dialog" aria-modal="true">
+        <label class="inazuma-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="inazuma-overlay__box">
+          <img src="images/Inazuma.webp"
+               alt="Kujou Encampment military camp on hillside terrain under a tense sky"
+               class="inazuma-overlay__photo"
+               loading="lazy">
+          <div class="inazuma-overlay__panel">
+            <p class="inazuma-overlay__kicker">Inazuma</p>
+            <p class="inazuma-overlay__index" aria-hidden="true">06</p>
+            <h3 class="inazuma-overlay__name">Kujou Encampment</h3>
+            <p class="inazuma-overlay__desc">The Kujou Encampment is the Shogunate's military base in Kannazuka, built to contain conflict and impose order in a region where systems of faith and loyalty are deeply divided. It reflects the broader crisis of Inazuma: a realm where the Raiden Shogun's authority and the Sangonomiya's beliefs are at odds. The camp's well-trained army and equipment make it clear that the conflict is not symbolic or distant, but active and ongoing, with victory seeming to lean heavily toward the Shogunate's side.</p>
+            <span class="inazuma-tag inazuma-overlay__tag">Best for: Military history</span>
+            <div class="inazuma-overlay__nav" aria-label="Navigate landmarks">
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--prev" for="mv-5" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--next" for="mv-7" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="inazuma-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="inazuma-overlay" id="inazuma-overlay-7" aria-label="Musoujin Gorge photo viewer" role="dialog" aria-modal="true">
+        <label class="inazuma-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="inazuma-overlay__box">
+          <img src="images/Inazuma.webp"
+               alt="Musoujin Gorge split through rock with thunder-dark sky and broken terrain"
+               class="inazuma-overlay__photo"
+               loading="lazy">
+          <div class="inazuma-overlay__panel">
+            <p class="inazuma-overlay__kicker">Inazuma</p>
+            <p class="inazuma-overlay__index" aria-hidden="true">07</p>
+            <h3 class="inazuma-overlay__name">Musoujin Gorge</h3>
+            <p class="inazuma-overlay__desc">Musoujin Gorge is a dramatic rift valley cut through Yashiori Island, impossible to mistake for a natural accident. It marks the place where the Electro Archon defeated a giant serpent, and the scar left behind still feels active, as if the battle were not entirely over. The valley's name recalls the Musou no Hitotachi, and the surrounding landscape is layered with myth, broken remnants, and a growing sense that the consequences of that fight are still beginning to move.</p>
+            <span class="inazuma-tag inazuma-overlay__tag">Best for: Dramatic scenery</span>
+            <div class="inazuma-overlay__nav" aria-label="Navigate landmarks">
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--prev" for="mv-6" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--next" for="mv-8" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="inazuma-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="inazuma-overlay" id="inazuma-overlay-8" aria-label="Serpent's Head photo viewer" role="dialog" aria-modal="true">
+        <label class="inazuma-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="inazuma-overlay__box">
+          <img src="images/Inazuma.webp"
+               alt="Serpent's Head remains rising in the rain and thunder over Yashiori Island"
+               class="inazuma-overlay__photo"
+               loading="lazy">
+          <div class="inazuma-overlay__panel">
+            <p class="inazuma-overlay__kicker">Inazuma</p>
+            <p class="inazuma-overlay__index" aria-hidden="true">08</p>
+            <h3 class="inazuma-overlay__name">Serpent's Head</h3>
+            <p class="inazuma-overlay__desc">The remains of the serpent defeated by the Electro Archon are all that survive at Serpent's Head, weathered and bleached by storm and time. The skull still seems to face the sky in defiance, but the creature's power has already faded into memory. That emptiness is part of the place: rain, thunder, and Tatarigami linger over Yashiori Island as if the land still bears the weight of a battle long ago, even while the gods and names attached to it are slowly being forgotten.</p>
+            <span class="inazuma-tag inazuma-overlay__tag">Best for: Legends</span>
+            <div class="inazuma-overlay__nav" aria-label="Navigate landmarks">
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--prev" for="mv-7" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--next" for="mv-9" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="inazuma-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="inazuma-overlay" id="inazuma-overlay-9" aria-label="Nazuchi Beach photo viewer" role="dialog" aria-modal="true">
+        <label class="inazuma-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="inazuma-overlay__box">
+          <img src="images/Inazuma.webp"
+               alt="Nazuchi Beach with broken shipwrecks, torn flags, and storm-swept shorelines"
+               class="inazuma-overlay__photo"
+               loading="lazy">
+          <div class="inazuma-overlay__panel">
+            <p class="inazuma-overlay__kicker">Inazuma</p>
+            <p class="inazuma-overlay__index" aria-hidden="true">09</p>
+            <h3 class="inazuma-overlay__name">Nazuchi Beach</h3>
+            <p class="inazuma-overlay__desc">Nazuchi Beach sits between the islands like a wound left behind by conflict. Broken arrows, torn flags, and shattered shipwrecks litter the shoreline, while pirates and ronin move through the area searching for salvage. In the midst of all that damage, even rare Dendrobium can bloom, as if the land itself refuses to become completely barren. It is a vivid reminder that Inazuma's beauty and its violence are never far apart.</p>
+            <span class="inazuma-tag inazuma-overlay__tag">Best for: Battlefield history</span>
+            <div class="inazuma-overlay__nav" aria-label="Navigate landmarks">
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--prev" for="mv-8" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="inazuma-overlay__btn inazuma-overlay__btn--next" for="mv-1" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="inazuma-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="nation-wrap">
+        <p class="section-kicker">Explore the landmarks</p>
+        <h2 id="gallery-title">Inazuma in Focus</h2>
+        <p class="inazuma-gallery__intro">Click a card to open the full photo and description.</p>
+      </div>
+
+      <div class="inazuma-gallery__track" tabindex="0" role="region" aria-label="Inazuma landmark gallery — click a card to view details">
+        <label class="inazuma-slide" for="mv-1" tabindex="0" role="button" aria-label="View Ritou">
+          <img src="images/Inazuma.webp"
+               alt="Ritou checkpoint at the edge of Inazuma with red maples and quiet harbor water"
+               class="inazuma-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="inazuma-slide__shade" aria-hidden="true"></div>
+          <span class="inazuma-slide__index" aria-hidden="true">01</span>
+          <div class="inazuma-slide__copy">
+            <h3 class="inazuma-slide__name">Ritou</h3>
+            <p class="inazuma-slide__fact">The harbor gate that marks the line between passage and imprisonment under the Sakoku Decree.</p>
+          </div>
+          <span class="inazuma-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="inazuma-slide" for="mv-2" tabindex="0" role="button" aria-label="View Inazuma City">
+          <img src="images/Inazuma.webp"
+               alt="Inazuma City with lively streets and the silhouette of Tenshukaku above it"
+               class="inazuma-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="inazuma-slide__shade" aria-hidden="true"></div>
+          <span class="inazuma-slide__index" aria-hidden="true">02</span>
+          <div class="inazuma-slide__copy">
+            <h3 class="inazuma-slide__name">Inazuma City</h3>
+            <p class="inazuma-slide__fact">The region's busiest heart, where commerce, order, and palace power meet in one city.</p>
+          </div>
+          <span class="inazuma-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="inazuma-slide" for="mv-3" tabindex="0" role="button" aria-label="View Chinju Forest">
+          <img src="images/Inazuma.webp"
+               alt="Chinju Forest with torii gates, stone statues, and misty woodland paths"
+               class="inazuma-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="inazuma-slide__shade" aria-hidden="true"></div>
+          <span class="inazuma-slide__index" aria-hidden="true">03</span>
+          <div class="inazuma-slide__copy">
+            <h3 class="inazuma-slide__name">Chinju Forest</h3>
+            <p class="inazuma-slide__fact">A mossy woodland alive with tales, torii, and the feeling that something mischief-filled is watching.</p>
+          </div>
+          <span class="inazuma-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="inazuma-slide" for="mv-4" tabindex="0" role="button" aria-label="View Grand Narukami Shrine">
+          <img src="images/Inazuma.webp"
+               alt="Grand Narukami Shrine crowned by the Sacred Sakura and the long steps up Mt. Yougou"
+               class="inazuma-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="inazuma-slide__shade" aria-hidden="true"></div>
+          <span class="inazuma-slide__index" aria-hidden="true">04</span>
+          <div class="inazuma-slide__copy">
+            <h3 class="inazuma-slide__name">Grand Narukami Shrine</h3>
+            <p class="inazuma-slide__fact">A shrine of thunder, prayer, and the Sacred Sakura, still glowing with the promise of eternity.</p>
+          </div>
+          <span class="inazuma-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="inazuma-slide" for="mv-5" tabindex="0" role="button" aria-label="View Tatarasuna, Kannazuka">
+          <img src="images/Inazuma.webp"
+               alt="Tatarasuna and Kannazuka's rocky cliffs and smelting facilities under a stormy sky"
+               class="inazuma-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="inazuma-slide__shade" aria-hidden="true"></div>
+          <span class="inazuma-slide__index" aria-hidden="true">05</span>
+          <div class="inazuma-slide__copy">
+            <h3 class="inazuma-slide__name">Tatarasuna, Kannazuka</h3>
+            <p class="inazuma-slide__fact">Rugged terrain and industrial power collide here, where steel is forged beneath the weight of conflict.</p>
+          </div>
+          <span class="inazuma-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="inazuma-slide" for="mv-6" tabindex="0" role="button" aria-label="View Kujou Encampment">
+          <img src="images/Inazuma.webp"
+               alt="Kujou Encampment military camp on hillside terrain under a tense sky"
+               class="inazuma-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="inazuma-slide__shade" aria-hidden="true"></div>
+          <span class="inazuma-slide__index" aria-hidden="true">06</span>
+          <div class="inazuma-slide__copy">
+            <h3 class="inazuma-slide__name">Kujou Encampment</h3>
+            <p class="inazuma-slide__fact">A hard-edged military base in the middle of a contested realm and a fractured faith.</p>
+          </div>
+          <span class="inazuma-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="inazuma-slide" for="mv-7" tabindex="0" role="button" aria-label="View Musoujin Gorge">
+          <img src="images/Inazuma.webp"
+               alt="Musoujin Gorge split through rock with thunder-dark sky and broken terrain"
+               class="inazuma-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="inazuma-slide__shade" aria-hidden="true"></div>
+          <span class="inazuma-slide__index" aria-hidden="true">07</span>
+          <div class="inazuma-slide__copy">
+            <h3 class="inazuma-slide__name">Musoujin Gorge</h3>
+            <p class="inazuma-slide__fact">An immense scar of stone and thunder, left behind by the Archon's legendary duel with a serpent.</p>
+          </div>
+          <span class="inazuma-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="inazuma-slide" for="mv-8" tabindex="0" role="button" aria-label="View Serpent's Head">
+          <img src="images/Inazuma.webp"
+               alt="Serpent's Head remains rising in the rain and thunder over Yashiori Island"
+               class="inazuma-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="inazuma-slide__shade" aria-hidden="true"></div>
+          <span class="inazuma-slide__index" aria-hidden="true">08</span>
+          <div class="inazuma-slide__copy">
+            <h3 class="inazuma-slide__name">Serpent's Head</h3>
+            <p class="inazuma-slide__fact">The bleached remains of an ancient god-serpent, still haunted by thunder and memory.</p>
+          </div>
+          <span class="inazuma-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="inazuma-slide" for="mv-9" tabindex="0" role="button" aria-label="View Nazuchi Beach">
+          <img src="images/Inazuma.webp"
+               alt="Nazuchi Beach with broken shipwrecks, torn flags, and storm-swept shorelines"
+               class="inazuma-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="inazuma-slide__shade" aria-hidden="true"></div>
+          <span class="inazuma-slide__index" aria-hidden="true">09</span>
+          <div class="inazuma-slide__copy">
+            <h3 class="inazuma-slide__name">Nazuchi Beach</h3>
+            <p class="inazuma-slide__fact">A war-ravaged shoreline where wreckage, loot, and surviving wildflowers tell a brutal story.</p>
+          </div>
+          <span class="inazuma-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+      </div>
+    </section>
+    <!-- / UNIQUE FEATURE -->
+
+    <!-- =============================================
+         SECTION 5 — TRAVEL TIPS
+         ============================================= -->
+    <section class="nation-tips" aria-labelledby="tips-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Before you go</p>
+        <h2 class="nation-tips__heading reveal" id="tips-title">Travel Tips</h2>
+
+        <div class="nation-tips__grid">
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true">🏨</span>
+            <h3 class="nation-tip-card__title">Where to stay</h3>
+            <p class="nation-tip-card__text">Inazuma City is the best base for a first visit, with easy access to markets, ferries, and major sanctuaries. It keeps your route flexible while staying close to the region's central power.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true">🍲</span>
+            <h3 class="nation-tip-card__title">What to eat &amp; drink</h3>
+            <p class="nation-tip-card__text">Look for grilled seafood, rice bowls, and shrine-side sweets made with local ingredients. Inazuma is most memorable when you eat simply and often while moving between islands.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true">⚡</span>
+            <h3 class="nation-tip-card__title">Getting around</h3>
+            <p class="nation-tip-card__text">Use ferries for island travel, then depend on walking and thunder-powered routes for mountain sites and remote shrines. Weather and travel permits can change the pace of your trip quickly.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- / TRAVEL TIPS -->
+
+    <!-- =============================================
+         SECTION 6 — NEXT NATION BANNER
+         ============================================= -->
+    <section class="nation-next" aria-labelledby="next-title">
+      <div class="nation-next__bg"
+           style="background-image: url('assets/img/sumeru.webp');"
+           role="img"
+           aria-label="The lush forests and golden dunes of Sumeru glowing under a warm dusk sky"></div>
+      <div class="nation-next__veil" aria-hidden="true"></div>
+      <div class="nation-next__content">
+        <p class="nation-next__label">Next destination</p>
+        <h2 class="nation-next__name" id="next-title">Sumeru</h2>
+        <a class="nation-next__link" href="sumeru.html">
+          Explore Sumeru <span aria-hidden="true">&#8594;</span>
+        </a>
+        <a class="nation-next__back" href="index.html#nations">&#8592; Back to all nations</a>
+      </div>
+    </section>
+    <!-- / NEXT NATION -->
+
     <!-- Nation tour package details. -->
     <section class="pk-section" id="inazuma-package" aria-labelledby="inazuma-package-title">
       <div class="pk-inner">
         <header class="pk-heading">
           <p class="pk-kicker">Featured tour package / Inazuma</p>
           <h2 class="pk-section-title" id="inazuma-package-title">The Realm of Eternal Thunder</h2>
-          <p class="pk-section-copy">Discover a culturally rich archipelago featuring striking purple foliage, traditional shrines, and serene coastal views.</p>
+          <p class="pk-section-copy">Follow the thunder trails of Inazuma through shrine towns, storm-swept beaches, and island settlements shaped by old legends and modern rule.</p>
         </header>
         <div class="pk-detail-grid">
           <div class="pk-detail-panel">
             <h3 class="pk-detail-title">Featured stops</h3>
-            <ul class="pk-stops"><li>Narukami Island Grand Shrine</li><li>Ritou Trading Port</li><li>Tenshukaku</li></ul>
+            <ul class="pk-stops"><li>Ritou</li><li>Inazuma City</li><li>Grand Narukami Shrine</li></ul>
           </div>
           <aside class="pk-detail-panel" aria-label="Package price and duration">
             <div class="pk-meta">
@@ -94,7 +689,12 @@
         </div>
       </div>
     </section>
+
   </main>
+
+  <!-- =============================================
+       FOOTER — do not modify this block
+       ============================================= -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-col footer-col--brand">
@@ -138,5 +738,7 @@
       <a class="footer-back-top" href="#top">Back to top &#8593;</a>
     </div>
   </footer>
+  <!-- / FOOTER -->
+
 </body>
 </html>

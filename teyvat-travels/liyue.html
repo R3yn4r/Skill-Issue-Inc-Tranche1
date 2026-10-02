@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The Liyue destination page for Teyvat Travels.">
-  <meta name="theme-color" content="#101b1c">
+  <meta name="description" content="Explore Liyue, the trade heart of Teyvat where sea routes, mountain passes, and age-old contracts define the region.">
+  <meta name="theme-color" content="#1a140d">
   <title>Liyue | Teyvat Travels</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,12 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="packages.css">
 </head>
-<body class="placeholder-page" id="top">
+<body class="nation-page" id="top">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- =============================================
+       HEADER — do not modify this block
+       ============================================= -->
   <header class="site-header">
     <div class="site-header__inner">
       <input class="menu-toggle" type="checkbox" id="menu-toggle" aria-label="Open navigation menu">
@@ -27,7 +32,8 @@
         <a class="site-nav__link" href="index.html">Home</a>
         <a class="site-nav__link" href="index.html#who-we-are">About Us</a>
         <div class="site-nav__dropdown">
-          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations" aria-haspopup="true" aria-current="page">
+          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations"
+             aria-haspopup="true" aria-current="page">
             Destinations
             <svg class="site-nav__chevron" aria-hidden="true" width="10" height="6" viewBox="0 0 10 6" fill="none">
               <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -66,24 +72,466 @@
       </nav>
     </div>
   </header>
-  <main class="placeholder-main">
-    <div class="placeholder-main__content">
-      <p class="section-kicker">The harbor of stone and sea</p>
-      <h1>Liyue</h1>
-      <p>This destination is being prepared for your journey.</p>
-    </div>
+  <!-- / HEADER -->
+
+  <main class="nation-page" id="main-content" style="--accent: #e7bd69;">
+
+    <!-- =============================================
+         SECTION 1 — HERO
+         ============================================= -->
+    <section class="nation-hero" aria-labelledby="hero-title">
+      <div class="nation-hero__bg"
+           style="background-image: url('assets/img/liyue.jpeg');"
+           role="img"
+           aria-label="Liyue Harbor and the steep cliffs of Liyue under warm evening light"></div>
+      <div class="nation-hero__veil" aria-hidden="true"></div>
+      <div class="nation-hero__content">
+        <p class="nation-hero__element section-kicker entrance entrance--one">Geo</p>
+        <p class="nation-hero__kicker entrance entrance--two">The nation of contracts</p>
+        <h1 class="nation-hero__title entrance entrance--three" id="hero-title">Liyue</h1>
+        <p class="nation-hero__tagline entrance entrance--four">A land of stone, trade, and mountain-held secrets.</p>
+        <a class="nation-hero__scroll-cue" href="#about" aria-label="Scroll down to learn about Liyue">
+          <span class="nation-hero__scroll-line" aria-hidden="true"></span>
+          <span>Scroll down</span>
+        </a>
+      </div>
+    </section>
+    <!-- / HERO -->
+
+    <!-- =============================================
+         SECTION 2 — ABOUT
+         ============================================= -->
+    <section class="nation-about" id="about" aria-labelledby="about-title">
+      <div class="nation-wrap">
+        <div class="nation-about__grid">
+
+          <div class="nation-about__text reveal">
+            <p class="section-kicker">The nation of contracts</p>
+            <h2 id="about-title">A harbor kingdom rooted in stone</h2>
+            <p class="nation-about__body">Liyue sits where the sea meets the mountains, where harbor trade and ancient myth have shaped one another for centuries. The bright bustle of Liyue Harbor moves with merchants, sailors, and travelers from every corner of Teyvat, while the peaks above it keep the stories of older kingdoms alive.</p>
+            <p class="nation-about__body">Under Morax, Liyue became known for its discipline, prosperity, and sense of order. Every cliff, terrace, and caravan route tells a story of labor, faith, and survival — a landscape as exacting as it is beautiful.</p>
+          </div>
+
+          <aside class="nation-about__facts reveal">
+            <div class="nation-facts-card">
+              <h3 class="nation-facts-card__heading">Quick Facts</h3>
+              <dl class="nation-facts-card__list">
+                <div class="nation-facts-card__row">
+                  <dt>Element</dt>
+                  <dd>Geo (Stone)</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Archon</dt>
+                  <dd>Morax / Rex Lapis, God of Contracts</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Region type</dt>
+                  <dd>Harbor and mountain region</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Best time to visit</dt>
+                  <dd>Spring to early autumn</dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+    <!-- / ABOUT -->
+
+    <!-- =============================================
+         SECTION 3 — KEY LOCATIONS
+         ============================================= -->
+    <section class="nation-locations" aria-labelledby="locations-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Points of interest</p>
+        <h2 class="nation-locations__heading reveal" id="locations-title">Key Locations</h2>
+
+        <div class="nation-locations__grid">
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Liyue.jpeg"
+                 alt="Liyue Harbor busy with trade routes, stone cliffs, and lantern light"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Liyue Harbor</h3>
+              <p class="nation-loc-card__desc">The establishment of the harbor kicked off Liyue's seafaring trade. As Teyvat's largest market harbor, the sheer amount of goods that flow to and from it is simply incomparable for other ports. Every year during the Lantern Rite you can see thousands of lanterns ascend into the night sky — a Liyue event that you can't afford to miss.</p>
+              <span class="liyue-tag">Best for: Shopping &amp; culture</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Liyue.jpeg"
+                 alt="Mt. Tianheng rising above Liyue Harbor as a rugged rocky ridge"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Mt. Tianheng</h3>
+              <p class="nation-loc-card__desc">The pride of the mountain range that shelters Liyue Harbor from the west, acting as a natural shield against any enemies that may come that way. There are uncountable records of wars both big and small whereby enemies have been blocked by this barrier. As such you can still see ancient ruins of city walls, forts, and defensive structures. Liyue's earliest mining operations are also believed to have started in this area.</p>
+              <span class="liyue-tag">Best for: History</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Liyue.jpeg"
+                 alt="Dihua Marsh wetlands with winding rivers, silvergrass, and wooded water channels"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Dihua Marsh</h3>
+              <p class="nation-loc-card__desc">Dihua Marsh, a wetland area north of Liyue, gets its name from the silvergrass ("dihua" in the local language) that grows in the shallows of the marsh. The scrambling web of rivers has grown into a flourishing and wide-spread ecosystem full of flora and fauna — an awe-inspiring sight for travelers to the area. The area also acts as the road from Mondstadt to Liyue, and as such many merchant caravans choose to stop here to rest. Wangshu Inn stands within the area, a symbolic structure from all directions.</p>
+              <span class="liyue-tag">Best for: Nature</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Liyue.jpeg"
+                 alt="Wangshu Inn rising from a towering stone pillar above marshlands"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Wangshu Inn</h3>
+              <p class="nation-loc-card__desc">A landmark within Dihua Marsh, built upon a massive stone pillar. As most of the patrons that stop here are traveling merchants, the inn provides an area for them to trade and set up stalls. The view from the top of the inn is jaw-dropping — weather permitting you can see all the way to Mt. Qingce and Jueyun Karst in the distance. Legend amongst the stalls says that the tower of the inn hides a mysterious secret, but that's as far as the legend goes, as no-one has ever been able to validify the claims.</p>
+              <span class="liyue-tag">Best for: Views</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Liyue.jpeg"
+                 alt="Qingce Village tucked between rolling hills and bamboo forest"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Qingce Village</h3>
+              <p class="nation-loc-card__desc">At the northernmost point of Liyue, hidden between the hills and the bamboo forests sits Qingce Village. White rolling clouds that sit in the valleys between the mountains are embellished with row upon row of crescent-moon water paddies. When the wind blows, the ripples in the water give off an array of colors.</p>
+              <span class="liyue-tag">Best for: Countryside</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Liyue.jpeg"
+                 alt="Jueyun Karst cliffs covered in mist and hidden mountain trails"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Jueyun Karst</h3>
+              <p class="nation-loc-card__desc">Dizzying peaks that sit shrouded in mist and clouds in the northwest of Liyue. The area hides many stunning views, but owing to tracks found on the complex paths leading up the peaks, a legend has formed that the hidden home of the Adepti lies somewhere in the area. Though another factor may simply be the hopes of those that seek blessings from the Adepti. Given the dangers within, the area is not suitable for outsiders. Best viewed from afar at Wangshu Inn.</p>
+              <span class="liyue-tag">Best for: Scenery</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+    <!-- / KEY LOCATIONS -->
+
+    <!-- =============================================
+         SECTION 4 — UNIQUE FEATURE: LANDMARK GALLERY
+         CSS-only horizontal scroll-snap gallery + radio lightbox.
+         ============================================= -->
+    <section class="nation-feature liyue-gallery" aria-labelledby="gallery-title">
+      <input class="liyue-viewer-radio" type="radio" name="liyue-viewer" id="mv-closed" checked>
+      <input class="liyue-viewer-radio" type="radio" name="liyue-viewer" id="mv-1">
+      <input class="liyue-viewer-radio" type="radio" name="liyue-viewer" id="mv-2">
+      <input class="liyue-viewer-radio" type="radio" name="liyue-viewer" id="mv-3">
+      <input class="liyue-viewer-radio" type="radio" name="liyue-viewer" id="mv-4">
+      <input class="liyue-viewer-radio" type="radio" name="liyue-viewer" id="mv-5">
+      <input class="liyue-viewer-radio" type="radio" name="liyue-viewer" id="mv-6">
+
+      <div class="liyue-overlay" id="liyue-overlay-1" aria-label="Liyue Harbor photo viewer" role="dialog" aria-modal="true">
+        <label class="liyue-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="liyue-overlay__box">
+          <img src="images/Liyue.jpeg"
+               alt="Liyue Harbor bustling beneath stone cliffs and lantern-lit evening skies"
+               class="liyue-overlay__photo"
+               loading="lazy">
+          <div class="liyue-overlay__panel">
+            <p class="liyue-overlay__kicker">Liyue</p>
+            <p class="liyue-overlay__index" aria-hidden="true">01</p>
+            <h3 class="liyue-overlay__name">Liyue Harbor</h3>
+            <p class="liyue-overlay__desc">Liyue Harbor is the great maritime heart of the region, where traders, sailors, and travelers meet on a scale unlike any other port in Teyvat. The harbor's constant movement gives it a restless energy, but it is also the place where celebration and tradition live side by side. Each Lantern Rite, the sky fills with glowing lanterns that drift upward into the night, turning the entire harbor into a living lantern festival. The rhythm of the trade route is as important as the scenery itself.</p>
+            <span class="liyue-tag liyue-overlay__tag">Best for: Shopping &amp; culture</span>
+            <div class="liyue-overlay__nav" aria-label="Navigate landmarks">
+              <label class="liyue-overlay__btn liyue-overlay__btn--prev" for="mv-6" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="liyue-overlay__btn liyue-overlay__btn--next" for="mv-2" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="liyue-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="liyue-overlay" id="liyue-overlay-2" aria-label="Mt. Tianheng photo viewer" role="dialog" aria-modal="true">
+        <label class="liyue-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="liyue-overlay__box">
+          <img src="images/Liyue.jpeg"
+               alt="High cliffs and steep ridges of Mt. Tianheng overlooking Liyue Harbor"
+               class="liyue-overlay__photo"
+               loading="lazy">
+          <div class="liyue-overlay__panel">
+            <p class="liyue-overlay__kicker">Liyue</p>
+            <p class="liyue-overlay__index" aria-hidden="true">02</p>
+            <h3 class="liyue-overlay__name">Mt. Tianheng</h3>
+            <p class="liyue-overlay__desc">Mt. Tianheng is the natural shield behind Liyue Harbor, supporting the city with a wall of stone and history. The mountain's ancient ruins and defensive remnants bear witness to the wars and sieges it once held at bay, while the earliest mining operations in Liyue are thought to have started here. To travelers, it reads as a rugged landmark of endurance — a place where the land itself seems to stand watch over everything below.</p>
+            <span class="liyue-tag liyue-overlay__tag">Best for: History</span>
+            <div class="liyue-overlay__nav" aria-label="Navigate landmarks">
+              <label class="liyue-overlay__btn liyue-overlay__btn--prev" for="mv-1" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="liyue-overlay__btn liyue-overlay__btn--next" for="mv-3" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="liyue-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="liyue-overlay" id="liyue-overlay-3" aria-label="Dihua Marsh photo viewer" role="dialog" aria-modal="true">
+        <label class="liyue-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="liyue-overlay__box">
+          <img src="images/Liyue.jpeg"
+               alt="Dihua Marsh wetlands full of silvergrass and winding rivers"
+               class="liyue-overlay__photo"
+               loading="lazy">
+          <div class="liyue-overlay__panel">
+            <p class="liyue-overlay__kicker">Liyue</p>
+            <p class="liyue-overlay__index" aria-hidden="true">03</p>
+            <h3 class="liyue-overlay__name">Dihua Marsh</h3>
+            <p class="liyue-overlay__desc">Dihua Marsh is a broad wetland north of Liyue, alive with silvergrass, rivers, and flourishing wildlife. It is both a transit point and a destination in itself, with merchant caravans often stopping to rest on their way between Mondstadt and Liyue. The marsh's environmental richness makes it feel more like a living landscape than a single landmark, and Wangshu Inn stands above it like a watchtower in the middle of the region's endless river network.</p>
+            <span class="liyue-tag liyue-overlay__tag">Best for: Nature</span>
+            <div class="liyue-overlay__nav" aria-label="Navigate landmarks">
+              <label class="liyue-overlay__btn liyue-overlay__btn--prev" for="mv-2" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="liyue-overlay__btn liyue-overlay__btn--next" for="mv-4" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="liyue-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="liyue-overlay" id="liyue-overlay-4" aria-label="Wangshu Inn photo viewer" role="dialog" aria-modal="true">
+        <label class="liyue-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="liyue-overlay__box">
+          <img src="images/Liyue.jpeg"
+               alt="Wangshu Inn perched on a stone pillar in a marsh beneath far-off mountain ridges"
+               class="liyue-overlay__photo"
+               loading="lazy">
+          <div class="liyue-overlay__panel">
+            <p class="liyue-overlay__kicker">Liyue</p>
+            <p class="liyue-overlay__index" aria-hidden="true">04</p>
+            <h3 class="liyue-overlay__name">Wangshu Inn</h3>
+            <p class="liyue-overlay__desc">Wangshu Inn rises from a stone pillar in the middle of Dihua Marsh, giving it one of the most memorable views in Liyue. Merchants and travelers use it as a resting place, a marketplace, and a place to trade, while the tower itself becomes a landmark of stories and rumor. From the top, the view opens toward Mt. Qingce and Jueyun Karst, and the atmosphere carries the feeling that a hidden secret is waiting just beyond the horizon, even if no one can prove it.</p>
+            <span class="liyue-tag liyue-overlay__tag">Best for: Views</span>
+            <div class="liyue-overlay__nav" aria-label="Navigate landmarks">
+              <label class="liyue-overlay__btn liyue-overlay__btn--prev" for="mv-3" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="liyue-overlay__btn liyue-overlay__btn--next" for="mv-5" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="liyue-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="liyue-overlay" id="liyue-overlay-5" aria-label="Qingce Village photo viewer" role="dialog" aria-modal="true">
+        <label class="liyue-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="liyue-overlay__box">
+          <img src="images/Liyue.jpeg"
+               alt="Qingce Village hidden in a valley of bamboo and misty terraced fields"
+               class="liyue-overlay__photo"
+               loading="lazy">
+          <div class="liyue-overlay__panel">
+            <p class="liyue-overlay__kicker">Liyue</p>
+            <p class="liyue-overlay__index" aria-hidden="true">05</p>
+            <h3 class="liyue-overlay__name">Qingce Village</h3>
+            <p class="liyue-overlay__desc">At the northern edge of Liyue, Qingce Village sits between hills and bamboo groves in one of the region's most peaceful valleys. Its fields are cut into crescent-shaped terraces that catch the wind and reflect changing light in ripples of color. The clouds that gather between the mountains seem to hover just above the paddies, giving the place a calm, dreamlike rhythm. It feels quiet in the best possible way — as if the landscape itself is taking a breath.</p>
+            <span class="liyue-tag liyue-overlay__tag">Best for: Countryside</span>
+            <div class="liyue-overlay__nav" aria-label="Navigate landmarks">
+              <label class="liyue-overlay__btn liyue-overlay__btn--prev" for="mv-4" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="liyue-overlay__btn liyue-overlay__btn--next" for="mv-6" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="liyue-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="liyue-overlay" id="liyue-overlay-6" aria-label="Jueyun Karst photo viewer" role="dialog" aria-modal="true">
+        <label class="liyue-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="liyue-overlay__box">
+          <img src="images/Liyue.jpeg"
+               alt="Jueyun Karst peaks rising through mist and cloud in the northwestern mountains"
+               class="liyue-overlay__photo"
+               loading="lazy">
+          <div class="liyue-overlay__panel">
+            <p class="liyue-overlay__kicker">Liyue</p>
+            <p class="liyue-overlay__index" aria-hidden="true">06</p>
+            <h3 class="liyue-overlay__name">Jueyun Karst</h3>
+            <p class="liyue-overlay__desc">Jueyun Karst is defined by sharp, cloud-wrapped peaks rising in the northwest of Liyue, where every trail seems to lead to another hidden view. The legends around the region speak of the Adepti and a secret home concealed somewhere among the misty slopes, while the mountain paths themselves keep the place dangerous and distant for outsiders. The drama of the terrain is difficult to capture in a single glance; from a safe distance, it becomes one of the most awe-filled landscapes in the nation.</p>
+            <span class="liyue-tag liyue-overlay__tag">Best for: Scenery</span>
+            <div class="liyue-overlay__nav" aria-label="Navigate landmarks">
+              <label class="liyue-overlay__btn liyue-overlay__btn--prev" for="mv-5" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="liyue-overlay__btn liyue-overlay__btn--next" for="mv-1" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="liyue-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="nation-wrap">
+        <p class="section-kicker">Explore the landmarks</p>
+        <h2 id="gallery-title">Liyue in Focus</h2>
+        <p class="liyue-gallery__intro">Click a card to open the full photo and description.</p>
+      </div>
+
+      <div class="liyue-gallery__track" tabindex="0" role="region" aria-label="Liyue landmark gallery — click a card to view details">
+        <label class="liyue-slide" for="mv-1" tabindex="0" role="button" aria-label="View Liyue Harbor">
+          <img src="images/Liyue.jpeg"
+               alt="Liyue Harbor bustling beneath stone cliffs and lantern-lit evening skies"
+               class="liyue-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="liyue-slide__shade" aria-hidden="true"></div>
+          <span class="liyue-slide__index" aria-hidden="true">01</span>
+          <div class="liyue-slide__copy">
+            <h3 class="liyue-slide__name">Liyue Harbor</h3>
+            <p class="liyue-slide__fact">A bustling trade port where sea routes, light, and commerce define the rhythm of the day.</p>
+          </div>
+          <span class="liyue-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="liyue-slide" for="mv-2" tabindex="0" role="button" aria-label="View Mt. Tianheng">
+          <img src="images/Liyue.jpeg"
+               alt="High cliffs and steep ridges of Mt. Tianheng overlooking Liyue Harbor"
+               class="liyue-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="liyue-slide__shade" aria-hidden="true"></div>
+          <span class="liyue-slide__index" aria-hidden="true">02</span>
+          <div class="liyue-slide__copy">
+            <h3 class="liyue-slide__name">Mt. Tianheng</h3>
+            <p class="liyue-slide__fact">A massive mountain wall shaped by war, mining, and the city's oldest defensive history.</p>
+          </div>
+          <span class="liyue-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="liyue-slide" for="mv-3" tabindex="0" role="button" aria-label="View Dihua Marsh">
+          <img src="images/Liyue.jpeg"
+               alt="Dihua Marsh wetlands full of silvergrass and winding rivers"
+               class="liyue-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="liyue-slide__shade" aria-hidden="true"></div>
+          <span class="liyue-slide__index" aria-hidden="true">03</span>
+          <div class="liyue-slide__copy">
+            <h3 class="liyue-slide__name">Dihua Marsh</h3>
+            <p class="liyue-slide__fact">A broad wetland of rivers and silvergrass, rich with life and the old road between nations.</p>
+          </div>
+          <span class="liyue-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="liyue-slide" for="mv-4" tabindex="0" role="button" aria-label="View Wangshu Inn">
+          <img src="images/Liyue.jpeg"
+               alt="Wangshu Inn perched on a stone pillar in a marsh beneath far-off mountain ridges"
+               class="liyue-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="liyue-slide__shade" aria-hidden="true"></div>
+          <span class="liyue-slide__index" aria-hidden="true">04</span>
+          <div class="liyue-slide__copy">
+            <h3 class="liyue-slide__name">Wangshu Inn</h3>
+            <p class="liyue-slide__fact">A towering stone inn above the marsh, built for merchants, views, and whispered secrets.</p>
+          </div>
+          <span class="liyue-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="liyue-slide" for="mv-5" tabindex="0" role="button" aria-label="View Qingce Village">
+          <img src="images/Liyue.jpeg"
+               alt="Qingce Village tucked between rolling hills and bamboo forest"
+               class="liyue-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="liyue-slide__shade" aria-hidden="true"></div>
+          <span class="liyue-slide__index" aria-hidden="true">05</span>
+          <div class="liyue-slide__copy">
+            <h3 class="liyue-slide__name">Qingce Village</h3>
+            <p class="liyue-slide__fact">A peaceful valley village of terraced paddies, bamboo, and layered cloud-filled hills.</p>
+          </div>
+          <span class="liyue-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="liyue-slide" for="mv-6" tabindex="0" role="button" aria-label="View Jueyun Karst">
+          <img src="images/Liyue.jpeg"
+               alt="Jueyun Karst peaks rising through mist and cloud in the northwestern mountains"
+               class="liyue-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="liyue-slide__shade" aria-hidden="true"></div>
+          <span class="liyue-slide__index" aria-hidden="true">06</span>
+          <div class="liyue-slide__copy">
+            <h3 class="liyue-slide__name">Jueyun Karst</h3>
+            <p class="liyue-slide__fact">Mist-covered peaks and wandering legends, with the beauty of Liyue felt from far away.</p>
+          </div>
+          <span class="liyue-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+      </div>
+    </section>
+    <!-- / UNIQUE FEATURE -->
+
+    <!-- =============================================
+         SECTION 5 — TRAVEL TIPS
+         ============================================= -->
+    <section class="nation-tips" aria-labelledby="tips-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Before you go</p>
+        <h2 class="nation-tips__heading reveal" id="tips-title">Travel Tips</h2>
+
+        <div class="nation-tips__grid">
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true">🏨</span>
+            <h3 class="nation-tip-card__title">Where to stay</h3>
+            <p class="nation-tip-card__text">Base yourselves in Liyue Harbor for the easiest access to the markets, ferries, and long mountain routes. It is the most practical place to start and end each day.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true">🍜</span>
+            <h3 class="nation-tip-card__title">What to eat &amp; drink</h3>
+            <p class="nation-tip-card__text">Try warm buns, fresh seafood, and tea from the harbor stalls. Liyue meals are practical, comforting, and designed to keep travelers going through long days on the road.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true">🚶</span>
+            <h3 class="nation-tip-card__title">Getting around</h3>
+            <p class="nation-tip-card__text">Use the harbor as your anchor, then branch out by foot, caravan, or guide for mountain destinations. Longer routes are best planned around daylight and weather.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- / TRAVEL TIPS -->
+
+    <!-- =============================================
+         SECTION 6 — NEXT NATION BANNER
+         ============================================= -->
+    <section class="nation-next" aria-labelledby="next-title">
+      <div class="nation-next__bg"
+           style="background-image: url('assets/img/inazuma.webp');"
+           role="img"
+           aria-label="The island cliffs and mountain shrines of Inazuma in a twilight haze"></div>
+      <div class="nation-next__veil" aria-hidden="true"></div>
+      <div class="nation-next__content">
+        <p class="nation-next__label">Next destination</p>
+        <h2 class="nation-next__name" id="next-title">Inazuma</h2>
+        <a class="nation-next__link" href="inazuma.html">
+          Explore Inazuma <span aria-hidden="true">&#8594;</span>
+        </a>
+        <a class="nation-next__back" href="index.html#nations">&#8592; Back to all nations</a>
+      </div>
+    </section>
+    <!-- / NEXT NATION -->
+
     <!-- Nation tour package details. -->
     <section class="pk-section" id="liyue-package" aria-labelledby="liyue-package-title">
       <div class="pk-inner">
         <header class="pk-heading">
           <p class="pk-kicker">Featured tour package / Liyue</p>
-          <h2 class="pk-section-title" id="liyue-package-title">The Harbor of Stone and Commerce</h2>
-          <p class="pk-section-copy">A bustling port city tour blending breathtaking mountain ranges, ancient folklore, and world-class culinary adventures.</p>
+          <h2 class="pk-section-title" id="liyue-package-title">The Harbor of Stone and Contracts</h2>
+          <p class="pk-section-copy">Travel through the trade routes, sacred peaks, and festival-lit harbor streets of Liyue — a journey where commerce and myth sit side by side.</p>
         </header>
         <div class="pk-detail-grid">
           <div class="pk-detail-panel">
             <h3 class="pk-detail-title">Featured stops</h3>
-            <ul class="pk-stops"><li>Liyue Harbor</li><li>Mt. Aocang</li><li>Wangshu Inn</li></ul>
+            <ul class="pk-stops"><li>Liyue Harbor</li><li>Mt. Tianheng</li><li>Qingce Village</li></ul>
           </div>
           <aside class="pk-detail-panel" aria-label="Package price and duration">
             <div class="pk-meta">
@@ -94,7 +542,12 @@
         </div>
       </div>
     </section>
+
   </main>
+
+  <!-- =============================================
+       FOOTER — do not modify this block
+       ============================================= -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-col footer-col--brand">
@@ -138,5 +591,7 @@
       <a class="footer-back-top" href="#top">Back to top &#8593;</a>
     </div>
   </footer>
+  <!-- / FOOTER -->
+
 </body>
 </html>
