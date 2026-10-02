@@ -1,0 +1,540 @@
+/* Company profile layout: all additions are scoped to hx-prefixed classes. */
+.hx-main {
+  --hx-panel: #1a2827;
+  --hx-border: rgba(255, 255, 255, 0.09);
+  --hx-copy: #c9d2cf;
+  --hx-muted: #9ba8a3;
+  --hx-gold: #d6b574;
+  color: #f5f7f6;
+}
+
+/* Hero actions sit alongside the existing animated hero treatment. */
+.hx-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hx-hero-secondary {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  color: #f5f7f6;
+  background: rgba(16, 28, 27, 0.62);
+  font-size: 13px;
+  font-weight: 600;
+  transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+}
+
+.hx-hero-secondary:hover,
+.hx-hero-secondary:focus-visible {
+  border-color: var(--hx-gold);
+  color: var(--hx-gold);
+  background: rgba(16, 28, 27, 0.88);
+}
+
+/* Shared section widths, spacing, and heading hierarchy. */
+.hx-section {
+  padding: 88px 0;
+  color: #f5f7f6;
+  background: #101c1b;
+  scroll-margin-top: 84px;
+}
+
+.hx-anchor-offset {
+  scroll-margin-top: 84px;
+}
+
+.hx-container {
+  width: min(calc(100% - 48px), 1160px);
+  margin: 0 auto;
+}
+
+.hx-section-heading {
+  max-width: 720px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.hx-eyebrow {
+  margin: 0 0 12px;
+  color: var(--hx-gold);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hx-section-title {
+  margin: 0;
+  color: #f5f7f6;
+  font-family: var(--home-font-display);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.hx-section-intro,
+.hx-body-copy {
+  color: var(--hx-copy);
+  font-size: 15px;
+  line-height: 1.8;
+  text-align: left;
+}
+
+.hx-section-intro {
+  max-width: 620px;
+  margin: 14px auto 0;
+  text-align: center;
+}
+
+.hx-body-copy + .hx-body-copy {
+  margin-top: 16px;
+}
+
+/* Company introduction and reusable SI emblem. */
+.hx-who {
+  background: #101c1b;
+}
+
+.hx-who-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(210px, 0.5fr);
+  align-items: center;
+  gap: 72px;
+}
+
+.hx-copy-block {
+  max-width: 760px;
+}
+
+.hx-copy-block .hx-section-title {
+  margin-bottom: 18px;
+}
+
+.hx-company-mark {
+  display: grid;
+  width: min(100%, 250px);
+  aspect-ratio: 1;
+  place-items: center;
+  justify-self: center;
+  align-content: center;
+  border: 1px solid rgba(214, 181, 116, 0.55);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(214, 181, 116, 0.1), rgba(26, 40, 39, 0.25) 68%);
+  box-shadow: 0 0 0 10px rgba(214, 181, 116, 0.035), inset 0 0 32px rgba(214, 181, 116, 0.06);
+}
+
+.hx-company-mark__letters {
+  color: var(--hx-gold);
+  font-family: var(--home-font-display);
+  font-size: 58px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.hx-company-mark__caption {
+  margin-top: 12px;
+  color: var(--hx-copy);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Mission and vision panels. */
+.hx-purpose {
+  border-top: 1px solid var(--hx-border);
+  border-bottom: 1px solid var(--hx-border);
+  background: #13211f;
+}
+
+.hx-purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hx-panel {
+  border: 1px solid var(--hx-border);
+  border-radius: 10px;
+  background: var(--hx-panel);
+}
+
+.hx-purpose-card {
+  min-height: 220px;
+  padding: 30px;
+}
+
+.hx-symbol {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--hx-gold);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.hx-card-title {
+  margin: 0 0 10px;
+  color: #f5f7f6;
+  font-family: var(--home-font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* Four guide and resource cards. */
+.hx-offerings-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hx-offering-card {
+  min-height: 230px;
+  padding: 24px 20px;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.hx-offering-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(214, 181, 116, 0.42);
+  background: #1e2d2b;
+}
+
+.hx-offering-card .hx-card-title {
+  font-size: 19px;
+}
+
+.hx-offering-card .hx-body-copy {
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Director profile and text-first portrait placeholder. */
+.hx-director {
+  border-top: 1px solid var(--hx-border);
+  background: #13211f;
+}
+
+.hx-director-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.62fr) minmax(0, 1.38fr);
+  align-items: center;
+  gap: 64px;
+}
+
+.hx-director-portrait {
+  display: grid;
+  width: min(100%, 270px);
+  aspect-ratio: 1;
+  place-items: center;
+  align-content: center;
+  justify-self: center;
+  border: 1px solid rgba(214, 181, 116, 0.58);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, rgba(214, 181, 116, 0.15), rgba(26, 40, 39, 0.9) 68%);
+  box-shadow: inset 0 0 36px rgba(214, 181, 116, 0.08);
+}
+
+.hx-director-portrait__letters {
+  color: var(--hx-gold);
+  font-family: var(--home-font-display);
+  font-size: 62px;
+  font-weight: 600;
+}
+
+.hx-director-portrait__caption {
+  color: var(--hx-muted);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hx-director-copy .hx-section-title {
+  margin-bottom: 6px;
+}
+
+.hx-director-role {
+  margin: 0 0 22px;
+  color: var(--hx-gold);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.hx-director-quote {
+  margin: 22px 0 0;
+  padding: 4px 0 4px 18px;
+  border-left: 2px solid var(--hx-gold);
+  color: #f5f7f6;
+  font-family: var(--home-font-display);
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Guide packages are editorial resources, not booking products. */
+.hx-packages {
+  border-top: 1px solid var(--hx-border);
+}
+
+.hx-packages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.hx-package-card {
+  display: flex;
+  min-height: 260px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 26px;
+}
+
+.hx-package-label {
+  margin: 0 0 14px;
+  color: var(--hx-gold);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hx-package-card .hx-body-copy {
+  font-size: 14px;
+}
+
+.hx-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 22px;
+  color: var(--hx-gold);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.hx-text-link:hover,
+.hx-text-link:focus-visible {
+  color: #f5f7f6;
+}
+
+/* Native disclosure elements keep the FAQ keyboard-accessible without JS. */
+.hx-faq {
+  border-top: 1px solid var(--hx-border);
+  border-bottom: 1px solid var(--hx-border);
+  background: #13211f;
+}
+
+.hx-faq-layout {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.72fr) minmax(0, 1.28fr);
+  gap: 64px;
+}
+
+.hx-faq-heading {
+  margin: 0;
+  text-align: left;
+}
+
+.hx-faq-list {
+  border-top: 1px solid var(--hx-border);
+}
+
+.hx-faq-item {
+  border-bottom: 1px solid var(--hx-border);
+}
+
+.hx-faq-question {
+  position: relative;
+  padding: 19px 36px 19px 0;
+  color: #f5f7f6;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  list-style: none;
+}
+
+.hx-faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.hx-faq-question::after {
+  position: absolute;
+  top: 18px;
+  right: 4px;
+  color: var(--hx-gold);
+  content: '+';
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.hx-faq-item[open] .hx-faq-question::after {
+  content: '\2212';
+}
+
+.hx-faq-question:focus-visible,
+.hx-text-link:focus-visible,
+.hx-contact-link:focus-visible {
+  outline: 2px solid var(--hx-gold);
+  outline-offset: 4px;
+}
+
+.hx-faq-answer {
+  max-width: 680px;
+  margin: -2px 0 18px;
+  color: var(--hx-copy);
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+/* Contact callout and footer image-credit placeholder. */
+.hx-contact {
+  border-top: 1px solid var(--hx-border);
+  background: #101c1b;
+}
+
+.hx-contact-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.hx-contact-layout .hx-section-title {
+  margin-bottom: 10px;
+}
+
+.hx-contact-link {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  padding: 0 18px;
+  border: 1px solid rgba(214, 181, 116, 0.65);
+  border-radius: 4px;
+  color: var(--hx-gold);
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.hx-contact-link:hover {
+  color: #101c1b;
+  background: var(--hx-gold);
+}
+
+.hx-image-credits {
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* Tablet and phone layouts. */
+@media (max-width: 960px) {
+  .hx-who-layout,
+  .hx-director-layout {
+    gap: 40px;
+  }
+
+  .hx-offerings-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hx-faq-layout {
+    grid-template-columns: minmax(190px, 0.7fr) minmax(0, 1.3fr);
+    gap: 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hx-section {
+    padding: 64px 0;
+  }
+
+  .hx-container {
+    width: min(calc(100% - 40px), 1160px);
+  }
+
+  .hx-section-heading {
+    margin-bottom: 28px;
+  }
+
+  .hx-section-title {
+    font-size: 29px;
+  }
+
+  .hx-section-intro,
+  .hx-body-copy {
+    font-size: 14px;
+  }
+
+  .hx-hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+    width: fit-content;
+    max-width: 100%;
+    gap: 10px;
+  }
+
+  .hx-hero-secondary {
+    min-height: 48px;
+  }
+
+  .hx-who-layout,
+  .hx-director-layout,
+  .hx-faq-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .hx-company-mark {
+    width: 190px;
+  }
+
+  .hx-company-mark__letters {
+    font-size: 48px;
+  }
+
+  .hx-purpose-grid,
+  .hx-offerings-grid,
+  .hx-packages-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hx-purpose-card,
+  .hx-offering-card,
+  .hx-package-card {
+    min-height: 0;
+    padding: 24px;
+  }
+
+  .hx-director-portrait {
+    width: 210px;
+  }
+
+  .hx-faq-heading {
+    text-align: center;
+  }
+
+  .hx-contact-layout {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hx-hero-secondary,
+  .hx-offering-card,
+  .hx-contact-link {
+    transition: none;
+  }
+}

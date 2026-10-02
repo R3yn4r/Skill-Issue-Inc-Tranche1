@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Explore the seven nations of Teyvat and discover a world of landscapes, cultures, and stories with Teyvat Travels.">
+  <meta name="description" content="Meet Skill Issue Inc., the team behind Teyvat Travels, and explore our guides, routes, and travel resources for all seven nations.">
   <meta name="theme-color" content="#101b1c">
-  <title>Teyvat Travels | A Journey Across Seven Nations</title>
+  <title>Skill Issue Inc. | Teyvat Travels</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home-extra.css">
 </head>
 <body class="home-page" id="top">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -29,8 +30,9 @@
 
       <nav class="site-nav" aria-label="Main navigation">
 
-        <!-- Home -->
-        <a class="site-nav__link is-active" href="index.html" aria-current="page">Home</a>
+        <!-- On-page company navigation -->
+        <a class="site-nav__link is-active" href="#top" aria-current="page">Home</a>
+        <a class="site-nav__link" href="#who-we-are">About Us</a>
 
         <!-- Destinations: CSS :hover/:focus-within dropdown on desktop,
              <details>/<summary> expandable on mobile -->
@@ -111,15 +113,17 @@
           </details>
         </div>
 
-        <!-- About -->
-        <a class="site-nav__link" href="about.html">About</a>
+        <a class="site-nav__link" href="#packages">Packages</a>
+        <a class="site-nav__link" href="#faq">FAQ</a>
+        <a class="site-nav__link" href="#contact">Contact</a>
 
       </nav>
     </div>
   </header>
 
-  <main id="main-content">
-    <section class="hero" aria-labelledby="hero-title">
+  <main id="main-content" class="hx-main">
+    <!-- Company profile hero -->
+    <section class="hero hx-hero" aria-labelledby="hero-title">
       <video class="hero__video" autoplay muted loop playsinline poster="assets/img/mondstadt.webp" aria-hidden="true">
         <source src="images/Video%20Project.mp4" type="video/mp4">
       </video>
@@ -128,13 +132,16 @@
         <span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
       <div class="hero__content">
-        <p class="hero__eyebrow entrance entrance--one">Your gateway to the seven nations</p>
-        <h1 class="hero__title entrance entrance--two" id="hero-title">A world beyond<br>the horizon</h1>
-        <p class="hero__tagline entrance entrance--three">Follow the wind. Find your way through Teyvat.</p>
-        <a class="journey-button entrance entrance--four" href="#nations">
-          <span>Begin Your Journey</span>
-          <span class="journey-button__arrow" aria-hidden="true">&#8594;</span>
-        </a>
+        <p class="hero__eyebrow entrance entrance--one">Skill Issue Inc.</p>
+        <h1 class="hero__title entrance entrance--two" id="hero-title">Teyvat Travels</h1>
+        <p class="hero__tagline entrance entrance--three">Well-planned journeys across all seven nations of Teyvat.</p>
+        <div class="hx-hero-actions entrance entrance--four">
+          <a class="journey-button hx-hero-primary" href="#packages">
+            <span>Explore Our Packages</span>
+            <span class="journey-button__arrow" aria-hidden="true">&#8594;</span>
+          </a>
+          <a class="hx-hero-secondary" href="#director">Meet the Director</a>
+        </div>
       </div>
       <a class="scroll-cue" href="#nations" aria-label="Scroll to choose a nation">
         <span class="scroll-cue__line" aria-hidden="true"></span>
@@ -143,7 +150,97 @@
       <span class="hero__edition" aria-hidden="true">An expedition across seven lands</span>
     </section>
 
-    <section class="nations-section" id="nations" aria-labelledby="nations-title">
+    <!-- Company introduction -->
+    <section class="hx-section hx-who" id="who-we-are" aria-labelledby="hx-who-title">
+      <div class="hx-container hx-who-layout">
+        <div class="hx-copy-block">
+          <p class="hx-eyebrow">Who We Are</p>
+          <h2 class="hx-section-title" id="hx-who-title">A team for the journey</h2>
+          <p class="hx-body-copy">Skill Issue Inc. is the team behind Teyvat Travels, a travel agency for explorers who want to travel across the seven nations of Teyvat. We are the researchers, writers, designers, and developers who turn a vast world into clear, well-planned journeys. Behind every destination guide, itinerary, and travel tip is a group of specialists who study each region in depth, map out the best routes, and keep every page accurate and up to date, so travelers can fully experience the joy of adventure with ease.</p>
+        </div>
+        <div class="hx-company-mark" aria-label="Skill Issue Inc. emblem">
+          <span class="hx-company-mark__letters" aria-hidden="true">SI</span>
+          <span class="hx-company-mark__caption">Skill Issue Inc.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission and vision -->
+    <section class="hx-section hx-purpose" aria-labelledby="hx-purpose-title">
+      <div class="hx-container">
+        <header class="hx-section-heading">
+          <p class="hx-eyebrow">What Guides Us</p>
+          <h2 class="hx-section-title" id="hx-purpose-title">Mission &amp; Vision</h2>
+        </header>
+        <div class="hx-purpose-grid">
+          <article class="hx-panel hx-purpose-card">
+            <span class="hx-symbol" aria-hidden="true">&#9670;</span>
+            <h3 class="hx-card-title">Our Mission</h3>
+            <p class="hx-body-copy">To make exploring Teyvat easier, smoother, and more enjoyable for every Traveller, one well-researched guide at a time.</p>
+          </article>
+          <article class="hx-panel hx-purpose-card">
+            <span class="hx-symbol" aria-hidden="true">&#9671;</span>
+            <h3 class="hx-card-title">Our Vision</h3>
+            <p class="hx-body-copy">To be the most dependable travel companion in Teyvat, known for accurate guidance, engaging storytelling, and always being updated for the next horizon.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services and travel resources -->
+    <section class="hx-section hx-offerings" aria-labelledby="hx-offerings-title">
+      <div class="hx-container">
+        <header class="hx-section-heading">
+          <p class="hx-eyebrow">What We Offer</p>
+          <h2 class="hx-section-title" id="hx-offerings-title">Tools for every Traveller</h2>
+        </header>
+        <div class="hx-offerings-grid">
+          <article class="hx-panel hx-offering-card">
+            <span class="hx-symbol" aria-hidden="true">&#9678;</span>
+            <h3 class="hx-card-title">Nation Guides</h3>
+            <p class="hx-body-copy">Your companion for every nation, packed with the places and stories that make each one unforgettable.</p>
+          </article>
+          <article class="hx-panel hx-offering-card">
+            <span class="hx-symbol" aria-hidden="true">&#10148;</span>
+            <h3 class="hx-card-title">Travel Tips</h3>
+            <p class="hx-body-copy">Learn what to pack, where to start, and which hidden gems are worth the detour.</p>
+          </article>
+          <article class="hx-panel hx-offering-card">
+            <span class="hx-symbol" aria-hidden="true">&#8599;</span>
+            <h3 class="hx-card-title">Expedition Routes</h3>
+            <p class="hx-body-copy">Make the most of every journey with paths designed to save time and show off the best views.</p>
+          </article>
+          <article class="hx-panel hx-offering-card">
+            <span class="hx-symbol" aria-hidden="true">&#10022;</span>
+            <h3 class="hx-card-title">Cultural Highlights</h3>
+            <p class="hx-body-copy">Dive into the festivals, flavors, and legends that give each nation its heart and character.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Director profile; personal details remain placeholders -->
+    <section class="hx-section hx-director" id="director" aria-labelledby="hx-director-title">
+      <div class="hx-container hx-director-layout">
+        <div class="hx-director-portrait" role="img" aria-label="SI emblem placeholder for the director portrait">
+          <span class="hx-director-portrait__letters" aria-hidden="true">SI</span>
+          <span class="hx-director-portrait__caption">Director</span>
+        </div>
+        <div class="hx-director-copy">
+          <p class="hx-eyebrow">Meet the Director</p>
+          <h2 class="hx-section-title" id="hx-director-title">[DIRECTOR NAME]</h2>
+          <p class="hx-director-role">Director / Owner, Skill Issue Inc.</p>
+          <p class="hx-body-copy">Before founding Skill Issue Inc., [DIRECTOR NAME] travelled across Teyvat as an independent explorer, learning how each region rewards curiosity and careful planning. [BIO: Add a personal journey or discovery that shaped their approach to travel.]</p>
+          <p class="hx-body-copy">After those journeys, [DIRECTOR NAME] founded the agency to turn firsthand experience into clear, dependable guides for every Traveller. [BIO: Add a detail about the agency's beginnings or the reason you chose to lead it.]</p>
+          <blockquote class="hx-director-quote">
+            <p>“[DIRECTOR QUOTE]”</p>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Existing seven-nation catalog -->
+    <section class="nations-section hx-anchor-offset" id="nations" aria-labelledby="nations-title">
       <div class="nations-section__heading reveal">
         <p class="section-kicker">Seven lands. Seven stories.</p>
         <h2 id="nations-title">Choose Your Nation</h2>
@@ -224,6 +321,77 @@
       </div>
       <p class="nations-section__hint" aria-hidden="true">Select a nation to explore</p>
     </section>
+
+    <!-- Guide package overview -->
+    <section class="hx-section hx-packages" id="packages" aria-labelledby="hx-packages-title">
+      <div class="hx-container">
+        <header class="hx-section-heading">
+          <p class="hx-eyebrow">Tour Packages</p>
+          <h2 class="hx-section-title" id="hx-packages-title">Choose your kind of expedition</h2>
+          <p class="hx-section-intro">Explore our guide collections and build a route that fits the way you travel.</p>
+        </header>
+        <div class="hx-packages-grid">
+          <article class="hx-panel hx-package-card">
+            <p class="hx-package-label">Regional Guide</p>
+            <h3 class="hx-card-title">A First Visit</h3>
+            <p class="hx-body-copy">Start with one nation: its landmarks, local stories, and practical routes for a well-paced visit.</p>
+            <a class="hx-text-link" href="#nations">Choose a nation <span aria-hidden="true">&#8594;</span></a>
+          </article>
+          <article class="hx-panel hx-package-card">
+            <p class="hx-package-label">Route Collection</p>
+            <h3 class="hx-card-title">The Scenic Route</h3>
+            <p class="hx-body-copy">Connect memorable viewpoints and cultural stops with an itinerary made for unhurried exploring.</p>
+            <a class="hx-text-link" href="#nations">Browse destinations <span aria-hidden="true">&#8594;</span></a>
+          </article>
+          <article class="hx-panel hx-package-card">
+            <p class="hx-package-label">Multi-Nation Guide</p>
+            <h3 class="hx-card-title">Across Teyvat</h3>
+            <p class="hx-body-copy">Plan a longer journey with an overview of all seven nations and the details that make each distinct.</p>
+            <a class="hx-text-link" href="#nations">Explore all seven <span aria-hidden="true">&#8594;</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Frequently asked questions -->
+    <section class="hx-section hx-faq" id="faq" aria-labelledby="hx-faq-title">
+      <div class="hx-container hx-faq-layout">
+        <header class="hx-section-heading hx-faq-heading">
+          <p class="hx-eyebrow">FAQ</p>
+          <h2 class="hx-section-title" id="hx-faq-title">A few helpful details</h2>
+        </header>
+        <div class="hx-faq-list">
+          <details class="hx-faq-item">
+            <summary class="hx-faq-question">Is Teyvat Travels an official service?</summary>
+            <p class="hx-faq-answer">No. Teyvat Travels is an unofficial fan project by Skill Issue Inc. and is not affiliated with or endorsed by HoYoverse.</p>
+          </details>
+          <details class="hx-faq-item">
+            <summary class="hx-faq-question">Can I book a real-world trip through the site?</summary>
+            <p class="hx-faq-answer">No. Teyvat is a fictional world, and this site is a fan-made guide. It does not sell travel or booking services.</p>
+          </details>
+          <details class="hx-faq-item">
+            <summary class="hx-faq-question">Where should I begin exploring?</summary>
+            <p class="hx-faq-answer">Start with the nation that interests you most in the Choose Your Nation section, then use its guide to explore local highlights and routes.</p>
+          </details>
+          <details class="hx-faq-item">
+            <summary class="hx-faq-question">How can I contact Skill Issue Inc.?</summary>
+            <p class="hx-faq-answer">Email the team at skillissueinc@gmail.com.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact details -->
+    <section class="hx-section hx-contact" id="contact" aria-labelledby="hx-contact-title">
+      <div class="hx-container hx-contact-layout">
+        <div>
+          <p class="hx-eyebrow">Contact</p>
+          <h2 class="hx-section-title" id="hx-contact-title">Plan the next chapter</h2>
+          <p class="hx-body-copy">Questions or ideas for the guide? Reach the team at:</p>
+        </div>
+        <a class="hx-contact-link" href="mailto:skillissueinc@gmail.com">skillissueinc@gmail.com</a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -260,8 +428,12 @@
         <span class="footer-col__title" id="footer-quick-label">Quick Links</span>
         <nav aria-labelledby="footer-quick-label">
           <ul class="footer-col__links">
-            <li><a href="index.html" aria-current="page">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="#top" aria-current="page">Home</a></li>
+            <li><a href="#who-we-are">About Us</a></li>
+            <li><a href="#nations">Destinations</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -270,6 +442,7 @@
 
     <div class="footer-bottom">
       <p class="footer-bottom__copy">Unofficial fan project. Genshin Impact is a trademark of HoYoverse.</p>
+      <p class="hx-image-credits">Image credits: [IMAGE CREDITS]</p>
       <a class="footer-back-top" href="#top">Back to top &#8593;</a>
     </div>
   </footer>
