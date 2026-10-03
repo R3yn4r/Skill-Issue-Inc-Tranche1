@@ -545,7 +545,7 @@ textarea:focus-visible {
   /* Reduced from space-md */
   margin-top: 0.6rem;
   max-width: 34ch;
-  text-align: left;   /* not justified */
+  text-align: justify;
 }
 
 .footer-col__copy {
@@ -3039,8 +3039,8 @@ body.nation-page .site-footer {
   background: linear-gradient(135deg, #102535 0%, #1a4560 55%, #82d7bd1a 100%);
 }
 
-/* Cape Oath — deep amber sunrise */
-.mondstadt-grad--cape {
+/* Cathedral / warm amber stone */
+.mondstadt-grad--cathedral {
   background: linear-gradient(135deg, #2a1c0e 0%, #5a3a18 55%, #d4956226 100%);
 }
 
@@ -3165,7 +3165,10 @@ body.nation-page .site-footer {
   overflow: hidden;
   border: 1px solid rgba(23, 34, 34, 0.14);
   border-radius: var(--card-radius);
-  background: #25312f;         /* fallback while image loads */
+  /* Dark gradient fallback — keeps card height and readable text even when
+     the image file is missing or slow to load */
+  background:
+    linear-gradient(180deg, #1a2e2b 0%, #0d1c1a 100%);
   isolation: isolate;
   transition: transform 260ms ease, border-color 240ms ease, box-shadow 240ms ease;
 }
@@ -3182,7 +3185,9 @@ body.nation-page .site-footer {
 }
 
 /* ------------------------------------------------------------------
-   Image — fills the whole card, zooms gently on hover
+   Image — fills the whole card, zooms gently on hover.
+   color: transparent hides the alt-text visually when the file is
+   missing (the card's dark gradient background fills the space).
    ------------------------------------------------------------------ */
 .mondstadt-slide__img {
   position: absolute;
@@ -3193,6 +3198,8 @@ body.nation-page .site-footer {
   object-position: center;
   transform: scale(1.02);
   transition: transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 350ms ease;
+  /* Hide alt text when image fails to load — card stays a fixed dark block */
+  color: transparent;
 }
 
 .mondstadt-slide:hover .mondstadt-slide__img,
@@ -3235,12 +3242,23 @@ body.nation-page .site-footer {
   top: 12px;
   left: 14px;
   z-index: 3;
+  /* outer span is purely a position anchor — no own text styles */
+  line-height: 0;
+}
+
+/* Dark pill behind the badge number so it reads on any image */
+.mondstadt-slide__index-pill {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(7, 14, 14, 0.72);
   color: var(--accent);
   font-family: var(--home-font-body, 'Inter', sans-serif);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  line-height: 1.4;
 }
 
 /* "View" hint — magnifier emoji, bottom-right corner, fades in on hover */
@@ -3263,21 +3281,36 @@ body.nation-page .site-footer {
   transform: scale(1);
 }
 
-/* Name — Cinzel, white */
+/* Name — Cinzel, white; allow up to 2 lines so longer names don't overflow */
 .mondstadt-slide__name {
   margin: 0 0 0.3rem;
   color: #fff;
   font-family: var(--home-font-display);
-  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  font-size: clamp(0.78rem, 1.05vw, 0.95rem);
   font-weight: 600;
   line-height: 1.3;
+  text-align: justify;
+  hyphens: auto;
+  /* Clamp title to 2 lines maximum to keep layout stable */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* One-line description — muted white, small */
+/* Short description — muted white, small, clamped to 3 lines on card */
 .mondstadt-slide__fact {
   color: rgba(255, 255, 255, 0.82);
   font-size: 0.78rem;
   line-height: 1.5;
+  /* Prevent justify/hyphenation from splitting words on mobile */
+  text-align: justify;
+  hyphens: auto;
+  /* Clamp to 3 lines — full text is always visible in the lightbox */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ------------------------------------------------------------------
@@ -3375,12 +3408,10 @@ body:has(.mondstadt-viewer-radio:checked:not(#mv-closed)) {
    :checked.  The selectors follow the HTML source order:
      #mv-1:checked ~ #mondstadt-overlay-1,  etc.
    ------------------------------------------------------------------ */
+/* Only three landmarks remain (mv-1 → mv-3); mv-4/5/6 selectors removed */
 #mv-1:checked ~ #mondstadt-overlay-1,
 #mv-2:checked ~ #mondstadt-overlay-2,
-#mv-3:checked ~ #mondstadt-overlay-3,
-#mv-4:checked ~ #mondstadt-overlay-4,
-#mv-5:checked ~ #mondstadt-overlay-5,
-#mv-6:checked ~ #mondstadt-overlay-6 {
+#mv-3:checked ~ #mondstadt-overlay-3 {
   visibility: visible;
   pointer-events: auto;
   opacity: 1;
@@ -3421,7 +3452,9 @@ body:has(.mondstadt-viewer-radio:checked:not(#mv-closed)) {
 }
 
 /* ------------------------------------------------------------------
-   Photo — left column, object-fit: contain so nothing is cropped
+   Photo — left column, object-fit: contain so nothing is cropped.
+   Dark background fills the area when the image file is missing;
+   color: transparent hides the alt text visually in that case.
    ------------------------------------------------------------------ */
 .mondstadt-overlay__photo {
   flex: 1 1 55%;
@@ -3432,8 +3465,13 @@ body:has(.mondstadt-viewer-radio:checked:not(#mv-closed)) {
   height: auto;
   object-fit: contain;
   object-position: center;
+  /* Darker placeholder when image is missing — aspect-ratio keeps the
+     photo column from collapsing to zero height */
   background: #0a1414;
+  aspect-ratio: 4 / 3;
   display: block;
+  /* Hide alt text when image fails to load */
+  color: transparent;
 }
 
 /* ------------------------------------------------------------------
@@ -3470,12 +3508,27 @@ body:has(.mondstadt-viewer-radio:checked:not(#mv-closed)) {
 }
 
 .mondstadt-overlay__name {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.3rem;
   color: #fff;
   font-family: var(--home-font-display, 'Cinzel', serif);
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  /* Slightly tighter clamp so a long name (e.g. Grand Cathedral…) stays
+     readable on mobile without wrapping to too many lines */
+  font-size: clamp(1rem, 2vw, 1.35rem);
   font-weight: 600;
   line-height: 1.25;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* "Also known as" line — sits directly under the title in the accent colour */
+.mondstadt-overlay__also-known {
+  margin: 0 0 0.85rem;
+  color: var(--accent);
+  font-family: var(--home-font-body, 'Inter', sans-serif);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: justify;
 }
 
 .mondstadt-overlay__desc {
@@ -3484,6 +3537,8 @@ body:has(.mondstadt-viewer-radio:checked:not(#mv-closed)) {
   font-family: var(--home-font-body, 'Inter', sans-serif);
   font-size: 0.875rem;
   line-height: 1.7;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .mondstadt-overlay__tag {
@@ -3614,10 +3669,7 @@ body:has(.mondstadt-viewer-radio:checked:not(#mv-closed)) {
 
   #mv-1:checked ~ #mondstadt-overlay-1,
   #mv-2:checked ~ #mondstadt-overlay-2,
-  #mv-3:checked ~ #mondstadt-overlay-3,
-  #mv-4:checked ~ #mondstadt-overlay-4,
-  #mv-5:checked ~ #mondstadt-overlay-5,
-  #mv-6:checked ~ #mondstadt-overlay-6 {
+  #mv-3:checked ~ #mondstadt-overlay-3 {
     transition: visibility 0ms;
   }
 
