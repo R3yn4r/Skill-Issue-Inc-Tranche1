@@ -862,6 +862,13 @@ html {
   color: #fff;
 }
 
+.site-brand__logo {
+  display: block;
+  width: 174px;
+  max-height: 48px;
+  object-fit: contain;
+}
+
 .site-brand__mark {
   display: grid;
   width: 38px;
@@ -1821,6 +1828,11 @@ body.nation-page .site-footer .footer-bottom {
 
   .site-brand__name {
     font-size: 13px; /* shrunk slightly so "Skill Issue Inc." fits on one line at 600px */
+  }
+
+  .site-brand__logo {
+    width: 138px;
+    max-height: 40px;
   }
 
   .hero {
@@ -3870,10 +3882,7 @@ body:has(.liyue-viewer-radio:checked:not(#mv-closed)) {
 
 #mv-1:checked ~ #liyue-overlay-1,
 #mv-2:checked ~ #liyue-overlay-2,
-#mv-3:checked ~ #liyue-overlay-3,
-#mv-4:checked ~ #liyue-overlay-4,
-#mv-5:checked ~ #liyue-overlay-5,
-#mv-6:checked ~ #liyue-overlay-6 {
+#mv-3:checked ~ #liyue-overlay-3 {
   visibility: visible;
   pointer-events: auto;
   opacity: 1;
@@ -4082,10 +4091,7 @@ body:has(.liyue-viewer-radio:checked:not(#mv-closed)) {
 
   #mv-1:checked ~ #liyue-overlay-1,
   #mv-2:checked ~ #liyue-overlay-2,
-  #mv-3:checked ~ #liyue-overlay-3,
-  #mv-4:checked ~ #liyue-overlay-4,
-  #mv-5:checked ~ #liyue-overlay-5,
-  #mv-6:checked ~ #liyue-overlay-6 {
+  #mv-3:checked ~ #liyue-overlay-3 {
     transition: visibility 0ms;
   }
 
@@ -4333,13 +4339,7 @@ body:has(.inazuma-viewer-radio:checked:not(#mv-closed)) {
 
 #mv-1:checked ~ #inazuma-overlay-1,
 #mv-2:checked ~ #inazuma-overlay-2,
-#mv-3:checked ~ #inazuma-overlay-3,
-#mv-4:checked ~ #inazuma-overlay-4,
-#mv-5:checked ~ #inazuma-overlay-5,
-#mv-6:checked ~ #inazuma-overlay-6,
-#mv-7:checked ~ #inazuma-overlay-7,
-#mv-8:checked ~ #inazuma-overlay-8,
-#mv-9:checked ~ #inazuma-overlay-9 {
+#mv-3:checked ~ #inazuma-overlay-3 {
   visibility: visible;
   pointer-events: auto;
   opacity: 1;
@@ -4548,13 +4548,7 @@ body:has(.inazuma-viewer-radio:checked:not(#mv-closed)) {
 
   #mv-1:checked ~ #inazuma-overlay-1,
   #mv-2:checked ~ #inazuma-overlay-2,
-  #mv-3:checked ~ #inazuma-overlay-3,
-  #mv-4:checked ~ #inazuma-overlay-4,
-  #mv-5:checked ~ #inazuma-overlay-5,
-  #mv-6:checked ~ #inazuma-overlay-6,
-  #mv-7:checked ~ #inazuma-overlay-7,
-  #mv-8:checked ~ #inazuma-overlay-8,
-  #mv-9:checked ~ #inazuma-overlay-9 {
+  #mv-3:checked ~ #inazuma-overlay-3 {
     transition: visibility 0ms;
   }
 
