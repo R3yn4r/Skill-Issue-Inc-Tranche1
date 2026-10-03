@@ -1,0 +1,154 @@
+/* Shared centered content width across the home and nation pages. */
+.home-page .hx-container {
+  width: min(calc(100% - 48px), 1200px);
+}
+
+.home-page .nations-section__heading {
+  width: min(calc(100% - 48px), 1200px);
+  max-width: 1200px;
+  padding: 0;
+}
+
+.home-page .nation-list {
+  width: min(calc(100% - 48px), 1200px);
+}
+
+.hx-section-heading .hx-eyebrow,
+.hx-section-heading .hx-section-intro,
+.nations-section__heading .section-kicker,
+.nations-section__heading .nations-section__intro {
+  text-align: center;
+}
+
+/* Keep the contact block on the same container and left-aligned at every width. */
+.hx-container.ct-layout {
+  max-width: 1200px;
+}
+
+.ct-copy {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.ct-heading-bar {
+  margin-left: 0;
+}
+
+/* Center the final incomplete row while preserving equal package card widths. */
+.pk-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pk-grid > .pk-card {
+  flex: 0 1 calc((100% - 42px) / 4);
+}
+
+.pk-inner {
+  width: min(calc(100% - 48px), 1200px);
+  max-width: 1200px;
+}
+
+/* Give nation sections, their content and galleries a shared 1200px measure. */
+.nation-page .nation-about,
+.nation-page .nation-locations,
+.nation-page .nation-feature,
+.nation-page .nation-tips {
+  padding-inline: 0;
+}
+
+.nation-page .nation-page,
+.nation-page .nation-wrap {
+  --content-max: 1200px;
+  width: min(calc(100% - 48px), 1200px);
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.nation-page .nation-page {
+  width: auto;
+  max-width: none;
+  margin: 0;
+}
+
+.nation-page .mondstadt-gallery__track,
+.nation-page .liyue-gallery__track,
+.nation-page .inazuma-gallery__track {
+  width: min(calc(100% - 48px), 1200px);
+  margin-inline: auto;
+  padding-inline: 0;
+  scroll-padding-inline: 0;
+  justify-content: safe center;
+}
+
+/* Paragraphs intended as long-form body copy; labels and metadata remain untouched. */
+.hx-body-copy,
+.hx-faq-answer,
+.pk-description,
+.pk-section-copy,
+.nation-about__body,
+.nation-loc-card__desc,
+.nation-tip-card__text,
+.mondstadt-slide__fact,
+.liyue-slide__fact,
+.inazuma-slide__fact,
+.mondstadt-overlay__desc,
+.liyue-overlay__desc,
+.inazuma-overlay__desc {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+@media (max-width: 960px) {
+  .pk-grid > .pk-card {
+    flex-basis: calc((100% - 14px) / 2);
+  }
+}
+
+@media (max-width: 640px) {
+  .home-page .hx-container,
+  .home-page .nations-section__heading,
+  .home-page .nation-list,
+  .nation-page .nation-wrap,
+  .nation-page .mondstadt-gallery__track,
+  .nation-page .liyue-gallery__track,
+  .nation-page .inazuma-gallery__track,
+  .pk-inner {
+    width: min(calc(100% - 40px), 1200px);
+  }
+
+  .pk-grid > .pk-card {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .ct-copy {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .ct-heading-bar {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 599px) {
+  .hx-body-copy,
+  .hx-faq-answer,
+  .pk-description,
+  .pk-section-copy,
+  .nation-about__body,
+  .nation-loc-card__desc,
+  .nation-tip-card__text,
+  .mondstadt-slide__fact,
+  .liyue-slide__fact,
+  .inazuma-slide__fact,
+  .mondstadt-overlay__desc,
+  .liyue-overlay__desc,
+  .inazuma-overlay__desc {
+    text-align: left;
+  }
+}
