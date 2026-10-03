@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The Natlan destination page for Teyvat Travels.">
+  <meta name="description" content="Explore Natlan, the land of ash, hot springs, and valor in Teyvat, with Tepecac Stadium, Children of the Echoes Canyon, and the People of the Springs basin.">
   <meta name="theme-color" content="#101b1c">
   <title>Natlan | Teyvat Travels</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,10 @@
   <link rel="stylesheet" href="packages.css">
   <link rel="stylesheet" href="layout-align.css">
 </head>
-<body class="placeholder-page" id="top">
+<body class="nation-page" id="top">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- HEADER — do not modify this block -->
   <header class="site-header">
     <div class="site-header__inner">
       <input class="menu-toggle" type="checkbox" id="menu-toggle" aria-label="Open navigation menu">
@@ -28,7 +31,8 @@
         <a class="site-nav__link" href="index.html">Home</a>
         <a class="site-nav__link" href="index.html#who-we-are">About Us</a>
         <div class="site-nav__dropdown">
-          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations" aria-haspopup="true" aria-current="page">
+          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations"
+             aria-haspopup="true" aria-current="page">
             Destinations
             <svg class="site-nav__chevron" aria-hidden="true" width="10" height="6" viewBox="0 0 10 6" fill="none">
               <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -67,12 +71,167 @@
       </nav>
     </div>
   </header>
-  <main class="placeholder-main">
-    <div class="placeholder-main__content">
-      <p class="section-kicker">The land of war</p>
-      <h1>Natlan</h1>
-      <p>This destination is being prepared for your journey.</p>
-    </div>
+  <!-- / HEADER -->
+
+  <main class="nation-page" id="main-content" style="--accent: #ff936d;">
+
+    <!-- SECTION 1 — HERO -->
+    <section class="nation-hero" aria-labelledby="hero-title">
+      <div class="nation-hero__bg"
+           style="background-image: url('images/natlan/natlan_main.jpg');"
+           role="img"
+           aria-label="The volcanic landscape of Natlan under a fiery sky"></div>
+      <div class="nation-hero__veil" aria-hidden="true"></div>
+      <div class="nation-hero__content">
+        <p class="nation-hero__element section-kicker entrance entrance--one">Pyro</p>
+        <p class="nation-hero__kicker entrance entrance--two">The land of ash and valor</p>
+        <h1 class="nation-hero__title entrance entrance--three" id="hero-title">Natlan</h1>
+        <p class="nation-hero__tagline entrance entrance--four">A land of volcanoes, hot springs, and vibrant tribal festivals.</p>
+        <a class="nation-hero__scroll-cue" href="#about" aria-label="Scroll down to learn about Natlan">
+          <span class="nation-hero__scroll-line" aria-hidden="true"></span>
+          <span>Scroll down</span>
+        </a>
+      </div>
+    </section>
+    <!-- / HERO -->
+
+    <!-- SECTION 2 — ABOUT -->
+    <section class="nation-about" id="about" aria-labelledby="about-title">
+      <div class="nation-wrap">
+        <div class="nation-about__grid">
+          <div class="nation-about__text reveal">
+            <p class="section-kicker">The land of ash and valor</p>
+            <h2 id="about-title">A nation shaped by fire</h2>
+            <p class="nation-about__body">Natlan is a land of dramatic volcanic terrain, where ash-covered ridges meet glowing craters. Its communities gather often for celebrations, dances, and contests of strength.</p>
+            <p class="nation-about__body">The nation is also famous for its thermal springs, whose warm waters are said to restore both body and spirit after a long journey through the highlands.</p>
+          </div>
+
+          <aside class="nation-about__facts reveal">
+            <div class="nation-facts-card">
+              <h3 class="nation-facts-card__heading">Quick Facts</h3>
+              <dl class="nation-facts-card__list">
+                <div class="nation-facts-card__row">
+                  <dt>Element</dt>
+                  <dd>Pyro (Fire)</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Region type</dt>
+                  <dd>Volcanic highland nation</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Known for</dt>
+                  <dd>Hot springs and tribal festivals</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Best time to visit</dt>
+                  <dd>Dry season, for clear skies</dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+    <!-- / ABOUT -->
+
+    <!-- SECTION 3 — KEY LOCATIONS -->
+    <section class="nation-locations" aria-labelledby="locations-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Points of interest</p>
+        <h2 class="nation-locations__heading reveal" id="locations-title">Key Locations</h2>
+
+        <div class="nation-locations__grid">
+
+          <article class="nation-loc-card reveal">
+            <img src="images/natlan/natlan_tepecac_stadium.jpg"
+                 alt="The great stadium of Tepecac, where tribal contests are held"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Tepecac Stadium</h3>
+              <p class="nation-loc-card__desc">A great open arena where the people of Natlan gather for contests, performances, and festivals. The stadium is busiest during celebrations, when the crowd fills the stone seats and the sound carries across the valley.</p>
+              <span class="mondstadt-tag">Best for: Festivals</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/natlan/natlan_echoes_canyon.webp"
+                 alt="The towering walls of Children of the Echoes Canyon"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Children of the Echoes Canyon</h3>
+              <p class="nation-loc-card__desc">A deep canyon of red stone whose walls seem to call back every voice that passes through. Travelers come to hike the winding paths and listen to the echoes rolling between the cliffs.</p>
+              <span class="mondstadt-tag">Best for: Hiking</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/natlan/natlan_springs_basin.webp"
+                 alt="Steaming hot springs in the People of the Springs basin"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">People of the Springs Basin</h3>
+              <p class="nation-loc-card__desc">A basin of warm, mineral-rich pools surrounded by volcanic rock. Locals have bathed here for generations, and visitors often stay for hours soaking in the steam as the sun goes down.</p>
+              <span class="mondstadt-tag">Best for: Relaxation</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+    <!-- / KEY LOCATIONS -->
+
+    <!-- SECTION 4 — TRAVEL TIPS -->
+    <section class="nation-tips" aria-labelledby="tips-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Before you go</p>
+        <h2 class="nation-tips__heading reveal" id="tips-title">Travel Tips</h2>
+
+        <div class="nation-tips__grid">
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-stay"></use></svg></span>
+            <h3 class="nation-tip-card__title">Where to stay</h3>
+            <p class="nation-tip-card__text">Stay near the springs basin, where guesthouses offer warm pools and quiet rooms after a day of hiking.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-food"></use></svg></span>
+            <h3 class="nation-tip-card__title">What to eat &amp; drink</h3>
+            <p class="nation-tip-card__text">Try the grilled meats and spiced dishes served at festival grounds. Drink plenty of water, since the heat and altitude can be tiring.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-travel"></use></svg></span>
+            <h3 class="nation-tip-card__title">Getting around</h3>
+            <p class="nation-tip-card__text">Plan for steep paths and rough ground between sites. Good walking shoes and an early start will make the day far more comfortable.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- / TRAVEL TIPS -->
+
+    <!-- SECTION 5 — EXPLORE MORE BANNER -->
+    <section class="nation-next" aria-labelledby="next-title">
+      <div class="nation-next__bg"
+           style="background-image: url('images/snezhnaya/snezhnaya_main.jpg');"
+           role="img"
+           aria-label="Snezhnaya's palace city crowned with light beneath a glowing aurora"></div>
+      <div class="nation-next__veil" aria-hidden="true"></div>
+      <div class="nation-next__content">
+        <p class="nation-next__label">Explore more</p>
+        <h2 class="nation-next__name" id="next-title">Snezhnaya</h2>
+        <a class="nation-next__link" href="snezhnaya.html">
+          Explore Snezhnaya <span aria-hidden="true">&#8594;</span>
+        </a>
+        <a class="nation-next__back" href="index.html#nations">&#8592; Back to all nations</a>
+      </div>
+    </section>
+    <!-- / NEXT NATION -->
+
     <!-- Nation tour package details. -->
     <section class="pk-section" id="natlan-package" aria-labelledby="natlan-package-title">
       <div class="pk-inner">
@@ -95,7 +254,10 @@
         </div>
       </div>
     </section>
+
   </main>
+
+  <!-- FOOTER — do not modify this block -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-col footer-col--brand">
@@ -139,5 +301,7 @@
       <a class="footer-back-top" href="#top">Back to top &#8593;</a>
     </div>
   </footer>
+  <!-- / FOOTER -->
+
 </body>
 </html>

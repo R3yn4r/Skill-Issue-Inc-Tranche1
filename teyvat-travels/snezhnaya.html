@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The Snezhnaya destination page for Teyvat Travels.">
+  <meta name="description" content="Explore Snezhnaya, the frozen northern nation of Teyvat, with the Zapolyarny Palace outskirts, Frost-bound Valleys, and Glacial Outposts.">
   <meta name="theme-color" content="#101b1c">
   <title>Snezhnaya | Teyvat Travels</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,10 @@
   <link rel="stylesheet" href="packages.css">
   <link rel="stylesheet" href="layout-align.css">
 </head>
-<body class="placeholder-page" id="top">
+<body class="nation-page" id="top">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- HEADER — do not modify this block -->
   <header class="site-header">
     <div class="site-header__inner">
       <input class="menu-toggle" type="checkbox" id="menu-toggle" aria-label="Open navigation menu">
@@ -28,7 +31,8 @@
         <a class="site-nav__link" href="index.html">Home</a>
         <a class="site-nav__link" href="index.html#who-we-are">About Us</a>
         <div class="site-nav__dropdown">
-          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations" aria-haspopup="true" aria-current="page">
+          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations"
+             aria-haspopup="true" aria-current="page">
             Destinations
             <svg class="site-nav__chevron" aria-hidden="true" width="10" height="6" viewBox="0 0 10 6" fill="none">
               <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -67,12 +71,167 @@
       </nav>
     </div>
   </header>
-  <main class="placeholder-main">
-    <div class="placeholder-main__content">
-      <p class="section-kicker">The land beneath the snow</p>
-      <h1>Snezhnaya</h1>
-      <p>This destination is being prepared for your journey.</p>
-    </div>
+  <!-- / HEADER -->
+
+  <main class="nation-page" id="main-content" style="--accent: #a6ddf3;">
+
+    <!-- SECTION 1 — HERO -->
+    <section class="nation-hero" aria-labelledby="hero-title">
+      <div class="nation-hero__bg"
+           style="background-image: url('images/snezhnaya/snezhnaya_main.jpg');"
+           role="img"
+           aria-label="Snezhnaya's palace city crowned with light beneath a glowing aurora"></div>
+      <div class="nation-hero__veil" aria-hidden="true"></div>
+      <div class="nation-hero__content">
+        <p class="nation-hero__element section-kicker entrance entrance--one">Cryo</p>
+        <p class="nation-hero__kicker entrance entrance--two">The land beneath the snow</p>
+        <h1 class="nation-hero__title entrance entrance--three" id="hero-title">Snezhnaya</h1>
+        <p class="nation-hero__tagline entrance entrance--four">A frozen northern nation of palaces, aurora, and endless winter.</p>
+        <a class="nation-hero__scroll-cue" href="#about" aria-label="Scroll down to learn about Snezhnaya">
+          <span class="nation-hero__scroll-line" aria-hidden="true"></span>
+          <span>Scroll down</span>
+        </a>
+      </div>
+    </section>
+    <!-- / HERO -->
+
+    <!-- SECTION 2 — ABOUT -->
+    <section class="nation-about" id="about" aria-labelledby="about-title">
+      <div class="nation-wrap">
+        <div class="nation-about__grid">
+          <div class="nation-about__text reveal">
+            <p class="section-kicker">The land beneath the snow</p>
+            <h2 id="about-title">A kingdom of ice and light</h2>
+            <p class="nation-about__body">Snezhnaya lies in the far north of Teyvat, where snow covers the land for most of the year. Its grand palaces and frosted towers rise above valleys wrapped in ice, and the sky often glows with the aurora.</p>
+            <p class="nation-about__body">Despite the cold, the nation is known for its architecture, its winter festivals, and the warm alpine chalets that keep travelers comfortable under the stars.</p>
+          </div>
+
+          <aside class="nation-about__facts reveal">
+            <div class="nation-facts-card">
+              <h3 class="nation-facts-card__heading">Quick Facts</h3>
+              <dl class="nation-facts-card__list">
+                <div class="nation-facts-card__row">
+                  <dt>Element</dt>
+                  <dd>Cryo (Ice)</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Archon</dt>
+                  <dd>The Tsaritsa, Goddess of Winter</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Region type</dt>
+                  <dd>Frozen northern nation</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Best time to visit</dt>
+                  <dd>Winter, for the aurora</dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+    <!-- / ABOUT -->
+
+    <!-- SECTION 3 — KEY LOCATIONS -->
+    <section class="nation-locations" aria-labelledby="locations-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Points of interest</p>
+        <h2 class="nation-locations__heading reveal" id="locations-title">Key Locations</h2>
+
+        <div class="nation-locations__grid">
+
+          <article class="nation-loc-card reveal">
+            <img src="images/snezhnaya/snezhnaya_palace.jpg"
+                 alt="The grand Zapolyarny Palace rising above the snow"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Zapolyarny Palace Outskirts</h3>
+              <p class="nation-loc-card__desc">The grounds surrounding the great palace, where frosted towers and carved walls stand against the sky. The outskirts are quieter than the palace itself, and they offer some of the best views of its architecture under the aurora.</p>
+              <span class="mondstadt-tag">Best for: Architecture</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/snezhnaya/snezhnaya_valleys.jpg"
+                 alt="Snow-covered valleys stretching between frozen cliffs"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Frost-bound Valleys</h3>
+              <p class="nation-loc-card__desc">Wide valleys locked in ice, with pine forests and frozen rivers winding between the hills. The stillness here makes it one of the most peaceful stops in the nation.</p>
+              <span class="mondstadt-tag">Best for: Nature walks</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/snezhnaya/snezhnaya_outposts.jpg"
+                 alt="Wooden alpine chalets at a glacial outpost"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Glacial Outposts</h3>
+              <p class="nation-loc-card__desc">Small settlements built against the glaciers, with cozy chalets and warm lanterns. They are a good place to rest, share a hot meal, and watch the aurora come out over the ice.</p>
+              <span class="mondstadt-tag">Best for: Aurora viewing</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+    <!-- / KEY LOCATIONS -->
+
+    <!-- SECTION 4 — TRAVEL TIPS -->
+    <section class="nation-tips" aria-labelledby="tips-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Before you go</p>
+        <h2 class="nation-tips__heading reveal" id="tips-title">Travel Tips</h2>
+
+        <div class="nation-tips__grid">
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-stay"></use></svg></span>
+            <h3 class="nation-tip-card__title">Where to stay</h3>
+            <p class="nation-tip-card__text">Book a room in one of the alpine chalets near the glacial outposts. They are warm, quiet, and close to the best aurora viewing spots.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-food"></use></svg></span>
+            <h3 class="nation-tip-card__title">What to eat &amp; drink</h3>
+            <p class="nation-tip-card__text">Warm stews and hot drinks are the local favorites. Pack layers and keep a thermos handy, since the cold is strong even indoors near the outposts.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-travel"></use></svg></span>
+            <h3 class="nation-tip-card__title">Getting around</h3>
+            <p class="nation-tip-card__text">Plan on a full day of travel between stops, since the roads are slow in snow. Bring warm boots, gloves, and a headlamp for early evening walks.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- / TRAVEL TIPS -->
+
+    <!-- SECTION 5 — BACK TO TEYVAT BANNER -->
+    <section class="nation-next" aria-labelledby="next-title">
+      <div class="nation-next__bg"
+           style="background-image: url('assets/img/mondstadt.webp');"
+           role="img"
+           aria-label="The lakeside city of Mondstadt under a bright sky"></div>
+      <div class="nation-next__veil" aria-hidden="true"></div>
+      <div class="nation-next__content">
+        <p class="nation-next__label">Explore more</p>
+        <h2 class="nation-next__name" id="next-title">Mondstadt</h2>
+        <a class="nation-next__link" href="mondstadt.html">
+          Explore Mondstadt <span aria-hidden="true">&#8594;</span>
+        </a>
+        <a class="nation-next__back" href="index.html#nations">&#8592; Back to all nations</a>
+      </div>
+    </section>
+    <!-- / NEXT NATION -->
+
     <!-- Nation tour package details. -->
     <section class="pk-section" id="snezhnaya-package" aria-labelledby="snezhnaya-package-title">
       <div class="pk-inner">
@@ -95,7 +254,10 @@
         </div>
       </div>
     </section>
+
   </main>
+
+  <!-- FOOTER — do not modify this block -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-col footer-col--brand">
@@ -139,5 +301,7 @@
       <a class="footer-back-top" href="#top">Back to top &#8593;</a>
     </div>
   </footer>
+  <!-- / FOOTER -->
+
 </body>
 </html>
