@@ -182,7 +182,141 @@
     </section>
     <!-- / KEY LOCATIONS -->
 
-    <!-- SECTION 4 — TRAVEL TIPS -->
+    <!-- SECTION 4 — SNEZHNAYA IN FOCUS GALLERY
+         Uses the same CSS classes and radio-input lightbox as Mondstadt. -->
+    <section class="nation-feature mondstadt-gallery" aria-labelledby="gallery-title">
+
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-closed" checked>
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-1">
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-2">
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-3">
+
+      <!-- Overlay 1 — Zapolyarny Palace Outskirts -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-1" aria-label="Zapolyarny Palace Outskirts photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/snezhnaya/snezhnaya_palace.jpg"
+               alt="The grand Zapolyarny Palace rising above the snow"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Snezhnaya</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">01</p>
+            <h3 class="mondstadt-overlay__name">Zapolyarny Palace Outskirts</h3>
+            <p class="mondstadt-overlay__desc">The grounds beyond the palace gates hold some of Snezhnaya's most striking architecture, with frosted towers and carved walls rising against the sky. The crowds thin out here, leaving room to take in the building's scale. When the aurora moves overhead, the palace glows in a way that is hard to forget.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Architecture</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-3" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-2" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- Overlay 2 — Frost-bound Valleys -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-2" aria-label="Frost-bound Valleys photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/snezhnaya/snezhnaya_valleys.jpg"
+               alt="Snow-covered valleys stretching between frozen cliffs"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Snezhnaya</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">02</p>
+            <h3 class="mondstadt-overlay__name">Frost-bound Valleys</h3>
+            <p class="mondstadt-overlay__desc">Wide valleys lie locked under ice, with pine forests lining frozen rivers that wind between the hills. Few sounds carry here except the wind and the crunch of snow underfoot. It is one of the quietest places in the nation, and a good spot to slow down and walk without a plan.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Nature walks</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-1" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-3" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- Overlay 3 — Glacial Outposts -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-3" aria-label="Glacial Outposts photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/snezhnaya/snezhnaya_outposts.jpg"
+               alt="Wooden alpine chalets at a glacial outpost"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Snezhnaya</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">03</p>
+            <h3 class="mondstadt-overlay__name">Glacial Outposts</h3>
+            <p class="mondstadt-overlay__desc">Small settlements built against the glaciers, with wooden chalets and lanterns glowing in the cold. Travelers gather here for a hot meal and a chance to get warm. When night falls, the outposts make the best place to watch the aurora roll across the ice.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Aurora viewing</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-2" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-1" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- Section heading -->
+      <div class="nation-wrap">
+        <p class="section-kicker">Explore the landmarks</p>
+        <h2 id="gallery-title">Snezhnaya in Focus</h2>
+        <p class="mondstadt-gallery__intro">Click a card to open the full photo and description.</p>
+      </div>
+
+      <!-- Scroll track -->
+      <div class="mondstadt-gallery__track" tabindex="0" role="region" aria-label="Snezhnaya landmark gallery — click a card to view details">
+
+        <label class="mondstadt-slide" for="mv-1" tabindex="0" role="button" aria-label="View Zapolyarny Palace Outskirts">
+          <img src="images/snezhnaya/snezhnaya_palace.jpg"
+               alt="The grand Zapolyarny Palace rising above the snow"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">01</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Zapolyarny Palace Outskirts</h3>
+            <p class="mondstadt-slide__fact">Frosted towers and carved walls beneath the aurora.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="mondstadt-slide" for="mv-2" tabindex="0" role="button" aria-label="View Frost-bound Valleys">
+          <img src="images/snezhnaya/snezhnaya_valleys.jpg"
+               alt="Snow-covered valleys stretching between frozen cliffs"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">02</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Frost-bound Valleys</h3>
+            <p class="mondstadt-slide__fact">Frozen rivers and pine forests in near silence.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="mondstadt-slide" for="mv-3" tabindex="0" role="button" aria-label="View Glacial Outposts">
+          <img src="images/snezhnaya/snezhnaya_outposts.jpg"
+               alt="Wooden alpine chalets at a glacial outpost"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">03</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Glacial Outposts</h3>
+            <p class="mondstadt-slide__fact">Warm chalets and lanterns where the aurora is best seen.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+      </div>
+    </section>
+    <!-- / SNEZHNAYA IN FOCUS -->
+
+    <!-- SECTION 5 — TRAVEL TIPS -->
     <section class="nation-tips" aria-labelledby="tips-title">
       <div class="nation-wrap">
         <p class="section-kicker reveal">Before you go</p>
@@ -213,7 +347,7 @@
     </section>
     <!-- / TRAVEL TIPS -->
 
-    <!-- SECTION 5 — BACK TO TEYVAT BANNER -->
+    <!-- SECTION 6 — BACK TO TEYVAT BANNER -->
     <section class="nation-next" aria-labelledby="next-title">
       <div class="nation-next__bg"
            style="background-image: url('assets/img/mondstadt.webp');"

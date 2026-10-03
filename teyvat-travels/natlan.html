@@ -182,7 +182,141 @@
     </section>
     <!-- / KEY LOCATIONS -->
 
-    <!-- SECTION 4 — TRAVEL TIPS -->
+    <!-- SECTION 4 — NATLAN IN FOCUS GALLERY
+         Uses the same CSS classes and radio-input lightbox as Mondstadt. -->
+    <section class="nation-feature mondstadt-gallery" aria-labelledby="gallery-title">
+
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-closed" checked>
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-1">
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-2">
+      <input class="mondstadt-viewer-radio" type="radio" name="mondstadt-viewer" id="mv-3">
+
+      <!-- Overlay 1 — Tepecac Stadium -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-1" aria-label="Tepecac Stadium photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/natlan/natlan_tepecac_stadium.jpg"
+               alt="The great stadium of Tepecac, where tribal contests are held"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Natlan</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">01</p>
+            <h3 class="mondstadt-overlay__name">Tepecac Stadium</h3>
+            <p class="mondstadt-overlay__desc">Tepecac Stadium is the great open arena where Natlan's people come together for contests, performances, and celebrations. On festival days the stone seats fill with spectators, and cheers echo across the valley. Arrive early to find a seat with a view of the field, and stay for the evening performances when the torches are lit.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Festivals</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-3" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-2" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- Overlay 2 — Children of the Echoes Canyon -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-2" aria-label="Children of the Echoes Canyon photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/natlan/natlan_echoes_canyon.webp"
+               alt="The towering walls of Children of the Echoes Canyon"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Natlan</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">02</p>
+            <h3 class="mondstadt-overlay__name">Children of the Echoes Canyon</h3>
+            <p class="mondstadt-overlay__desc">The walls of this deep red canyon seem to answer back, sending every shout and song rolling between the cliffs. The winding paths are best taken slowly, with frequent pauses to listen. Many visitors come for the echoes alone, and leave with stories about what they heard.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Hiking</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-1" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-3" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- Overlay 3 — People of the Springs Basin -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-3" aria-label="People of the Springs Basin photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/natlan/natlan_springs_basin.webp"
+               alt="Steaming hot springs in the People of the Springs basin"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Natlan</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">03</p>
+            <h3 class="mondstadt-overlay__name">People of the Springs Basin</h3>
+            <p class="mondstadt-overlay__desc">Warm, mineral-rich pools sit in a basin ringed by dark volcanic rock, with steam rising into the air. Locals have bathed here for generations, and visitors often stay for hours. As the sun sets, the pools glow and the steam turns gold, which makes it a favorite time to soak.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Relaxation</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-2" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-1" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <!-- Section heading -->
+      <div class="nation-wrap">
+        <p class="section-kicker">Explore the landmarks</p>
+        <h2 id="gallery-title">Natlan in Focus</h2>
+        <p class="mondstadt-gallery__intro">Click a card to open the full photo and description.</p>
+      </div>
+
+      <!-- Scroll track -->
+      <div class="mondstadt-gallery__track" tabindex="0" role="region" aria-label="Natlan landmark gallery — click a card to view details">
+
+        <label class="mondstadt-slide" for="mv-1" tabindex="0" role="button" aria-label="View Tepecac Stadium">
+          <img src="images/natlan/natlan_tepecac_stadium.jpg"
+               alt="The great stadium of Tepecac, where tribal contests are held"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">01</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Tepecac Stadium</h3>
+            <p class="mondstadt-slide__fact">The great arena where tribal contests and festivals fill the stone seats.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="mondstadt-slide" for="mv-2" tabindex="0" role="button" aria-label="View Children of the Echoes Canyon">
+          <img src="images/natlan/natlan_echoes_canyon.webp"
+               alt="The towering walls of Children of the Echoes Canyon"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">02</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Children of the Echoes Canyon</h3>
+            <p class="mondstadt-slide__fact">Red stone walls that call back every voice that passes through.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="mondstadt-slide" for="mv-3" tabindex="0" role="button" aria-label="View People of the Springs Basin">
+          <img src="images/natlan/natlan_springs_basin.webp"
+               alt="Steaming hot springs in the People of the Springs basin"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">03</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">People of the Springs Basin</h3>
+            <p class="mondstadt-slide__fact">Warm mineral pools steaming beside volcanic rock.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+      </div>
+    </section>
+    <!-- / NATLAN IN FOCUS -->
+
+    <!-- SECTION 5 — TRAVEL TIPS -->
     <section class="nation-tips" aria-labelledby="tips-title">
       <div class="nation-wrap">
         <p class="section-kicker reveal">Before you go</p>
@@ -213,7 +347,7 @@
     </section>
     <!-- / TRAVEL TIPS -->
 
-    <!-- SECTION 5 — EXPLORE MORE BANNER -->
+    <!-- SECTION 6 — EXPLORE MORE BANNER -->
     <section class="nation-next" aria-labelledby="next-title">
       <div class="nation-next__bg"
            style="background-image: url('images/snezhnaya/snezhnaya_main.jpg');"
