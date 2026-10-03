@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The Fontaine destination page for Teyvat Travels.">
+  <meta name="description" content="Explore Fontaine, the nation of justice, grand performances, and elegant waterways.">
   <meta name="theme-color" content="#101b1c">
   <title>Fontaine | Teyvat Travels</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,8 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="packages.css">
 </head>
-<body class="placeholder-page" id="top">
+<body class="nation-page" id="top">
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="site-header__inner">
       <input class="menu-toggle" type="checkbox" id="menu-toggle" aria-label="Open navigation menu">
@@ -66,13 +67,285 @@
       </nav>
     </div>
   </header>
-  <main class="placeholder-main">
-    <div class="placeholder-main__content">
-      <p class="section-kicker">The nation of justice</p>
-      <h1>Fontaine</h1>
-      <p>This destination is being prepared for your journey.</p>
-    </div>
-    <!-- Nation tour package details. -->
+  <main class="nation-page" id="main-content" style="--accent: #7ed9e7;">
+
+    <!-- Section 1 — Hero -->
+    <section class="nation-hero" aria-labelledby="hero-title">
+      <div class="nation-hero__bg"
+           style="background-image: url('images/court of fontaine.jpg');"
+           role="img"
+           aria-label="The Palais Mermonia rising above Fontaine's elegant city streets"></div>
+      <div class="nation-hero__veil" aria-hidden="true"></div>
+      <div class="nation-hero__content">
+        <p class="nation-hero__element section-kicker entrance entrance--one">Hydro</p>
+        <p class="nation-hero__kicker entrance entrance--two">THE NATION OF JUSTICE</p>
+        <h1 class="nation-hero__title entrance entrance--three" id="hero-title">Fontaine</h1>
+        <p class="nation-hero__tagline entrance entrance--four">A city of justice and stagecraft beside the sea.</p>
+        <a class="nation-hero__scroll-cue" href="#about" aria-label="Scroll down to learn about Fontaine">
+          <span class="nation-hero__scroll-line" aria-hidden="true"></span>
+          <span>Scroll down</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 2 — Intro and quick facts -->
+    <section class="nation-about" id="about" aria-labelledby="about-title">
+      <div class="nation-wrap">
+        <div class="nation-about__grid">
+          <div class="nation-about__text reveal">
+            <p class="section-kicker">THE CITY OF JUSTICE</p>
+            <h2 id="about-title">A city of law, art and water</h2>
+            <p class="nation-about__body">Fontaine is a city-state built around water, where elegant streets, aquabuses and grand courtrooms share the same shoreline. Its people take pride in order, fairness and a good performance.</p>
+            <p class="nation-about__body">From the courts above the city to the stage below, every corner of Fontaine is designed to be seen, judged and remembered.</p>
+          </div>
+
+          <aside class="nation-about__facts reveal">
+            <div class="nation-facts-card">
+              <h3 class="nation-facts-card__heading">Quick Facts</h3>
+              <dl class="nation-facts-card__list">
+                <div class="nation-facts-card__row">
+                  <dt>Element</dt>
+                  <dd>Hydro</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Archon</dt>
+                  <dd>Focalors, Hydro Archon</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Region type</dt>
+                  <dd>Hydro city-state</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Best time to visit</dt>
+                  <dd>Year-round, evenings for performances</dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 — Key locations -->
+    <section class="nation-locations" aria-labelledby="locations-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Points of interest</p>
+        <h2 class="nation-locations__heading reveal" id="locations-title">Key Locations</h2>
+
+        <div class="nation-locations__grid">
+          <article class="nation-loc-card reveal">
+            <img src="images/court of fontaine.jpg"
+                 alt="The Palais Mermonia overlooking the rooftops and waterways of Fontaine"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Court of Fontaine</h3>
+              <p class="nation-loc-card__desc">The Palais Mermonia stands above the city as the seat of Fontaine's highest authority, surrounded by elegant streets and waterways.</p>
+              <span class="mondstadt-tag">Best for: Grand architecture</span>
+              <span class="mondstadt-tag">Best time: Midday</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Opera Epiclese.jpg"
+                 alt="The monumental Opera Epiclese, Fontaine's grand house of performance and judgment"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Opera Epiclese</h3>
+              <p class="nation-loc-card__desc">A grand opera house in Erinnyes and a symbol of trials and judgment, where comedy and tragedy share one stage.</p>
+              <span class="mondstadt-tag">Best for: Evening shows</span>
+              <span class="mondstadt-tag">Best time: Evening</span>
+            </div>
+          </article>
+
+          <article class="nation-loc-card reveal">
+            <img src="images/Lucine Fountain.webp"
+                 alt="The tiered Lucine Fountain in the plaza before the Opera Epiclese"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Lucine Fountain</h3>
+              <p class="nation-loc-card__desc">A tiered fountain of pale stone and gold in the plaza before the opera house, where Fontainians gather beside the water.</p>
+              <span class="mondstadt-tag">Best for: Photos and relaxing</span>
+              <span class="mondstadt-tag">Best time: Late afternoon</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 — CSS-only landmark carousel and photo viewer -->
+    <section class="nation-feature mondstadt-gallery" aria-labelledby="gallery-title">
+      <input class="mondstadt-viewer-radio" type="radio" name="fontaine-viewer" id="mv-closed" checked>
+      <input class="mondstadt-viewer-radio" type="radio" name="fontaine-viewer" id="mv-1">
+      <input class="mondstadt-viewer-radio" type="radio" name="fontaine-viewer" id="mv-2">
+      <input class="mondstadt-viewer-radio" type="radio" name="fontaine-viewer" id="mv-3">
+
+      <!-- Each overlay is revealed by its matching radio input. -->
+      <div class="mondstadt-overlay" id="mondstadt-overlay-1" aria-label="Court of Fontaine photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/court of fontaine.jpg"
+               alt="The Palais Mermonia rising at the highest point of Fontaine"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Fontaine</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">01</p>
+            <h3 class="mondstadt-overlay__name">Court of Fontaine</h3>
+            <p class="mondstadt-overlay__desc"><q>This city alone stands above all waters.</q> Towering up at the highest point of the city, the Palais Mermonia represents the highest authority in Fontaine. Under its gaze, the people lead orderly lives that are as regular and predictable as the aquabus. Law serves to maintain a stable order, which is in turn the cornerstone that equity and justice are built upon.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Grand architecture</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-3" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-2" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="mondstadt-overlay" id="mondstadt-overlay-2" aria-label="Opera Epiclese photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/Opera Epiclese.jpg"
+               alt="The Opera Epiclese, a grand theater in Erinnyes"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Fontaine</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">02</p>
+            <h3 class="mondstadt-overlay__name">Opera Epiclese</h3>
+            <p class="mondstadt-overlay__desc">A large opera house situated in Erinnyes that also serves as the symbol of trials and judgment. The true and the fantastical, the comedic and tragic find a stage here equally. Perhaps it truly is as an ancient Fontainian playwright once said: <q>All the world's a stage, and all of us merely players.</q></p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Evening shows</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-1" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-3" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="mondstadt-overlay" id="mondstadt-overlay-3" aria-label="Lucine Fountain photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/Lucine Fountain.webp"
+               alt="Water rising in bright tiers from the Lucine Fountain outside the opera house"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Fontaine</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">03</p>
+            <h3 class="mondstadt-overlay__name">Lucine Fountain</h3>
+            <p class="mondstadt-overlay__desc">At the heart of the grand plaza before the opera house, the Lucine Fountain rises in tiers of pale stone and gold, sending bright jets of water into the pools below. Fontainians meet here between hearings and performances, and travelers come for the view of the opera house rising behind the spray. Few places show the city's devotion to water so completely.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Photos and relaxing</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-2" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-1" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="nation-wrap">
+        <p class="section-kicker">Explore the landmarks</p>
+        <h2 id="gallery-title">Fontaine in Focus</h2>
+        <p class="mondstadt-gallery__intro">Click a card to open the full photo and description.</p>
+      </div>
+
+      <div class="mondstadt-gallery__track" tabindex="0" role="region" aria-label="Fontaine landmark gallery — click a card to view details">
+        <label class="mondstadt-slide" for="mv-1" tabindex="0" role="button" aria-label="View Court of Fontaine">
+          <img src="images/court of fontaine.jpg"
+               alt="The Palais Mermonia towering above the highest point of Fontaine"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">01</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Court of Fontaine</h3>
+            <p class="mondstadt-slide__fact">Towering at the highest point of the city, the Palais Mermonia is the seat of Fontaine's highest authority.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="mondstadt-slide" for="mv-2" tabindex="0" role="button" aria-label="View Opera Epiclese">
+          <img src="images/Opera Epiclese.jpg"
+               alt="The Opera Epiclese, where theater and trials share the same grand stage"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">02</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Opera Epiclese</h3>
+            <p class="mondstadt-slide__fact">A grand opera house in Erinnyes and the symbol of trials and judgment, where comedy and tragedy share one stage.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="mondstadt-slide" for="mv-3" tabindex="0" role="button" aria-label="View Lucine Fountain">
+          <img src="images/Lucine Fountain.webp"
+               alt="The tiered Lucine Fountain in the plaza before Fontaine's opera house"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">03</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Lucine Fountain</h3>
+            <p class="mondstadt-slide__fact">A tiered fountain of pale stone and gold in the plaza before the opera house, where Fontainians gather beside the water.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Section 5 — Travel tips -->
+    <section class="nation-tips" aria-labelledby="tips-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Before you go</p>
+        <h2 class="nation-tips__heading reveal" id="tips-title">Travel Tips</h2>
+
+        <div class="nation-tips__grid">
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-stay"></use></svg></span>
+            <h3 class="nation-tip-card__title">Where to stay</h3>
+            <p class="nation-tip-card__text">Stay near the central plaza so the courts, the opera house and the fountain are within walking distance.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-food"></use></svg></span>
+            <h3 class="nation-tip-card__title">What to see and do</h3>
+            <p class="nation-tip-card__text">Book an evening performance, then visit the fountain at dusk when the plaza is at its liveliest.</p>
+          </div>
+
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-travel"></use></svg></span>
+            <h3 class="nation-tip-card__title">Getting around</h3>
+            <p class="nation-tip-card__text">The city's aquabuses connect the main districts, and the central streets are easy to walk.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6 — Next destination -->
+    <section class="nation-next" aria-labelledby="next-title">
+      <div class="nation-next__bg"
+           style="background-image: url('assets/img/natlan.webp');"
+           role="img"
+           aria-label="Natlan's dramatic landscape beneath the open sky"></div>
+      <div class="nation-next__veil" aria-hidden="true"></div>
+      <div class="nation-next__content">
+        <p class="nation-next__label">Next destination</p>
+        <h2 class="nation-next__name" id="next-title">Natlan</h2>
+        <a class="nation-next__link" href="natlan.html">
+          Explore Natlan <span aria-hidden="true">&#8594;</span>
+        </a>
+        <a class="nation-next__back" href="index.html#nations">&#8592; Back to all nations</a>
+      </div>
+    </section>
+
+    <!-- Existing Fontaine tour package, unchanged. -->
     <section class="pk-section" id="fontaine-package" aria-labelledby="fontaine-package-title">
       <div class="pk-inner">
         <header class="pk-heading">
