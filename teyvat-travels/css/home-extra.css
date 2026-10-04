@@ -128,32 +128,13 @@
 }
 
 .hx-company-mark {
-  display: grid;
-  width: min(100%, 250px);
-  aspect-ratio: 1;
-  place-items: center;
+  width: min(100%, 340px);
   justify-self: center;
-  align-content: center;
-  border: 1px solid rgba(214, 181, 116, 0.55);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(214, 181, 116, 0.1), rgba(26, 40, 39, 0.25) 68%);
-  box-shadow: 0 0 0 10px rgba(214, 181, 116, 0.035), inset 0 0 32px rgba(214, 181, 116, 0.06);
 }
 
-.hx-company-mark__letters {
-  color: var(--hx-gold);
-  font-family: var(--home-font-display);
-  font-size: 58px;
-  font-weight: 600;
-  line-height: 1;
-}
-
-.hx-company-mark__caption {
-  margin-top: 12px;
-  color: var(--hx-copy);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.hx-company-mark__logo {
+  width: 100%;
+  height: auto;
 }
 
 /* Mission and vision panels. */
@@ -239,11 +220,9 @@
 }
 
 .hx-director-portrait {
-  display: grid;
+  overflow: hidden;
   width: min(100%, 270px);
   aspect-ratio: 1;
-  place-items: center;
-  align-content: center;
   justify-self: center;
   border: 1px solid rgba(214, 181, 116, 0.58);
   border-radius: 50%;
@@ -251,22 +230,18 @@
   box-shadow: inset 0 0 36px rgba(214, 181, 116, 0.08);
 }
 
-.hx-director-portrait__letters {
-  color: var(--hx-gold);
-  font-family: var(--home-font-display);
-  font-size: 62px;
-  font-weight: 600;
-}
-
-.hx-director-portrait__caption {
-  color: var(--hx-muted);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.hx-director-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hx-director-copy .hx-section-title {
   margin-bottom: 6px;
+}
+
+.hx-director-copy .hx-card-title {
+  margin-bottom: 4px;
 }
 
 .hx-director-role {
@@ -475,11 +450,7 @@
   }
 
   .hx-company-mark {
-    width: 190px;
-  }
-
-  .hx-company-mark__letters {
-    font-size: 48px;
+    width: min(100%, 280px);
   }
 
   .hx-purpose-grid,

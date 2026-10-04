@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title">
+  <title id="title">Skill Issue Inc.</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&amp;display=swap');
+  </style>
+  <defs>
+    <clipPath id="globe-clip">
+      <circle cx="200" cy="205" r="78"/>
+    </clipPath>
+    <path id="top-arc" d="M76 183c13-150 235-150 248 0"/>
+    <path id="bottom-arc" d="M78 224c14 148 224 148 238 0"/>
+  </defs>
+  <circle cx="200" cy="205" r="133" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="2"/>
+  <g clip-path="url(#globe-clip)" fill="#fff">
+    <circle cx="200" cy="205" r="78" fill="none" stroke="#fff" stroke-width="2"/>
+    <path d="m129 164 12-13 17 2 8 10 15 2 4 12-12 10-4 17-12 5-8-14-14-3-10-14z"/>
+    <path d="m170 211 13 3 9 13-3 13 9 12-5 18-10 14-7-14-9-16-2-16-8-11z"/>
+    <path d="m204 157 11-9 15 4 8 9 17 1 11 12-5 11-15 3-5 10-16-3-4-12-14-4-6-10z"/>
+    <path d="m222 198 17-8 17 5 10 13-5 15-12 6-8 18-13 2-7-16-14-7 4-14z"/>
+    <path d="M122 205h156M200 127c-24 22-35 49-35 78s11 56 35 78m0-156c24 22 35 49 35 78s-11 56-35 78" fill="none" stroke="#fff" stroke-opacity=".42" stroke-width="1.5"/>
+  </g>
+  <path d="M111 257c41-51 96-88 163-120" fill="none" stroke="#fff" stroke-width="3"/>
+  <path d="m255 135 77-37-31 33 13 7-8 8-16-6-19 24-2-14 15-20z" fill="#fff"/>
+  <text fill="#fff" font-family="Cinzel, Georgia, serif" font-size="27" font-weight="700" letter-spacing="2">
+    <textPath href="#top-arc" startOffset="50%" text-anchor="middle">SKILL</textPath>
+  </text>
+  <text fill="#fff" font-family="Cinzel, Georgia, serif" font-size="26" font-weight="700" letter-spacing="2">
+    <textPath href="#bottom-arc" startOffset="50%" text-anchor="middle">ISSUE</textPath>
+  </text>
+</svg>
