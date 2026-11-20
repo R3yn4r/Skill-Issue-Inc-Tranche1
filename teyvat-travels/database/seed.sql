@@ -121,4 +121,17 @@ INSERT INTO faqs (question, answer, sort_order, is_published) VALUES ('How can I
 -- ---------------- director_profile ----------------
 INSERT INTO director_profile (id, name, title, bio, photo_path, photo_alt) VALUES (1, 'Charles Paule', 'Managing Director', 'Charles Paule leads Skill Issue Inc. with a commitment to making every journey through Teyvat clear, welcoming, and memorable. Charles brings together the researchers, writers, designers, and developers who create trustworthy guides for travelers across all seven nations. Charles believes thoughtful planning should make room for discovery, helping every Traveller explore with confidence.', 'assets/img/director.jpg', 'Charles Paule, Managing Director');
 
+-- ---------------- single Director admin account ----------------
+INSERT INTO users (name, email, password_hash, role)
+VALUES (
+  'Charles Paule',
+  'johnreylunar02@gmail.com',
+  '$2y$10$ip/dXy6GQyBBrJ2p46oo3e6pXy4UcM2yE6VUs1r519yRudgrQqsaS',
+  'admin'
+)
+ON DUPLICATE KEY UPDATE
+  name = VALUES(name),
+  password_hash = VALUES(password_hash),
+  role = 'admin';
+
 -- locations and tips are seeded in a later phase (nation pages).

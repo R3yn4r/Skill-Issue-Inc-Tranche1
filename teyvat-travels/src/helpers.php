@@ -50,3 +50,38 @@ function consume_flash(): ?array
     unset($_SESSION['flash']);
     return is_array($flash) ? $flash : null;
 }
+
+function is_admin_logged_in(): bool
+{
+    return isset($_SESSION['admin_id'], $_SESSION['admin_role'])
+        && $_SESSION['admin_role'] === 'admin';
+}
+
+function require_admin(): void
+{
+    start_secure_session();
+    if (!is_admin_logged_in()) {
+        header('Location: login.php');
+        exit;
+    }
+}
+
+function login_attempt_allowed(): bool
+{
+    $now = time();
+    $windowStart = (int) ($_SESSION['login_attempt_window_start'] ?? 0);
+    $attempts = (int) ($_SESSION['login_attempts'] ?? 0);
+
+    if ($windowStart === 0 || $now - $windowStart >= 600) {
+        $_SESSION['login_attempt_window_start'] = $now;
+        $_SESSION['login_attempts'] = 0;
+        return true;
+    }
+
+    return $attempts < 5;
+}
+
+function record_login_attempt(): void
+{
+    $_SESSION['login_attempts'] = (int) ($_SESSION['login_attempts'] ?? 0) + 1;
+}
