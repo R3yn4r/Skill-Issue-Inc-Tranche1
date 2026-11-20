@@ -119,6 +119,32 @@
   }
 }
 
+/* Homepage sections share a consistent rhythm and alternating teal surfaces. */
+.home-page .hx-main > .hx-section {
+  padding-block: 5rem;
+}
+
+.home-page .hx-packages,
+.home-page .hx-offerings,
+.home-page .hx-purpose {
+  background-color: #13211f;
+}
+
+.home-page .hx-who,
+.home-page .hx-faq {
+  background-color: #101c1b;
+}
+
+.home-page .hx-contact {
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 65% 50%,
+      color-mix(in srgb, var(--accent) 10%, transparent) 0%,
+      transparent 70%
+    ),
+    #13211f;
+}
+
 /* Package cards receive the strongest visual emphasis below the hero. */
 .home-page .hx-packages {
   border-top: 1px solid var(--hx-border);
