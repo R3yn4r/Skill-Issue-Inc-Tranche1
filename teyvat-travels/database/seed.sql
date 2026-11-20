@@ -134,4 +134,50 @@ ON DUPLICATE KEY UPDATE
   password_hash = VALUES(password_hash),
   role = 'admin';
 
--- locations and tips are seeded in a later phase (nation pages).
+-- ---------------- locations ----------------
+INSERT INTO locations (nation_id, name, image_path, image_alt, description, tag, sort_order) VALUES
+ (1, 'Cider Lake', 'images/mondstadt/cider lake.jpg', 'Crystal-clear Cider Lake encircling Mondstadt', 'A natural freshwater lake around Mondstadt whose clear waters are the source of the nation''s famous ciders and wines.', 'Best for: Scenery', 1),
+ (1, 'Windrise', 'images/mondstadt/windrise.webp', 'A huge oak tree at Windrise', 'A windswept hill crowned by a great oak tree associated with Vennessa and the Four Winds.', 'Best for: Relaxing', 2),
+ (1, 'Grand Cathedral of Mondstadt', 'images/mondstadt/Grand Cathedral of Mondstadt (1).webp', 'The Grand Cathedral of Mondstadt', 'The city''s landmark Church of Favonius, also known as Favonius Cathedral.', 'Best for: Architecture', 3),
+ (2, 'Liyue Harbor', 'images/liyue/Harbor.png', 'Liyue Harbor beneath stone cliffs', 'The bustling merchant harbor at the heart of Liyue, famous for trade, lanterns, and the Rite of Descension.', 'Best for: Shopping and culture', 1),
+ (2, 'Mt. Aocang', 'images/liyue/Mt. Aocang.png', 'Mt. Aocang rising above the clouds', 'A mist-shrouded mountain domain associated with the adeptus Cloud Retainer.', 'Best for: Mountain scenery', 2),
+ (2, 'Wangshu Inn', 'images/liyue/Wangshu Inn.png', 'Wangshu Inn overlooking Dihua Marsh', 'A distinctive inn built around a golden-leaved tree above Dihua Marsh.', 'Best for: Views', 3),
+ (3, 'Narukami Island Grand Shrine', 'images/Inazuma/Grand Narukami Shrine.jpg', 'Grand Narukami Shrine', 'A sacred shrine on Mt. Yougou known for cherry blossoms and spiritual traditions.', 'Best for: Shrines', 1),
+ (3, 'Ritou Trading Port', 'images/Inazuma/Ritou.jpg', 'Ritou Trading Port', 'An island gateway where merchants, ferries, and travelers begin their journey in Inazuma.', 'Best for: Culture', 2),
+ (3, 'Tenshukaku', 'images/Inazuma/Tenshukaku.png', 'Tenshukaku overlooking Inazuma City', 'The imposing seat of authority in Inazuma City.', 'Best for: History', 3),
+ (4, 'Sumeru City Academy', 'images/sumeru/Sumeru Academy.png', 'Sumeru City Academy', 'The renowned center of scholarship rising among Sumeru''s forests.', 'Best for: Learning', 1),
+ (4, 'Gandharva Ville', 'images/sumeru/gandharva%20ville.jpg', 'Gandharva Ville', 'A peaceful rainforest settlement connected by elevated walkways and treetop paths.', 'Best for: Rainforest', 2),
+ (4, 'Caravan Ribat', 'images/sumeru/caravan%20ribat.jpg', 'Caravan Ribat', 'A frontier stop linking Sumeru''s rainforest with the desert beyond.', 'Best for: Adventure', 3),
+ (5, 'Court of Fontaine', 'images/fontaine/court of fontaine.jpg', 'The Court of Fontaine', 'An elegant city of courts, waterways, performances, and clockwork innovation.', 'Best for: Architecture', 1),
+ (5, 'Opera Epiclese', 'images/fontaine/Opera Epiclese.jpg', 'Opera Epiclese', 'Fontaine''s grand opera house and a stage for major ceremonies and performances.', 'Best for: Performances', 2),
+ (5, 'Lucine Fountain', 'images/fontaine/Lucine Fountain.webp', 'Lucine Fountain', 'A luminous central fountain framing the capital''s elegant public spaces.', 'Best for: Evening views', 3),
+ (6, 'Tepecac Stadium', 'images/natlan/natlan_tepecac_stadium.jpg', 'Tepecac Stadium', 'A prominent arena for contests and community celebrations in Natlan.', 'Best for: Festivals', 1),
+ (6, 'Children of the Echoes Canyon', 'images/natlan/natlan_echoes_canyon.webp', 'Echoes Canyon', 'A dramatic canyon shaped by cliffs, echoing terrain, and tribal history.', 'Best for: Hiking', 2),
+ (6, 'People of the Springs Basin', 'images/natlan/natlan_springs_basin.webp', 'People of the Springs Basin', 'A restorative valley settlement known for warm pools and mountain views.', 'Best for: Hot springs', 3),
+ (7, 'Zapolyarny Palace Outskirts', 'images/snezhnaya/snezhnaya_palace.jpg', 'Zapolyarny Palace Outskirts', 'The snow-covered approaches to Snezhnaya''s most imposing royal complex.', 'Best for: Architecture', 1),
+ (7, 'Frost-bound Valleys', 'images/snezhnaya/snezhnaya_valleys.jpg', 'Frost-bound Valleys', 'Wide northern valleys filled with ice, aurora light, and winter forests.', 'Best for: Scenery', 2),
+ (7, 'Glacial Outposts', 'images/snezhnaya/snezhnaya_outposts.jpg', 'Glacial Outposts', 'Remote frontier settlements adapted to snow and severe cold.', 'Best for: Winter travel', 3);
+
+-- ---------------- tips ----------------
+INSERT INTO tips (nation_id, title, body, icon, sort_order) VALUES
+ (1, 'Where to stay', 'Stay near Mondstadt''s main square for easy access to shops, dining, and nearby city landmarks.', 'tip-stay', 1),
+ (1, 'What to eat and drink', 'Try local cider, Dandelion Wine, and slow-smoked dishes associated with Springvale.', 'tip-food', 2),
+ (1, 'Getting around', 'Use open paths and the gentle wind routes to reach Cider Lake, Windrise, and the city center.', 'tip-travel', 3),
+ (2, 'Where to stay', 'Base your visit in Liyue Harbor for transport, markets, and the widest range of dining options.', 'tip-stay', 1),
+ (2, 'What to eat', 'Sample regional staples inspired by the harbor markets, mountain herbs, and fresh seafood.', 'tip-food', 2),
+ (2, 'Getting around', 'Start at the harbor, then plan mountain routes separately because paths can be steep and time-consuming.', 'tip-travel', 3),
+ (3, 'Where to stay', 'Stay near Inazuma City or Ritou for convenient access to ferries and shrine routes.', 'tip-stay', 1),
+ (3, 'What to eat', 'Look for local seafood, rice dishes, and traditional sweets in island settlements.', 'tip-food', 2),
+ (3, 'Getting around', 'Allow extra time for island travel and changing weather during storm season.', 'tip-travel', 3),
+ (4, 'Where to stay', 'Stay near Sumeru City for fast access to the Academy and rainforest routes.', 'tip-stay', 1),
+ (4, 'What to see', 'Plan both a rainforest walk and a desert excursion for a complete view of Sumeru.', 'tip-travel', 2),
+ (4, 'Getting around', 'Carry water and begin rainforest walks early while temperatures are cooler.', 'tip-travel', 3),
+ (5, 'Where to stay', 'Choose lodging near the Court of Fontaine for central access to courts and waterfront transit.', 'tip-stay', 1),
+ (5, 'What to see', 'Reserve time for a performance and explore the public fountains around the city.', 'tip-travel', 2),
+ (5, 'Getting around', 'Use the aquabus network for relaxed travel along Fontaine''s waterways.', 'tip-travel', 3),
+ (6, 'Where to stay', 'Stay near the People of the Springs basin for easy access to hot pools and trails.', 'tip-stay', 1),
+ (6, 'What to eat', 'Try regional meals centered around hearty mountain ingredients and local festive flavors.', 'tip-food', 2),
+ (6, 'Getting around', 'Allow time for volcanic terrain and schedule outdoor routes during the dry season.', 'tip-travel', 3),
+ (7, 'Where to stay', 'Use an alpine chalet near the glacial outposts for warmth and aurora viewing.', 'tip-stay', 1),
+ (7, 'What to pack', 'Bring insulated layers, waterproof boots, gloves, and clothing suitable for strong winds.', 'tip-travel', 2),
+ (7, 'Getting around', 'Plan shorter outdoor segments and check conditions before crossing snowbound routes.', 'tip-travel', 3);

@@ -18,6 +18,29 @@ $faqStatement = db()->prepare(
 );
 $faqStatement->execute();
 $faqs = $faqStatement->fetchAll();
+
+$packageStatement = db()->prepare(
+    'SELECT p.id, p.title, p.description, p.price_php, p.days, p.nights,
+            p.badge, p.is_featured, p.sort_order,
+            n.slug, n.name, n.accent_color, n.card_alt, n.image_path
+       FROM packages p
+       JOIN nations n ON n.id = p.nation_id
+      WHERE p.is_active = 1
+      ORDER BY p.sort_order ASC, p.id ASC'
+);
+$packageStatement->execute();
+$packages = $packageStatement->fetchAll();
+
+$stopStatement = db()->prepare(
+    'SELECT name FROM package_stops
+      WHERE package_id = :package_id
+      ORDER BY sort_order ASC, id ASC'
+);
+foreach ($packages as &$package) {
+    $stopStatement->execute(['package_id' => $package['id']]);
+    $package['stops'] = $stopStatement->fetchAll();
+}
+unset($package);
 ?>
 <!doctype html>
 <html lang="en">
@@ -181,181 +204,37 @@ $faqs = $faqStatement->fetchAll();
           <p class="hx-section-intro">Explore our guide collections and build a route that fits the way you travel.</p>
         </header>
         <div class="pk-grid" aria-label="Seven nation tour packages">
-          <article class="pk-card pk-card--featured" style="--accent: #82d7bd;">
-            <div class="pk-card__visual">
-              <a class="pk-card__image-link" href="mondstadt.html"><img class="pk-card__image" src="assets/img/mondstadt.webp" alt="The green highlands and clear blue skies of Mondstadt" loading="lazy" width="1600" height="900"></a>
-              <span class="pk-card__shade" aria-hidden="true"></span>
-              <span class="pk-card__index" aria-hidden="true">01</span>
-              <span class="pk-card__badge">Most popular</span>
-              <div class="pk-card__overlay">
-                <a class="pk-region" href="mondstadt.html">Mondstadt</a>
-                <h3 class="pk-title">The City of Freedom Expedition</h3>
-                <p class="pk-card__price">From ₱12,500 per person</p>
+          <?php foreach ($packages as $index => $package): ?>
+            <article class="pk-card <?= $package['is_featured'] ? 'pk-card--featured' : '' ?>" style="--accent: <?= e($package['accent_color']) ?>;">
+              <div class="pk-card__visual">
+                <a class="pk-card__image-link" href="nation.php?slug=<?= rawurlencode($package['slug']) ?>"><img class="pk-card__image" src="<?= e($package['image_path']) ?>" alt="<?= e($package['card_alt']) ?>" loading="lazy" width="1600" height="900"></a>
+                <span class="pk-card__shade" aria-hidden="true"></span>
+                <span class="pk-card__index" aria-hidden="true"><?= sprintf('%02d', $index + 1) ?></span>
+                <?php if ($package['badge'] !== null && $package['badge'] !== ''): ?>
+                  <span class="pk-card__badge"><?= e($package['badge']) ?></span>
+                <?php endif; ?>
+                <div class="pk-card__overlay">
+                  <a class="pk-region" href="nation.php?slug=<?= rawurlencode($package['slug']) ?>"><?= e($package['name']) ?></a>
+                  <h3 class="pk-title"><?= e($package['title']) ?></h3>
+                  <p class="pk-card__price">From ₱<?= number_format((int) $package['price_php']) ?> per person</p>
+                </div>
               </div>
-            </div>
-            <div class="pk-card__body">
-              <p class="pk-description">Experience the romantic charm of windmills, rolling green hills, and historic stone architecture. Perfect for travelers looking for a relaxing nature getaway.</p>
-              <ul class="pk-stops" aria-label="Featured stops">
-                <li>Cider Lake</li><li>Windrise</li><li>the grand Cathedral of Mondstadt</li>
-              </ul>
-              <div class="pk-meta">
-                <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">3 Days / 2 Nights</p></div>
-                <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱12,500 per person</p></div>
+              <div class="pk-card__body">
+                <p class="pk-description"><?= e($package['description']) ?></p>
+                <ul class="pk-stops" aria-label="Featured stops">
+                  <?php foreach ($package['stops'] as $stop): ?>
+                    <li><?= e($stop['name']) ?></li>
+                  <?php endforeach; ?>
+                </ul>
+                <div class="pk-meta">
+                  <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value"><?= (int) $package['days'] ?> Days / <?= (int) $package['nights'] ?> Nights</p></div>
+                  <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱<?= number_format((int) $package['price_php']) ?> per person</p></div>
+                </div>
+                <a class="pk-link" href="#contact">View details <span aria-hidden="true">&#8594;</span></a>
+                <a class="pk-explore-link" href="nation.php?slug=<?= rawurlencode($package['slug']) ?>">Explore <?= e($package['name']) ?> <span aria-hidden="true">&#8594;</span></a>
               </div>
-              <a class="pk-link" href="#contact">View details <span aria-hidden="true">&#8594;</span></a>
-              <a class="pk-explore-link" href="mondstadt.html">Explore Mondstadt <span aria-hidden="true">&#8594;</span></a>
-            </div>
-          </article>
-          <article class="pk-card" style="--accent: #e7bd69;">
-            <div class="pk-card__visual">
-              <a class="pk-card__image-link" href="liyue.html"><img class="pk-card__image" src="assets/img/liyue.jpeg" alt="Warm sunset over the rocky peaks and valleys of Liyue" loading="lazy" width="1600" height="900"></a>
-              <span class="pk-card__shade" aria-hidden="true"></span>
-              <span class="pk-card__index" aria-hidden="true">02</span>
-              <span class="pk-card__badge">Harbor &amp; heritage</span>
-              <div class="pk-card__overlay">
-                <a class="pk-region" href="liyue.html">Liyue</a>
-                <h3 class="pk-title">The Harbor of Stone and Commerce</h3>
-                <p class="pk-card__price">From ₱15,000 per person</p>
-              </div>
-            </div>
-            <div class="pk-card__body">
-              <p class="pk-description">A bustling port city tour blending breathtaking mountain ranges, ancient folklore, and world-class culinary adventures.</p>
-              <ul class="pk-stops" aria-label="Featured stops">
-                <li>Liyue Harbor</li><li>Mt. Aocang</li><li>Wangshu Inn</li>
-              </ul>
-              <div class="pk-meta">
-                <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">4 Days / 3 Nights</p></div>
-                <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱15,000 per person</p></div>
-              </div>
-              <a class="pk-link" href="#contact">View details <span aria-hidden="true">&#8594;</span></a>
-              <a class="pk-explore-link" href="liyue.html">Explore Liyue <span aria-hidden="true">&#8594;</span></a>
-            </div>
-          </article>
-          <article class="pk-card" style="--accent: #c59bed;">
-            <div class="pk-card__visual">
-              <a class="pk-card__image-link" href="inazuma.html"><img class="pk-card__image" src="assets/img/inazuma.webp" alt="Inazuma's island architecture framed by glowing cherry blossoms" loading="lazy" width="1600" height="900"></a>
-              <span class="pk-card__shade" aria-hidden="true"></span>
-              <span class="pk-card__index" aria-hidden="true">03</span>
-              <span class="pk-card__badge">Island escape</span>
-              <div class="pk-card__overlay">
-                <a class="pk-region" href="inazuma.html">Inazuma</a>
-                <h3 class="pk-title">The Realm of Eternal Thunder</h3>
-                <p class="pk-card__price">From ₱18,000 per person</p>
-              </div>
-            </div>
-            <div class="pk-card__body">
-              <p class="pk-description">Discover a culturally rich archipelago featuring striking purple foliage, traditional shrines, and serene coastal views.</p>
-              <ul class="pk-stops" aria-label="Featured stops">
-                <li>Narukami Island Grand Shrine</li><li>Ritou Trading Port</li><li>Tenshukaku</li>
-              </ul>
-              <div class="pk-meta">
-                <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">4 Days / 3 Nights</p></div>
-                <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱18,000 per person</p></div>
-              </div>
-              <a class="pk-link" href="#contact">View details <span aria-hidden="true">&#8594;</span></a>
-              <a class="pk-explore-link" href="inazuma.html">Explore Inazuma <span aria-hidden="true">&#8594;</span></a>
-            </div>
-          </article>
-          <article class="pk-card" style="--accent: #a6d46c;">
-            <div class="pk-card__visual">
-              <a class="pk-card__image-link" href="sumeru.html"><img class="pk-card__image" src="assets/img/sumeru.webp" alt="A great tree rises above Sumeru's green hills and waterfalls" loading="lazy" width="1600" height="900"></a>
-              <span class="pk-card__shade" aria-hidden="true"></span>
-              <span class="pk-card__index" aria-hidden="true">04</span>
-              <span class="pk-card__badge">Rainforest retreat</span>
-              <div class="pk-card__overlay">
-                <a class="pk-region" href="sumeru.html">Sumeru</a>
-                <h3 class="pk-title">The City of Wisdom &amp; Rainforest Retreat</h3>
-                <p class="pk-card__price">From ₱14,000 per person</p>
-              </div>
-            </div>
-            <div class="pk-card__body">
-              <p class="pk-description">A dual-environment journey taking you from the majestic halls of learning to the dense, mystical canopies of the rainforest.</p>
-              <ul class="pk-stops" aria-label="Featured stops">
-                <li>Sumeru City Academy</li><li>Gandharva Ville</li><li>Caravan Ribat</li>
-              </ul>
-              <div class="pk-meta">
-                <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">3 Days / 3 Nights</p></div>
-                <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱14,000 per person</p></div>
-              </div>
-              <a class="pk-link" href="#contact">View details <span aria-hidden="true">&#8594;</span></a>
-              <a class="pk-explore-link" href="sumeru.html">Explore Sumeru <span aria-hidden="true">&#8594;</span></a>
-            </div>
-          </article>
-          <article class="pk-card" style="--accent: #7ed9e7;">
-            <div class="pk-card__visual">
-              <a class="pk-card__image-link" href="fontaine.html"><img class="pk-card__image" src="assets/img/fontaine.webp" alt="The luminous towers and blue waters of Fontaine" loading="lazy" width="1600" height="900"></a>
-              <span class="pk-card__shade" aria-hidden="true"></span>
-              <span class="pk-card__index" aria-hidden="true">05</span>
-              <span class="pk-card__badge">Arts &amp; innovation</span>
-              <div class="pk-card__overlay">
-                <a class="pk-region" href="fontaine.html">Fontaine</a>
-                <h3 class="pk-title">The Capital of Justice, Steam, and Aquanics</h3>
-                <p class="pk-card__price">From ₱20,000 per person</p>
-              </div>
-            </div>
-            <div class="pk-card__body">
-              <p class="pk-description">Step into a picturesque hub of art, fashion, and advanced clockwork engineering surrounded by pristine waters.</p>
-              <ul class="pk-stops" aria-label="Featured stops">
-                <li>Court of Fontaine</li><li>Opera Epiclese</li><li>Lucine Fountain</li>
-              </ul>
-              <div class="pk-meta">
-                <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">5 Days / 4 Nights</p></div>
-                <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱20,000 per person</p></div>
-              </div>
-              <a class="pk-link" href="#contact">View details <span aria-hidden="true">&#8594;</span></a>
-              <a class="pk-explore-link" href="fontaine.html">Explore Fontaine <span aria-hidden="true">&#8594;</span></a>
-            </div>
-          </article>
-          <article class="pk-card" style="--accent: #ff936d;">
-            <div class="pk-card__visual">
-              <a class="pk-card__image-link" href="natlan.html"><img class="pk-card__image" src="assets/img/natlan.webp" alt="Natlan's sunlit volcanic plains and distant mesas" loading="lazy" width="1600" height="900"></a>
-              <span class="pk-card__shade" aria-hidden="true"></span>
-              <span class="pk-card__index" aria-hidden="true">06</span>
-              <span class="pk-card__badge">Volcanic adventure</span>
-              <div class="pk-card__overlay">
-                <a class="pk-region" href="natlan.html">Natlan</a>
-                <h3 class="pk-title">The Land of Ash, Hot Springs, and Valor</h3>
-                <p class="pk-card__price">From ₱16,500 per person</p>
-              </div>
-            </div>
-            <div class="pk-card__body">
-              <p class="pk-description">An energetic adventure featuring dramatic volcanic landscapes, therapeutic thermal springs, and vibrant tribal festivals.</p>
-              <ul class="pk-stops" aria-label="Featured stops">
-                <li>Tepecac Stadium</li><li>Children of the Echoes Canyon</li><li>People of the Springs basin</li>
-              </ul>
-              <div class="pk-meta">
-                <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">4 Days / 3 Nights</p></div>
-                <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱16,500 per person</p></div>
-              </div>
-              <a class="pk-link" href="#contact">View details <span aria-hidden="true">&#8594;</span></a>
-              <a class="pk-explore-link" href="natlan.html">Explore Natlan <span aria-hidden="true">&#8594;</span></a>
-            </div>
-          </article>
-          <article class="pk-card" style="--accent: #a6ddf3;">
-            <div class="pk-card__visual">
-              <a class="pk-card__image-link" href="snezhnaya.html"><img class="pk-card__image" src="assets/img/snezhnaya.webp" alt="A frozen Snezhnaya skyline beneath a deep blue, starry sky" loading="lazy" width="1600" height="900"></a>
-              <span class="pk-card__shade" aria-hidden="true"></span>
-              <span class="pk-card__index" aria-hidden="true">07</span>
-              <span class="pk-card__badge">Winter expedition</span>
-              <div class="pk-card__overlay">
-                <a class="pk-region" href="snezhnaya.html">Snezhnaya</a>
-                <h3 class="pk-title">The Eternal White Tundra</h3>
-                <p class="pk-card__price">From ₱22,000 per person</p>
-              </div>
-            </div>
-            <div class="pk-card__body">
-              <p class="pk-description">A majestic winter expedition exploring frosted architectural marvels, grand palaces, and cozy alpine chalets under the aurora.</p>
-              <ul class="pk-stops" aria-label="Featured stops">
-                <li>Zapolyarny Palace outskirts</li><li>Frost-bound Valleys</li><li>Glacial Outposts</li>
-              </ul>
-              <div class="pk-meta">
-                <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">5 Days / 4 Nights</p></div>
-                <div class="pk-stat"><p class="pk-stat-label">Starting price</p><p class="pk-stat-value">From ₱22,000 per person</p></div>
-              </div>
-              <a class="pk-link" href="#contact">View details <span aria-hidden="true">&#8594;</span></a>
-              <a class="pk-explore-link" href="snezhnaya.html">Explore Snezhnaya <span aria-hidden="true">&#8594;</span></a>
-            </div>
-          </article>
+            </article>
+          <?php endforeach; ?>
         </div>
       </div>
     </section>
