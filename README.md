@@ -2,6 +2,8 @@
 
 Teyvat Travels is a PHP and MySQL fan-guide website for the seven nations of Teyvat, with a protected Director admin area.
 
+For the complete installation guide, see [SETUP.md](SETUP.md).
+
 ## Requirements
 
 - Windows
