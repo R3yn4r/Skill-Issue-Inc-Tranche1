@@ -2,78 +2,51 @@
 
 ## Setup
 
-- [ ] MySQL is running.
-- [ ] `teyvat_travels` exists.
-- [ ] `schema.sql` and `seed.sql` import successfully.
-- [ ] `.env` exists locally and is ignored by Git.
-- [ ] `db-test.php` shows 7 nations, 28 nation facts, 7 packages, 21 package stops, 4 FAQs, and 1 Director profile.
+- [ ] A local HTTP server is running.
+- [ ] `index.html` opens successfully.
+- [ ] IndexedDB database `teyvat_travels` is created.
+- [ ] Seed data appears after first load.
 
 ## Public site
 
-- [ ] Home page loads at `/index.php`.
-- [ ] All seven package cards render.
-- [ ] Package prices use Philippine peso formatting.
-- [ ] `/nation.php?slug=` loads for each of the seven nations.
-- [ ] Centralized `nation.php?slug=` routes render for all nations.
-- [ ] Unknown nation slugs show a 404 response.
-- [ ] Published FAQs render on the home page.
+- [ ] Home page loads at `/index.html`.
+- [ ] All package cards render.
+- [ ] Nation pages open and preserve the existing CSS design.
+- [ ] FAQs render from IndexedDB.
+- [ ] Destinations dropdown opens and nation links work.
 
 ## Inquiry form
 
-- [ ] Empty name is rejected.
+- [ ] Empty fields are rejected.
 - [ ] Invalid email is rejected.
-- [ ] Empty message is rejected.
-- [ ] Valid inquiry saves to `inquiries`.
-- [ ] CSRF-protected submissions succeed only with a valid token.
-- [ ] Honeypot submissions do not create database rows.
-- [ ] Repeated submissions trigger throttling.
-- [ ] A success message appears after a valid submission.
+- [ ] A valid inquiry saves to IndexedDB.
+- [ ] Success feedback appears.
+- [ ] Reloading preserves the inquiry.
 
 ## Director login
 
-- [ ] `/login.php` accepts both Director and client credentials.
-- [ ] Director credentials route to `/admin/index.php`.
-- [ ] Client credentials route to `/account.php`.
-- [ ] `/admin/login.php` and `/account-login.php` redirect to `/login.php`.
-
-- [ ] Unauthorized `/admin/index.php` redirects to login.
-- [ ] Valid Director credentials open the dashboard.
+- [ ] `/login.html` accepts the Director account.
+- [ ] The Director is sent to `/admin.html`.
 - [ ] Invalid credentials show an error.
-- [ ] Login session is regenerated.
-- [ ] Logout ends dashboard access.
-- [ ] Five failed attempts trigger the temporary login limit.
+- [ ] Logout removes the browser session.
 
-## Admin CRUD
+## Admin
 
-- [ ] Nations can be listed, created, edited, and deleted.
-- [ ] Packages can be listed, created, edited, and deleted.
-- [ ] Package stops can be edited with the package.
-- [ ] Locations can be listed, created, edited, and deleted.
-- [ ] Tips can be listed, created, edited, and deleted.
-- [ ] FAQs can be listed, created, edited, and deleted.
-- [ ] Director profile can be edited.
+- [ ] Director name appears on the dashboard.
+- [ ] Inquiry inbox lists saved inquiries.
+- [ ] Mark-read updates an inquiry.
+- [ ] Delete removes an inquiry.
 
-## Inquiry inbox
+## Client accounts
 
-- [ ] Inquiries appear newest/unread first.
-- [ ] Mark-read updates `is_read`.
-- [ ] Delete removes only the selected inquiry.
+- [ ] Client registration creates a local account.
+- [ ] Client login reaches `/account.html`.
+- [ ] Profile name updates.
+- [ ] Logged-in account cannot open admin dashboard.
+- [ ] Logout removes the client session.
 
-## Git and security
+## Browser storage
 
-- [ ] `.env` is not in `git status`.
-- [ ] SQL uses PDO prepared statements.
-- [ ] Public dynamic output is escaped.
-- [ ] No database password is committed.
-- [ ] Database test remains blocked outside development.
-
-## Optional Phase 9 features
-
-- [ ] A traveller can register and log in.
-- [ ] A traveller cannot access `/admin`.
-- [ ] Profile name changes save.
-- [ ] Traveller logout ends account access.
-- [ ] Logged-in users can add and remove package favorites.
-- [ ] Favorites appear on the account page.
-- [ ] A logged-in inquiry stores `user_id`.
-- [ ] `MAIL_NOTIFY_TO` receives or attempts a notification on a new inquiry.
+- [ ] The project works after browser refresh.
+- [ ] Deleting IndexedDB resets the demo data.
+- [ ] No server secrets or passwords are committed.

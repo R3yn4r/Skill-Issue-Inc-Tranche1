@@ -1,90 +1,63 @@
 # Teyvat Travels
 
-Teyvat Travels is a PHP and MySQL fan-guide website for the seven nations of Teyvat, with a protected Director admin area.
+Teyvat Travels is a static HTML/CSS/JavaScript course project for the seven nations of Teyvat.
 
-For the complete installation guide, see [SETUP.md](SETUP.md).
+The project uses browser IndexedDB for demo data, accounts, favorites, inquiries, and admin actions. PHP and MySQL are not used.
 
 ## Requirements
 
-- Windows
-- XAMPP or Laragon
-- PHP 8.2 or newer
-- MySQL 8 or MariaDB
-- Git
+- Windows 10 or Windows 11
+- A modern browser with IndexedDB support
+- Python or another static HTTP server
+- Git, optional
 
-## Local setup
-
-1. Start MySQL and Apache in XAMPP.
-2. Import `teyvat-travels/database/schema.sql`, then `teyvat-travels/database/seed.sql`, in phpMyAdmin.
-3. Create the application database user:
-
-```sql
-CREATE USER 'teyvat_app'@'localhost' IDENTIFIED BY 'replace-with-a-development-password';
-GRANT SELECT, INSERT, UPDATE, DELETE ON teyvat_travels.* TO 'teyvat_app'@'localhost';
-FLUSH PRIVILEGES;
-```
-
-4. Copy the example environment file:
+## Run locally
 
 ```powershell
-Copy-Item teyvat-travels\.env.example teyvat-travels\.env
+cd teyvat-travels/public
+python -m http.server 8000
 ```
 
-5. Set the database values in `teyvat-travels/.env`. Never commit this file.
-6. Start the site from the project root:
+Open:
 
-```powershell
-C:\xampp\php\php.exe -S localhost:8000 -t teyvat-travels/public
-```
+- `http://localhost:8000/index.html`
+- `http://localhost:8000/login.html`
+- `http://localhost:8000/account-register.html`
 
-7. Open:
-   - Home: http://localhost:8000/index.php
-   - Database test: http://localhost:8000/db-test.php
-   - Central login: http://localhost:8000/login.php
+## Project pages
 
-The database test page is development-only and is blocked outside `APP_ENV=development`.
+- `index.html` - public homepage
+- Nation pages - static HTML nation guides
+- `login.html` - centralized client/admin login
+- `account-register.html` - browser traveller registration
+- `account.html` - traveller profile and favorites
+- `admin.html` - browser Director dashboard and inquiry inbox
 
-## Optional client features
+## Storage
 
-The public site also supports client registration, login, profiles, and saved package favorites. Client accounts use the `users.role = 'client'` value and cannot access `/admin`.
+The JavaScript creates IndexedDB database `teyvat_travels`.
 
-Set `MAIL_NOTIFY_TO` in `teyvat-travels/.env` to the Director's notification email. A successful inquiry attempt will send a best-effort local PHP `mail()` notification. Production hosting may require a configured SMTP relay or a mail provider.
+Browser data includes:
 
-## Director account
+- Users
+- Nations
+- Packages
+- FAQs
+- Inquiries
+- Favorites
+- Director profile
 
-The seed script creates one Director account with the configured email. Change the seeded password by generating a bcrypt hash and updating the `users` row:
+Data belongs to the current browser profile and origin. It will not synchronize across browsers or devices.
 
-```php
-echo password_hash('replace-with-a-new-password', PASSWORD_DEFAULT);
-```
+## Local Director login
 
-```sql
-UPDATE users
-SET password_hash = 'paste-the-bcrypt-hash-here'
-WHERE email = 'the-director-email';
-```
+- Email: `johnreylunar02@gmail.com`
+- Password: `admin123`
 
-The user table is not publicly writable and the public site has no registration flow.
+The first login hashes the password locally and stores it in IndexedDB.
 
-## Project structure
+## Security limitation
 
-- `teyvat-travels/public/` - web root and public PHP pages
-- `teyvat-travels/public/admin/` - Director admin pages
-- `teyvat-travels/src/` - PDO, authentication, session, and helper code
-- `teyvat-travels/config/` - environment loading
-- `teyvat-travels/database/` - schema and seed SQL
+Browser-side authentication and admin checks are not secure for production use. Do not store real passwords or sensitive personal data. A real shared system requires a server, server-side authentication, authorization, and a database.
 
-## Security
-
-- Use prepared PDO statements.
-- Keep database credentials in `.env`.
-- Keep `.env` out of Git.
-- Use only the limited `teyvat_app` database account.
-- Public output is escaped with `htmlspecialchars()`.
-- Forms use CSRF tokens.
-- Admin pages verify the server-side `admin` role.
-- In production, disable PHP display errors and use HTTPS.
-
-## Git workflow
-
-Work and commit on `feature/lunar-johnrey` unless the instructor assigns a different branch.
+See [SETUP.md](SETUP.md) for the complete browser setup guide.
