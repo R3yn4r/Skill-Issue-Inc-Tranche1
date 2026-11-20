@@ -38,7 +38,7 @@ C:\xampp\php\php.exe -S localhost:8000 -t teyvat-travels/public
 7. Open:
    - Home: http://localhost:8000/index.php
    - Database test: http://localhost:8000/db-test.php
-   - Director login: http://localhost:8000/admin/login.php
+   - Central login: http://localhost:8000/login.php
 
 The database test page is development-only and is blocked outside `APP_ENV=development`.
 

@@ -96,7 +96,7 @@ function require_client(): void
 {
     start_secure_session();
     if (!is_client_logged_in()) {
-        header('Location: account-login.php');
+        header('Location: login.php');
         exit;
     }
 }

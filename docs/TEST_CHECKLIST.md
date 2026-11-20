@@ -31,6 +31,11 @@
 
 ## Director login
 
+- [ ] `/login.php` accepts both Director and client credentials.
+- [ ] Director credentials route to `/admin/index.php`.
+- [ ] Client credentials route to `/account.php`.
+- [ ] `/admin/login.php` and `/account-login.php` redirect to `/login.php`.
+
 - [ ] Unauthorized `/admin/index.php` redirects to login.
 - [ ] Valid Director credentials open the dashboard.
 - [ ] Invalid credentials show an error.

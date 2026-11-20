@@ -165,7 +165,7 @@ unset($package);
         <?php if (is_client_logged_in()): ?>
           <a class="site-nav__link" href="account.php">My account</a>
         <?php else: ?>
-          <a class="site-nav__link" href="account-login.php">Log in</a>
+          <a class="site-nav__link" href="login.php">Log in</a>
         <?php endif; ?>
 
       </nav>
@@ -245,7 +245,7 @@ unset($package);
                     <button type="submit" class="ct-cta-btn">Toggle favorite</button>
                   </form>
                 <?php else: ?>
-                  <a class="pk-explore-link" href="account-login.php">Log in to save favorites</a>
+                  <a class="pk-explore-link" href="login.php">Log in to save favorites</a>
                 <?php endif; ?>
               </div>
             </article>

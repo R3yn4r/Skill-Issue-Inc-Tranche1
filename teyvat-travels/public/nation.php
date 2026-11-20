@@ -118,7 +118,7 @@ $aboutParagraphs = preg_split('/\R{2,}/', (string) $nation['about_body']) ?: [];
         <?php if (is_client_logged_in()): ?>
           <a class="site-nav__link" href="account.php">My account</a>
         <?php else: ?>
-          <a class="site-nav__link" href="account-login.php">Log in</a>
+          <a class="site-nav__link" href="login.php">Log in</a>
         <?php endif; ?>
       </nav>
     </div>
@@ -222,7 +222,7 @@ $aboutParagraphs = preg_split('/\R{2,}/', (string) $nation['about_body']) ?: [];
                 <button type="submit">Toggle favorite</button>
               </form>
             <?php else: ?>
-              <p><a href="account-login.php">Log in to save this package</a></p>
+              <p><a href="login.php">Log in to save this package</a></p>
             <?php endif; ?>
           </article>
         </div>

@@ -63,5 +63,5 @@ $flash = consume_flash();
 <p><label>Confirm password<br><input name="confirm_password" type="password" minlength="8" required></label></p>
 <button type="submit">Create account</button>
 </form>
-<p><a href="account-login.php">Already have an account? Log in</a></p>
+<p><a href="login.php">Already have an account? Log in</a></p>
 </main></body></html>
