@@ -23,13 +23,6 @@
 - [ ] Success feedback appears.
 - [ ] Reloading preserves the inquiry.
 
-## Director login
-
-- [ ] `/login.html` accepts the Director account.
-- [ ] The Director is sent to `/admin.html`.
-- [ ] Invalid credentials show an error.
-- [ ] Logout removes the browser session.
-
 ## Admin
 
 - [ ] Director name appears on the dashboard.
@@ -37,13 +30,6 @@
 - [ ] Mark-read updates an inquiry.
 - [ ] Delete removes an inquiry.
 
-## Client accounts
-
-- [ ] Client registration creates a local account.
-- [ ] Client login reaches `/account.html`.
-- [ ] Profile name updates.
-- [ ] Logged-in account cannot open admin dashboard.
-- [ ] Logout removes the client session.
 
 ## Browser storage
 

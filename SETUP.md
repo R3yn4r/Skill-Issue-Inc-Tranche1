@@ -22,8 +22,7 @@ python -m http.server 8000
 Open:
 
 - `http://localhost:8000/index.html`
-- `http://localhost:8000/login.html`
-- `http://localhost:8000/account-register.html`
+- `http://localhost:8000/admin.html`
 
 You may also open `index.html` through VS Code Live Server.
 
@@ -43,24 +42,6 @@ Seeded browser data includes:
 
 Browser data belongs to the current browser profile and origin. It does not synchronize to another computer or browser.
 
-## Director login
-
-Open `login.html` and use:
-
-- Email: `johnreylunar02@gmail.com`
-- Password: `admin123`
-
-The first successful login creates the browser-side password hash. Change this local default in source or after first login before showing the demo.
-
-## Traveller accounts
-
-Travellers can create an account through `account-register.html`.
-
-Passwords are hashed with Web Crypto PBKDF2 before IndexedDB stores them. Session identity is kept in `sessionStorage` for the current browser tab/session.
-
-## Favorites
-
-Logged-in travellers can save packages to IndexedDB. Favorites are listed on `account.html`.
 
 ## Inquiry form
 
