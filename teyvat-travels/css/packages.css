@@ -1,5 +1,5 @@
 /* Package cards and details use the site's green-and-gold palette. */
-.pk-grid,
+.pk-carousel,
 .pk-section {
   --pk-panel: #1a2827;
   --pk-border: rgba(255, 255, 255, 0.11);
@@ -10,12 +10,7 @@
   --pk-body: var(--home-font-body, 'Inter', Arial, sans-serif);
 }
 
-/* Four compact columns step down for tablet and phone widths. */
-.pk-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 24px;
+.pk-carousel__track {
   color: #f5f7f6;
   font-family: var(--pk-body);
   text-align: left;
@@ -234,17 +229,7 @@
   font-size: 22px;
 }
 
-@media (max-width: 960px) {
-  .pk-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 640px) {
-  .pk-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .pk-card {
     min-height: 0;
   }
