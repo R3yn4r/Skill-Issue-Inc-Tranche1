@@ -21,16 +21,12 @@ python -m http.server 8000
 Open:
 
 - `http://localhost:8000/index.html`
-- `http://localhost:8000/login.html`
-- `http://localhost:8000/account-register.html`
+- `http://localhost:8000/admin.html`
 
 ## Project pages
 
 - `index.html` - public homepage
 - Nation pages - static HTML nation guides
-- `login.html` - centralized client/admin login
-- `account-register.html` - browser traveller registration
-- `account.html` - traveller profile and favorites
 - `admin.html` - browser Director dashboard and inquiry inbox
 
 ## Storage
@@ -49,12 +45,6 @@ Browser data includes:
 
 Data belongs to the current browser profile and origin. It will not synchronize across browsers or devices.
 
-## Local Director login
-
-- Email: `johnreylunar02@gmail.com`
-- Password: `admin123`
-
-The first login hashes the password locally and stores it in IndexedDB.
 
 ## Security limitation
 
