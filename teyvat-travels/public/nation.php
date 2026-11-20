@@ -88,41 +88,17 @@ $aboutParagraphs = preg_split('/\R{2,}/', (string) $nation['about_body']) ?: [];
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="<?= e($nation['meta_description']) ?>">
-  <meta name="theme-color" content="#101b1c">
-  <title><?= e($nation['name']) ?> | Teyvat Travels</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/home-extra.css">
-  <link rel="stylesheet" href="css/packages.css">
-  <link rel="stylesheet" href="css/contact.css">
-  <link rel="stylesheet" href="css/layout-align.css">
+  <?php
+    $pageTitle = $nation['name'] . ' | Teyvat Travels';
+    $pageDescription = $nation['meta_description'];
+    require dirname(__DIR__) . '/templates/head.php';
+  ?>
 </head>
 <body class="nation-page" id="top" style="--accent: <?= e($nation['accent_color']) ?>;">
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-brand" href="index.php" aria-label="Skill Issue Inc. home">
-        <img class="site-brand__logo" src="assets/img/skill-issue-logo.svg" alt="Skill Issue Inc.">
-      </a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a class="site-nav__link" href="index.php">Home</a>
-        <a class="site-nav__link" href="index.php#packages">Packages</a>
-        <a class="site-nav__link" href="index.php#nations">Destinations</a>
-        <a class="site-nav__link" href="index.php#faq">FAQ</a>
-        <a class="site-nav__link" href="index.php#contact">Contact</a>
-        <?php if (is_client_logged_in()): ?>
-          <a class="site-nav__link" href="account.php">My account</a>
-        <?php else: ?>
-          <a class="site-nav__link" href="login.php">Log in</a>
-        <?php endif; ?>
-      </nav>
-    </div>
-  </header>
+  <?php
+    $currentPage = 'nation';
+    require dirname(__DIR__) . '/templates/header.php';
+  ?>
 
   <main class="nation-page" id="main-content" style="--accent: <?= e($nation['accent_color']) ?>;">
     <section class="nation-hero" aria-labelledby="hero-title">
@@ -239,5 +215,7 @@ $aboutParagraphs = preg_split('/\R{2,}/', (string) $nation['about_body']) ?: [];
       </section>
     <?php endif; ?>
   </main>
+  <?php require dirname(__DIR__) . '/templates/footer.php'; ?>
+  <script src="js/site-enhancements.js" defer></script>
 </body>
 </html>

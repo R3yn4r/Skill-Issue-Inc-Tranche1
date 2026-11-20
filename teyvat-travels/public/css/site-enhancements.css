@@ -1,0 +1,23 @@
+.js-reveal-ready {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease, transform 700ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.js-reveal-ready.js-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js-gallery-open {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal-ready,
+  .js-reveal-ready.js-reveal-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

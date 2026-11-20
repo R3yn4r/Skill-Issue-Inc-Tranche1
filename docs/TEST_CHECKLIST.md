@@ -14,7 +14,8 @@
 - [ ] All seven package cards render.
 - [ ] Package prices use Philippine peso formatting.
 - [ ] `/nation.php?slug=` loads for each of the seven nations.
-- [ ] Legacy `.html` nation URLs redirect to the database pages.
+- [ ] Direct `.php` nation pages render.
+- [ ] Legacy `.html` nation URLs redirect to the corresponding `.php` pages.
 - [ ] Unknown nation slugs show a 404 response.
 - [ ] Published FAQs render on the home page.
 

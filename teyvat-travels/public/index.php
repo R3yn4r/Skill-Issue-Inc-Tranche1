@@ -45,19 +45,11 @@ unset($package);
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Meet Skill Issue Inc., the team behind Teyvat Travels, and explore our guides, routes, and travel resources for all seven nations.">
-  <meta name="theme-color" content="#101b1c">
-  <title>Skill Issue Inc. | Teyvat Travels</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/home-extra.css">
-  <link rel="stylesheet" href="css/packages.css">
-  <link rel="stylesheet" href="css/contact.css">
-  <link rel="stylesheet" href="css/layout-align.css">
+  <?php
+    $pageTitle = 'Skill Issue Inc. | Teyvat Travels';
+    $pageDescription = 'Meet Skill Issue Inc., the team behind Teyvat Travels, and explore our guides, routes, and travel resources for all seven nations.';
+    require dirname(__DIR__) . '/templates/head.php';
+  ?>
 </head>
 <body class="home-page" id="top">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -70,7 +62,7 @@ unset($package);
         <span></span><span></span><span></span>
       </label>
 
-      <a class="site-brand" href="index.html" aria-label="Skill Issue Inc. home">
+      <a class="site-brand" href="index.php" aria-label="Skill Issue Inc. home">
         <img class="site-brand__logo" src="assets/img/skill-issue-logo.svg" alt="">
       </a>
 
@@ -95,43 +87,43 @@ unset($package);
           <!-- Desktop panel -->
           <ul class="site-nav__panel" role="list">
             <li>
-              <a href="mondstadt.html">
+              <a href="mondstadt.php">
                 <span class="site-nav__dot" style="background:#82d7bd" aria-hidden="true"></span>
                 Mondstadt
               </a>
             </li>
             <li>
-              <a href="liyue.html">
+              <a href="liyue.php">
                 <span class="site-nav__dot" style="background:#e7bd69" aria-hidden="true"></span>
                 Liyue
               </a>
             </li>
             <li>
-              <a href="inazuma.html">
+              <a href="inazuma.php">
                 <span class="site-nav__dot" style="background:#c59bed" aria-hidden="true"></span>
                 Inazuma
               </a>
             </li>
             <li>
-              <a href="sumeru.html">
+              <a href="sumeru.php">
                 <span class="site-nav__dot" style="background:#a6d46c" aria-hidden="true"></span>
                 Sumeru
               </a>
             </li>
             <li>
-              <a href="fontaine.html">
+              <a href="fontaine.php">
                 <span class="site-nav__dot" style="background:#7ed9e7" aria-hidden="true"></span>
                 Fontaine
               </a>
             </li>
             <li>
-              <a href="natlan.html">
+              <a href="natlan.php">
                 <span class="site-nav__dot" style="background:#ff936d" aria-hidden="true"></span>
                 Natlan
               </a>
             </li>
             <li>
-              <a href="snezhnaya.html">
+              <a href="snezhnaya.php">
                 <span class="site-nav__dot" style="background:#a6ddf3" aria-hidden="true"></span>
                 Snezhnaya
               </a>
@@ -148,13 +140,13 @@ unset($package);
               </svg>
             </summary>
             <ul class="site-nav__sub" role="list">
-              <li><a href="mondstadt.html"><span class="site-nav__dot" style="background:#82d7bd" aria-hidden="true"></span>Mondstadt</a></li>
-              <li><a href="liyue.html"><span class="site-nav__dot" style="background:#e7bd69" aria-hidden="true"></span>Liyue</a></li>
-              <li><a href="inazuma.html"><span class="site-nav__dot" style="background:#c59bed" aria-hidden="true"></span>Inazuma</a></li>
-              <li><a href="sumeru.html"><span class="site-nav__dot" style="background:#a6d46c" aria-hidden="true"></span>Sumeru</a></li>
-              <li><a href="fontaine.html"><span class="site-nav__dot" style="background:#7ed9e7" aria-hidden="true"></span>Fontaine</a></li>
-              <li><a href="natlan.html"><span class="site-nav__dot" style="background:#ff936d" aria-hidden="true"></span>Natlan</a></li>
-              <li><a href="snezhnaya.html"><span class="site-nav__dot" style="background:#a6ddf3" aria-hidden="true"></span>Snezhnaya</a></li>
+              <li><a href="mondstadt.php"><span class="site-nav__dot" style="background:#82d7bd" aria-hidden="true"></span>Mondstadt</a></li>
+              <li><a href="liyue.php"><span class="site-nav__dot" style="background:#e7bd69" aria-hidden="true"></span>Liyue</a></li>
+              <li><a href="inazuma.php"><span class="site-nav__dot" style="background:#c59bed" aria-hidden="true"></span>Inazuma</a></li>
+              <li><a href="sumeru.php"><span class="site-nav__dot" style="background:#a6d46c" aria-hidden="true"></span>Sumeru</a></li>
+              <li><a href="fontaine.php"><span class="site-nav__dot" style="background:#7ed9e7" aria-hidden="true"></span>Fontaine</a></li>
+              <li><a href="natlan.php"><span class="site-nav__dot" style="background:#ff936d" aria-hidden="true"></span>Natlan</a></li>
+              <li><a href="snezhnaya.php"><span class="site-nav__dot" style="background:#a6ddf3" aria-hidden="true"></span>Snezhnaya</a></li>
             </ul>
           </details>
         </div>
@@ -477,13 +469,13 @@ unset($package);
         <span class="footer-col__title" id="footer-dest-label">Destinations</span>
         <nav aria-labelledby="footer-dest-label">
           <ul class="footer-col__links footer-col__links--two-col">
-            <li><a href="mondstadt.html">Mondstadt</a></li>
-            <li><a href="liyue.html">Liyue</a></li>
-            <li><a href="inazuma.html">Inazuma</a></li>
-            <li><a href="sumeru.html">Sumeru</a></li>
-            <li><a href="fontaine.html">Fontaine</a></li>
-            <li><a href="natlan.html">Natlan</a></li>
-            <li><a href="snezhnaya.html">Snezhnaya</a></li>
+            <li><a href="mondstadt.php">Mondstadt</a></li>
+            <li><a href="liyue.php">Liyue</a></li>
+            <li><a href="inazuma.php">Inazuma</a></li>
+            <li><a href="sumeru.php">Sumeru</a></li>
+            <li><a href="fontaine.php">Fontaine</a></li>
+            <li><a href="natlan.php">Natlan</a></li>
+            <li><a href="snezhnaya.php">Snezhnaya</a></li>
           </ul>
         </nav>
       </div>
@@ -511,5 +503,6 @@ unset($package);
     </div>
   </footer>
   <script src="js/inquiry.js"></script>
+  <script src="js/site-enhancements.js" defer></script>
 </body>
 </html>
