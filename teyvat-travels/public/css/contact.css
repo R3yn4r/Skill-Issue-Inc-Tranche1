@@ -108,6 +108,84 @@
   line-height: 1.5;
 }
 
+.ct-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 38rem;
+}
+
+.ct-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.ct-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.ct-field label {
+  color: #d9e1df;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.ct-field label span {
+  color: rgba(255, 255, 255, 0.48);
+  font-weight: 400;
+}
+
+.ct-field input,
+.ct-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #fff;
+  font: inherit;
+  padding: 0.78rem 0.85rem;
+}
+
+.ct-field textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.ct-field input:focus,
+.ct-field textarea:focus {
+  border-color: var(--accent);
+  outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  outline-offset: 1px;
+}
+
+.ct-form-submit {
+  border: 0;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.ct-form-alert {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.ct-form-alert--success {
+  border-color: rgba(120, 220, 160, 0.48);
+  background: rgba(70, 160, 110, 0.14);
+  color: #bff0d2;
+}
+
+.ct-form-alert--error {
+  border-color: rgba(240, 150, 150, 0.48);
+  background: rgba(180, 70, 70, 0.14);
+  color: #ffd0d0;
+}
+
 /* ------------------------------------------------------------------
    4. Right card — glass look
    ------------------------------------------------------------------ */
@@ -293,6 +371,10 @@
 @media (max-width: 600px) {
   .hx-contact {
     padding: 3rem 0;
+  }
+
+  .ct-form-grid {
+    grid-template-columns: 1fr;
   }
 
   .ct-cta-btn {
