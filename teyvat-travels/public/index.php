@@ -87,43 +87,43 @@ unset($package);
           <!-- Desktop panel -->
           <ul class="site-nav__panel" role="list">
             <li>
-              <a href="mondstadt.php">
+              <a href="nation.php?slug=mondstadt">
                 <span class="site-nav__dot" style="background:#82d7bd" aria-hidden="true"></span>
                 Mondstadt
               </a>
             </li>
             <li>
-              <a href="liyue.php">
+              <a href="nation.php?slug=liyue">
                 <span class="site-nav__dot" style="background:#e7bd69" aria-hidden="true"></span>
                 Liyue
               </a>
             </li>
             <li>
-              <a href="inazuma.php">
+              <a href="nation.php?slug=inazuma">
                 <span class="site-nav__dot" style="background:#c59bed" aria-hidden="true"></span>
                 Inazuma
               </a>
             </li>
             <li>
-              <a href="sumeru.php">
+              <a href="nation.php?slug=sumeru">
                 <span class="site-nav__dot" style="background:#a6d46c" aria-hidden="true"></span>
                 Sumeru
               </a>
             </li>
             <li>
-              <a href="fontaine.php">
+              <a href="nation.php?slug=fontaine">
                 <span class="site-nav__dot" style="background:#7ed9e7" aria-hidden="true"></span>
                 Fontaine
               </a>
             </li>
             <li>
-              <a href="natlan.php">
+              <a href="nation.php?slug=natlan">
                 <span class="site-nav__dot" style="background:#ff936d" aria-hidden="true"></span>
                 Natlan
               </a>
             </li>
             <li>
-              <a href="snezhnaya.php">
+              <a href="nation.php?slug=snezhnaya">
                 <span class="site-nav__dot" style="background:#a6ddf3" aria-hidden="true"></span>
                 Snezhnaya
               </a>
@@ -140,13 +140,13 @@ unset($package);
               </svg>
             </summary>
             <ul class="site-nav__sub" role="list">
-              <li><a href="mondstadt.php"><span class="site-nav__dot" style="background:#82d7bd" aria-hidden="true"></span>Mondstadt</a></li>
-              <li><a href="liyue.php"><span class="site-nav__dot" style="background:#e7bd69" aria-hidden="true"></span>Liyue</a></li>
-              <li><a href="inazuma.php"><span class="site-nav__dot" style="background:#c59bed" aria-hidden="true"></span>Inazuma</a></li>
-              <li><a href="sumeru.php"><span class="site-nav__dot" style="background:#a6d46c" aria-hidden="true"></span>Sumeru</a></li>
-              <li><a href="fontaine.php"><span class="site-nav__dot" style="background:#7ed9e7" aria-hidden="true"></span>Fontaine</a></li>
-              <li><a href="natlan.php"><span class="site-nav__dot" style="background:#ff936d" aria-hidden="true"></span>Natlan</a></li>
-              <li><a href="snezhnaya.php"><span class="site-nav__dot" style="background:#a6ddf3" aria-hidden="true"></span>Snezhnaya</a></li>
+              <li><a href="nation.php?slug=mondstadt"><span class="site-nav__dot" style="background:#82d7bd" aria-hidden="true"></span>Mondstadt</a></li>
+              <li><a href="nation.php?slug=liyue"><span class="site-nav__dot" style="background:#e7bd69" aria-hidden="true"></span>Liyue</a></li>
+              <li><a href="nation.php?slug=inazuma"><span class="site-nav__dot" style="background:#c59bed" aria-hidden="true"></span>Inazuma</a></li>
+              <li><a href="nation.php?slug=sumeru"><span class="site-nav__dot" style="background:#a6d46c" aria-hidden="true"></span>Sumeru</a></li>
+              <li><a href="nation.php?slug=fontaine"><span class="site-nav__dot" style="background:#7ed9e7" aria-hidden="true"></span>Fontaine</a></li>
+              <li><a href="nation.php?slug=natlan"><span class="site-nav__dot" style="background:#ff936d" aria-hidden="true"></span>Natlan</a></li>
+              <li><a href="nation.php?slug=snezhnaya"><span class="site-nav__dot" style="background:#a6ddf3" aria-hidden="true"></span>Snezhnaya</a></li>
             </ul>
           </details>
         </div>
@@ -469,13 +469,13 @@ unset($package);
         <span class="footer-col__title" id="footer-dest-label">Destinations</span>
         <nav aria-labelledby="footer-dest-label">
           <ul class="footer-col__links footer-col__links--two-col">
-            <li><a href="mondstadt.php">Mondstadt</a></li>
-            <li><a href="liyue.php">Liyue</a></li>
-            <li><a href="inazuma.php">Inazuma</a></li>
-            <li><a href="sumeru.php">Sumeru</a></li>
-            <li><a href="fontaine.php">Fontaine</a></li>
-            <li><a href="natlan.php">Natlan</a></li>
-            <li><a href="snezhnaya.php">Snezhnaya</a></li>
+            <li><a href="nation.php?slug=mondstadt">Mondstadt</a></li>
+            <li><a href="nation.php?slug=liyue">Liyue</a></li>
+            <li><a href="nation.php?slug=inazuma">Inazuma</a></li>
+            <li><a href="nation.php?slug=sumeru">Sumeru</a></li>
+            <li><a href="nation.php?slug=fontaine">Fontaine</a></li>
+            <li><a href="nation.php?slug=natlan">Natlan</a></li>
+            <li><a href="nation.php?slug=snezhnaya">Snezhnaya</a></li>
           </ul>
         </nav>
       </div>
