@@ -1,0 +1,31 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #0d1918; color: #eef5f3; font-family: Inter, system-ui, sans-serif; }
+a { color: #82d7bd; }
+.admin-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 2rem; background: #172826; border-bottom: 1px solid #31433f; }
+.admin-nav { display: flex; flex-wrap: wrap; gap: .8rem; }
+.admin-nav a { text-decoration: none; }
+.admin-nav a:hover { text-decoration: underline; }
+.admin-main { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+.admin-title-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.button, button.button { display: inline-block; border: 1px solid #82d7bd; border-radius: 5px; background: #82d7bd; color: #101c1b; padding: .55rem .8rem; font-weight: 800; text-decoration: none; cursor: pointer; }
+.button.secondary { background: transparent; color: #82d7bd; }
+.button.danger { border-color: #d27c7c; background: #d27c7c; }
+.flash { padding: .75rem; border: 1px solid #82d7bd; border-radius: 5px; background: #17382f; }
+.flash.error { border-color: #d27c7c; background: #3a2020; }
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: #172826; }
+th, td { border: 1px solid #31433f; padding: .65rem; text-align: left; vertical-align: top; }
+.actions { display: flex; gap: .5rem; }
+.actions form { margin: 0; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.field { display: grid; gap: .35rem; }
+.field.full { grid-column: 1 / -1; }
+label { font-weight: 700; }
+input, textarea, select { width: 100%; border: 1px solid #536862; border-radius: 5px; background: #101c1b; color: #fff; padding: .65rem; font: inherit; }
+textarea { min-height: 7rem; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+.card { padding: 1.25rem; border: 1px solid #31433f; border-radius: 8px; background: #172826; }
+.card strong { display: block; margin-top: .5rem; font-size: 2rem; color: #82d7bd; }
+.inquiry { border: 1px solid #31433f; border-radius: 8px; padding: 1rem; margin-top: 1rem; background: #172826; }
+.inquiry.unread { border-color: #82d7bd; }
+.inquiry-meta { color: #b6c7c3; font-size: .9rem; }
+@media (max-width: 700px) { .admin-header { align-items: flex-start; flex-direction: column; } .form-grid { grid-template-columns: 1fr; } .admin-title-row { align-items: flex-start; flex-direction: column; } }
