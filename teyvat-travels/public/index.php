@@ -2,12 +2,22 @@
 declare(strict_types=1);
 
 require_once dirname(__DIR__) . '/src/helpers.php';
+require_once dirname(__DIR__) . '/src/db.php';
 
 start_secure_session();
 $csrfToken = csrf_token();
 $flash = consume_flash();
 $old = is_array($_SESSION['inquiry_old'] ?? null) ? $_SESSION['inquiry_old'] : [];
 unset($_SESSION['inquiry_old']);
+
+$faqStatement = db()->prepare(
+    'SELECT question, answer
+       FROM faqs
+      WHERE is_published = 1
+      ORDER BY sort_order ASC, id ASC'
+);
+$faqStatement->execute();
+$faqs = $faqStatement->fetchAll();
 ?>
 <!doctype html>
 <html lang="en">
@@ -442,22 +452,12 @@ unset($_SESSION['inquiry_old']);
           <h2 class="hx-section-title" id="hx-faq-title">A few helpful details</h2>
         </header>
         <div class="hx-faq-list">
-          <details class="hx-faq-item">
-            <summary class="hx-faq-question">Is Teyvat Travels an official service?</summary>
-            <p class="hx-faq-answer">No. Teyvat Travels is an unofficial fan project by Skill Issue Inc. and is not affiliated with or endorsed by HoYoverse.</p>
-          </details>
-          <details class="hx-faq-item">
-            <summary class="hx-faq-question">Can I book a real-world trip through the site?</summary>
-            <p class="hx-faq-answer">No. Teyvat is a fictional world, and this site is a fan-made guide. It does not sell travel or booking services.</p>
-          </details>
-          <details class="hx-faq-item">
-            <summary class="hx-faq-question">Where should I begin exploring?</summary>
-            <p class="hx-faq-answer">Start with the nation that interests you most in the Packages section, then use its guide to explore local highlights and routes.</p>
-          </details>
-          <details class="hx-faq-item">
-            <summary class="hx-faq-question">How can I contact Skill Issue Inc.?</summary>
-            <p class="hx-faq-answer">Email the team at skillissueinc@gmail.com.</p>
-          </details>
+          <?php foreach ($faqs as $faq): ?>
+            <details class="hx-faq-item">
+              <summary class="hx-faq-question"><?= e($faq['question']) ?></summary>
+              <p class="hx-faq-answer"><?= e($faq['answer']) ?></p>
+            </details>
+          <?php endforeach; ?>
         </div>
       </div>
     </section>
