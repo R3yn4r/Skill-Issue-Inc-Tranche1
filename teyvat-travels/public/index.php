@@ -358,7 +358,7 @@ unset($package);
             </div>
           <?php endif; ?>
 
-          <form class="ct-form" action="contact-submit.php" method="post" novalidate>
+          <form id="inquiry-form" class="ct-form" action="contact-submit.php" method="post" novalidate>
             <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
             <input type="hidden" name="website" value="">
 
@@ -495,5 +495,6 @@ unset($package);
       <a class="footer-back-top" href="#top">Back to top &#8593;</a>
     </div>
   </footer>
+  <script src="js/inquiry.js"></script>
 </body>
 </html>

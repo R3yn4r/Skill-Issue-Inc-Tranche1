@@ -1,0 +1,7 @@
+* text=auto
+*.php text eol=crlf
+*.html text eol=crlf
+*.css text eol=crlf
+*.js text eol=crlf
+*.sql text eol=crlf
+*.md text eol=crlf
