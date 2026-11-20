@@ -166,12 +166,14 @@ CREATE TABLE IF NOT EXISTS inquiries (
   email      VARCHAR(190) NOT NULL,
   subject    VARCHAR(150) NULL,
   message    TEXT         NOT NULL,
+  user_id    INT UNSIGNED NULL,
   is_read    TINYINT(1)   NOT NULL DEFAULT 0,
   ip_hash    CHAR(64)     NULL,
   created_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   KEY idx_inquiries_inbox (is_read, created_at),
-  KEY idx_inquiries_ip (ip_hash, created_at)
+  KEY idx_inquiries_ip (ip_hash, created_at),
+  KEY idx_inquiries_user (user_id)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -189,4 +191,15 @@ CREATE TABLE IF NOT EXISTS users (
   last_login_at TIMESTAMP    NULL DEFAULT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY uq_users_email (email)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS favorites (
+  user_id     INT UNSIGNED NOT NULL,
+  package_id  INT UNSIGNED NOT NULL,
+  created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (user_id, package_id),
+  CONSTRAINT fk_favorites_user FOREIGN KEY (user_id)
+    REFERENCES users (id) ON DELETE CASCADE,
+  CONSTRAINT fk_favorites_package FOREIGN KEY (package_id)
+    REFERENCES packages (id) ON DELETE CASCADE
 ) ENGINE=InnoDB;

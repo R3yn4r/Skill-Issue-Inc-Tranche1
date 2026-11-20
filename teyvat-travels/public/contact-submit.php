@@ -5,6 +5,7 @@ require_once dirname(__DIR__) . '/src/helpers.php';
 require_once dirname(__DIR__) . '/src/db.php';
 
 start_secure_session();
+$config = require dirname(__DIR__) . '/config/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -74,16 +75,29 @@ try {
     }
 
     $insert = $pdo->prepare(
-        'INSERT INTO inquiries (name, email, subject, message, ip_hash)
-         VALUES (:name, :email, :subject, :message, :ip_hash)'
+        'INSERT INTO inquiries (name, email, subject, message, user_id, ip_hash)
+         VALUES (:name, :email, :subject, :message, :user_id, :ip_hash)'
     );
     $insert->execute([
         'name' => $name,
         'email' => $email,
         'subject' => $subject !== '' ? $subject : null,
         'message' => $message,
+        'user_id' => is_client_logged_in() ? (int) $_SESSION['client_id'] : null,
         'ip_hash' => $ipHash,
     ]);
+
+    $notifyTo = trim((string) ($config['mail_notify_to'] ?? ''));
+    if ($notifyTo !== '' && filter_var($notifyTo, FILTER_VALIDATE_EMAIL) && function_exists('mail')) {
+        $subjectLine = 'New Teyvat Travels inquiry: ' . ($subject !== '' ? $subject : 'General inquiry');
+        $body = "Name: {$name}\nEmail: {$email}\nSubject: " . ($subject !== '' ? $subject : 'General inquiry') . "\n\n{$message}";
+        $headers = [
+            'From: Teyvat Travels <no-reply@localhost>',
+            'Reply-To: ' . $email,
+            'Content-Type: text/plain; charset=UTF-8',
+        ];
+        @mail($notifyTo, $subjectLine, $body, implode("\r\n", $headers));
+    }
 
     unset($_SESSION['inquiry_old']);
     set_flash('success', 'Thank you. Your inquiry has been received.');

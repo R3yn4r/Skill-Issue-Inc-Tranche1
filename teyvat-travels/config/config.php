@@ -26,6 +26,7 @@ if (is_readable($envFile)) {
 
 return [
     'app_env' => $env['APP_ENV'] ?? 'production',
+    'mail_notify_to' => $env['MAIL_NOTIFY_TO'] ?? '',
     'db' => [
         'host' => $env['DB_HOST'] ?? '127.0.0.1',
         'port' => (int) ($env['DB_PORT'] ?? 3306),

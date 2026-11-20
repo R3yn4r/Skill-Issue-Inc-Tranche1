@@ -85,3 +85,18 @@ function record_login_attempt(): void
 {
     $_SESSION['login_attempts'] = (int) ($_SESSION['login_attempts'] ?? 0) + 1;
 }
+
+function is_client_logged_in(): bool
+{
+    return isset($_SESSION['client_id'], $_SESSION['client_role'])
+        && $_SESSION['client_role'] === 'client';
+}
+
+function require_client(): void
+{
+    start_secure_session();
+    if (!is_client_logged_in()) {
+        header('Location: account-login.php');
+        exit;
+    }
+}

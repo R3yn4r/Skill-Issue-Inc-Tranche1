@@ -61,3 +61,14 @@
 - [ ] Public dynamic output is escaped.
 - [ ] No database password is committed.
 - [ ] Database test remains blocked outside development.
+
+## Optional Phase 9 features
+
+- [ ] A traveller can register and log in.
+- [ ] A traveller cannot access `/admin`.
+- [ ] Profile name changes save.
+- [ ] Traveller logout ends account access.
+- [ ] Logged-in users can add and remove package favorites.
+- [ ] Favorites appear on the account page.
+- [ ] A logged-in inquiry stores `user_id`.
+- [ ] `MAIL_NOTIFY_TO` receives or attempts a notification on a new inquiry.

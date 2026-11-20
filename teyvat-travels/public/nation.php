@@ -4,6 +4,9 @@ declare(strict_types=1);
 require_once dirname(__DIR__) . '/src/helpers.php';
 require_once dirname(__DIR__) . '/src/db.php';
 
+start_secure_session();
+$csrfToken = csrf_token();
+
 $slug = strtolower(trim((string) ($_GET['slug'] ?? '')));
 $nationStatement = db()->prepare(
     'SELECT * FROM nations WHERE slug = :slug LIMIT 1'
@@ -112,6 +115,11 @@ $aboutParagraphs = preg_split('/\R{2,}/', (string) $nation['about_body']) ?: [];
         <a class="site-nav__link" href="index.php#nations">Destinations</a>
         <a class="site-nav__link" href="index.php#faq">FAQ</a>
         <a class="site-nav__link" href="index.php#contact">Contact</a>
+        <?php if (is_client_logged_in()): ?>
+          <a class="site-nav__link" href="account.php">My account</a>
+        <?php else: ?>
+          <a class="site-nav__link" href="account-login.php">Log in</a>
+        <?php endif; ?>
       </nav>
     </div>
   </header>
@@ -206,6 +214,16 @@ $aboutParagraphs = preg_split('/\R{2,}/', (string) $nation['about_body']) ?: [];
               <?php foreach ($stops as $stop): ?><li><?= e($stop['name']) ?></li><?php endforeach; ?>
             </ul>
             <p><strong>₱<?= number_format((int) $package['price_php']) ?></strong> — <?= (int) $package['days'] ?> Days / <?= (int) $package['nights'] ?> Nights</p>
+            <?php if (is_client_logged_in()): ?>
+              <form method="post" action="favorite-toggle.php">
+                <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
+                <input type="hidden" name="package_id" value="<?= (int) $package['id'] ?>">
+                <input type="hidden" name="return_to" value="nation.php?slug=<?= rawurlencode($nation['slug']) ?>">
+                <button type="submit">Toggle favorite</button>
+              </form>
+            <?php else: ?>
+              <p><a href="account-login.php">Log in to save this package</a></p>
+            <?php endif; ?>
           </article>
         </div>
       </section>

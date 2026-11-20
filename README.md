@@ -42,6 +42,12 @@ C:\xampp\php\php.exe -S localhost:8000 -t teyvat-travels/public
 
 The database test page is development-only and is blocked outside `APP_ENV=development`.
 
+## Optional client features
+
+The public site also supports client registration, login, profiles, and saved package favorites. Client accounts use the `users.role = 'client'` value and cannot access `/admin`.
+
+Set `MAIL_NOTIFY_TO` in `teyvat-travels/.env` to the Director's notification email. A successful inquiry attempt will send a best-effort local PHP `mail()` notification. Production hosting may require a configured SMTP relay or a mail provider.
+
 ## Director account
 
 The seed script creates one Director account with the configured email. Change the seeded password by generating a bcrypt hash and updating the `users` row:

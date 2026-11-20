@@ -162,6 +162,11 @@ unset($package);
         <a class="site-nav__link" href="#who-we-are">About Us</a>
         <a class="site-nav__link" href="#faq">FAQ</a>
         <a class="site-nav__link" href="#contact">Contact</a>
+        <?php if (is_client_logged_in()): ?>
+          <a class="site-nav__link" href="account.php">My account</a>
+        <?php else: ?>
+          <a class="site-nav__link" href="account-login.php">Log in</a>
+        <?php endif; ?>
 
       </nav>
     </div>
@@ -232,6 +237,16 @@ unset($package);
                 </div>
                 <a class="pk-link" href="#contact">View details <span aria-hidden="true">&#8594;</span></a>
                 <a class="pk-explore-link" href="nation.php?slug=<?= rawurlencode($package['slug']) ?>">Explore <?= e($package['name']) ?> <span aria-hidden="true">&#8594;</span></a>
+                <?php if (is_client_logged_in()): ?>
+                  <form method="post" action="favorite-toggle.php">
+                    <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
+                    <input type="hidden" name="package_id" value="<?= (int) $package['id'] ?>">
+                    <input type="hidden" name="return_to" value="index.php">
+                    <button type="submit" class="ct-cta-btn">Toggle favorite</button>
+                  </form>
+                <?php else: ?>
+                  <a class="pk-explore-link" href="account-login.php">Log in to save favorites</a>
+                <?php endif; ?>
               </div>
             </article>
           <?php endforeach; ?>
