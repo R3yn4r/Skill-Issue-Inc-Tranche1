@@ -45,6 +45,7 @@
     }
   </style>
   <link rel="stylesheet" href="css/layout-align.css">
+  <link rel="stylesheet" href="css/booking.css">
 </head>
 <body class="nation-page" id="top">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -123,10 +124,7 @@
         <p class="nation-hero__kicker entrance entrance--two">The nation of contracts</p>
         <h1 class="nation-hero__title entrance entrance--three" id="hero-title">Liyue</h1>
         <p class="nation-hero__tagline entrance entrance--four">A land of stone, trade, and mountain-held secrets.</p>
-        <a class="nation-hero__scroll-cue" href="#about" aria-label="Scroll down to learn about Liyue">
-          <span class="nation-hero__scroll-line" aria-hidden="true"></span>
-          <span>Scroll down</span>
-        </a>
+        <button class="nation-hero__book" type="button" data-booking-open data-booking-destination="Liyue" aria-haspopup="dialog"><span>Book Now!</span><span class="nation-hero__book-arrow" aria-hidden="true">&#8594;</span></button>
       </div>
     </section>
     <!-- / HERO -->
@@ -622,5 +620,7 @@
   </footer>
   <!-- / FOOTER -->
 
+  <script src="js/main.js" defer></script>
+  <script src="js/booking.js" defer></script>
 </body>
 </html>
