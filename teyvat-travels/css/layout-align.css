@@ -327,8 +327,7 @@
   text-underline-offset: 3px;
 }
 
-.home-page .pk-card .pk-region:focus-visible,
-.home-page .pk-card .pk-explore-link:focus-visible {
+.home-page .pk-card .pk-region:focus-visible {
   outline: 2px solid #f5f7f6;
   outline-offset: 3px;
 }
@@ -416,24 +415,6 @@
 .home-page .pk-card .pk-link:focus-visible {
   outline: 3px solid #f5f7f6;
   outline-offset: 3px;
-}
-
-.home-page .pk-card .pk-explore-link {
-  align-self: center;
-  margin-top: 0.8rem;
-  color: var(--accent);
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 4px;
-  transition: color 160ms ease, text-decoration-color 160ms ease;
-}
-
-.home-page .pk-card .pk-explore-link:hover,
-.home-page .pk-card .pk-explore-link:focus-visible {
-  color: #f5f7f6;
-  text-decoration-color: currentColor;
 }
 
 .home-page .pk-card__badge {
@@ -552,8 +533,7 @@
   .home-page .pk-carousel__track,
   .home-page .pk-carousel__slide,
   .home-page .pk-card,
-  .home-page .pk-card__image,
-  .home-page .pk-card .pk-explore-link {
+  .home-page .pk-card__image {
     transition: none;
   }
 
