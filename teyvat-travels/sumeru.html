@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Sumeru destination page for Teyvat Travels.">
+  <meta name="theme-color" content="#101b1c">
+  <title>Sumeru | Teyvat Travels</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/packages.css">
+  <link rel="stylesheet" href="css/layout-align.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body class="nation-page" id="top">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <input class="menu-toggle" type="checkbox" id="menu-toggle" aria-label="Open navigation menu">
+      <label class="menu-button" for="menu-toggle" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+      <a class="site-brand" href="index.html" aria-label="Skill Issue Inc. home">
+        <img class="site-brand__logo" src="assets/img/skill-issue-logo.svg" alt="">
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="site-nav__link" href="index.html">Home</a>
+        <a class="site-nav__link" href="index.html#packages">Packages</a>
+        <div class="site-nav__dropdown">
+          <a class="site-nav__link site-nav__link--has-dropdown is-active" href="index.html#nations" aria-haspopup="true" aria-current="page">
+            Destinations
+            <svg class="site-nav__chevron" aria-hidden="true" width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <ul class="site-nav__panel" role="list">
+            <li><a href="mondstadt.html"><span class="site-nav__dot" style="background:#82d7bd" aria-hidden="true"></span>Mondstadt</a></li>
+            <li><a href="liyue.html"><span class="site-nav__dot" style="background:#e7bd69" aria-hidden="true"></span>Liyue</a></li>
+            <li><a href="inazuma.html"><span class="site-nav__dot" style="background:#c59bed" aria-hidden="true"></span>Inazuma</a></li>
+            <li><a href="sumeru.html" aria-current="page"><span class="site-nav__dot" style="background:#a6d46c" aria-hidden="true"></span>Sumeru</a></li>
+            <li><a href="fontaine.html"><span class="site-nav__dot" style="background:#7ed9e7" aria-hidden="true"></span>Fontaine</a></li>
+            <li><a href="natlan.html"><span class="site-nav__dot" style="background:#ff936d" aria-hidden="true"></span>Natlan</a></li>
+            <li><a href="snezhnaya.html"><span class="site-nav__dot" style="background:#a6ddf3" aria-hidden="true"></span>Snezhnaya</a></li>
+          </ul>
+          <details class="site-nav__details">
+            <summary class="site-nav__link site-nav__link--summary">
+              Destinations
+              <svg class="site-nav__chevron" aria-hidden="true" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <ul class="site-nav__sub" role="list">
+              <li><a href="mondstadt.html"><span class="site-nav__dot" style="background:#82d7bd" aria-hidden="true"></span>Mondstadt</a></li>
+              <li><a href="liyue.html"><span class="site-nav__dot" style="background:#e7bd69" aria-hidden="true"></span>Liyue</a></li>
+              <li><a href="inazuma.html"><span class="site-nav__dot" style="background:#c59bed" aria-hidden="true"></span>Inazuma</a></li>
+              <li><a href="sumeru.html" aria-current="page"><span class="site-nav__dot" style="background:#a6d46c" aria-hidden="true"></span>Sumeru</a></li>
+              <li><a href="fontaine.html"><span class="site-nav__dot" style="background:#7ed9e7" aria-hidden="true"></span>Fontaine</a></li>
+              <li><a href="natlan.html"><span class="site-nav__dot" style="background:#ff936d" aria-hidden="true"></span>Natlan</a></li>
+              <li><a href="snezhnaya.html"><span class="site-nav__dot" style="background:#a6ddf3" aria-hidden="true"></span>Snezhnaya</a></li>
+            </ul>
+          </details>
+        </div>
+        <a class="site-nav__link" href="index.html#who-we-are">About Us</a>
+        <a class="site-nav__link" href="index.html#faq">FAQ</a>
+        <a class="site-nav__link" href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main class="nation-page" id="main-content" style="--accent: #a6d46c;">
+    <!-- Hero -->
+    <section class="nation-hero" aria-labelledby="hero-title">
+      <div class="nation-hero__bg"
+           style="background-image: url('assets/img/sumeru.webp');"
+           role="img"
+           aria-label="Sumeru City Academy rising among ancient rainforest trees"></div>
+      <div class="nation-hero__veil" aria-hidden="true"></div>
+      <div class="nation-hero__content">
+        <p class="nation-hero__element section-kicker entrance entrance--one">Dendro</p>
+        <p class="nation-hero__kicker entrance entrance--two">THE NATION OF WISDOM</p>
+        <h1 class="nation-hero__title entrance entrance--three" id="hero-title">Sumeru</h1>
+        <p class="nation-hero__tagline entrance entrance--four">From halls of learning to the heart of the rainforest.</p>
+        <button class="nation-hero__book" type="button" data-booking-open data-booking-destination="Sumeru" aria-haspopup="dialog"><span>Book Now!</span><span class="nation-hero__book-arrow" aria-hidden="true">&#8594;</span></button>
+      </div>
+    </section>
+
+    <!-- Introduction and quick facts -->
+    <section class="nation-about" id="about" aria-labelledby="about-title">
+      <div class="nation-wrap">
+        <div class="nation-about__grid">
+          <div class="nation-about__text reveal">
+            <p class="section-kicker">THE CITY OF WISDOM</p>
+            <h2 id="about-title">Where scholars meet the rainforest</h2>
+            <p class="nation-about__body">Sumeru is a nation of two worlds: dense, mystical rainforest canopies on one side and the vast desert on the other, linked by a long tradition of scholarship.</p>
+            <p class="nation-about__body">From the lecture halls of its great academy to the caravan routes at its frontier, every stop in Sumeru is an invitation to learn something new.</p>
+          </div>
+          <aside class="nation-about__facts reveal">
+            <div class="nation-facts-card">
+              <h3 class="nation-facts-card__heading">Quick Facts</h3>
+              <dl class="nation-facts-card__list">
+                <div class="nation-facts-card__row">
+                  <dt>Element</dt>
+                  <dd>Dendro</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Archon</dt>
+                  <dd>Nahida, Dendro Archon</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Region type</dt>
+                  <dd>Rainforest and desert nation</dd>
+                </div>
+                <div class="nation-facts-card__row">
+                  <dt>Best time to visit</dt>
+                  <dd>Year-round, mornings for the rainforest</dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key locations -->
+    <section class="nation-locations" aria-labelledby="locations-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Points of interest</p>
+        <h2 class="nation-locations__heading reveal" id="locations-title">Key Locations</h2>
+        <div class="nation-locations__grid">
+          <article class="nation-loc-card reveal">
+            <img src="images/sumeru/Sumeru Academy.png"
+                 alt="The Sumeru City Academy's pale spires and blue-glass roofs among ancient trees"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Sumeru City Academy</h3>
+              <p class="nation-loc-card__desc">The nation's great center of learning rises among ancient trees, its pale spires and blue-glass roofs welcoming scholars and visitors.</p>
+              <span class="mondstadt-tag">Best for: Learning and architecture</span>
+              <span class="mondstadt-tag">Best time: Morning</span>
+            </div>
+          </article>
+          <article class="nation-loc-card reveal">
+            <img src="images/sumeru/gandharva%20ville.jpg"
+                 alt="Gandharva Ville built high among the branches of a giant forest tree"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Gandharva Ville</h3>
+              <p class="nation-loc-card__desc">A forest settlement set high in the branches of a giant tree, with sweeping views across the rainforest canopy.</p>
+              <span class="mondstadt-tag">Best for: Forest views and photos</span>
+              <span class="mondstadt-tag">Best time: Morning</span>
+            </div>
+          </article>
+          <article class="nation-loc-card reveal">
+            <img src="images/sumeru/caravan%20ribat.jpg"
+                 alt="Caravan Ribat on Sumeru's frontier beneath the high wall separating forest and desert"
+                 class="nation-loc-card__img"
+                 loading="lazy" width="600" height="400">
+            <div class="nation-loc-card__body">
+              <h3 class="nation-loc-card__title">Caravan Ribat</h3>
+              <p class="nation-loc-card__desc">A frontier stop beneath the great wall, where caravan routes approach the open desert and its distant sandstorms.</p>
+              <span class="mondstadt-tag">Best for: Frontier views</span>
+              <span class="mondstadt-tag">Best time: Late afternoon</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Landmark carousel and photo viewer use Mondstadt's CSS-only radio pattern. -->
+    <section class="nation-feature mondstadt-gallery" aria-labelledby="gallery-title">
+      <input class="mondstadt-viewer-radio" type="radio" name="sumeru-viewer" id="mv-closed" checked>
+      <input class="mondstadt-viewer-radio" type="radio" name="sumeru-viewer" id="mv-1">
+      <input class="mondstadt-viewer-radio" type="radio" name="sumeru-viewer" id="mv-2">
+      <input class="mondstadt-viewer-radio" type="radio" name="sumeru-viewer" id="mv-3">
+
+      <div class="mondstadt-overlay" id="mondstadt-overlay-1" aria-label="Sumeru City Academy photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/sumeru/Sumeru Academy.png"
+               alt="Sumeru City Academy rising from the roots of a great tree"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Sumeru</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">01</p>
+            <h3 class="mondstadt-overlay__name">Sumeru City Academy</h3>
+            <p class="mondstadt-overlay__desc">Rising from the roots of a great tree, the Sumeru City Academy is the nation's center of learning, where scholars gather to study, debate and share discoveries. Its pale spires and blue-glass roofs blend into the forest around it, and its wide stairway welcomes students and visitors alike. For travelers, it is the best place to feel how deeply Sumeru values knowledge.</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Learning and architecture</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-3" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-2" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="mondstadt-overlay" id="mondstadt-overlay-2" aria-label="Gandharva Ville photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/sumeru/gandharva%20ville.jpg"
+               alt="Gandharva Ville, the city above the forest among the branches of a giant tree"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Sumeru</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">02</p>
+            <h3 class="mondstadt-overlay__name">Gandharva Ville</h3>
+            <p class="mondstadt-overlay__desc">The city above the forest. "The city of wisdom is ours, as is the forest of ignorance. Atop the tree lies the remnants of the kingdom of lost dreams."</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Forest views and photos</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-1" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-3" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="mondstadt-overlay" id="mondstadt-overlay-3" aria-label="Caravan Ribat photo viewer" role="dialog" aria-modal="true">
+        <label class="mondstadt-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
+        <div class="mondstadt-overlay__box">
+          <img src="images/sumeru/caravan%20ribat.jpg"
+               alt="Caravan Ribat on the desert frontier beneath Sumeru's great protective wall"
+               class="mondstadt-overlay__photo"
+               loading="lazy">
+          <div class="mondstadt-overlay__panel">
+            <p class="mondstadt-overlay__kicker">Sumeru</p>
+            <p class="mondstadt-overlay__index" aria-hidden="true">03</p>
+            <h3 class="mondstadt-overlay__name">Caravan Ribat</h3>
+            <p class="mondstadt-overlay__desc">The frontier beneath the high wall. The mighty wall defends against the searing sandstorms but has also blocked the spread of wisdom's blessing. Is divine wisdom not meant to shine on all people?</p>
+            <span class="mondstadt-tag mondstadt-overlay__tag">Best for: Frontier views</span>
+            <div class="mondstadt-overlay__nav" aria-label="Navigate landmarks">
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--prev" for="mv-2" aria-label="Previous landmark">&#8592; Prev</label>
+              <label class="mondstadt-overlay__btn mondstadt-overlay__btn--next" for="mv-1" aria-label="Next landmark">Next &#8594;</label>
+            </div>
+          </div>
+          <label class="mondstadt-overlay__close" for="mv-closed" aria-label="Close viewer">&#10005;</label>
+        </div>
+      </div>
+
+      <div class="nation-wrap">
+        <p class="section-kicker">Explore the landmarks</p>
+        <h2 id="gallery-title">Sumeru in Focus</h2>
+        <p class="mondstadt-gallery__intro">Click a card to open the full photo and description.</p>
+      </div>
+
+      <div class="mondstadt-gallery__track" tabindex="0" role="region" aria-label="Sumeru landmark gallery — click a card to view details">
+        <label class="mondstadt-slide" for="mv-1" tabindex="0" role="button" aria-label="View Sumeru City Academy">
+          <img src="images/sumeru/Sumeru Academy.png"
+               alt="Sumeru City Academy's pale spires and blue-glass roofs among ancient trees"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">01</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Sumeru City Academy</h3>
+            <p class="mondstadt-slide__fact">The great seat of learning, where scholars from across Sumeru study beneath a canopy of ancient trees.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="mondstadt-slide" for="mv-2" tabindex="0" role="button" aria-label="View Gandharva Ville">
+          <img src="images/sumeru/gandharva%20ville.jpg"
+               alt="Gandharva Ville high in the branches of a giant tree above the rainforest"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">02</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Gandharva Ville</h3>
+            <p class="mondstadt-slide__fact">The city above the forest, high in the branches of a giant tree.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+
+        <label class="mondstadt-slide" for="mv-3" tabindex="0" role="button" aria-label="View Caravan Ribat">
+          <img src="images/sumeru/caravan%20ribat.jpg"
+               alt="Caravan Ribat on the frontier beneath the high wall separating Sumeru's forest and desert"
+               class="mondstadt-slide__img"
+               loading="lazy" width="800" height="560">
+          <div class="mondstadt-slide__shade" aria-hidden="true"></div>
+          <span class="mondstadt-slide__index" aria-hidden="true">03</span>
+          <div class="mondstadt-slide__copy">
+            <h3 class="mondstadt-slide__name">Caravan Ribat</h3>
+            <p class="mondstadt-slide__fact">The frontier beneath the high wall, where Sumeru meets the desert.</p>
+          </div>
+          <span class="mondstadt-slide__hint" aria-hidden="true">&#128269;</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Travel tips -->
+    <section class="nation-tips" aria-labelledby="tips-title">
+      <div class="nation-wrap">
+        <p class="section-kicker reveal">Before you go</p>
+        <h2 class="nation-tips__heading reveal" id="tips-title">Travel Tips</h2>
+        <div class="nation-tips__grid">
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-stay"></use></svg></span>
+            <h3 class="nation-tip-card__title">Where to stay</h3>
+            <p class="nation-tip-card__text">Stay in or near Sumeru City so the Academy is within easy reach.</p>
+          </div>
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-food"></use></svg></span>
+            <h3 class="nation-tip-card__title">What to see and do</h3>
+            <p class="nation-tip-card__text">Visit the Academy in the morning, then head up to Gandharva Ville for the forest views.</p>
+          </div>
+          <div class="nation-tip-card reveal">
+            <span class="nation-tip-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="assets/img/game-icons.svg#tip-travel"></use></svg></span>
+            <h3 class="nation-tip-card__title">Getting around</h3>
+            <p class="nation-tip-card__text">Wear comfortable shoes for forest paths, and bring water if you plan to travel toward the desert frontier.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Next destination -->
+    <section class="nation-next" aria-labelledby="next-title">
+      <div class="nation-next__bg"
+           style="background-image: url('assets/img/fontaine.webp');"
+           role="img"
+           aria-label="Fontaine's elegant towers and waterways beneath the open sky"></div>
+      <div class="nation-next__veil" aria-hidden="true"></div>
+      <div class="nation-next__content">
+        <p class="nation-next__label">Next destination</p>
+        <h2 class="nation-next__name" id="next-title">Fontaine</h2>
+        <a class="nation-next__link" href="fontaine.html">
+          Explore Fontaine <span aria-hidden="true">&#8594;</span>
+        </a>
+        <a class="nation-next__back" href="index.html#nations">&#8592; Back to all nations</a>
+      </div>
+    </section>
+
+    <!-- Nation tour package details. -->
+    <section class="pk-section" id="sumeru-package" aria-labelledby="sumeru-package-title">
+      <div class="pk-inner">
+        <header class="pk-heading">
+          <p class="pk-kicker">Featured tour package / Sumeru</p>
+          <h2 class="pk-section-title" id="sumeru-package-title">The City of Wisdom &amp; Rainforest Retreat</h2>
+          <p class="pk-section-copy">A dual-environment journey taking you from the majestic halls of learning to the dense, mystical canopies of the rainforest.</p>
+        </header>
+        <div class="pk-detail-grid">
+          <div class="pk-detail-panel">
+            <h3 class="pk-detail-title">Featured stops</h3>
+            <ul class="pk-stops"><li>Sumeru City Academy</li><li>Gandharva Ville</li><li>Caravan Ribat</li></ul>
+          </div>
+          <aside class="pk-detail-panel" aria-label="Package price and duration">
+            <div class="pk-meta">
+              <div class="pk-stat"><p class="pk-stat-label">Price per person</p><p class="pk-stat-value">₱14,000</p></div>
+              <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">3 Days / 3 Nights</p></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col footer-col--brand">
+        <a class="site-brand site-brand--footer" href="index.html" aria-label="Skill Issue Inc. home">
+          <img class="site-brand__logo" src="assets/img/skill-issue-logo.svg" alt="Skill Issue Inc.">
+        </a>
+        <p class="site-footer__blurb">Unofficial fan travel guides for the seven nations of Teyvat.</p>
+        <p class="footer-col__copy">&copy; 2026 Skill Issue Inc.</p>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col__title" id="footer-dest-label-sumeru">Destinations</span>
+        <nav aria-labelledby="footer-dest-label-sumeru">
+          <ul class="footer-col__links footer-col__links--two-col">
+            <li><a href="mondstadt.html">Mondstadt</a></li>
+            <li><a href="liyue.html">Liyue</a></li>
+            <li><a href="inazuma.html">Inazuma</a></li>
+            <li><a href="sumeru.html" aria-current="page">Sumeru</a></li>
+            <li><a href="fontaine.html">Fontaine</a></li>
+            <li><a href="natlan.html">Natlan</a></li>
+            <li><a href="snezhnaya.html">Snezhnaya</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col__title" id="footer-quick-label-sumeru">Quick Links</span>
+        <nav aria-labelledby="footer-quick-label-sumeru">
+          <ul class="footer-col__links footer-col__links--two-col">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#packages">Packages</a></li>
+            <li><a href="index.html#nations">Destinations</a></li>
+            <li><a href="index.html#who-we-are">About Us</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-bottom__copy">Unofficial fan project. Genshin Impact is a trademark of HoYoverse.</p>
+      <a class="footer-back-top" href="#top">Back to top &#8593;</a>
+    </div>
+  </footer>
+  <script src="js/main.js" defer></script>
+  <script src="js/booking.js" defer></script>
+</body>
+</html>

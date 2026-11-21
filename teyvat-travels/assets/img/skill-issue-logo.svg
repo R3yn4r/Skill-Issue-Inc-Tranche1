@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 220" role="img" aria-labelledby="title">
+  <title id="title">Skill Issue Inc.</title>
+  <g fill="none" stroke="#f5f3ed" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M245 53c28-8 55-22 75-40-4 29-20 51-52 67 34-10 54-11 82-5M495 53c-28-8-55-22-75-40 4 29 20 51 52 67-34-10-54-11-82-5" stroke-width="8"/>
+    <path d="M370 6c-6 22-14 33-34 42 20 5 28 13 34 34 6-21 14-29 34-34-20-9-28-20-34-42Z" fill="#f5f3ed" stroke-width="3"/>
+  </g>
+  <text x="370" y="137" text-anchor="middle" fill="#f5f3ed" font-family="Cinzel, Georgia, serif" font-size="83" font-weight="700" letter-spacing="2">SKILL ISSUE</text>
+  <text x="370" y="207" text-anchor="middle" fill="#f5f3ed" font-family="Cinzel, Georgia, serif" font-size="53" font-weight="700" letter-spacing="18">INC.</text>
+</svg>

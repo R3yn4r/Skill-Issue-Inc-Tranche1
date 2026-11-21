@@ -1,0 +1,753 @@
+/* =========================================================
+   Booking panel: "Book Now!" hero button + modal
+   Shared by all seven nation pages. Classes use the bk- prefix.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. Hero button (replaces the old "Scroll down" cue)
+   --------------------------------------------------------- */
+.nation-hero__book {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 50px;
+  padding: 0 1.6rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: #0a1414;
+  background: var(--accent);
+  font-family: var(--home-font-body, 'Inter', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.nation-hero__book:hover {
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--accent) 86%, white);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+.nation-hero__book:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.nation-hero__book-arrow {
+  font-size: 1.1rem;
+  transition: transform 180ms ease;
+}
+
+.nation-hero__book:hover .nation-hero__book-arrow {
+  transform: translateX(4px);
+}
+
+/* ---------------------------------------------------------
+   2. Overlay + dialog shell
+   --------------------------------------------------------- */
+html.bk-lock {
+  overflow: hidden;
+}
+
+.bk-overlay {
+  --bk-accent: #82d7bd;
+  --bk-gold: #d6b574;
+  --bk-bg: #0f1f1e;
+  --bk-field: #0a1716;
+  --bk-panel: #1a2827;
+  --bk-line: rgba(255, 255, 255, 0.1);
+  --bk-copy: #c9d2cf;
+  --bk-muted: #9ba8a3;
+  --bk-error: #ff9d8b;
+  position: fixed;
+  z-index: 1300;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.bk-overlay[hidden],
+.bk-overlay [hidden] {
+  display: none !important;
+}
+
+.bk-overlay.is-open {
+  opacity: 1;
+}
+
+.bk-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 14, 14, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+.bk-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(1100px, 100%);
+  max-height: calc(100dvh - 3rem);
+  overflow-y: auto;
+  padding: 2rem 2.25rem 1.5rem;
+  border: 1px solid var(--bk-line);
+  border-radius: 20px;
+  color: #f5f7f6;
+  background: var(--bk-bg);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+  font-family: var(--home-font-body, 'Inter', sans-serif);
+  font-size: 1rem;
+  line-height: 1.5;
+  transform: translateY(14px) scale(0.98);
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bk-overlay.is-open .bk-dialog {
+  transform: none;
+}
+
+.bk-dialog:focus,
+.bk-title:focus {
+  outline: none;
+}
+
+/* The shared stylesheet justifies every <p>; keep the panel left-aligned. */
+.bk-dialog :where(p) {
+  text-align: left;
+}
+
+/* :where() keeps these resets at zero extra specificity so component classes below can set their own spacing. */
+.bk-dialog :where(p, ul, dl, dd) {
+  margin: 0;
+  padding: 0;
+}
+
+.bk-close {
+  position: absolute;
+  z-index: 2;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--bk-line);
+  border-radius: 50%;
+  color: #f5f7f6;
+  background: var(--bk-field);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.bk-close:hover {
+  border-color: var(--bk-accent);
+  color: #0a1414;
+  background: var(--bk-accent);
+}
+
+/* ---------------------------------------------------------
+   3. Header
+   --------------------------------------------------------- */
+.bk-head {
+  margin-bottom: 1.75rem;
+  padding-right: 3.5rem;
+}
+
+.bk-kicker {
+  margin-bottom: 0.4rem;
+  color: var(--bk-gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bk-dialog .bk-title {
+  margin: 0;
+  color: #f5f7f6;
+  font-family: var(--home-font-display, 'Cinzel', Georgia, serif);
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.bk-subtitle {
+  margin-top: 0.6rem;
+  color: var(--bk-muted);
+  font-size: 1.05rem;
+}
+
+/* ---------------------------------------------------------
+   4. Two-column body
+   --------------------------------------------------------- */
+.bk-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.bk-col {
+  min-width: 0;
+}
+
+.bk-dialog .bk-h3 {
+  margin: 0;
+  color: #f5f7f6;
+  font-family: var(--home-font-display, 'Cinzel', Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.bk-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.bk-required-note,
+.bk-section-note {
+  color: var(--bk-muted);
+  font-size: 0.9rem;
+}
+
+.bk-section-note {
+  margin: 0.35rem 0 1.1rem;
+}
+
+.bk-section + .bk-section {
+  margin-top: 1.75rem;
+}
+
+/* ---------------------------------------------------------
+   5. Fields
+   --------------------------------------------------------- */
+.bk-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1rem;
+}
+
+.bk-field {
+  margin-bottom: 1.1rem;
+}
+
+.bk-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #f5f7f6;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.bk-input,
+.bk-select,
+.bk-textarea {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 1rem;
+  border: 1px solid var(--bk-line);
+  border-radius: 8px;
+  color: #f5f7f6;
+  background-color: var(--bk-field);
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color-scheme: dark;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.bk-input::placeholder,
+.bk-textarea::placeholder {
+  color: rgba(201, 210, 207, 0.5);
+}
+
+.bk-textarea {
+  min-height: 7.5rem;
+  padding: 0.85rem 1rem;
+  resize: vertical;
+}
+
+.bk-select {
+  padding-right: 2.75rem;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%23c9d2cf' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.bk-select option {
+  color: #f5f7f6;
+  background: var(--bk-bg);
+}
+
+.bk-input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.bk-dialog .bk-input:focus-visible,
+.bk-dialog .bk-select:focus-visible,
+.bk-dialog .bk-textarea:focus-visible {
+  border-color: var(--bk-accent);
+  outline: 2px solid var(--bk-accent);
+  outline-offset: 1px;
+}
+
+.bk-dialog [aria-invalid="true"] {
+  border-color: var(--bk-error);
+}
+
+.bk-error {
+  margin-top: 0.4rem;
+  color: var(--bk-error);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+/* Travellers stepper */
+.bk-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 0 0.4rem;
+  border: 1px solid var(--bk-line);
+  border-radius: 8px;
+  background: var(--bk-field);
+}
+
+.bk-stepper__value {
+  min-width: 2ch;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.bk-stepper__btn {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  color: var(--bk-accent);
+  background: color-mix(in srgb, var(--bk-accent) 16%, var(--bk-field));
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 160ms ease, opacity 160ms ease;
+}
+
+.bk-stepper__btn:hover {
+  background: color-mix(in srgb, var(--bk-accent) 28%, var(--bk-field));
+}
+
+.bk-stepper__btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.bk-dialog .bk-stepper__btn:focus-visible,
+.bk-dialog .bk-close:focus-visible,
+.bk-dialog .bk-btn:focus-visible {
+  outline: 2px solid var(--bk-accent);
+  outline-offset: 2px;
+}
+
+/* Acknowledgement checkbox */
+.bk-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--bk-copy);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.bk-check input {
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 5px;
+  background: var(--bk-field);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.bk-check input:checked {
+  border-color: var(--bk-accent);
+  background-color: var(--bk-accent);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14' fill='none'%3E%3Cpath d='M2.5 7.5l3 3 6-6.5' stroke='%230a1414' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bk-dialog .bk-check input:focus-visible {
+  outline: 2px solid var(--bk-accent);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------
+   6. Package summary card
+   --------------------------------------------------------- */
+.bk-summary {
+  overflow: hidden;
+  border: 1px solid var(--bk-line);
+  border-radius: 14px;
+  background: var(--bk-panel);
+}
+
+.bk-summary__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 6;
+  object-fit: cover;
+  background: linear-gradient(135deg, #1a2827, #304b45);
+}
+
+.bk-summary__body {
+  padding: 1.25rem 1.35rem 1.4rem;
+}
+
+.bk-summary__region {
+  margin-bottom: 0.45rem;
+  color: var(--bk-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bk-dialog .bk-summary__title {
+  margin: 0 0 0.75rem;
+  color: #f5f7f6;
+  font-family: var(--home-font-display, 'Cinzel', Georgia, serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.bk-summary__duration {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.95rem;
+}
+
+.bk-icon {
+  flex: 0 0 auto;
+  color: var(--bk-copy);
+}
+
+.bk-summary__desc {
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--bk-line);
+  color: var(--bk-copy);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.bk-stops-block {
+  padding: 1rem 0 1.1rem;
+  border-bottom: 1px solid var(--bk-line);
+}
+
+.bk-dialog .bk-stops-title {
+  margin: 0 0 0.65rem;
+  color: #f5f7f6;
+  font-family: var(--home-font-body, 'Inter', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.bk-stops {
+  list-style: none;
+  color: var(--bk-copy);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.bk-stops li::before {
+  margin-right: 0.5rem;
+  content: '\2022';
+}
+
+.bk-prices {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--bk-line);
+}
+
+.bk-prices > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.3rem 0;
+  color: var(--bk-copy);
+  font-size: 0.92rem;
+}
+
+.bk-prices dd {
+  color: #f5f7f6;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.bk-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  font-weight: 600;
+}
+
+.bk-total strong {
+  color: var(--bk-gold);
+  font-family: var(--home-font-display, 'Cinzel', Georgia, serif);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.1;
+}
+
+.bk-total-note {
+  margin-top: 0.85rem;
+  color: var(--bk-muted);
+  font-size: 0.88rem;
+}
+
+/* ---------------------------------------------------------
+   7. Review + confirmation views
+   --------------------------------------------------------- */
+.bk-review {
+  margin-top: 1.1rem;
+  border-top: 1px solid var(--bk-line);
+}
+
+.bk-review__row {
+  display: grid;
+  grid-template-columns: minmax(7rem, 9rem) minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--bk-line);
+}
+
+.bk-review dt {
+  color: var(--bk-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bk-review dd {
+  color: #f5f7f6;
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.bk-review dd.bk-review__multiline {
+  white-space: pre-wrap;
+}
+
+.bk-dialog[data-view="done"] .bk-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.bk-done {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--bk-accent) 40%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--bk-accent) 8%, var(--bk-bg));
+}
+
+.bk-done__icon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border-radius: 50%;
+  color: #0a1414;
+  background: var(--bk-accent);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.bk-done p {
+  color: var(--bk-copy);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ---------------------------------------------------------
+   8. Footer + buttons
+   --------------------------------------------------------- */
+/* Pinned to the bottom edge of the scrolling dialog so the actions are always reachable. */
+.bk-foot {
+  position: sticky;
+  z-index: 3;
+  bottom: -1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  margin: 1.75rem -2.25rem -1.5rem;
+  padding: 1.25rem 2.25rem 1.5rem;
+  border-top: 1px solid var(--bk-line);
+  background: var(--bk-bg);
+}
+
+.bk-foot__label {
+  margin-bottom: 0.2rem;
+  color: var(--bk-gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bk-foot__note p:last-child {
+  color: var(--bk-muted);
+  font-size: 0.95rem;
+}
+
+.bk-foot__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
+.bk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 50px;
+  padding: 0 1.75rem;
+  border: 1px solid var(--bk-line);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.bk-btn--ghost {
+  color: #f5f7f6;
+  background: var(--bk-field);
+}
+
+.bk-btn--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.bk-btn--primary {
+  border-color: var(--bk-accent);
+  color: #0a1414;
+  background: var(--bk-accent);
+}
+
+.bk-btn--primary:hover {
+  background: color-mix(in srgb, var(--bk-accent) 86%, white);
+  transform: translateY(-1px);
+}
+
+/* ---------------------------------------------------------
+   9. Responsive
+   --------------------------------------------------------- */
+@media (max-width: 900px) {
+  .bk-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .bk-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .bk-dialog {
+    max-height: 100dvh;
+    padding: 1.5rem 1.25rem 1.25rem;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .bk-close {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .bk-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bk-section-head {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .bk-review__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+
+  .bk-done {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bk-foot {
+    bottom: -1.25rem;
+    margin: 1.5rem -1.25rem -1.25rem;
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .bk-foot__actions {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .bk-btn {
+    flex: 1 1 0;
+    padding: 0 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bk-overlay,
+  .bk-dialog,
+  .nation-hero__book,
+  .nation-hero__book-arrow {
+    transition: none;
+  }
+
+  .bk-dialog {
+    transform: none;
+  }
+}
