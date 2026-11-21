@@ -45,6 +45,7 @@
     }
   </style>
   <link rel="stylesheet" href="css/layout-align.css">
+  <link rel="stylesheet" href="css/booking.css">
 </head>
 <body class="nation-page" id="top">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -114,7 +115,7 @@
          ============================================= -->
     <section class="nation-hero" aria-labelledby="hero-title">
       <div class="nation-hero__bg"
-           style="background-image: url('assets/img/liyue.jpeg');"
+           style="background-image: url('images/liyue/Liyue_Main.png');"
            role="img"
            aria-label="Liyue Harbor and the steep cliffs of Liyue under warm evening light"></div>
       <div class="nation-hero__veil" aria-hidden="true"></div>
@@ -123,10 +124,7 @@
         <p class="nation-hero__kicker entrance entrance--two">The nation of contracts</p>
         <h1 class="nation-hero__title entrance entrance--three" id="hero-title">Liyue</h1>
         <p class="nation-hero__tagline entrance entrance--four">A land of stone, trade, and mountain-held secrets.</p>
-        <a class="nation-hero__scroll-cue" href="#about" aria-label="Scroll down to learn about Liyue">
-          <span class="nation-hero__scroll-line" aria-hidden="true"></span>
-          <span>Scroll down</span>
-        </a>
+        <button class="nation-hero__book" type="button" data-booking-open data-booking-destination="Liyue" aria-haspopup="dialog"><span>Book Now!</span><span class="nation-hero__book-arrow" aria-hidden="true">&#8594;</span></button>
       </div>
     </section>
     <!-- / HERO -->
@@ -221,7 +219,7 @@
           </article>
 
           <article class="nation-loc-card reveal" hidden>
-            <img src="images/liyue/Wangshu Inn.jpg"
+            <img src="images/liyue/Wangshu Inn.png"
                  alt="Wangshu Inn rising from a towering stone pillar above marshlands"
                  class="nation-loc-card__img"
                  loading="lazy" width="600" height="400">
@@ -340,7 +338,7 @@
       <div class="liyue-overlay" id="liyue-overlay-4" aria-label="Wangshu Inn photo viewer" role="dialog" aria-modal="true" hidden>
         <label class="liyue-overlay__backdrop" for="mv-closed" aria-label="Close viewer"></label>
         <div class="liyue-overlay__box">
-          <img src="images/liyue/Wangshu Inn.jpg"
+          <img src="images/liyue/Wangshu Inn.png"
                alt="Wangshu Inn perched on a stone pillar in a marsh beneath far-off mountain ridges"
                class="liyue-overlay__photo"
                loading="lazy">
@@ -453,7 +451,7 @@
         </label>
 
         <label class="liyue-slide" for="mv-4" tabindex="0" role="button" aria-label="View Wangshu Inn" hidden>
-          <img src="images/liyue/Wangshu Inn.jpg"
+          <img src="images/liyue/Wangshu Inn.png"
                alt="Wangshu Inn perched on a stone pillar in a marsh beneath far-off mountain ridges"
                class="liyue-slide__img"
                loading="lazy" width="800" height="560">
@@ -622,5 +620,7 @@
   </footer>
   <!-- / FOOTER -->
 
+  <script src="js/main.js" defer></script>
+  <script src="js/booking.js" defer></script>
 </body>
 </html>

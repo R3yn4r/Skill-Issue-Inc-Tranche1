@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/packages.css">
   <link rel="stylesheet" href="css/layout-align.css">
+  <link rel="stylesheet" href="css/booking.css">
 </head>
 <body class="nation-page" id="top">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -72,7 +73,7 @@
     <!-- Section 1 — Hero -->
     <section class="nation-hero" aria-labelledby="hero-title">
       <div class="nation-hero__bg"
-           style="background-image: url('assets/img/fontaine.webp');"
+           style="background-image: url('images/fontaine/Fontaine_Main.png');"
            role="img"
            aria-label="The Palais Mermonia rising above Fontaine's elegant city streets"></div>
       <div class="nation-hero__veil" aria-hidden="true"></div>
@@ -81,10 +82,7 @@
         <p class="nation-hero__kicker entrance entrance--two">THE NATION OF JUSTICE</p>
         <h1 class="nation-hero__title entrance entrance--three" id="hero-title">Fontaine</h1>
         <p class="nation-hero__tagline entrance entrance--four">A city of justice and stagecraft beside the sea.</p>
-        <a class="nation-hero__scroll-cue" href="#about" aria-label="Scroll down to learn about Fontaine">
-          <span class="nation-hero__scroll-line" aria-hidden="true"></span>
-          <span>Scroll down</span>
-        </a>
+        <button class="nation-hero__book" type="button" data-booking-open data-booking-destination="Fontaine" aria-haspopup="dialog"><span>Book Now!</span><span class="nation-hero__book-arrow" aria-hidden="true">&#8594;</span></button>
       </div>
     </section>
 
@@ -410,5 +408,7 @@
       <a class="footer-back-top" href="#top">Back to top &#8593;</a>
     </div>
   </footer>
+  <script src="js/main.js" defer></script>
+  <script src="js/booking.js" defer></script>
 </body>
 </html>
