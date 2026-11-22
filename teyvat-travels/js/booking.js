@@ -579,7 +579,6 @@
     }
 
     els.date.min = tomorrowISO();
-    populateAvailableDates();
     updateSummary();
 
     setBackgroundInert(true);
@@ -655,186 +654,39 @@
     }
   }
 
-  /* Switches the package card when another destination is chosen, and refreshes the available dates. */
-  function handleDestinationChange() {
-    state.key = els.destination.value;
-    updateSummary();
-    populateAvailableDates();
-  }
+  /* Routes clicks on the dialog's buttons by their data attributes. */
+  function handleOverlayClick(event) {
+    const stepButton = event.target.closest("[data-bk-step]");
 
-  /* =========================================================
-     Available-dates integration with Availability admin
-     Reads tt_admin_departures_v1 + tt_admin_bookings_v1 and
-     replaces the free-text date input with a <select> of available
-     departure dates.  Falls back to a plain date input when no
-     departure schedule has been configured by the admin.
-     Visible in the booking panel date field on nation pages.
-     ========================================================= */
-
-  /* Reads and returns the departures array from localStorage.
-     Returns [] if storage is unavailable, empty, or corrupted. */
-  function readDepartures() {
-    try {
-      const raw = localStorage.getItem("tt_admin_departures_v1");
-      if (!raw) { return []; }
-      const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed)) { return []; }
-      return parsed.filter(function (r) {
-        return r && typeof r.packageId === "string" &&
-               typeof r.date === "string" &&
-               /^\d{4}-\d{2}-\d{2}$/.test(r.date) &&
-               typeof r.maxCapacity === "number" && r.maxCapacity > 0 &&
-               !r.isUnavailable;
-      });
-    } catch (e) {
-      return [];
-    }
-  }
-
-  /* Reads confirmed guest counts per (packageId, date) from tt_admin_bookings_v1.
-     Returns a map keyed "packageId|date" → confirmedGuests. */
-  function readConfirmedCounts() {
-    const counts = {};
-    try {
-      const raw = localStorage.getItem("tt_admin_bookings_v1");
-      if (!raw) { return counts; }
-      const bookings = JSON.parse(raw);
-      if (!Array.isArray(bookings)) { return counts; }
-      bookings.forEach(function (booking) {
-        if (booking.bookingStatus !== "Confirmed") { return; }
-        const key = booking.packageId + "|" + booking.travelDate;
-        counts[key] = (counts[key] || 0) + (Number(booking.guests) || 0);
-      });
-    } catch (e) { /* corrupted — return empty map */ }
-    return counts;
-  }
-
-  /* Maps a destination key (e.g. "mondstadt") to the matching package id from app.js.
-     The public booking panel uses the app.js package list (tt_packages in localStorage). */
-  function findPackageId(destinationKey) {
-    try {
-      const raw = localStorage.getItem("tt_packages");
-      const list = raw ? JSON.parse(raw) : null;
-      const packages = Array.isArray(list) ? list : null;
-      if (!packages) { return null; }
-      const pkg = packages.find(function (p) {
-        const nation = String(p.nation || "").toLowerCase();
-        return nation === destinationKey;
-      });
-      return pkg ? String(pkg.id) : null;
-    } catch (e) {
-      return null;
-    }
-  }
-
-  /* Replaces (or restores) the date field with a <select> of available departure dates
-     for the currently chosen destination.  Called whenever the destination changes or
-     the panel opens.
-     - If no departures are scheduled, shows the plain <input type="date"> as before.
-     - Dates that are full (confirmed ≥ maxCapacity) are shown but marked "(Full)".
-     - Updates state.maxSlotsForDate so the traveller-count stepper can cap the max. */
-  function populateAvailableDates() {
-    const pkgId   = findPackageId(state.key);
-    const departures = pkgId ? readDepartures().filter(function (r) {
-      return r.packageId === pkgId;
-    }) : [];
-
-    const tomorrow = tomorrowISO();
-    const upcoming = departures
-      .filter(function (r) { return r.date >= tomorrow; })
-      .sort(function (a, b) { return a.date < b.date ? -1 : 1; });
-
-    /* Remove any existing date-select we inserted previously. */
-    const existingSelect = byId("bk-date-select");
-    if (existingSelect) { existingSelect.remove(); }
-
-    if (upcoming.length === 0) {
-      /* No departure schedule — show plain date input. */
-      els.date.hidden = false;
-      els.date.min = tomorrow;
-      els.date.value = "";
-      state.maxSlotsForDate = MAX_TRAVELLERS;
+    if (stepButton) {
+      const next = state.travellers + Number(stepButton.dataset.bkStep);
+      if (next >= MIN_TRAVELLERS && next <= MAX_TRAVELLERS) {
+        state.travellers = next;
+        updateSummary();
+      }
       return;
     }
 
-    /* Build a <select> to replace the date input. */
-    const confirmed = readConfirmedCounts();
-    const dateSelect = document.createElement("select");
-    dateSelect.id        = "bk-date-select";
-    dateSelect.className = "bk-select";
-    dateSelect.name      = "date";
-    dateSelect.setAttribute("aria-label", "Departure date");
-    dateSelect.required  = true;
-
-    const placeholder = document.createElement("option");
-    placeholder.value    = "";
-    placeholder.textContent = "Select departure date";
-    placeholder.disabled    = true;
-    placeholder.selected    = true;
-    dateSelect.appendChild(placeholder);
-
-    upcoming.forEach(function (r) {
-      const key       = pkgId + "|" + r.date;
-      const booked    = confirmed[key] || 0;
-      const remaining = r.maxCapacity - booked;
-      const full      = remaining <= 0;
-      const opt       = document.createElement("option");
-      opt.value       = r.date;
-      const dateParts = r.date.split("-").map(Number);
-      const dateLabel = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
-        .toLocaleDateString("en-PH", { weekday: "short", day: "numeric", month: "long", year: "numeric" });
-      opt.textContent = full
-        ? dateLabel + " (Full)"
-        : dateLabel + " — " + remaining + " slot" + (remaining !== 1 ? "s" : "") + " left";
-      opt.disabled    = full;
-      opt.dataset.remaining = String(remaining);
-      opt.dataset.max = String(r.maxCapacity);
-      dateSelect.appendChild(opt);
-    });
-
-    /* Insert the select immediately before the hidden date input, then hide the input. */
-    els.date.parentNode.insertBefore(dateSelect, els.date);
-    els.date.hidden = true;
-    els.date.value  = "";
-    state.maxSlotsForDate = MAX_TRAVELLERS;
-
-    /* Keep the hidden date input in sync with the select value. */
-    dateSelect.addEventListener("change", function () {
-      els.date.value = dateSelect.value;
-      /* Update the max traveller count to the remaining slots for this date. */
-      const selected = dateSelect.options[dateSelect.selectedIndex];
-      const remaining = parseInt(selected.dataset.remaining, 10);
-      state.maxSlotsForDate = Number.isFinite(remaining) && remaining > 0
-        ? Math.min(remaining, MAX_TRAVELLERS)
-        : MAX_TRAVELLERS;
-      /* Clamp current traveller count to the new maximum. */
-      if (state.travellers > state.maxSlotsForDate) {
-        state.travellers = state.maxSlotsForDate;
-      }
-      updateSummary();
-      /* Re-validate the date field if it was flagged. */
-      if (els.date.getAttribute("aria-invalid") === "true") {
-        setFieldError(els.date, getError(els.date));
-      }
-    });
+    if (event.target.closest("[data-bk-cancel], [data-bk-done]")) {
+      closePanel(true);
+    } else if (event.target.closest("[data-bk-close]")) {
+      closePanel(state.view === "done");
+    } else if (event.target.closest("[data-bk-edit]")) {
+      setView("form");
+      els.destination.focus();
+    } else if (event.target.closest("[data-bk-confirm]")) {
+      handleConfirm();
+    }
   }
 
-  /* Extends getError to handle the hidden date input when a date-select is active.
-     The existing validation already checks els.date.value which we keep in sync. */
-
-  /* Clamps the traveller stepper delta against state.maxSlotsForDate when a
-     departure has limited remaining capacity. */
-  function getSlotsMax() {
-    return (typeof state.maxSlotsForDate === "number" && state.maxSlotsForDate > 0)
-      ? state.maxSlotsForDate
-      : MAX_TRAVELLERS;
+  /* Switches the package card when another destination is chosen. */
+  function handleDestinationChange() {
+    state.key = els.destination.value;
+    updateSummary();
   }
 
   /* Wires everything up. */
   function initialize() {
-    /* Extend state with the per-date slot cap. */
-    state.maxSlotsForDate = MAX_TRAVELLERS;
-
     const firstRequested = String(triggers[0].dataset.bookingDestination || "").toLowerCase();
     if (PACKAGES[firstRequested]) {
       state.key = firstRequested;
@@ -843,7 +695,6 @@
     els.destination.value = state.key;
     els.date.min = tomorrowISO();
     updateSummary();
-    populateAvailableDates();
     setView("form");
 
     triggers.forEach(function (trigger) {
@@ -852,30 +703,7 @@
       });
     });
 
-    overlay.addEventListener("click", function (event) {
-      const stepButton = event.target.closest("[data-bk-step]");
-      if (stepButton) {
-        const step = Number(stepButton.dataset.bkStep);
-        const next = state.travellers + step;
-        const max  = getSlotsMax();
-        if (next >= MIN_TRAVELLERS && next <= max) {
-          state.travellers = next;
-          updateSummary();
-        }
-        return;
-      }
-      if (event.target.closest("[data-bk-cancel], [data-bk-done]")) {
-        closePanel(true);
-      } else if (event.target.closest("[data-bk-close]")) {
-        closePanel(state.view === "done");
-      } else if (event.target.closest("[data-bk-edit]")) {
-        setView("form");
-        els.destination.focus();
-      } else if (event.target.closest("[data-bk-confirm]")) {
-        handleConfirm();
-      }
-    });
-
+    overlay.addEventListener("click", handleOverlayClick);
     els.destination.addEventListener("change", handleDestinationChange);
     form.addEventListener("submit", handleSubmit);
     document.addEventListener("keydown", handleKeyDown);
