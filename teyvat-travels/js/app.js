@@ -21,6 +21,7 @@
   var DEFAULT_PACKAGES = [
     {
       id: "pkg-1",
+      packageCode: "MOND-01",
       nation: "Mondstadt",
       badge: "Most popular",
       title: "The City of Freedom Expedition",
@@ -40,6 +41,7 @@
     },
     {
       id: "pkg-2",
+      packageCode: "LIYU-02",
       nation: "Liyue",
       badge: "Harbor & heritage",
       title: "The Harbor of Stone and Commerce",
@@ -59,6 +61,7 @@
     },
     {
       id: "pkg-3",
+      packageCode: "INAZ-03",
       nation: "Inazuma",
       badge: "Island escape",
       title: "The Realm of Eternal Thunder",
@@ -78,6 +81,7 @@
     },
     {
       id: "pkg-4",
+      packageCode: "SUME-04",
       nation: "Sumeru",
       badge: "Rainforest retreat",
       title: "The City of Wisdom & Rainforest Retreat",
@@ -97,6 +101,7 @@
     },
     {
       id: "pkg-5",
+      packageCode: "FONT-05",
       nation: "Fontaine",
       badge: "Arts & innovation",
       title: "The Capital of Justice, Steam, and Aquanics",
@@ -116,6 +121,7 @@
     },
     {
       id: "pkg-6",
+      packageCode: "NATL-06",
       nation: "Natlan",
       badge: "Volcanic adventure",
       title: "The Land of Ash, Hot Springs, and Valor",
@@ -135,6 +141,7 @@
     },
     {
       id: "pkg-7",
+      packageCode: "SNEZ-07",
       nation: "Snezhnaya",
       badge: "Winter expedition",
       title: "The Eternal White Tundra",
@@ -175,12 +182,24 @@
           var missing = DEFAULT_PACKAGES.filter(function (p) {
             return storedIds.indexOf(p.id) < 0;
           });
-          if (missing.length) {
-            var merged = parsed.concat(missing);
-            savePackages(merged);
-            return merged;
+          var list = missing.length ? parsed.concat(missing) : parsed;
+
+          // Backfill packageCode for any package that doesn't have one yet
+          var needsSave = missing.length > 0;
+          list.forEach(function (p) {
+            if (!p.packageCode) {
+              var def = DEFAULT_PACKAGES.find(function (d) { return d.id === p.id; });
+              if (def && def.packageCode) {
+                p.packageCode = def.packageCode;
+                needsSave = true;
+              }
+            }
+          });
+
+          if (needsSave) {
+            savePackages(list);
           }
-          return parsed;
+          return list;
         }
       }
     } catch (e) { /* ignore */ }
@@ -828,6 +847,12 @@
      11. ADMIN PACKAGES LIST RENDERING
      ========================================================= */
 
+  /** Nation prefix map — shared between package list and edit form */
+  var EP_PREFIX = {
+    "Mondstadt": "MOND", "Liyue": "LIYU", "Inazuma": "INAZ", "Sumeru": "SUME",
+    "Fontaine": "FONT", "Natlan": "NATL", "Snezhnaya": "SNEZ"
+  };
+
   /**
    * Renders the admin tour-packages table from the packages array.
    * Each row gets Edit and Delete buttons.
@@ -912,13 +937,14 @@
           : "admin-pill";
         var tr = document.createElement("tr");
         if (p.status === "Inactive") { tr.className = "admin-pkg-row--inactive"; }
+        var pkgCode = p.packageCode || (EP_PREFIX[p.nation] || "XXXX") + "-" + num;
         tr.innerHTML =
           '<td class="ad-td-main" data-label="Package">' +
             '<div class="ad-pkg">' +
               '<img class="ad-pkg__thumb" src="' + p.image + '" alt="" width="56" height="38">' +
               '<div>' +
                 '<span class="ad-pkg__name">' + escHtml(p.title) + '</span>' +
-                '<span class="ad-pkg__code">' + num + ' &middot; ' + escHtml(p.nation) + '</span>' +
+                '<span class="ad-pkg__code">' + escHtml(pkgCode) + ' &middot; ' + escHtml(p.nation) + '</span>' +
               '</div>' +
             '</div>' +
           '</td>' +
@@ -1002,6 +1028,7 @@
     var crumbCode   = document.getElementById("admin-ep-crumb-code");
     var saveBtn     = document.getElementById("admin-ep-save");
     var cancelBtn   = document.getElementById("admin-ep-cancel");
+    var actionsBar  = document.getElementById("admin-ep-actions");
 
     if (!layout || !titleEl) { return; }
 
@@ -1011,53 +1038,152 @@
     if (!isNew && !pkg) {
       if (missingCard) { missingCard.hidden = false; }
       layout.hidden = true;
+      if (actionsBar) { actionsBar.hidden = true; }
+      titleEl.textContent = "Package not found";
       return;
     }
 
     if (missingCard) { missingCard.hidden = true; }
     layout.hidden = false;
+    if (actionsBar) { actionsBar.hidden = false; }
 
     titleEl.textContent = isNew ? "Add tour package" : "Edit tour package";
     if (crumbCode) {
-      crumbCode.textContent = isNew ? "New" : (pkg.id);
+      crumbCode.textContent = isNew ? "NEW" : epGenerateCode(pkg);
     }
 
     // Populate nation <select>
     var nationSel = document.getElementById("admin-ep-nation");
     var NATIONS = ["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Natlan", "Snezhnaya"];
     if (nationSel) {
-      nationSel.innerHTML = NATIONS.map(function (n) {
-        var sel = pkg && pkg.nation === n ? " selected" : "";
-        return '<option value="' + n + '"' + sel + '>' + n + '</option>';
-      }).join("");
+      nationSel.innerHTML = '<option value="">Select a nation</option>' +
+        NATIONS.map(function (n) {
+          var sel = pkg && pkg.nation === n ? " selected" : "";
+          return '<option value="' + escHtml(n) + '"' + sel + '>' + escHtml(n) + '</option>';
+        }).join("");
+    }
+
+    // Generate/fill the package code field
+    var codeField = document.getElementById("admin-ep-code");
+    if (codeField) {
+      var existingCode = pkg ? (pkg.packageCode || epGenerateCode(pkg)) : "";
+      codeField.value = existingCode;
+      // Lock the code if the package already has bookings
+      var hasBookings = pkg ? epHasBookings(pkg.id) : false;
+      codeField.readOnly = !isNew && hasBookings;
+      var codeHint = document.getElementById("admin-ep-code-hint");
+      if (codeHint) {
+        codeHint.textContent = hasBookings
+          ? "Locked — this package already has bookings."
+          : "Four-letter nation prefix and two digits, like MOND-01.";
+      }
     }
 
     // Fill fields
     setVal("admin-ep-name",    pkg ? pkg.title : "");
     setVal("admin-ep-desc",    pkg ? pkg.description : "");
     setVal("admin-ep-stops",   pkg ? (pkg.highlights || []).join(", ") : "");
-    setVal("admin-ep-days",    pkg ? String(pkg.durationDays || "") : "");
-    setVal("admin-ep-nights",  pkg ? String(pkg.durationNights || "") : "");
-    setVal("admin-ep-price",   pkg ? String(pkg.price || "") : "");
+    setVal("admin-ep-days",    pkg ? String(pkg.durationDays || "") : "3");
+    setVal("admin-ep-nights",  pkg ? String(pkg.durationNights || "") : "2");
+    setVal("admin-ep-price",   pkg ? epFormatPrice(pkg.price) : "");
     setVal("admin-ep-max",     pkg ? String(pkg.maxGroup || "") : "");
-    setVal("admin-ep-badge",   pkg ? pkg.badge : "");
-    setVal("admin-ep-accent",  pkg ? pkg.accent : "#82d7bd");
-    setVal("admin-ep-link",    pkg ? pkg.nationLink : "");
-    setVal("admin-ep-image",   pkg ? pkg.image : "");
-    setVal("admin-ep-status",  pkg ? (pkg.status || "Active") : "Active");
+    setVal("admin-ep-badge",   pkg ? (pkg.badge || "") : "");
+    setVal("admin-ep-accent",  pkg ? (pkg.accent || "#82d7bd") : "#82d7bd");
+    setVal("admin-ep-link",    pkg ? (pkg.nationLink || "") : "");
+    setVal("admin-ep-image",   pkg ? (pkg.image || "") : "");
+
+    // Status hidden field + publication card
+    var currentStatus = pkg ? (pkg.status || "Active") : "Active";
+    setVal("admin-ep-status", currentStatus);
+    epRenderPublication(pkg, currentStatus);
+
+    // Update accent swatch
+    epUpdateSwatch();
+
+    // Render available dates
+    epRenderDates(pkg);
+
+    // Live preview
+    epUpdatePreview();
 
     // Clear errors
-    var errorIds = ["admin-ep-name-error", "admin-ep-desc-error", "admin-ep-days-error",
-                    "admin-ep-nights-error", "admin-ep-price-error", "admin-ep-form-error"];
+    var errorIds = [
+      "admin-ep-nation-error", "admin-ep-code-error", "admin-ep-name-error",
+      "admin-ep-desc-error", "admin-ep-stops-error", "admin-ep-days-error",
+      "admin-ep-nights-error", "admin-ep-price-error", "admin-ep-max-error",
+      "admin-ep-form-error"
+    ];
     errorIds.forEach(function (eid) {
-      var el = document.getElementById(eid);
-      if (el) { el.textContent = ""; el.hidden = true; }
+      var errEl = document.getElementById(eid);
+      if (errEl) { errEl.textContent = ""; errEl.hidden = true; }
     });
 
-    // Cancel button
+    // Cancel button: go back without saving
     if (cancelBtn) {
       cancelBtn.onclick = function (e) {
         e.preventDefault();
+        navigate("#/admin-packages");
+      };
+    }
+
+    // Wire live preview on input changes
+    var liveFields = ["admin-ep-nation", "admin-ep-name", "admin-ep-price",
+                      "admin-ep-days", "admin-ep-nights", "admin-ep-max",
+                      "admin-ep-stops", "admin-ep-image", "admin-ep-accent"];
+    liveFields.forEach(function (fid) {
+      var fEl = document.getElementById(fid);
+      if (fEl) {
+        fEl.oninput = function () {
+          epUpdatePreview();
+          if (fid === "admin-ep-accent") { epUpdateSwatch(); }
+          // Auto-generate code from nation if code is empty and this is a new package
+          if (fid === "admin-ep-nation" && isNew && codeField && !codeField.value.trim()) {
+            codeField.value = epSuggestCode(fEl.value, getPackages(), null);
+          }
+        };
+      }
+    });
+
+    // Format price on blur
+    var priceEl = document.getElementById("admin-ep-price");
+    if (priceEl) {
+      priceEl.onblur = function () {
+        var raw = priceEl.value.replace(/,/g, "");
+        var num = parseFloat(raw);
+        if (!isNaN(num) && num > 0) {
+          priceEl.value = epFormatPrice(num);
+        }
+      };
+    }
+
+    // Also auto-generate code when nation changes (new pkg, code not yet touched)
+    if (nationSel && isNew && codeField) {
+      var codeManuallySet = false;
+      codeField.addEventListener("input", function () { codeManuallySet = true; }, { once: false });
+      nationSel.addEventListener("change", function () {
+        if (!codeManuallySet && nationSel.value) {
+          codeField.value = epSuggestCode(nationSel.value, getPackages(), null);
+        }
+        epUpdatePreview();
+      });
+    }
+
+    // Publication card: toggle & delete
+    var toggleBtn = document.getElementById("admin-ep-toggle");
+    var deleteBtn = document.getElementById("admin-ep-delete");
+    if (toggleBtn) {
+      toggleBtn.onclick = function () {
+        currentStatus = currentStatus === "Active" ? "Inactive" : "Active";
+        setVal("admin-ep-status", currentStatus);
+        epRenderPublication(pkg, currentStatus);
+      };
+    }
+    if (deleteBtn) {
+      deleteBtn.onclick = function () {
+        if (!pkg) { return; }
+        if (!window.confirm('Delete "' + (pkg.title || "this package") + '"? This cannot be undone.')) { return; }
+        deletePackage(pkg.id);
+        sessionStorage.setItem("tt_pkg_saved", "Package deleted.");
         navigate("#/admin-packages");
       };
     }
@@ -1066,24 +1192,246 @@
     if (saveBtn) {
       var newSave = saveBtn.cloneNode(true);
       saveBtn.parentNode.replaceChild(newSave, saveBtn);
-      newSave.addEventListener("click", function () { handleSave(isNew, pkg, nationSel); });
+      newSave.addEventListener("click", function () {
+        handleSave(isNew, pkg, nationSel, function (saved) {
+          pkg = saved;
+          currentStatus = saved.status || "Active";
+          epRenderPublication(saved, currentStatus);
+          epRenderDates(saved);
+          if (crumbCode) {
+            crumbCode.textContent = saved.packageCode || epGenerateCode(saved);
+          }
+          isNew = false;
+        });
+      });
+    }
+  }
+
+  /* ---------- Edit-form helpers ---------- */
+
+  /** Formats a price number as "12,500.00" */
+  function epFormatPrice(amount) {
+    var num = Number(amount);
+    if (isNaN(num) || num <= 0) { return ""; }
+    return num.toLocaleString("en-PH", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  /** Returns true if any bookings exist for the given pkg id */
+  function epHasBookings(pkgId) {
+    if (!window.TTAdminBookingsData) { return false; }
+    try {
+      return window.TTAdminBookingsData.getBookings().some(function (b) {
+        return String(b.packageId) === String(pkgId);
+      });
+    } catch (e) { return false; }
+  }
+
+  /** Generates a code from the pkg object (uses pkg.packageCode or derives from nation+id) */
+  function epGenerateCode(pkg) {
+    if (pkg.packageCode) { return pkg.packageCode; }
+    var prefix = EP_PREFIX[pkg.nation] || "XXXX";
+    var num = String(pkg.id || "").replace(/\D/g, "").slice(-2).padStart(2, "0");
+    if (!num || num === "00") {
+      num = String(getPackages().findIndex(function (p) { return p.id === pkg.id; }) + 1).padStart(2, "0");
+    }
+    return prefix + "-" + num;
+  }
+
+  /** Suggests the next available code for a nation */
+  function epSuggestCode(nation, packages, excludeId) {
+    var prefix = EP_PREFIX[nation] || "XXXX";
+    var codes = packages
+      .filter(function (p) { return p.id !== excludeId; })
+      .map(function (p) {
+        var c = p.packageCode || "";
+        return parseInt(c.split("-")[1], 10) || 0;
+      });
+    var highest = codes.reduce(function (m, v) { return Math.max(m, v); }, 0);
+    return prefix + "-" + String(highest + 1).padStart(2, "0");
+  }
+
+  /** Checks if a code is unique (case-insensitive) among all packages except the current one */
+  function epCodeUnique(code, currentId) {
+    return !getPackages().some(function (p) {
+      return String(p.packageCode || "").toUpperCase() === code.toUpperCase() &&
+             p.id !== currentId;
+    });
+  }
+
+  /** Updates the accent color swatch */
+  function epUpdateSwatch() {
+    var swatch = document.getElementById("admin-ep-swatch");
+    var accentVal = getVal("admin-ep-accent").trim();
+    if (swatch) {
+      swatch.style.background = accentVal || "#82d7bd";
+    }
+  }
+
+  /** Updates the live preview card */
+  function epUpdatePreview() {
+    var nation = getVal("admin-ep-nation");
+    var name   = getVal("admin-ep-name").trim() || "Untitled package";
+    var priceRaw = parseFloat(getVal("admin-ep-price").replace(/,/g, "")) || 0;
+    var days   = parseInt(getVal("admin-ep-days"), 10);
+    var nights = parseInt(getVal("admin-ep-nights"), 10);
+    var max    = parseInt(getVal("admin-ep-max"), 10);
+    var stopsRaw = getVal("admin-ep-stops");
+    var imgSrc = getVal("admin-ep-image").trim();
+
+    // Nation defaults for image
+    var NATION_IMAGES = {
+      "Mondstadt": "assets/img/mondstadt.webp", "Liyue": "assets/img/liyue.jpeg",
+      "Inazuma": "assets/img/inazuma.webp", "Sumeru": "assets/img/sumeru.webp",
+      "Fontaine": "assets/img/fontaine.webp", "Natlan": "assets/img/natlan.webp",
+      "Snezhnaya": "assets/img/snezhnaya.webp"
+    };
+    var resolvedImg = imgSrc || (nation ? NATION_IMAGES[nation] : "");
+
+    var imgEl = document.getElementById("admin-ep-img");
+    var gradEl = document.getElementById("admin-ep-img-gradient");
+    if (imgEl) {
+      if (resolvedImg) {
+        imgEl.src = resolvedImg;
+        imgEl.alt = nation ? "Preview for " + nation : "";
+        imgEl.hidden = false;
+        if (gradEl) { gradEl.style.opacity = "0"; }
+      } else {
+        imgEl.hidden = true;
+        if (gradEl) { gradEl.style.opacity = "1"; }
+      }
     }
 
-    // Sidebar save button — same action
-    var saveSideBtn = document.getElementById("admin-ep-save-side");
-    if (saveSideBtn) {
-      var newSaveSide = saveSideBtn.cloneNode(true);
-      saveSideBtn.parentNode.replaceChild(newSaveSide, saveSideBtn);
-      newSaveSide.addEventListener("click", function () { handleSave(isNew, pkg, nationSel); });
+    var kickerEl = document.getElementById("admin-ep-kicker");
+    if (kickerEl) {
+      kickerEl.textContent = (nation || "—") + " \u2022 PUBLIC PREVIEW";
+    }
+
+    var ptitleEl = document.getElementById("admin-ep-ptitle");
+    if (ptitleEl) { ptitleEl.textContent = name; }
+
+    var ppriceEl = document.getElementById("admin-ep-pprice");
+    if (ppriceEl) {
+      ppriceEl.textContent = priceRaw > 0
+        ? "\u20B1" + priceRaw.toLocaleString("en-PH", { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + " / person"
+        : "\u20B1\u2014 / person";
+    }
+
+    var pmetaEl = document.getElementById("admin-ep-pmeta");
+    if (pmetaEl) {
+      pmetaEl.textContent =
+        (isNaN(days) ? "\u2013" : days) + " Days / " +
+        (isNaN(nights) ? "\u2013" : nights) + " Nights \u00b7 Up to " +
+        (isNaN(max) ? "\u2013" : max) + " guests";
+    }
+
+    var pstopsEl = document.getElementById("admin-ep-pstops");
+    if (pstopsEl) {
+      pstopsEl.textContent = "";
+      var stops = stopsRaw.split(",").map(function (s) { return s.trim(); }).filter(Boolean);
+      stops.forEach(function (stop) {
+        var li = document.createElement("li");
+        li.textContent = stop;
+        pstopsEl.appendChild(li);
+      });
+    }
+  }
+
+  /** Renders the available dates card */
+  function epRenderDates(pkg) {
+    var datesEl   = document.getElementById("admin-ep-dates");
+    var noteEl    = document.getElementById("admin-ep-dates-note");
+    var manageEl  = document.getElementById("admin-ep-manage");
+    if (!datesEl) { return; }
+    datesEl.textContent = "";
+
+    if (!pkg) {
+      if (noteEl) { noteEl.textContent = "Save the package first, then schedule departure dates."; }
+      if (manageEl) { manageEl.hidden = true; }
+      return;
+    }
+
+    if (noteEl) { noteEl.textContent = "Schedule departures and manage date-specific closures."; }
+    if (manageEl) {
+      manageEl.hidden = false;
+      manageEl.href = "#/admin-availability";
+    }
+
+    // Pull departures from TTAdmin.data (admin-data.js) if available.
+    // getDepartures() matches by package_code, so use pkg.packageCode.
+    var departures = [];
+    if (window.TTAdmin && window.TTAdmin.data && window.TTAdmin.data.getDepartures) {
+      var lookupCode = pkg.packageCode || epGenerateCode(pkg);
+      departures = window.TTAdmin.data.getDepartures(lookupCode);
+    }
+
+    // Filter to future, non-unavailable departures
+    var today = new Date().toISOString().slice(0, 10);
+    var future = departures.filter(function (d) {
+      return d.travel_date >= today && !d.unavailable;
+    }).slice(0, 7);
+
+    if (future.length === 0) {
+      var noDateP = document.createElement("p");
+      noDateP.className = "ad-hint";
+      noDateP.style.marginTop = "0";
+      noDateP.textContent = "No dates scheduled yet.";
+      datesEl.appendChild(noDateP);
+      return;
+    }
+
+    var shown = future.slice(0, 6);
+    var extra = future.length - shown.length;
+    shown.forEach(function (d) {
+      var chip = document.createElement("span");
+      chip.className = "ad-date-chip";
+      var parts = d.travel_date.split("-").map(Number);
+      var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      chip.textContent = String(parts[2]).padStart(2, "0") + " " + months[parts[1] - 1];
+      datesEl.appendChild(chip);
+    });
+    if (extra > 0) {
+      var moreChip = document.createElement("span");
+      moreChip.className = "ad-date-chip";
+      moreChip.style.opacity = "0.7";
+      moreChip.textContent = "+" + extra + " more";
+      datesEl.appendChild(moreChip);
+    }
+  }
+
+  /** Renders the publication card UI: pill, text, button labels */
+  function epRenderPublication(pkg, status) {
+    var pill     = document.getElementById("admin-ep-status-pill");
+    var pubText  = document.getElementById("admin-ep-pub-text");
+    var toggleBtn = document.getElementById("admin-ep-toggle");
+    var deleteBtn = document.getElementById("admin-ep-delete");
+    var active   = status === "Active";
+
+    if (pill) {
+      pill.textContent = status;
+      pill.className = "ad-pill" + (active ? "" : " ad-pill--off");
+    }
+    if (pubText) {
+      pubText.textContent = active
+        ? "Active packages appear on the public website."
+        : "Inactive packages are hidden from the public website.";
+    }
+    if (toggleBtn) {
+      toggleBtn.textContent = active ? "Deactivate" : "Activate";
+      toggleBtn.disabled = !pkg;
+    }
+    if (deleteBtn) {
+      deleteBtn.disabled = !pkg;
+      deleteBtn.hidden = !pkg;  // hide delete for new (unsaved) packages
     }
   }
 
   /**
    * Reads and validates the edit form, then saves the package.
-   * Required: title, description, days, nights, price.
+   * Required: nation, code, title, description, stops, days, nights, price, max.
    * On success: flashes a message on the packages list page.
+   * callback(savedPkg) is called on success instead of navigating away.
    */
-  function handleSave(isNew, existing, nationSel) {
+  function handleSave(isNew, existing, nationSel, callback) {
     var valid = true;
 
     function require(fieldId, errorId, msg) {
@@ -1099,15 +1447,37 @@
       }
     }
 
-    require("admin-ep-name",   "admin-ep-name-error",   "Package name is required.");
-    require("admin-ep-desc",   "admin-ep-desc-error",   "Description is required.");
-    require("admin-ep-days",   "admin-ep-days-error",   "Duration (days) is required.");
-    require("admin-ep-nights", "admin-ep-nights-error", "Duration (nights) is required.");
-    require("admin-ep-price",  "admin-ep-price-error",  "Base price is required.");
+    require("admin-ep-nation", "admin-ep-nation-error",   "Please select a nation.");
+    require("admin-ep-code",   "admin-ep-code-error",     "Package code is required.");
+    require("admin-ep-name",   "admin-ep-name-error",     "Package name is required.");
+    require("admin-ep-desc",   "admin-ep-desc-error",     "Description is required.");
+    require("admin-ep-stops",  "admin-ep-stops-error",    "At least one featured stop is required.");
+    require("admin-ep-days",   "admin-ep-days-error",     "Duration (days) is required.");
+    require("admin-ep-nights", "admin-ep-nights-error",   "Duration (nights) is required.");
+    require("admin-ep-price",  "admin-ep-price-error",    "Base price is required.");
+    require("admin-ep-max",    "admin-ep-max-error",      "Maximum group size is required.");
+
+    // Validate package code format
+    var codeVal = getVal("admin-ep-code").trim().toUpperCase();
+    var codeErrEl = document.getElementById("admin-ep-code-error");
+    if (valid && !/^[A-Z]{4}-\d{2}$/.test(codeVal)) {
+      if (codeErrEl) { codeErrEl.textContent = "Use four letters, a dash and two digits, like MOND-01."; codeErrEl.hidden = false; }
+      var codeEl = document.getElementById("admin-ep-code");
+      if (codeEl) { codeEl.setAttribute("aria-invalid", "true"); }
+      valid = false;
+    } else if (valid) {
+      var currentId = existing ? existing.id : null;
+      if (!epCodeUnique(codeVal, currentId)) {
+        if (codeErrEl) { codeErrEl.textContent = "That package code is already used."; codeErrEl.hidden = false; }
+        var codeEl2 = document.getElementById("admin-ep-code");
+        if (codeEl2) { codeEl2.setAttribute("aria-invalid", "true"); }
+        valid = false;
+      }
+    }
 
     if (!valid) {
       var formErr = document.getElementById("admin-ep-form-error");
-      if (formErr) { formErr.textContent = "Please fix the errors above."; formErr.hidden = false; }
+      if (formErr) { formErr.textContent = "Please fix the highlighted fields."; formErr.hidden = false; }
       return;
     }
 
@@ -1127,6 +1497,7 @@
     var statusVal = getVal("admin-ep-status");
     var updated = {
       id:            isNew ? generateId() : existing.id,
+      packageCode:   codeVal,
       nation:        nation,
       badge:         getVal("admin-ep-badge") || (existing ? existing.badge : nation),
       title:         getVal("admin-ep-name").trim(),
@@ -1137,7 +1508,7 @@
       durationDays:  days,
       durationNights:nights,
       maxGroup:      parseInt(getVal("admin-ep-max"), 10) || (existing ? existing.maxGroup : 12),
-      startingPrice: "From ₱" + price.toLocaleString() + " per person",
+      startingPrice: "From \u20B1" + price.toLocaleString() + " per person",
       image:         getVal("admin-ep-image").trim() || (existing ? existing.image : ""),
       imageAlt:      existing ? existing.imageAlt : nation + " landscape",
       accent:        getVal("admin-ep-accent").trim() || (existing ? existing.accent : "#82d7bd"),
@@ -1146,9 +1517,52 @@
     };
 
     upsertPackage(updated);
+
+    // Update the crumb code display
+    var crumbCode = document.getElementById("admin-ep-crumb-code");
+    if (crumbCode) { crumbCode.textContent = codeVal; }
+
+    // Update the price field to formatted value
+    setVal("admin-ep-price", epFormatPrice(price));
+
+    // Update the browser URL to reflect the saved id (stays on the edit page)
+    window.history.replaceState(null, "", "#/admin-package-edit/" + encodeURIComponent(updated.id));
+
+    // Show success toast via sessionStorage flash (shown on packages list)
+    // but also stay on the page and show inline confirmation
+    var titleEl = document.getElementById("admin-ep-title");
+    if (titleEl) { titleEl.textContent = "Edit tour package"; }
+
+    if (typeof callback === "function") {
+      callback(updated);
+    }
+
+    // Flash the message for when the user navigates to packages
     sessionStorage.setItem("tt_pkg_saved",
       isNew ? "Package \u201c" + updated.title + "\u201d added." : "Changes saved.");
-    navigate("#/admin-packages");
+
+    // Show a toast-style confirmation inline
+    var formErr = document.getElementById("admin-ep-form-error");
+    if (formErr) { formErr.hidden = true; }
+
+    // Re-render the public slider immediately
+    renderPublicSlider();
+
+    // Show save confirmation on the packages list when navigating away
+    // but stay on this page for further edits — only navigate away on Cancel
+    // For the "saved" state, show a brief status in the page header
+    var actionsBar = document.getElementById("admin-ep-actions");
+    if (actionsBar) {
+      var oldMsg = actionsBar.querySelector(".admin-ep-saved-msg");
+      if (oldMsg) { oldMsg.remove(); }
+      var msg = document.createElement("p");
+      msg.className = "admin-ep-saved-msg ad-hint";
+      msg.style.cssText = "color:var(--ad-accent);font-size:12px;margin-top:4px;";
+      msg.textContent = isNew ? "Package saved successfully." : "Changes saved successfully.";
+      var headDiv = actionsBar.querySelector("div");
+      if (headDiv) { headDiv.appendChild(msg); }
+      setTimeout(function () { if (msg.parentNode) { msg.remove(); } }, 3500);
+    }
   }
 
   /* =========================================================

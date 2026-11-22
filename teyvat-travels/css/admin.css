@@ -268,6 +268,11 @@ body.ad-page {
   background: var(--ad-topbar);
 }
 
+/* Center column for the topbar search bar */
+.admin-topbar__center {
+  /* inherits ad-search positioning */
+}
+
 .ad-topbar__left {
   display: flex;
   align-items: center;
@@ -960,18 +965,227 @@ a.ad-attn__row:hover .ad-attn__label {
   font-size: 12px;
 }
 
-/* ---------- Edit package ---------- */
+/* ---------- Edit package (new redesigned layout) ---------- */
+
+/* The main edit layout: 2/3 form + 1/3 side cards, full width */
 .ad-edit {
   display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr);
-  gap: 16px;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: 20px;
   align-items: start;
+  /* Use full available width */
+  width: 100%;
 }
 
-.ad-edit .ad-card__title {
-  margin-bottom: 18px;
+/* Override max-width on the edit page to allow full-width layout */
+.admin-ep-main {
+  max-width: none;
+  width: 100%;
+  padding: 30px 28px 56px;
 }
 
+/* Eyebrow kicker: uppercase, accent color */
+.admin-ep-eyebrow {
+  color: var(--ad-accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* Card headings in Cinzel, clearly readable */
+.admin-ep-card-title {
+  font-family: var(--ad-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--ad-text);
+  margin-bottom: 16px;
+}
+
+/* Display settings collapsible */
+.admin-ep-display-settings {
+  margin-top: 20px;
+  border-top: 1px solid var(--ad-line);
+  padding-top: 16px;
+}
+
+.admin-ep-display-summary {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ad-copy);
+  list-style: none;
+  user-select: none;
+}
+
+.admin-ep-display-summary::-webkit-details-marker {
+  display: none;
+}
+
+.admin-ep-display-summary::before {
+  content: "▸\00a0";
+  color: var(--ad-accent);
+  font-size: 11px;
+}
+
+details[open] > .admin-ep-display-summary::before {
+  content: "▾\00a0";
+}
+
+/* Accent color swatch */
+.admin-ep-accent-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-ep-swatch {
+  display: inline-block;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--ad-line-strong);
+  background: #82d7bd;
+}
+
+/* ---- Preview card ---- */
+.admin-ep-preview-card {
+  overflow: hidden;
+}
+
+.admin-ep-preview-img-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 120px;
+  background: var(--ad-field);
+}
+
+.admin-ep-preview-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 6;
+  object-fit: cover;
+}
+
+.admin-ep-preview-gradient {
+  position: absolute;
+  inset: 0;
+  /* gradient fallback when no image */
+  background: linear-gradient(135deg, #1a2b28 0%, #0d1b1b 100%);
+  pointer-events: none;
+}
+
+/* When image loads, hide the gradient */
+.admin-ep-preview-img:not([hidden]) ~ .admin-ep-preview-gradient {
+  opacity: 0;
+}
+
+.admin-ep-preview-kicker {
+  margin-top: 14px;
+  color: var(--ad-accent);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-ep-preview-title {
+  margin-top: 6px;
+  font-family: var(--ad-display);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ad-text);
+  overflow-wrap: anywhere;
+}
+
+.admin-ep-preview-price {
+  margin-top: 10px;
+  color: var(--ad-gold);
+  font-family: var(--ad-display);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.admin-ep-preview-meta {
+  margin-top: 6px;
+  color: var(--ad-copy);
+  font-size: 13px;
+}
+
+.admin-ep-preview-divider {
+  border: none;
+  border-top: 1px solid var(--ad-line);
+  margin: 14px 0;
+}
+
+.admin-ep-preview-stops {
+  display: grid;
+  gap: 5px;
+  color: var(--ad-copy);
+  font-size: 12.5px;
+}
+
+.admin-ep-preview-stops li::before {
+  content: "\2022\00a0";
+  color: var(--ad-accent);
+}
+
+/* ---- Date chips ---- */
+.admin-ep-date-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 10px;
+}
+
+/* ---- Publication card ---- */
+.admin-ep-pub-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.admin-ep-pub-head .admin-ep-card-title {
+  margin-bottom: 0;
+}
+
+.admin-ep-pub-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.admin-ep-pub-msg {
+  margin-top: 12px;
+  color: var(--ad-gold);
+  font-size: 12px;
+}
+
+/* Delete button: red outline */
+.admin-ep-delete-btn {
+  color: var(--ad-danger) !important;
+  border-color: var(--ad-danger) !important;
+}
+
+.admin-ep-delete-btn:hover {
+  background: rgba(255, 140, 110, 0.1) !important;
+}
+
+/* ---- Side column ---- */
+.ad-side-col {
+  display: grid;
+  gap: 16px;
+}
+
+/* Legacy preview classes kept for any older code paths */
 .ad-preview__img {
   display: block;
   width: 100%;
@@ -1071,11 +1285,6 @@ a.ad-attn__row:hover .ad-attn__label {
   font-size: 12px;
 }
 
-.ad-side-col {
-  display: grid;
-  gap: 16px;
-}
-
 /* ---------- Dialog and toast ---------- */
 .ad-dialog {
   width: min(440px, calc(100% - 32px));
@@ -1152,8 +1361,7 @@ a.ad-attn__row:hover .ad-attn__label {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .ad-overview,
-  .ad-edit {
+  .ad-overview {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -1164,6 +1372,13 @@ a.ad-attn__row:hover .ad-attn__label {
   .ad-count {
     grid-column: 1 / -1;
     text-align: left;
+  }
+}
+
+/* Below 1000px, stack the edit form columns */
+@media (max-width: 1000px) {
+  .ad-edit {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
