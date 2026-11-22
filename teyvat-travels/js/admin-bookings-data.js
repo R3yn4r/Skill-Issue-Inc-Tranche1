@@ -26,7 +26,9 @@
         !BOOKING_STATUSES.includes(booking.bookingStatus) ||
         !PAYMENT_STATUSES.includes(booking.paymentStatus) ||
         !Number.isFinite(booking.total) || booking.total < 0 ||
-        typeof booking.createdAt !== "string" || !Number.isFinite(Date.parse(booking.createdAt))) {
+        typeof booking.createdAt !== "string" || !Number.isFinite(Date.parse(booking.createdAt)) ||
+        (booking.paymentRecordedAt !== undefined &&
+          (typeof booking.paymentRecordedAt !== "string" || !Number.isFinite(Date.parse(booking.paymentRecordedAt))))) {
       throw new Error("Saved booking data contains an invalid booking.");
     }
   }
@@ -128,6 +130,11 @@
       throw new Error("This booking could not be found.");
     }
     var updated = Object.assign({}, bookings[index], changes);
+    if (changes.paymentStatus === "Paid" && !updated.paymentRecordedAt) {
+      updated.paymentRecordedAt = new Date().toISOString();
+    } else if (changes.paymentStatus === "Pending") {
+      delete updated.paymentRecordedAt;
+    }
     validateBooking(updated);
     bookings[index] = updated;
     writeBookings(bookings);

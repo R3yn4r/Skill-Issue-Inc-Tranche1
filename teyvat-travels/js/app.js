@@ -327,6 +327,8 @@
     "view-admin-packages",
     "view-admin-availability",
     "view-admin-bookings",
+    "view-admin-inquiries",
+    "view-admin-payments",
     "view-admin-package-edit"
   ];
 
@@ -414,7 +416,9 @@
       "/admin-packages",
       "/admin-package-edit",
       "/admin-availability",
-      "/admin-bookings"
+      "/admin-bookings",
+      "/admin-inquiries",
+      "/admin-payments"
     ];
     if (protected_.indexOf(r.path) >= 0 && !isSignedIn()) {
       navigate("#/signin");
@@ -447,6 +451,14 @@
       case "/admin-bookings":
         showAdminView("view-admin-bookings", "Bookings");
         window.TTAdminBookings.render(getPackages());
+        break;
+      case "/admin-inquiries":
+        showAdminView("view-admin-inquiries", "Inquiries");
+        window.TTAdminInquiries.render(getPackages());
+        break;
+      case "/admin-payments":
+        showAdminView("view-admin-payments", "Payments");
+        window.TTAdminPayments.render(getPackages());
         break;
       case "/admin-package-edit":
         showAdminView("view-admin-package-edit", "Edit package");
@@ -482,6 +494,8 @@
       if ((path === "/admin-packages" || path === "/admin-package-edit") && href.indexOf("admin-packages") >= 0) { isActive = true; }
       if (path === "/admin-availability" && href.indexOf("admin-availability") >= 0) { isActive = true; }
       if (path === "/admin-bookings" && href.indexOf("admin-bookings") >= 0) { isActive = true; }
+      if (path === "/admin-inquiries" && href.indexOf("admin-inquiries") >= 0) { isActive = true; }
+      if (path === "/admin-payments" && href.indexOf("admin-payments") >= 0) { isActive = true; }
       link.setAttribute("aria-current", isActive ? "page" : "false");
     }
   }
@@ -671,7 +685,7 @@
 
   /**
    * Populates the admin dashboard overview with live counts from TTAdminBookingsData:
-   *  - stat cards: pending, confirmed, total revenue (confirmed bookings), packages count
+   *  - stat cards: pending, confirmed, recorded payments, packages count
    *  - attention sidebar counts
    *  - recent bookings table (newest 5)
    *  - today's date in the top bar
@@ -701,17 +715,19 @@
       bookings = window.TTAdminBookingsData.getBookings();
     } catch (e) { return; }
 
-    var pending   = 0;
+    var pending = 0;
     var confirmed = 0;
-    var revenue   = 0;
+    var paidTotal = 0;
+    var paidCount = 0;
     bookings.forEach(function (booking) {
       if (booking.bookingStatus === "Pending")   { pending += 1; }
       if (booking.bookingStatus === "Confirmed") {
         confirmed += 1;
-        // Use base price × guests when available, fall back to stored total
-        var pkg = packages.find(function (p) { return String(p.id) === String(booking.packageId); });
-        var price = pkg ? Number(pkg.price) : NaN;
-        revenue += Number.isFinite(price) ? price * booking.guests : Number(booking.total) || 0;
+      }
+      if ((booking.bookingStatus === "Confirmed" || booking.bookingStatus === "Completed") &&
+          booking.paymentStatus === "Paid") {
+        paidCount += 1;
+        paidTotal += Number(booking.total) || 0;
       }
     });
 
@@ -725,9 +741,21 @@
 
     setText("ov-pending",   String(pending));
     setText("ov-confirmed", String(confirmed));
-    // Revenue card — id may be ov-payments on the overview page
-    setText("ov-payments",  formatPesoDash(revenue));
-    setText("ov-payments-note", "Across " + confirmed + " confirmed " + (confirmed === 1 ? "booking" : "bookings"));
+    setText("ov-payments", formatPesoDash(paidTotal));
+    setText("ov-payments-note", "Across " + paidCount + " paid " + (paidCount === 1 ? "booking" : "bookings"));
+    if (window.TTAdminInquiriesData) {
+      try {
+        var newInquiries = window.TTAdminInquiriesData.getInquiries().filter(function (inquiry) {
+          return inquiry.status === "New";
+        }).length;
+        setText("ov-inquiries", String(newInquiries));
+        setText("ov-attn-inquiries", String(newInquiries));
+      } catch (error) {
+        console.error("Inquiry summary could not be loaded.", error);
+        setText("ov-inquiries", "—");
+        setText("ov-attn-inquiries", "—");
+      }
+    }
     // Attention sidebar
     setText("ov-attn-pending",   String(pending));
     var awaitingPayment = bookings.filter(function (b) {
