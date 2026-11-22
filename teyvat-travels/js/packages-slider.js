@@ -1,24 +1,39 @@
-/* Keep package navigation private to this page and out of the global scope. */
+/* Keep package navigation private to this page and out of the global scope.
+   window.TT_initSlider() is exposed so app.js can re-run setup after
+   dynamically replacing the carousel slides from localStorage data. */
 (function () {
   "use strict";
 
-  const carousel = document.querySelector(".home-page .pk-carousel");
-  if (!carousel) {
-    return;
-  }
+  /* ----------------------------------------------------------------
+     State that must survive between calls to setup():
+     the closures for Previous, Next, keyboard, touch, and resize are
+     created once and attached to elements that are never replaced.
+     The track, slides, and dots are replaced by renderPublicSlider(),
+     so those references must be refreshed on every call.
+     ---------------------------------------------------------------- */
 
-  const viewport = carousel.querySelector(".pk-carousel__viewport");
-  const track = carousel.querySelector(".pk-carousel__track");
-  const previousButton = carousel.querySelector(".pk-carousel__control--previous");
-  const nextButton = carousel.querySelector(".pk-carousel__control--next");
-  const dots = Array.from(carousel.querySelectorAll(".pk-carousel__dot"));
-  const slides = Array.from(track.children);
-  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-  let activeSlide = slides[0];
+  /* Per-carousel mutable state — lives in the outer function scope so
+     the one-time handlers (previous, next, keyboard, resize, touch)
+     can always read the current activeSlide after re-init. */
+  let activeSlide = null;
   let pendingDotIndex = null;
   let isMoving = false;
   let touchStartX = null;
+
+  /* Cached references to elements that are replaced by renderPublicSlider.
+     Refreshed on every setup() call. */
+  let track = null;
+  let slides = [];
+  let dots = [];
+
+  /* Cached references to elements that never change. Set once. */
+  let carousel = null;
+  let viewport = null;
+  let reducedMotionQuery = null;
+
+  /* ----------------------------------------------------------------
+     Helpers — all read from the mutable state above.
+     ---------------------------------------------------------------- */
 
   /* Centers the active slide on desktop and left-aligns it at narrower widths. */
   function positionSlide(slide) {
@@ -238,8 +253,71 @@
     updateSlideState();
   }
 
-  /* Initializes carousel state and binds the manual navigation controls. */
-  function initialize() {
+  /* ----------------------------------------------------------------
+     initOnce() — binds listeners that must only be attached once:
+     Previous/Next buttons, keyboard, touch, resize, reduced-motion.
+     These elements are never replaced by renderPublicSlider().
+     Guarded by carousel.dataset.sliderBound so repeated setup() calls
+     skip this block entirely.
+     ---------------------------------------------------------------- */
+  function initOnce() {
+    if (carousel.dataset.sliderBound) {
+      return;
+    }
+    carousel.dataset.sliderBound = "1";
+
+    const previousButton = carousel.querySelector(".pk-carousel__control--previous");
+    const nextButton     = carousel.querySelector(".pk-carousel__control--next");
+
+    previousButton.addEventListener("click", handlePreviousClick);
+    nextButton.addEventListener("click", handleNextClick);
+    carousel.addEventListener("keydown", handleKeyDown);
+    viewport.addEventListener("touchstart", handleTouchStart, { passive: true });
+    viewport.addEventListener("touchend",   handleTouchEnd,   { passive: true });
+    window.addEventListener("resize", handleResize);
+    reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
+  }
+
+  /* ----------------------------------------------------------------
+     setup() — safe to call many times.
+     Re-queries the track, slides, and dots (replaced by renderPublicSlider),
+     resets mutable state, re-binds transitionend and dot clicks on the
+     new nodes, then positions the first slide.
+     Calls initOnce() so the persistent listeners are attached exactly once.
+     ---------------------------------------------------------------- */
+  function setup() {
+    carousel = document.querySelector(".home-page .pk-carousel");
+    if (!carousel) {
+      return;
+    }
+
+    viewport          = carousel.querySelector(".pk-carousel__viewport");
+    track             = carousel.querySelector(".pk-carousel__track");
+    reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    /* Re-query the nodes that renderPublicSlider() replaces. */
+    slides = Array.from(track.children);
+    dots   = Array.from(carousel.querySelectorAll(".pk-carousel__dot"));
+
+    /* Reset per-call state. */
+    activeSlide    = slides[0];
+    pendingDotIndex = null;
+    isMoving       = false;
+    touchStartX    = null;
+
+    /* Bind the one-time persistent listeners (no-op after first call). */
+    initOnce();
+
+    /* Re-bind transitionend to the current track node (innerHTML replacement
+       removes all listeners from child nodes, including the old track). */
+    track.addEventListener("transitionend", handleTransitionEnd);
+
+    /* Re-bind dot clicks to the freshly created dot buttons. */
+    for (let index = 0; index < dots.length; index += 1) {
+      dots[index].addEventListener("click", handleDotClick);
+    }
+
+    /* Initialise position and inert state. */
     for (let index = 0; index < slides.length; index += 1) {
       setSlideInert(slides[index], false);
     }
@@ -250,22 +328,11 @@
 
     positionSlide(activeSlide);
     updateSlideState();
+  } // end setup()
 
-    previousButton.addEventListener("click", handlePreviousClick);
-    nextButton.addEventListener("click", handleNextClick);
-    track.addEventListener("transitionend", handleTransitionEnd);
-    carousel.addEventListener("keydown", handleKeyDown);
-    viewport.addEventListener("touchstart", handleTouchStart, { passive: true });
-    viewport.addEventListener("touchend", handleTouchEnd, { passive: true });
-    window.addEventListener("resize", handleResize);
-    reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
-
-    for (let index = 0; index < dots.length; index += 1) {
-      dots[index].addEventListener("click", handleDotClick);
-    }
-
-  }
-
-  /* Runs the package carousel after all deferred document markup has been parsed. */
-  initialize();
+  /* Runs the package carousel after all deferred document markup has been parsed.
+     Also exposes window.TT_initSlider so app.js can call it after re-rendering
+     the slider from localStorage data. */
+  setup();
+  window.TT_initSlider = setup;
 })();
