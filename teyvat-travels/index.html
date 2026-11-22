@@ -817,11 +817,12 @@
                   <thead>
                     <tr><th scope="col">Client / reference</th><th scope="col">Nation</th><th scope="col">Travel date</th><th scope="col">Status</th></tr>
                   </thead>
-                  <tbody>
+                  <tbody id="ov-recent">
                     <tr><td colspan="4" style="text-align:center;padding:28px 0;color:var(--ad-copy);">No booking requests yet — demo workspace.</td></tr>
                   </tbody>
                 </table>
               </div>
+              <p class="ad-foot" id="ov-recent-note"></p>
             </section>
 
             <div class="ad-side-stack">
@@ -1218,20 +1219,53 @@
             </div>
           </header>
 
+          <!-- Summary strip: live counts from TTAdminBookingsData -->
+          <div class="bookings-strip" id="bookings-strip" aria-label="Bookings summary">
+            <div class="bookings-strip__stat">
+              <span class="bookings-strip__value" id="strip-total">0</span>
+              <span class="bookings-strip__label">Total</span>
+            </div>
+            <div class="bookings-strip__stat">
+              <span class="bookings-strip__value bookings-strip__value--pending" id="strip-pending">0</span>
+              <span class="bookings-strip__label">Pending</span>
+            </div>
+            <div class="bookings-strip__stat">
+              <span class="bookings-strip__value bookings-strip__value--confirmed" id="strip-confirmed">0</span>
+              <span class="bookings-strip__label">Confirmed</span>
+            </div>
+            <div class="bookings-strip__stat">
+              <span class="bookings-strip__value bookings-strip__value--revenue" id="strip-revenue">₱0</span>
+              <span class="bookings-strip__label">Confirmed revenue</span>
+            </div>
+          </div>
+
           <section class="bookings-filters" aria-label="Filter bookings">
             <div class="ad-field-icon bookings-search">
               <svg class="ad-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-              <input class="ad-input" id="bookings-search" type="search" placeholder="Search client name or booking reference" aria-label="Search client name or booking reference" autocomplete="off">
+              <input class="ad-input" id="bookings-search" type="search" placeholder="Search client name, email or reference" aria-label="Search client name, email or reference" autocomplete="off">
             </div>
             <select class="ad-select" id="bookings-status" aria-label="Filter by booking status">
-              <option value="all">All booking statuses</option>
+              <option value="all">All statuses</option>
               <option value="Pending">Pending</option>
               <option value="Confirmed">Confirmed</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="Completed">Completed</option>
               <option value="Rejected">Rejected</option>
+            </select>
+            <select class="ad-select" id="bookings-package" aria-label="Filter by package">
+              <option value="all">All packages</option>
             </select>
             <select class="ad-select" id="bookings-date" aria-label="Filter by travel date">
               <option value="all">All travel dates</option>
             </select>
+            <div class="bookings-daterange">
+              <label class="ad-label" for="bookings-date-from">From</label>
+              <input class="ad-input" id="bookings-date-from" type="date" aria-label="Travel date from">
+            </div>
+            <div class="bookings-daterange">
+              <label class="ad-label" for="bookings-date-to">To</label>
+              <input class="ad-input" id="bookings-date-to" type="date" aria-label="Travel date to">
+            </div>
             <p class="bookings-summary" id="bookings-summary" aria-live="polite"></p>
           </section>
           <p class="ad-error bookings-storage-error" id="bookings-storage-error" role="alert" hidden></p>
@@ -1246,14 +1280,14 @@
                 </colgroup>
                 <thead>
                   <tr>
-                    <th scope="col">Client / Booking</th>
+                    <th scope="col" data-sort="client" aria-sort="none">Client / Booking</th>
                     <th scope="col">Package</th>
-                    <th scope="col">Travel date</th>
-                    <th scope="col">Guests</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Booking</th>
+                    <th scope="col" data-sort="travelDate" aria-sort="none">Travel date</th>
+                    <th scope="col" data-sort="guests" aria-sort="none">Guests</th>
+                    <th scope="col" data-sort="total" aria-sort="none">Total</th>
+                    <th scope="col" data-sort="bookingStatus" aria-sort="none">Booking</th>
                     <th scope="col">Payment</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" data-sort="createdAt" aria-sort="descending">Created / Action</th>
                   </tr>
                 </thead>
                 <tbody id="bookings-rows"></tbody>
@@ -1265,7 +1299,7 @@
               <button class="ad-link bookings-clear-filters" id="bookings-clear-filters" type="button">Clear filters</button>
             </p>
             <footer class="bookings-card-footer">
-              <p id="bookings-count"></p>
+              <p id="bookings-count" aria-live="polite"></p>
               <p>Pending requests do not consume confirmed capacity.</p>
             </footer>
           </section>
@@ -1284,9 +1318,13 @@
             <div><dt>Total</dt><dd id="detail-total"></dd></div>
             <div><dt>Booking status</dt><dd id="detail-booking-status"></dd></div>
             <div><dt>Payment status</dt><dd id="detail-payment-status"></dd></div>
+            <div><dt>Created</dt><dd id="detail-created"></dd></div>
           </dl>
           <div class="bookings-dialog-actions">
+            <button class="ad-btn ad-btn--danger bookings-dialog-delete" id="detail-delete" type="button">Delete</button>
             <button class="ad-btn ad-btn--danger" id="detail-reject" type="button">Reject</button>
+            <button class="ad-btn" id="detail-cancel-booking" type="button">Cancel</button>
+            <button class="ad-btn" id="detail-complete" type="button">Complete</button>
             <button class="ad-btn" id="detail-paid" type="button">Mark as paid</button>
             <button class="ad-btn ad-btn--primary" id="detail-confirm" type="button">Confirm</button>
           </div>

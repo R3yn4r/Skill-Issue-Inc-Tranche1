@@ -3,7 +3,7 @@
   "use strict";
 
   var STORAGE_KEY = "tt_admin_bookings_v1";
-  var BOOKING_STATUSES = ["Pending", "Confirmed", "Rejected"];
+  var BOOKING_STATUSES = ["Pending", "Confirmed", "Cancelled", "Completed", "Rejected"];
   var PAYMENT_STATUSES = ["Pending", "Paid"];
 
   function isValidDate(value) {
@@ -134,11 +134,25 @@
     return updated;
   }
 
+  /* Removes a booking record by reference. Throws if not found. */
+  function deleteBooking(reference) {
+    var bookings = readBookings();
+    var index = bookings.findIndex(function (booking) {
+      return booking.reference === reference;
+    });
+    if (index < 0) {
+      throw new Error("This booking could not be found.");
+    }
+    bookings.splice(index, 1);
+    writeBookings(bookings);
+  }
+
   window.TTAdminBookingsData = {
     getBookings: getBookings,
     getForDate: getForDate,
     getConfirmedGuests: getConfirmedGuests,
     createBooking: createBooking,
-    updateBooking: updateBooking
+    updateBooking: updateBooking,
+    deleteBooking: deleteBooking
   };
 })();

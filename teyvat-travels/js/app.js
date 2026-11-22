@@ -658,11 +658,11 @@
      ========================================================= */
 
   /**
-   * Populates the admin dashboard overview:
-   *  - stat cards (pending, confirmed, inquiries, payments — demo zeros)
-   *  - packages count stat
-   *  - recent bookings table (empty demo state)
-   *  - attention sidebar (zero counts)
+   * Populates the admin dashboard overview with live counts from TTAdminBookingsData:
+   *  - stat cards: pending, confirmed, total revenue (confirmed bookings), packages count
+   *  - attention sidebar counts
+   *  - recent bookings table (newest 5)
+   *  - today's date in the top bar
    * Visible in the Dashboard view (#/dashboard).
    */
   function renderDashboard() {
@@ -680,6 +680,107 @@
       todayEl.textContent = new Date().toLocaleDateString("en-US", {
         weekday: "long", year: "numeric", month: "long", day: "numeric"
       });
+    }
+
+    // Live booking stats from TTAdminBookingsData (guard: may not be loaded yet)
+    if (!window.TTAdminBookingsData) { return; }
+    var bookings;
+    try {
+      bookings = window.TTAdminBookingsData.getBookings();
+    } catch (e) { return; }
+
+    var pending   = 0;
+    var confirmed = 0;
+    var revenue   = 0;
+    bookings.forEach(function (booking) {
+      if (booking.bookingStatus === "Pending")   { pending += 1; }
+      if (booking.bookingStatus === "Confirmed") {
+        confirmed += 1;
+        // Use base price × guests when available, fall back to stored total
+        var pkg = packages.find(function (p) { return String(p.id) === String(booking.packageId); });
+        var price = pkg ? Number(pkg.price) : NaN;
+        revenue += Number.isFinite(price) ? price * booking.guests : Number(booking.total) || 0;
+      }
+    });
+
+    function setText(id, value) {
+      var el = document.getElementById(id);
+      if (el) { el.textContent = value; }
+    }
+    function formatPesoDash(amount) {
+      return "₱" + Number(amount).toLocaleString("en-PH", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    }
+
+    setText("ov-pending",   String(pending));
+    setText("ov-confirmed", String(confirmed));
+    // Revenue card — id may be ov-payments on the overview page
+    setText("ov-payments",  formatPesoDash(revenue));
+    setText("ov-payments-note", "Across " + confirmed + " confirmed " + (confirmed === 1 ? "booking" : "bookings"));
+    // Attention sidebar
+    setText("ov-attn-pending",   String(pending));
+    var awaitingPayment = bookings.filter(function (b) {
+      return b.bookingStatus === "Confirmed" && b.paymentStatus === "Pending";
+    }).length;
+    setText("ov-attn-payment", String(awaitingPayment));
+
+    // Recent bookings table
+    var tbody = document.getElementById("ov-recent");
+    if (tbody) {
+      var recent = bookings.slice().sort(function (a, b) {
+        return Date.parse(b.createdAt) - Date.parse(a.createdAt);
+      }).slice(0, 5);
+      tbody.textContent = "";
+      recent.forEach(function (booking) {
+        var pkg = packages.find(function (p) { return String(p.id) === String(booking.packageId); });
+        var nation = pkg ? (pkg.nation || pkg.title || booking.packageId) : booking.packageId;
+        var statusPillClass = booking.bookingStatus === "Pending" ? "ad-pill ad-pill--pending" :
+                              booking.bookingStatus === "Rejected" ? "ad-pill ad-pill--bad" : "ad-pill";
+        var row = document.createElement("tr");
+        var isoDate = booking.travelDate || "";
+        var parts   = isoDate.split("-").map(Number);
+        var dateStr = isoDate
+          ? new Date(parts[0], parts[1] - 1, parts[2]).toLocaleDateString("en-GB", {
+              day: "2-digit", month: "short", year: "numeric"
+            })
+          : "—";
+        var clientTd = document.createElement("td");
+        clientTd.className = "ad-td-main";
+        var clientName = document.createElement("p");
+        clientName.className = "ad-cell-strong";
+        clientName.textContent = booking.client;
+        var refCode = document.createElement("p");
+        refCode.className = "ad-cell-sub";
+        refCode.textContent = booking.reference;
+        clientTd.appendChild(clientName);
+        clientTd.appendChild(refCode);
+        row.appendChild(clientTd);
+
+        var nationTd = document.createElement("td");
+        nationTd.textContent = nation;
+        nationTd.dataset.label = "Nation";
+        row.appendChild(nationTd);
+
+        var dateTd = document.createElement("td");
+        dateTd.textContent = dateStr;
+        dateTd.className   = "ad-cell-small";
+        dateTd.dataset.label = "Travel date";
+        row.appendChild(dateTd);
+
+        var statusTd = document.createElement("td");
+        statusTd.dataset.label = "Status";
+        var pill = document.createElement("span");
+        pill.className = statusPillClass;
+        pill.textContent = booking.bookingStatus;
+        statusTd.appendChild(pill);
+        row.appendChild(statusTd);
+
+        tbody.appendChild(row);
+      });
+      var noteEl = document.getElementById("ov-recent-note");
+      if (noteEl) {
+        noteEl.textContent = "Showing " + recent.length + " of " + bookings.length +
+          " booking" + (bookings.length !== 1 ? "s" : "");
+      }
     }
   }
 
