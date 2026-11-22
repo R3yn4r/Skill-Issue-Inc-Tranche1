@@ -11,7 +11,7 @@
      1. STORAGE KEYS
      ========================================================= */
   var SESSION_KEY  = "tt_admin_session";
-  var PACKAGES_KEY = "tt_packages";
+  var PACKAGES_KEY = "tt_packages_v2";
 
   /* =========================================================
      3. DEFAULT PACKAGES DATA
@@ -131,7 +131,7 @@
       imageAlt: "Natlan's sunlit volcanic plains and distant mesas",
       accent: "#ff936d",
       nationLink: "natlan.html",
-      status: "Inactive"
+      status: "Active"
     },
     {
       id: "pkg-7",
@@ -150,7 +150,7 @@
       imageAlt: "A frozen Snezhnaya skyline beneath a deep blue, starry sky",
       accent: "#a6ddf3",
       nationLink: "snezhnaya.html",
-      status: "Inactive"
+      status: "Active"
     }
   ];
 
@@ -161,6 +161,8 @@
   /**
    * Returns the packages array from localStorage.
    * Falls back to DEFAULT_PACKAGES on first visit or if storage is corrupt.
+   * Also restores any default packages that are missing from the stored list
+   * (e.g. if localStorage was saved before all 7 packages were added).
    */
   function getPackages() {
     try {
@@ -168,6 +170,16 @@
       if (raw) {
         var parsed = JSON.parse(raw);
         if (Array.isArray(parsed)) {
+          // Merge back any default packages not present in the stored list.
+          var storedIds = parsed.map(function (p) { return p.id; });
+          var missing = DEFAULT_PACKAGES.filter(function (p) {
+            return storedIds.indexOf(p.id) < 0;
+          });
+          if (missing.length) {
+            var merged = parsed.concat(missing);
+            savePackages(merged);
+            return merged;
+          }
           return parsed;
         }
       }
