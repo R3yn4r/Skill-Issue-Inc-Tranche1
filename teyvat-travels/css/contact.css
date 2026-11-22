@@ -150,6 +150,180 @@
   line-height: 1.35;
 }
 
+/* Inquiry form fields mirror the dark, accented controls in the booking panel. */
+.ct-inquiry-column {
+  min-width: 0;
+}
+
+.ct-inquiry-form {
+  margin-top: 1.75rem;
+  padding: 1.75rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  border-radius: 16px;
+  color: #f5f7f6;
+  background: rgba(26, 40, 39, 0.72);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.28),
+    0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  font-family: var(--home-font-body, 'Inter', sans-serif);
+  text-align: left;
+}
+
+.ct-inquiry-title {
+  margin: 0 0 1.25rem;
+  color: #f5f7f6;
+  font-family: var(--home-font-display, 'Cinzel', Georgia, serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.ct-form-field + .ct-form-field {
+  margin-top: 1rem;
+}
+
+.ct-form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #f5f7f6;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.ct-form-optional {
+  color: var(--hx-muted);
+  font-size: 0.8rem;
+}
+
+.ct-form-control {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #f5f7f6;
+  background: #0a1716;
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color-scheme: dark;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.ct-form-control::placeholder {
+  color: rgba(201, 210, 207, 0.5);
+}
+
+.ct-form-select {
+  padding-right: 2rem;
+  cursor: pointer;
+}
+
+.ct-form-select option {
+  color: #f5f7f6;
+  background: #0f1f1e;
+}
+
+.ct-form-textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+.ct-form-control:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.ct-form-control[aria-invalid="true"] {
+  border-color: #ff9d8b;
+}
+
+.ct-field-error {
+  margin: 0.4rem 0 0;
+  color: #ff9d8b;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.ct-field-error[hidden],
+.ct-inquiry-status[hidden] {
+  display: none;
+}
+
+.ct-message-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.ct-character-count {
+  flex: 0 0 auto;
+  margin: 0.4rem 0 0;
+  color: var(--hx-muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.ct-inquiry-submit {
+  display: inline-flex;
+  width: 100%;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.25rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: #101c1b;
+  background: var(--accent);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.ct-inquiry-submit:hover {
+  background: color-mix(in srgb, var(--accent) 88%, white);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.ct-inquiry-submit:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.ct-inquiry-privacy {
+  margin: 0.8rem 0 0;
+  color: var(--hx-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.ct-inquiry-status {
+  margin: 1rem 0 0;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgba(130, 215, 189, 0.35);
+  border-radius: 6px;
+  color: #c9d2cf;
+  background: rgba(130, 215, 189, 0.08);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.ct-inquiry-status[data-state="error"] {
+  border-color: rgba(255, 157, 139, 0.45);
+  background: rgba(255, 157, 139, 0.08);
+}
+
 /* ------------------------------------------------------------------
    5. Detail rows — icon · label · value, separated by dividers
    ------------------------------------------------------------------ */
@@ -256,6 +430,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ct-form-control,
+  .ct-inquiry-submit {
+    transition: none;
+  }
+
   .ct-copy,
   .ct-card {
     animation: none;
@@ -293,6 +472,10 @@
 @media (max-width: 600px) {
   .hx-contact {
     padding: 3rem 0;
+  }
+
+  .ct-inquiry-form {
+    padding: 1.25rem;
   }
 
   .ct-cta-btn {

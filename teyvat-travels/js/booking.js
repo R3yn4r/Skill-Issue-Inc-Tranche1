@@ -1,5 +1,4 @@
-/* Booking panel for the nation pages. It builds one dialog, fills it from the package data below,
-   and keeps everything in the browser: nothing is sent, saved, or charged. */
+/* Booking panel for the nation pages. Concept bookings are stored locally; nothing is sent or charged. */
 (function () {
   "use strict";
 
@@ -9,15 +8,19 @@
   }
 
   const MIN_TRAVELLERS = 1;
-  const MAX_TRAVELLERS = 10;
+  const MAX_TRAVELLERS = 12;
   const DEFAULT_TRAVELLERS = 2;
   const CLOSE_DELAY = 220;
+  const BOOKINGS_STORAGE_KEY = "tt_bookings";
   const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const NAME_PATTERN = /^\p{L}+$/u;
+  const PHONE_PATTERN = /^(?:09\d{9}|\+639\d{9})$/;
 
   /* Package data mirrors the cards on index.html. Update prices and durations in both places. */
   const PACKAGES = {
     mondstadt: {
       name: "Mondstadt",
+      code: "MOND-01",
       accent: "#82d7bd",
       image: "assets/img/mondstadt.webp",
       imageAlt: "The green highlands and clear blue skies of Mondstadt",
@@ -29,6 +32,7 @@
     },
     liyue: {
       name: "Liyue",
+      code: "LIYU-02",
       accent: "#e7bd69",
       image: "assets/img/liyue.jpeg",
       imageAlt: "Warm sunset over the rocky peaks and valleys of Liyue",
@@ -40,6 +44,7 @@
     },
     inazuma: {
       name: "Inazuma",
+      code: "INAZ-03",
       accent: "#c59bed",
       image: "assets/img/inazuma.webp",
       imageAlt: "Inazuma's island architecture framed by glowing cherry blossoms",
@@ -51,6 +56,7 @@
     },
     sumeru: {
       name: "Sumeru",
+      code: "SUME-04",
       accent: "#a6d46c",
       image: "assets/img/sumeru.webp",
       imageAlt: "A great tree rises above Sumeru's green hills and waterfalls",
@@ -62,6 +68,7 @@
     },
     fontaine: {
       name: "Fontaine",
+      code: "FONT-05",
       accent: "#7ed9e7",
       image: "assets/img/fontaine.webp",
       imageAlt: "The luminous towers and blue waters of Fontaine",
@@ -73,6 +80,7 @@
     },
     natlan: {
       name: "Natlan",
+      code: "NATL-06",
       accent: "#ff936d",
       image: "assets/img/natlan.webp",
       imageAlt: "Natlan's sunlit volcanic plains and distant mesas",
@@ -84,6 +92,7 @@
     },
     snezhnaya: {
       name: "Snezhnaya",
+      code: "SNEZ-07",
       accent: "#a6ddf3",
       image: "assets/img/snezhnaya.webp",
       imageAlt: "A frozen Snezhnaya skyline beneath a deep blue, starry sky",
@@ -168,6 +177,7 @@
                         <output class="bk-stepper__value" id="bk-travellers">2</output>
                         <button class="bk-stepper__btn" type="button" data-bk-step="1" aria-label="Add a traveller">+</button>
                       </div>
+                      <p class="bk-error" id="bk-travellers-control-error" hidden></p>
                     </div>
                   </div>
                 </section>
@@ -220,11 +230,15 @@
               <div data-bk-views="review">
                 <h3 class="bk-h3">Your details</h3>
                 <dl class="bk-review" id="bk-review-list"></dl>
+                <p class="bk-error" id="bk-save-error" aria-live="polite" hidden></p>
               </div>
 
               <div class="bk-done" data-bk-views="done">
                 <span class="bk-done__icon" aria-hidden="true">&#10003;</span>
-                <p id="bk-done-message"></p>
+                <div class="bk-done__copy">
+                  <p id="bk-done-message"></p>
+                  <p class="bk-done__reference" id="bk-reference"></p>
+                </div>
               </div>
             </div>
 
@@ -314,10 +328,23 @@
     total: byId("bk-total"),
     totalNote: byId("bk-total-note"),
     reviewList: byId("bk-review-list"),
-    doneMessage: byId("bk-done-message")
+    doneMessage: byId("bk-done-message"),
+    reference: byId("bk-reference"),
+    saveError: byId("bk-save-error"),
+    travellersControl: overlay.querySelector(".bk-stepper")
   };
   const stepButtons = Array.from(overlay.querySelectorAll("[data-bk-step]"));
-  const validatedFields = [els.date, els.first, els.last, els.email, els.phone, els.ack];
+  els.travellersControl.id = "bk-travellers-control";
+  els.travellersControl.tabIndex = -1;
+  const validatedFields = [
+    els.date,
+    els.first,
+    els.last,
+    els.email,
+    els.phone,
+    els.travellersControl,
+    els.ack
+  ];
 
   /* Formats a number as pesos, such as 25000 to a peso sign and 25,000. */
   function formatPeso(amount) {
@@ -336,11 +363,9 @@
       String(date.getDate()).padStart(2, "0");
   }
 
-  /* Earliest bookable day is tomorrow, in the visitor's own time zone. */
-  function tomorrowISO() {
-    const date = new Date();
-    date.setDate(date.getDate() + 1);
-    return toISODate(date);
+  /* Returns today in local time so a departure date cannot be set in the past. */
+  function todayISO() {
+    return toISODate(new Date());
   }
 
   /* Turns a YYYY-MM-DD value into a readable date without a time zone shift. */
@@ -402,19 +427,25 @@
 
   /* Returns an error message for one field, or an empty string when it is valid. */
   function getError(field) {
-    const value = field.value.trim();
+    const value = typeof field.value === "string" ? field.value.trim() : "";
 
     if (field === els.date) {
       if (!field.value) {
         return "Choose a departure date.";
       }
-      return field.value < field.min ? "Choose a date after today." : "";
+      return field.value < todayISO() ? "Choose today or a later departure date." : "";
     }
     if (field === els.first) {
-      return value ? "" : "Enter your first name.";
+      if (!value) {
+        return "Enter your first name.";
+      }
+      return NAME_PATTERN.test(value) ? "" : "Use letters only for your first name.";
     }
     if (field === els.last) {
-      return value ? "" : "Enter your last name.";
+      if (!value) {
+        return "Enter your last name.";
+      }
+      return NAME_PATTERN.test(value) ? "" : "Use letters only for your last name.";
     }
     if (field === els.email) {
       if (!value) {
@@ -426,9 +457,12 @@
       if (!value) {
         return "Enter your phone number.";
       }
-      const digits = value.replace(/\D/g, "");
-      const looksValid = /^[+()\d\s.-]+$/.test(value) && digits.length >= 7 && digits.length <= 15;
-      return looksValid ? "" : "Enter a valid phone number.";
+      return PHONE_PATTERN.test(value) ? "" : "Use 09XXXXXXXXX or +639XXXXXXXXX format.";
+    }
+    if (field === els.travellersControl) {
+      return state.travellers >= MIN_TRAVELLERS && state.travellers <= MAX_TRAVELLERS
+        ? ""
+        : "Choose between 1 and 12 travellers.";
     }
     if (field === els.ack) {
       return field.checked ? "" : "Please tick this box to continue.";
@@ -500,6 +534,62 @@
     addReviewRow("Estimated total", formatPeso(pkg.price * state.travellers));
   }
 
+  /* Reads existing concept bookings and reports storage or data errors in the review step. */
+  function readBookings() {
+    let storedValue;
+    try {
+      storedValue = window.localStorage.getItem(BOOKINGS_STORAGE_KEY);
+    } catch (error) {
+      return {
+        bookings: null,
+        error: "This browser could not access local storage. No booking was saved."
+      };
+    }
+
+    if (storedValue === null) {
+      return { bookings: [], error: "" };
+    }
+
+    let bookings;
+    try {
+      bookings = JSON.parse(storedValue);
+    } catch (error) {
+      return {
+        bookings: null,
+        error: "Saved booking data could not be read. No booking was saved."
+      };
+    }
+
+    if (!Array.isArray(bookings)) {
+      return {
+        bookings: null,
+        error: "Saved booking data has an unexpected format. No booking was saved."
+      };
+    }
+
+    return { bookings: bookings, error: "" };
+  }
+
+  /* Builds a year-specific reference using the highest matching stored sequence. */
+  function createReferenceNumber(bookings, year) {
+    const prefix = "TT-" + year + "-";
+    const referencePattern = new RegExp("^TT-" + year + "-(\\d+)$");
+    let highestNumber = 0;
+
+    bookings.forEach(function (booking) {
+      const reference = booking && typeof booking.reference_no === "string"
+        ? booking.reference_no
+        : "";
+      const match = referencePattern.exec(reference);
+
+      if (match) {
+        highestNumber = Math.max(highestNumber, Number(match[1]));
+      }
+    });
+
+    return prefix + String(highestNumber + 1).padStart(4, "0");
+  }
+
   /* Validates the form, then moves to the review step or focuses the first problem. */
   function handleSubmit(event) {
     event.preventDefault();
@@ -522,17 +612,61 @@
     }
 
     renderReview();
+    els.saveError.textContent = "";
+    els.saveError.hidden = true;
     setView("review");
     els.title.focus({ preventScroll: true });
   }
 
-  /* Completes the concept and shows the confirmation message. */
+  /* Saves the concept booking locally before displaying its reference number. */
   function handleConfirm() {
+    if (state.view !== "review") {
+      return;
+    }
+
     const pkg = PACKAGES[state.key];
+    const stored = readBookings();
+    if (stored.error) {
+      els.saveError.textContent = stored.error;
+      els.saveError.hidden = false;
+      return;
+    }
+
+    const createdAt = new Date();
+    const referenceNumber = createReferenceNumber(stored.bookings, createdAt.getFullYear());
+    const booking = {
+      reference_no: referenceNumber,
+      package_code: pkg.code,
+      nation: pkg.name,
+      full_name: els.first.value.trim() + " " + els.last.value.trim(),
+      email: els.email.value.trim(),
+      contact_number: els.phone.value.trim(),
+      travel_date: els.date.value,
+      num_guests: state.travellers,
+      total_price: pkg.price * state.travellers,
+      booking_status: "Pending",
+      payment_status: "Unpaid",
+      created_at: createdAt.toISOString()
+    };
+
+    try {
+      window.localStorage.setItem(
+        BOOKINGS_STORAGE_KEY,
+        JSON.stringify(stored.bookings.concat(booking))
+      );
+    } catch (error) {
+      els.saveError.textContent = "This browser could not save the booking. Please try again.";
+      els.saveError.hidden = false;
+      return;
+    }
+
+    els.saveError.textContent = "";
+    els.saveError.hidden = true;
     els.doneMessage.textContent = "Thank you, " + els.first.value.trim() + "! Your " + pkg.name +
       " expedition for " + state.travellers + " " + travellerWord(state.travellers) +
       ", departing " + formatDate(els.date.value) + ", is complete as a concept. " +
       "Nothing was booked, charged, or sent anywhere, because Teyvat Travels is a fan-made project.";
+    els.reference.textContent = "Reference number: " + referenceNumber;
     setView("done");
     els.title.focus({ preventScroll: true });
   }
@@ -544,6 +678,9 @@
     validatedFields.forEach(function (field) {
       setFieldError(field, "");
     });
+    els.saveError.textContent = "";
+    els.saveError.hidden = true;
+    els.reference.textContent = "";
     els.destination.value = state.key;
     updateSummary();
     setView("form");
@@ -578,7 +715,7 @@
       els.destination.value = requested;
     }
 
-    els.date.min = tomorrowISO();
+    els.date.min = todayISO();
     updateSummary();
 
     setBackgroundInert(true);
@@ -663,6 +800,9 @@
       if (next >= MIN_TRAVELLERS && next <= MAX_TRAVELLERS) {
         state.travellers = next;
         updateSummary();
+        if (els.travellersControl.getAttribute("aria-invalid") === "true") {
+          setFieldError(els.travellersControl, getError(els.travellersControl));
+        }
       }
       return;
     }
@@ -693,7 +833,7 @@
     }
 
     els.destination.value = state.key;
-    els.date.min = tomorrowISO();
+    els.date.min = todayISO();
     updateSummary();
     setView("form");
 

@@ -160,9 +160,29 @@
           <p class="hx-section-intro">Explore our guide collections and build a route that fits the way you travel.</p>
         </header>
         <div class="pk-carousel" role="region" aria-roledescription="carousel" aria-label="Seven nation tour packages" tabindex="0">
+          <div class="pk-filters">
+            <div class="pk-filter-group" role="group" aria-label="Filter packages by nation">
+              <button class="pk-filter-chip" type="button" data-nation="all" aria-pressed="true">All</button>
+              <button class="pk-filter-chip" type="button" data-nation="Mondstadt" aria-pressed="false">Mondstadt</button>
+              <button class="pk-filter-chip" type="button" data-nation="Liyue" aria-pressed="false">Liyue</button>
+              <button class="pk-filter-chip" type="button" data-nation="Inazuma" aria-pressed="false">Inazuma</button>
+              <button class="pk-filter-chip" type="button" data-nation="Sumeru" aria-pressed="false">Sumeru</button>
+              <button class="pk-filter-chip" type="button" data-nation="Fontaine" aria-pressed="false">Fontaine</button>
+              <button class="pk-filter-chip" type="button" data-nation="Natlan" aria-pressed="false">Natlan</button>
+              <button class="pk-filter-chip" type="button" data-nation="Snezhnaya" aria-pressed="false">Snezhnaya</button>
+            </div>
+            <label class="pk-sort-label" for="pk-sort">Sort by
+              <select class="pk-sort" id="pk-sort">
+                <option value="default">Default</option>
+                <option value="price-ascending">Price low to high</option>
+                <option value="price-descending">Price high to low</option>
+              </select>
+            </label>
+            <p class="pk-results-count" aria-live="polite">Showing 7 of 7 packages</p>
+          </div>
           <div class="pk-carousel__viewport">
             <div class="pk-carousel__track" aria-live="polite">
-              <div class="pk-carousel__slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 7" data-slide-index="0">
+              <div class="pk-carousel__slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 7" data-slide-index="0" data-nation="Mondstadt" data-price="12500">
                 <article class="pk-card pk-card--featured" style="--accent: #82d7bd;">
             <div class="pk-card__visual">
               <a class="pk-card__image-link" href="mondstadt.html"><img class="pk-card__image" src="assets/img/mondstadt.webp" alt="The green highlands and clear blue skies of Mondstadt" loading="lazy" width="1600" height="900"></a>
@@ -178,7 +198,7 @@
             <div class="pk-card__body">
               <p class="pk-description">Experience the romantic charm of windmills, rolling green hills, and historic stone architecture. Perfect for travelers looking for a relaxing nature getaway.</p>
               <ul class="pk-stops" aria-label="Featured stops">
-                <li>Cider Lake</li><li>Windrise</li><li>the grand Cathedral of Mondstadt</li>
+                <li>Cider Lake</li><li>Windrise</li><li>The Grand Cathedral of Mondstadt</li>
               </ul>
               <div class="pk-meta">
                 <div class="pk-stat"><p class="pk-stat-label">Duration</p><p class="pk-stat-value">3 Days / 2 Nights</p></div>
@@ -190,7 +210,7 @@
             </div>
                 </article>
               </div>
-              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="2 of 7" data-slide-index="1">
+              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="2 of 7" data-slide-index="1" data-nation="Liyue" data-price="15000">
                 <article class="pk-card" style="--accent: #e7bd69;">
             <div class="pk-card__visual">
               <a class="pk-card__image-link" href="liyue.html"><img class="pk-card__image" src="assets/img/liyue.jpeg" alt="Warm sunset over the rocky peaks and valleys of Liyue" loading="lazy" width="1600" height="900"></a>
@@ -218,7 +238,7 @@
             </div>
                 </article>
               </div>
-              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="3 of 7" data-slide-index="2">
+              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="3 of 7" data-slide-index="2" data-nation="Inazuma" data-price="18000">
                 <article class="pk-card" style="--accent: #c59bed;">
             <div class="pk-card__visual">
               <a class="pk-card__image-link" href="inazuma.html"><img class="pk-card__image" src="assets/img/inazuma.webp" alt="Inazuma's island architecture framed by glowing cherry blossoms" loading="lazy" width="1600" height="900"></a>
@@ -246,7 +266,7 @@
             </div>
                 </article>
               </div>
-              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="4 of 7" data-slide-index="3">
+              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="4 of 7" data-slide-index="3" data-nation="Sumeru" data-price="14000">
                 <article class="pk-card" style="--accent: #a6d46c;">
             <div class="pk-card__visual">
               <a class="pk-card__image-link" href="sumeru.html"><img class="pk-card__image" src="assets/img/sumeru.webp" alt="A great tree rises above Sumeru's green hills and waterfalls" loading="lazy" width="1600" height="900"></a>
@@ -274,7 +294,7 @@
             </div>
                 </article>
               </div>
-              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="5 of 7" data-slide-index="4">
+              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="5 of 7" data-slide-index="4" data-nation="Fontaine" data-price="20000">
                 <article class="pk-card" style="--accent: #7ed9e7;">
             <div class="pk-card__visual">
               <a class="pk-card__image-link" href="fontaine.html"><img class="pk-card__image" src="assets/img/fontaine.webp" alt="The luminous towers and blue waters of Fontaine" loading="lazy" width="1600" height="900"></a>
@@ -302,7 +322,7 @@
             </div>
                 </article>
               </div>
-              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="6 of 7" data-slide-index="5">
+              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="6 of 7" data-slide-index="5" data-nation="Natlan" data-price="16500">
                 <article class="pk-card" style="--accent: #ff936d;">
             <div class="pk-card__visual">
               <a class="pk-card__image-link" href="natlan.html"><img class="pk-card__image" src="assets/img/natlan.webp" alt="Natlan's sunlit volcanic plains and distant mesas" loading="lazy" width="1600" height="900"></a>
@@ -330,7 +350,7 @@
             </div>
                 </article>
               </div>
-              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="7 of 7" data-slide-index="6">
+              <div class="pk-carousel__slide" role="group" aria-roledescription="slide" aria-label="7 of 7" data-slide-index="6" data-nation="Snezhnaya" data-price="22000">
                 <article class="pk-card" style="--accent: #a6ddf3;">
             <div class="pk-card__visual">
               <a class="pk-card__image-link" href="snezhnaya.html"><img class="pk-card__image" src="assets/img/snezhnaya.webp" alt="A frozen Snezhnaya skyline beneath a deep blue, starry sky" loading="lazy" width="1600" height="900"></a>
@@ -363,14 +383,7 @@
             <button class="pk-carousel__control pk-carousel__control--next" type="button" aria-label="Next slide">&#8594;</button>
           </div>
           <div class="pk-carousel__footer">
-            <div class="pk-carousel__dots" role="group" aria-label="Choose a package slide">
-              <button class="pk-carousel__dot" type="button" aria-label="Go to slide 1" aria-current="true" data-slide-to="0"></button>
-              <button class="pk-carousel__dot" type="button" aria-label="Go to slide 2" aria-current="false" data-slide-to="1"></button>
-              <button class="pk-carousel__dot" type="button" aria-label="Go to slide 3" aria-current="false" data-slide-to="2"></button>
-              <button class="pk-carousel__dot" type="button" aria-label="Go to slide 4" aria-current="false" data-slide-to="3"></button>
-              <button class="pk-carousel__dot" type="button" aria-label="Go to slide 5" aria-current="false" data-slide-to="4"></button>
-              <button class="pk-carousel__dot" type="button" aria-label="Go to slide 6" aria-current="false" data-slide-to="5"></button>
-              <button class="pk-carousel__dot" type="button" aria-label="Go to slide 7" aria-current="false" data-slide-to="6"></button>
+            <div class="pk-carousel__dots" role="group" aria-label="Choose a package slide"></div>
             </div>
           </div>
         </div>
@@ -493,14 +506,59 @@
     <section class="hx-section hx-contact" id="contact" aria-labelledby="hx-contact-title">
       <div class="hx-container ct-layout">
 
-        <!-- Left: copy + CTA -->
-        <div class="ct-copy">
-          <p class="hx-eyebrow ct-eyebrow">Contact</p>
-          <h2 class="hx-section-title ct-heading" id="hx-contact-title">Plan the next chapter</h2>
-          <div class="ct-heading-bar" aria-hidden="true"></div>
-          <p class="hx-body-copy ct-intro">Questions or ideas for the guide? Reach the team at:</p>
-          <a class="ct-cta-btn" href="mailto:skillissueinc@gmail.com">Email us</a>
-          <p class="ct-cta-note">We usually reply within a few days.</p>
+        <!-- Inquiry form sits beside the existing contact details card. -->
+        <div class="ct-inquiry-column">
+          <div class="ct-copy">
+            <p class="hx-eyebrow ct-eyebrow">Contact</p>
+            <h2 class="hx-section-title ct-heading" id="hx-contact-title">Plan the next chapter</h2>
+            <div class="ct-heading-bar" aria-hidden="true"></div>
+            <p class="hx-body-copy ct-intro">Questions or ideas for the guide? Reach the team at:</p>
+            <a class="ct-cta-btn" href="mailto:skillissueinc@gmail.com">Email us</a>
+            <p class="ct-cta-note">We usually reply within a few days.</p>
+          </div>
+
+          <form class="ct-inquiry-form" id="ct-inquiry-form" aria-labelledby="ct-inquiry-title" novalidate>
+            <h3 class="ct-inquiry-title" id="ct-inquiry-title">Send an inquiry</h3>
+            <div class="ct-form-field">
+              <label class="ct-form-label" for="ct-inquiry-name">Full name <span aria-hidden="true">*</span></label>
+              <input class="ct-form-control" id="ct-inquiry-name" name="full_name" type="text" required minlength="2" autocomplete="name" aria-describedby="ct-inquiry-name-error">
+              <p class="ct-field-error" id="ct-inquiry-name-error" aria-live="polite" hidden></p>
+            </div>
+            <div class="ct-form-field">
+              <label class="ct-form-label" for="ct-inquiry-email">Email <span aria-hidden="true">*</span></label>
+              <input class="ct-form-control" id="ct-inquiry-email" name="email" type="email" required autocomplete="email" aria-describedby="ct-inquiry-email-error">
+              <p class="ct-field-error" id="ct-inquiry-email-error" aria-live="polite" hidden></p>
+            </div>
+            <div class="ct-form-field">
+              <label class="ct-form-label" for="ct-inquiry-phone">Contact number <span aria-hidden="true">*</span></label>
+              <input class="ct-form-control" id="ct-inquiry-phone" name="contact_number" type="tel" required inputmode="tel" autocomplete="tel" placeholder="09XXXXXXXXX or +639XXXXXXXXX" aria-describedby="ct-inquiry-phone-error">
+              <p class="ct-field-error" id="ct-inquiry-phone-error" aria-live="polite" hidden></p>
+            </div>
+            <div class="ct-form-field">
+              <label class="ct-form-label" for="ct-inquiry-package">Package of interest <span class="ct-form-optional">(optional)</span></label>
+              <select class="ct-form-control ct-form-select" id="ct-inquiry-package" name="package_code">
+                <option value="">Select a package</option>
+                <option value="MOND-01">Mondstadt — The City of Freedom Expedition</option>
+                <option value="LIYU-02">Liyue — The Harbor of Stone and Commerce</option>
+                <option value="INAZ-03">Inazuma — The Realm of Eternal Thunder</option>
+                <option value="SUME-04">Sumeru — The City of Wisdom &amp; Rainforest Retreat</option>
+                <option value="FONT-05">Fontaine — The Capital of Justice, Steam, and Aquanics</option>
+                <option value="NATL-06">Natlan — The Land of Ash, Hot Springs, and Valor</option>
+                <option value="SNEZ-07">Snezhnaya — The Eternal White Tundra</option>
+              </select>
+            </div>
+            <div class="ct-form-field">
+              <label class="ct-form-label" for="ct-inquiry-message">Message <span aria-hidden="true">*</span></label>
+              <textarea class="ct-form-control ct-form-textarea" id="ct-inquiry-message" name="message" required minlength="10" maxlength="500" aria-describedby="ct-inquiry-message-count ct-inquiry-message-error"></textarea>
+              <div class="ct-message-meta">
+                <p class="ct-field-error" id="ct-inquiry-message-error" aria-live="polite" hidden></p>
+                <p class="ct-character-count" id="ct-inquiry-message-count" aria-live="polite">0 / 500 characters</p>
+              </div>
+            </div>
+            <button class="ct-inquiry-submit" type="submit">Submit inquiry</button>
+            <p class="ct-inquiry-privacy">Fan-made project: your message is not sent anywhere.</p>
+            <p class="ct-inquiry-status" id="ct-inquiry-status" role="status" aria-live="polite" hidden></p>
+          </form>
         </div>
 
         <!-- Right: contact details card -->
@@ -609,5 +667,6 @@
   </footer>
   <script src="js/packages-slider.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/inquiry-form.js" defer></script>
 </body>
 </html>

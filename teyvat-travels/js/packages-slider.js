@@ -11,8 +11,13 @@
   const track = carousel.querySelector(".pk-carousel__track");
   const previousButton = carousel.querySelector(".pk-carousel__control--previous");
   const nextButton = carousel.querySelector(".pk-carousel__control--next");
-  const dots = Array.from(carousel.querySelectorAll(".pk-carousel__dot"));
-  const slides = Array.from(track.children);
+  const dotsContainer = carousel.querySelector(".pk-carousel__dots");
+  const filterButtons = Array.from(carousel.querySelectorAll(".pk-filter-chip"));
+  const sortSelect = carousel.querySelector(".pk-sort");
+  const resultsCount = carousel.querySelector(".pk-results-count");
+  const allSlides = Array.from(track.children);
+  let slides = allSlides.slice();
+  let dots = [];
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   let activeSlide = slides[0];
@@ -22,7 +27,7 @@
 
   /* Centers the active slide on desktop and left-aligns it at narrower widths. */
   function positionSlide(slide) {
-    const alignLeft = window.matchMedia("(max-width: 1100px)").matches;
+    const alignLeft = slides.length > 1 && window.matchMedia("(max-width: 1100px)").matches;
     const offset = alignLeft
       ? -slide.offsetLeft
       : (viewport.clientWidth - slide.offsetWidth) / 2 - slide.offsetLeft;
@@ -76,13 +81,15 @@
   /* Updates the active card, dot indicator, and keyboard accessibility for the visible slides. */
   function updateSlideState() {
     const viewportBounds = viewport.getBoundingClientRect();
-    const activeIndex = Number(activeSlide.dataset.slideIndex);
+    const activeIndex = slides.indexOf(activeSlide);
 
     for (let index = 0; index < slides.length; index += 1) {
       const slide = slides[index];
       const bounds = slide.getBoundingClientRect();
       const isVisible = bounds.right > viewportBounds.left && bounds.left < viewportBounds.right;
 
+      slide.dataset.slideIndex = String(index);
+      slide.setAttribute("aria-label", (index + 1) + " of " + slides.length);
       slide.classList.toggle("is-active", slide === activeSlide);
       slide.setAttribute("aria-hidden", String(!isVisible));
       setSlideInert(slide, !isVisible);
@@ -110,7 +117,7 @@
       return;
     }
 
-    const activeIndex = Number(activeSlide.dataset.slideIndex);
+    const activeIndex = slides.indexOf(activeSlide);
     if (activeIndex === pendingDotIndex) {
       pendingDotIndex = null;
       return;
@@ -157,7 +164,7 @@
 
   /* Navigates to the requested dot using the shortest sequence of one-card movements. */
   function navigateToSlide(index) {
-    const activeIndex = Number(activeSlide.dataset.slideIndex);
+    const activeIndex = slides.indexOf(activeSlide);
     pendingDotIndex = index === activeIndex ? null : index;
 
     if (pendingDotIndex !== null && !isMoving) {
@@ -192,6 +199,79 @@
     if (Number.isInteger(index) && index >= 0 && index < slides.length) {
       navigateToSlide(index);
     }
+  }
+
+  /* Updates the visible slides and matching controls after a nation or sort change. */
+  function applyFilters() {
+    const selectedNation = carousel.querySelector('.pk-filter-chip[aria-pressed="true"]').dataset.nation;
+    const sortOrder = sortSelect.value;
+
+    slides = allSlides.filter(function (slide) {
+      return selectedNation === "all" || slide.dataset.nation === selectedNation;
+    });
+
+    if (sortOrder === "price-ascending") {
+      slides.sort(function (first, second) {
+        return Number(first.dataset.price) - Number(second.dataset.price);
+      });
+    } else if (sortOrder === "price-descending") {
+      slides.sort(function (first, second) {
+        return Number(second.dataset.price) - Number(first.dataset.price);
+      });
+    }
+
+    resultsCount.textContent = "Showing " + slides.length + " of " + allSlides.length + " packages";
+    dotsContainer.replaceChildren();
+    dots = slides.map(function (slide, index) {
+      const dot = document.createElement("button");
+      dot.className = "pk-carousel__dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", "Go to slide " + (index + 1));
+      dot.setAttribute("aria-current", String(index === 0));
+      dot.dataset.slideTo = String(index);
+      dot.addEventListener("click", handleDotClick);
+      dotsContainer.appendChild(dot);
+      return dot;
+    });
+
+    previousButton.hidden = slides.length < 2;
+    nextButton.hidden = slides.length < 2;
+    carousel.querySelector(".pk-carousel__footer").hidden = slides.length < 2;
+
+    for (let index = 0; index < allSlides.length; index += 1) {
+      const isIncluded = slides.indexOf(allSlides[index]) !== -1;
+      allSlides[index].setAttribute("aria-hidden", String(!isIncluded));
+      setSlideInert(allSlides[index], !isIncluded);
+    }
+
+    activeSlide = slides[0];
+    pendingDotIndex = null;
+    isMoving = false;
+    track.style.transition = "none";
+    track.replaceChildren(...slides);
+
+    if (slides.length > 1) {
+      track.insertBefore(track.lastElementChild, track.firstElementChild);
+    }
+
+    positionSlide(activeSlide);
+    track.getBoundingClientRect();
+    track.style.transition = "";
+    updateSlideState();
+  }
+
+  /* Keeps exactly one nation chip pressed and resets navigation to the first result. */
+  function handleFilterClick(event) {
+    for (let index = 0; index < filterButtons.length; index += 1) {
+      filterButtons[index].setAttribute("aria-pressed", String(filterButtons[index] === event.currentTarget));
+    }
+
+    applyFilters();
+  }
+
+  /* Applies the selected price order and resets navigation to the first result. */
+  function handleSortChange() {
+    applyFilters();
   }
 
   /* Maps the left and right arrow keys to carousel navigation while the region has focus. */
@@ -240,17 +320,6 @@
 
   /* Initializes carousel state and binds the manual navigation controls. */
   function initialize() {
-    for (let index = 0; index < slides.length; index += 1) {
-      setSlideInert(slides[index], false);
-    }
-
-    if (slides.length > 1) {
-      track.insertBefore(track.lastElementChild, track.firstElementChild);
-    }
-
-    positionSlide(activeSlide);
-    updateSlideState();
-
     previousButton.addEventListener("click", handlePreviousClick);
     nextButton.addEventListener("click", handleNextClick);
     track.addEventListener("transitionend", handleTransitionEnd);
@@ -260,10 +329,12 @@
     window.addEventListener("resize", handleResize);
     reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
 
-    for (let index = 0; index < dots.length; index += 1) {
-      dots[index].addEventListener("click", handleDotClick);
+    for (let index = 0; index < filterButtons.length; index += 1) {
+      filterButtons[index].addEventListener("click", handleFilterClick);
     }
 
+    sortSelect.addEventListener("change", handleSortChange);
+    applyFilters();
   }
 
   /* Runs the package carousel after all deferred document markup has been parsed. */
