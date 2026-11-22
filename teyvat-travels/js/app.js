@@ -131,7 +131,7 @@
       imageAlt: "Natlan's sunlit volcanic plains and distant mesas",
       accent: "#ff936d",
       nationLink: "natlan.html",
-      status: "Active"
+      status: "Inactive"
     },
     {
       id: "pkg-7",
@@ -150,7 +150,7 @@
       imageAlt: "A frozen Snezhnaya skyline beneath a deep blue, starry sky",
       accent: "#a6ddf3",
       nationLink: "snezhnaya.html",
-      status: "Active"
+      status: "Inactive"
     }
   ];
 
@@ -167,7 +167,7 @@
       var raw = localStorage.getItem(PACKAGES_KEY);
       if (raw) {
         var parsed = JSON.parse(raw);
-        if (Array.isArray(parsed) && parsed.length) {
+        if (Array.isArray(parsed)) {
           return parsed;
         }
       }
@@ -313,6 +313,8 @@
     "view-signin",
     "view-dashboard",
     "view-admin-packages",
+    "view-admin-availability",
+    "view-admin-bookings",
     "view-admin-package-edit"
   ];
 
@@ -357,7 +359,7 @@
 
   /**
    * Shows a named admin view, hides all others including the public shell.
-   * Applies: view-signin, view-dashboard, view-admin-packages, view-admin-package-edit.
+   * Applies the sign-in, dashboard, package, availability, and booking views.
    */
   function showAdminView(viewId, title) {
     VIEW_IDS.forEach(function (id) {
@@ -395,7 +397,13 @@
     var r = parseRoute();
 
     // Unauthenticated users trying to reach a protected route → sign-in page
-    var protected_ = ["/dashboard", "/admin-packages", "/admin-package-edit"];
+    var protected_ = [
+      "/dashboard",
+      "/admin-packages",
+      "/admin-package-edit",
+      "/admin-availability",
+      "/admin-bookings"
+    ];
     if (protected_.indexOf(r.path) >= 0 && !isSignedIn()) {
       navigate("#/signin");
       return;
@@ -419,6 +427,14 @@
       case "/admin-packages":
         showAdminView("view-admin-packages", "Tour packages");
         renderAdminPackages();
+        break;
+      case "/admin-availability":
+        showAdminView("view-admin-availability", "Availability");
+        window.TTAdminAvailability.render(getPackages());
+        break;
+      case "/admin-bookings":
+        showAdminView("view-admin-bookings", "Bookings");
+        window.TTAdminBookings.render(getPackages());
         break;
       case "/admin-package-edit":
         showAdminView("view-admin-package-edit", "Edit package");
@@ -452,6 +468,8 @@
       var isActive = false;
       if (path === "/dashboard" && href.indexOf("dashboard") >= 0) { isActive = true; }
       if ((path === "/admin-packages" || path === "/admin-package-edit") && href.indexOf("admin-packages") >= 0) { isActive = true; }
+      if (path === "/admin-availability" && href.indexOf("admin-availability") >= 0) { isActive = true; }
+      if (path === "/admin-bookings" && href.indexOf("admin-bookings") >= 0) { isActive = true; }
       link.setAttribute("aria-current", isActive ? "page" : "false");
     }
   }
@@ -715,9 +733,8 @@
       };
     }
 
-    function applyFilters() {
+    function applyFilters(all) {
       var f = getCurrentFilters();
-      var all = getPackages();
       return all.filter(function (p) {
         if (f.nation !== "all" && p.nation !== f.nation) { return false; }
         if (f.status !== "all" && (p.status || "Active") !== f.status) { return false; }
@@ -730,7 +747,8 @@
     }
 
     function renderRows() {
-      var filtered = applyFilters();
+      var allPackages = getPackages();
+      var filtered = applyFilters(allPackages);
       tbody.innerHTML = "";
 
       if (!filtered.length) {
@@ -743,12 +761,16 @@
       if (emptyEl) { emptyEl.hidden = true; }
       var total = filtered.length;
       if (countEl) { countEl.textContent = total + " package" + (total !== 1 ? "s" : ""); }
-      if (footEl)  { footEl.textContent = total + " of " + getPackages().length + " packages shown"; }
+      if (footEl)  { footEl.textContent = total + " of " + allPackages.length + " packages shown"; }
 
-      filtered.forEach(function (p, idx) {
-        var num = String(idx + 1).padStart(2, "0");
-        var statusPillClass = (p.status === "Inactive") ? "admin-pill--off" : "admin-pill";
+      filtered.forEach(function (p) {
+        var packageNumber = allPackages.findIndex(function (pkg) { return pkg.id === p.id; }) + 1;
+        var num = String(packageNumber).padStart(2, "0");
+        var statusPillClass = (p.status === "Inactive")
+          ? "admin-pill admin-pill--off"
+          : "admin-pill";
         var tr = document.createElement("tr");
+        if (p.status === "Inactive") { tr.className = "admin-pkg-row--inactive"; }
         tr.innerHTML =
           '<td class="ad-td-main" data-label="Package">' +
             '<div class="ad-pkg">' +
